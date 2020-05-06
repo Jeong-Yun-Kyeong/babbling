@@ -632,7 +632,7 @@
 			baseConfigurationReference = 78C83D1B21D54DA16345101F /* Pods-babbling.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = ZJ7ZVZQPJZ;
 				INFOPLIST_FILE = babbling/Info.plist;
@@ -655,7 +655,7 @@
 			baseConfigurationReference = 8BC05674635ED5C95E0CDFE6 /* Pods-babbling.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = ZJ7ZVZQPJZ;
 				INFOPLIST_FILE = babbling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
