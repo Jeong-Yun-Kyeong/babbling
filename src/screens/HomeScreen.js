@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import CardList from '../components/CardListComponent';
 import CardTalk from '../components/CardTalkComponent';
@@ -18,6 +19,22 @@ const SLIDE01 = [
     title: '베베랩',
     name: '고보습 베리어 베이비 로션 200ml',
     hashTag: '#첫로션 #고보습 #산양유',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/2.jpeg',
+    title: 'BUTLER(버틀러)',
+    name: '프로바이오틱스 세제',
+    hashTag: '#세정력 #아기냄새 #인스타',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/3.jpeg',
+    title: '풀무원 베이비밀',
+    name: '닭가슴살 바나나죽',
+    hashTag: '#8-9개월 #닭알레르기 #잘먹음',
     score: 4.5,
     count: '2,121',
   },
@@ -106,16 +123,27 @@ const TALK01 = [
 ];
 import Footer from './FooterScreen';
 import CardPost from '../components/CardPostComponent';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
+const IMAGESLIDE = [
+  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
+  {
+    url: 'https://i.ibb.co/gRrCrcq/slide01.png',
+  },
+];
 export default class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
+      images: [],
+      activeSlide: 0,
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({images: IMAGESLIDE});
+  }
 
   _intoDetail = () => {
     this.props.navigation.navigate('Detail');
@@ -127,6 +155,45 @@ export default class Home extends PureComponent {
       screen: 'TalkTop',
       params: {screen: '포스팅'},
     });
+  };
+
+  pagination = () => {
+    const {images, activeSlide} = this.state;
+    return (
+      <Pagination
+        style={{paddingVertical: 0}}
+        dotsLength={images.length}
+        activeDotIndex={activeSlide}
+        containerStyle={{backgroundColor: 'white', paddingVertical: 10}}
+        dotStyle={{
+          // width: 8,
+          // height: 8,
+          // borderRadius: 8,
+          // marginHorizontal: 8,
+          backgroundColor: '#32cc73',
+        }}
+        inactiveDotStyle={{
+          backgroundColor: '#f0f0f0',
+        }}
+        inactiveDotOpacity={1}
+        inactiveDotScale={0.9}
+      />
+    );
+  };
+
+  _renderItem = ({item, index}) => {
+    return (
+      <View
+        style={{justifyContent: 'center', alignItems: 'center'}}
+        key={index}>
+        <Image
+          source={{uri: item.url}}
+          resizeMode={'cover'}
+          style={{width: Dimensions.get('screen').width - 40, height: '100%'}}
+        />
+        {/* <Text>{item.url}</Text> */}
+      </View>
+    );
   };
 
   render() {
@@ -142,37 +209,35 @@ export default class Home extends PureComponent {
             <View
               style={{
                 height: 300,
-                alignItems: 'center',
+                // alignItems: 'center',
                 backgroundColor: 'white',
               }}>
-              <Image
-                source={require('../images/Home_banner.png')}
-                style={{width: '90%', borderRadius: 10}}
+              <Carousel
+                ref={(c) => {
+                  this._carousel = c;
+                }}
+                data={this.state.images}
+                renderItem={this._renderItem}
+                sliderWidth={Dimensions.get('screen').width}
+                itemWidth={Dimensions.get('screen').width - 50}
+                onSnapToItem={(index) => this.setState({activeSlide: index})}
+                removeClippedSubviews={false}
               />
-              <View
-                style={{
-                  justifyContent: 'center',
-                  marginTop: 5,
-                  flexDirection: 'row',
-                }}>
-                <View style={[styles.dot, {backgroundColor: '#31CC74'}]}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-              </View>
+              {this.pagination()}
             </View>
             {/* slide02 */}
             <CardList
               navigation={this.props.navigation}
               title={'우리 아이를 위한 추천'}
               datas={SLIDE01}
+              page={3}
             />
             {/* slide03 */}
             <CardList
               navigation={this.props.navigation}
               title={'베스트 셀러'}
               datas={SLIDE02}
+              page={3}
             />
             {/* 임시 */}
             <View style={{height: 30, flex: 1}}></View>
