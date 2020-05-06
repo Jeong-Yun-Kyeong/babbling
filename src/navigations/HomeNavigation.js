@@ -135,22 +135,22 @@ const MyPageHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS_W')} />
     </TouchableOpacity>
   ),
-  headerTitle: () => (
-    <>
-      <Text style={{color: 'white'}}>마이페이지</Text>
-    </>
-  ),
+  headerTitle: () =>
+    // <>
+    //   <Text style={{color: 'white'}}>마이페이지</Text>
+    // </>
+    null,
   headerRight: () => (
     <View style={{flexDirection: 'row', marginRight: 24}}>
       <TouchableOpacity
-        style={{flex: 1, padding: 5}}
+        style={{flex: 1}}
         onPress={() => {
           navigation.navigate('Alarm');
         }}>
         <SvgXml xml={SVG('ALARM')} width="24" height="24" />
       </TouchableOpacity>
       <TouchableOpacity
-        style={{flex: 1, padding: 5}}
+        style={{flex: 1, marginLeft: 16}}
         onPress={() => {
           navigation.navigate('Settings');
         }}>
