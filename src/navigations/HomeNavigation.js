@@ -158,13 +158,14 @@ const MyPageHeader = (navigation) => ({
       </TouchableOpacity>
     </View>
   ),
-  headerStyle: {
-    backgroundColor: 'black',
-    //   height: getStatusBarHeight() + 62,
-    style: {
-      backgroundColor: 'black',
-    },
-  },
+  headerTransparent: true,
+  // headerStyle: {
+  //   backgroundColor: 'black',
+  //   //   height: getStatusBarHeight() + 62,
+  //   style: {
+  //     backgroundColor: 'black',
+  //   },
+  // },
 });
 
 const IngredientsHeader = (navigation) => ({
