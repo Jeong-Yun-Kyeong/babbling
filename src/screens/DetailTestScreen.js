@@ -49,7 +49,9 @@ export default class Detail extends PureComponent {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.route.params.brand, this.props.route.params.name);
+  }
 
   render() {
     return (
@@ -87,7 +89,8 @@ export default class Detail extends PureComponent {
                     alignItems: 'center',
                   }}>
                   <Text style={{fontSize: 10, color: 'gray'}}>
-                    존슨즈 베이비
+                    {/* 존슨즈 베이비 */}
+                    {this.props.route.params.brand}
                   </Text>
                   <Text
                     style={{
@@ -96,7 +99,8 @@ export default class Detail extends PureComponent {
                       marginTop: 10,
                       marginBottom: 10,
                     }}>
-                    수딩내추럴 인텐스 모이스처 크림
+                    {/* 수딩내추럴 인텐스 모이스처 크림 */}
+                    {this.props.route.params.name}
                   </Text>
                 </View>
                 {/* 평가,용량 및 가격 */}

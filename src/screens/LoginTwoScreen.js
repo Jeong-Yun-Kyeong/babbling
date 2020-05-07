@@ -139,13 +139,7 @@ const NO_LOGIN = (navigation, route) => {
       }}>
       <TouchableOpacity
         onPress={() => {
-          // navigation.navigate('Main');
-          console.log(navigation);
-          console.log(route);
-          // navigation.navigate('Main', {
-          //   screen: 'HOME',
-          // });
-          //TODO:
+          navigation.navigate('Main');
         }}>
         <Text style={{color: 'white', fontSize: fontSize}}>
           로그인 없이 앱 둘러보기

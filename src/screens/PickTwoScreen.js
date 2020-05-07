@@ -207,6 +207,11 @@ export default class Pick extends PureComponent {
       <Fragment>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView style={{backgroundColor: 'white'}} />
+        <CompareButton
+          goCompare={() => {
+            this.props.navigation.navigate('Compare');
+          }}
+        />
         <View style={styles.MainContainer}>
           <ScrollView
             scrollEventThrottle={16}
@@ -265,7 +270,10 @@ export default class Pick extends PureComponent {
                           justifyContent: 'center',
                         }}
                         onPress={() => {
-                          this.props.navigation.navigate('Category');
+                          console.log(item.name);
+                          this.props.navigation.navigate('Category', {
+                            screen: item.name,
+                          });
                         }}
                         key={i}>
                         <SvgXml xml={item.svg} />
@@ -290,7 +298,7 @@ export default class Pick extends PureComponent {
                 datas={SLIDE02}
                 page={3}
               />
-              {/* 여기 위 아래 부분 비슷해서 컴포넌트 썻는데 실제로 다른거같아서 추후 처리 필요 페이지네이션부분은 컴포넌트화 안되어있음 */}
+              {/* TODO:여기 위 아래 부분 비슷해서 컴포넌트 썻는데 실제로 다른거같아서 추후 처리 필요 페이지네이션부분은 컴포넌트화 안되어있음 */}
               {/* <View
                 style={{
                   backgroundColor: 'white',

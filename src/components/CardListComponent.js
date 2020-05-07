@@ -66,8 +66,11 @@ export default class CardList extends PureComponent {
     this.setState({display: !this.state.display});
   }
 
-  _intoDetail = () => {
-    this.props.navigation.navigate('Detail');
+  _intoDetail = (brand, name) => {
+    this.props.navigation.navigate('Detail', {
+      brand: brand,
+      name: name,
+    });
   };
 
   _getList = (datas) => {
@@ -81,7 +84,7 @@ export default class CardList extends PureComponent {
           <View style={styles.cardList} key={index}>
             <TouchableOpacity
               style={styles.innerCardList}
-              onPress={this._intoDetail}>
+              onPress={() => this._intoDetail(data.title, data.name)}>
               <View
                 style={[
                   styles.cardImage,

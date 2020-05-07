@@ -196,7 +196,8 @@ export default class Home extends PureComponent {
 
   _renderItem = ({item, index}) => {
     return (
-      <View
+      <TouchableOpacity
+        activeOpacity={0.8}
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -215,7 +216,7 @@ export default class Home extends PureComponent {
           }}
         />
         {/* <Text>{item.url}</Text> */}
-      </View>
+      </TouchableOpacity>
     );
   };
 
