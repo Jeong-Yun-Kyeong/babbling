@@ -48,7 +48,8 @@ const getTabBarVisibility = (route) => {
     routeName === 'Alarm' ||
     routeName === 'Settings' ||
     routeName === 'FAQ' ||
-    routeName === 'QnA'
+    routeName === 'QnA' ||
+    routeName === 'Search'
   ) {
     return false;
   }

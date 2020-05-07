@@ -8,6 +8,7 @@ import {
   ImageBackground,
   StyleSheet,
   Dimensions,
+  Platform,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -59,9 +60,9 @@ class MypageTop extends PureComponent {
     //this.setState({curProfileIndex:index},console.log(this.state.curProfileIndex));
   };
 
-  setCarouselByPos = (evnet) => {
+  setCarouselByPos = (event) => {
     // console.log(this._carousel.currentScrollPosition);
-    console.log(this._carousel.currentIndex);
+    console.log('scroll: ', this._carousel.currentIndex);
   };
 
   setCarousel = (evnet) => {
@@ -76,10 +77,12 @@ class MypageTop extends PureComponent {
   };
 
   snapToItemByOnPress = (index) => {
-    // console.log(index);
-    setTimeout(() => this._carousel.snapToItem(index, true, true), 0);
-    this._carousel.triggerRenderingHack(-1);
-    console.log(this._carousel.currentIndex);
+    Platform.Os === 'ios'
+      ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0)
+      : this._carousel.snapToItem(index, true, true);
+
+    // this._carousel.triggerRenderingHack(-1);
+    console.log('snap current index: ', this._carousel.currentIndex);
     // let currentIdx = this._carousel.currentIndex;
     // console.log(currentIdx - index);
   };
@@ -97,10 +100,11 @@ class MypageTop extends PureComponent {
       this.state.itemWidth *
         (0.5 + (this.state.entries.length - 1.5) * this.state.inactiveScale) +
       (this.state.entries.length - 1) * 20;
-    console.log('sliderWidth', sliderWidth);
+    // console.log('sliderWidth', sliderWidth);
   }
 
-  _renderItem = ({item, index}) => {
+  _renderItem = ({item, index, dataIndex}) => {
+    console.log(dataIndex);
     return (
       <View style={styles.slide}>
         <TouchableHighlight
@@ -154,7 +158,7 @@ class MypageTop extends PureComponent {
               zIndex: -3,
             }}
             blurType="dark"
-            blurAmount={1}
+            blurAmount={10}
             automaticallyAdjustContentInsets={true}
           />
           <ImageBackground
@@ -179,23 +183,24 @@ class MypageTop extends PureComponent {
             style={{
               width: Dimensions.get('screen').width,
               height: 300,
+              // backgroundColor: 'black',
             }}>
             <Carousel
+              bounces={false}
               ref={(c) => {
                 this._carousel = c;
               }}
+              scrollEventThrottle={16}
               data={this.state.entries}
               renderItem={this._renderItem}
               sliderWidth={Dimensions.get('screen').width}
-              itemWidth={80}
-              // sliderWidth={this.state.width}
-              // itemWidth={this.state.itemWidth}
-              // sliderStyle={{height: 100}}
+              itemWidth={100}
               inactiveSlideScale={0.7}
               onScroll={(event) => {
                 this.setCarouselByPos(event);
               }}
               removeClippedSubviews={false}
+              onScrollIndexChanged={(i) => console.log(i)}
             />
           </View>
         </View>

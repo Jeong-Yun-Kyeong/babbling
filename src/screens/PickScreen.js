@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   StatusBar,
   Dimensions,
   Image,
+  Animated,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -49,238 +50,249 @@ const CATEWIDTH = () => {
   return width;
 };
 
-const Pick = ({navigation}) => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView />
-      <CompareButton
-        goCompare={() => {
-          navigation.navigate('Compare');
-        }}
-      />
-      <ScrollView style={{backgroundColor: 'lightgray', flex: 1}}>
-        {/* searchBar */}
-        <View style={{backgroundColor: 'white', padding: 10}}>
-          <View
-            style={{
-              borderRadius: 50,
-              borderWidth: 1,
-              borderColor: '#32cc73',
-              padding: 7,
-              paddingLeft: 20,
-              paddingRight: 15,
-              flexDirection: 'row',
-            }}>
-            <View style={{flex: 9, justifyContent: 'center'}}>
-              <Text>수딩내추럴 인텐스 모이스처 크림</Text>
-            </View>
-            <SvgXml xml={SVG('SEARCH')} />
-          </View>
-        </View>
-        {/* slide01 */}
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image
-            source={require('../images/slide02.png')}
-            style={{width: '100%'}}
-          />
-        </View>
-        {/* 카테고리 고르는 그리드형식 컴포넌트 */}
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 15,
-            marginBottom: 3,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              // backgroundColor: 'blue',
-              // justifyContent: 'center',
-              width: CATEWIDTH(),
-            }}>
-            {CATEGORY.map((item, i) => {
-              return (
-                <TouchableOpacity
-                  style={{
-                    width: 90,
-                    height: 70,
-                    backgroundColor: 'white',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                  onPress={() => {
-                    navigation.navigate('Category');
-                  }}
-                  key={i}>
-                  <SvgXml xml={item.svg} />
-                  <Text style={{fontSize: 12, color: '#5d5d5d', marginTop: 5}}>
-                    {item.name}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </View>
+export default class Pick extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-        {/* slide02 */}
-        <View style={styles.slide02}>
-          <View style={styles.slide02Header}>
-            <Text style={{fontSize: 16, fontWeight: 'bold', color: '#212121'}}>
-              베베를 위한 추천pick
-            </Text>
-          </View>
-          <View style={styles.hashTagLine}>
-            <View style={styles.hashTagBox}>
-              <Text style={styles.hashTagText}>#아토피 피부</Text>
-            </View>
-            <View style={styles.hashTagBox}>
-              <Text style={styles.hashTagText}>#세우 알레르기</Text>
-            </View>
-            <View style={styles.hashTagBox}>
-              <Text style={styles.hashTagText}>#우유 알레르기</Text>
-            </View>
-          </View>
-          <View>
-            <View style={styles.cardList}>
-              <View style={styles.innerCardList}>
-                <View style={styles.cardImage}></View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    <Text style={styles.comText}>베베랩</Text>
-                  </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>
-                      고보습 베리어 베이비 로션 200ml
-                    </Text>
-                  </View>
-                  <View style={styles.cardInfoHashtag}>
-                    <Text style={styles.comHash}>#첫로션 #고보습 #산양유</Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <Text style={{color: '#32cc73'}}>4.5</Text>
-                  <Text>(2,121)</Text>
-                </View>
+  render() {
+    return (
+      <Fragment>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView />
+        <CompareButton
+          goCompare={() => {
+            this.props.navigation.navigate('Compare');
+          }}
+        />
+        <ScrollView style={{backgroundColor: 'lightgray', flex: 1}}>
+          {/* searchBar */}
+          <View style={{backgroundColor: 'white', padding: 10}}>
+            <View
+              style={{
+                borderRadius: 50,
+                borderWidth: 1,
+                borderColor: '#32cc73',
+                padding: 7,
+                paddingLeft: 20,
+                paddingRight: 15,
+                flexDirection: 'row',
+              }}>
+              <View style={{flex: 9, justifyContent: 'center'}}>
+                <Text>수딩내추럴 인텐스 모이스처 크림</Text>
               </View>
-            </View>
-            <View style={styles.cardList}>
-              <View style={styles.innerCardList}>
-                <View style={styles.cardImage}></View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    <Text style={styles.comText}>BUTLER(버틀러)</Text>
-                  </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>프로바이오틱스 세제</Text>
-                  </View>
-                  <View style={styles.cardInfoHashtag}>
-                    <Text style={styles.comHash}>
-                      #세정력 #아기냄새 #인스타
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <Text style={{color: '#32cc73'}}>4.5</Text>
-                  <Text>(2,121)</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.cardList}>
-              <View style={styles.innerCardList}>
-                <View style={styles.cardImage}></View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    <Text style={styles.comText}>풀무원 베이비밀</Text>
-                  </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>닭가슴살 바나나죽</Text>
-                  </View>
-                  <View style={styles.cardInfoHashtag}>
-                    <Text style={styles.comHash}>
-                      #8-9개월 #닭알레르기 #잘먹음
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <Text style={{color: '#32cc73'}}>4.5</Text>
-                  <Text>(2,121)</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.cardList}>
-              <View style={styles.innerCardList}>
-                <View style={styles.cardImage}></View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    <Text style={styles.comText}>BUTLER(버틀러)</Text>
-                  </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>프로바이오틱스 세제</Text>
-                  </View>
-                  <View style={styles.cardInfoHashtag}>
-                    <Text style={styles.comHash}>
-                      #세정력 #아기냄새 #인스타
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <Text style={{color: '#32cc73'}}>4.5</Text>
-                  <Text>(2,121)</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.cardList}>
-              <View style={styles.innerCardList}>
-                <View style={styles.cardImage}></View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    <Text style={styles.comText}>풀무원 베이비밀</Text>
-                  </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>닭가슴살 바나나죽</Text>
-                  </View>
-                  <View style={styles.cardInfoHashtag}>
-                    <Text style={styles.comHash}>
-                      #8-9개월 #닭알레르기 #잘먹음
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <Text style={{color: '#32cc73'}}>4.5</Text>
-                  <Text>(2,121)</Text>
-                </View>
-              </View>
+              <SvgXml xml={SVG('SEARCH')} />
             </View>
           </View>
-          <View style={styles.slide02Dot}>
-            <View style={[styles.dot, {backgroundColor: '#32cc73'}]}></View>
-            <View style={styles.dot}></View>
-            <View style={styles.dot}></View>
-            <View style={styles.dot}></View>
+          {/* slide01 */}
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              source={require('../images/slide02.png')}
+              style={{width: '100%'}}
+            />
           </View>
-        </View>
-        {/* add */}
-        <View
-          style={{
-            backgroundColor: 'lightgray',
-            height: 90,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 30,
-            marginBottom: 30,
-          }}>
-          <Text>add</Text>
-        </View>
-        {/*  */}
-        <Footer />
-      </ScrollView>
-    </Fragment>
-  );
-};
+          {/* 카테고리 고르는 그리드형식 컴포넌트 */}
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              padding: 15,
+              marginBottom: 3,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                // backgroundColor: 'blue',
+                // justifyContent: 'center',
+                width: CATEWIDTH(),
+              }}>
+              {CATEGORY.map((item, i) => {
+                return (
+                  <TouchableOpacity
+                    style={{
+                      width: 90,
+                      height: 70,
+                      backgroundColor: 'white',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    onPress={() => {
+                      this.props.navigation.navigate('Category');
+                    }}
+                    key={i}>
+                    <SvgXml xml={item.svg} />
+                    <Text
+                      style={{fontSize: 12, color: '#5d5d5d', marginTop: 5}}>
+                      {item.name}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+
+          {/* slide02 */}
+          <View style={styles.slide02}>
+            <View style={styles.slide02Header}>
+              <Text
+                style={{fontSize: 16, fontWeight: 'bold', color: '#212121'}}>
+                베베를 위한 추천pick
+              </Text>
+            </View>
+            <View style={styles.hashTagLine}>
+              <View style={styles.hashTagBox}>
+                <Text style={styles.hashTagText}>#아토피 피부</Text>
+              </View>
+              <View style={styles.hashTagBox}>
+                <Text style={styles.hashTagText}>#세우 알레르기</Text>
+              </View>
+              <View style={styles.hashTagBox}>
+                <Text style={styles.hashTagText}>#우유 알레르기</Text>
+              </View>
+            </View>
+            <View>
+              <View style={styles.cardList}>
+                <View style={styles.innerCardList}>
+                  <View style={styles.cardImage}></View>
+                  <View style={styles.cardInfo}>
+                    <View style={styles.cardInfoCompany}>
+                      <Text style={styles.comText}>베베랩</Text>
+                    </View>
+                    <View style={styles.cardInfoProduct}>
+                      <Text style={styles.comTitle}>
+                        고보습 베리어 베이비 로션 200ml
+                      </Text>
+                    </View>
+                    <View style={styles.cardInfoHashtag}>
+                      <Text style={styles.comHash}>
+                        #첫로션 #고보습 #산양유
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.cardScore}>
+                    <Text style={{color: '#32cc73'}}>4.5</Text>
+                    <Text>(2,121)</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.cardList}>
+                <View style={styles.innerCardList}>
+                  <View style={styles.cardImage}></View>
+                  <View style={styles.cardInfo}>
+                    <View style={styles.cardInfoCompany}>
+                      <Text style={styles.comText}>BUTLER(버틀러)</Text>
+                    </View>
+                    <View style={styles.cardInfoProduct}>
+                      <Text style={styles.comTitle}>프로바이오틱스 세제</Text>
+                    </View>
+                    <View style={styles.cardInfoHashtag}>
+                      <Text style={styles.comHash}>
+                        #세정력 #아기냄새 #인스타
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.cardScore}>
+                    <Text style={{color: '#32cc73'}}>4.5</Text>
+                    <Text>(2,121)</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.cardList}>
+                <View style={styles.innerCardList}>
+                  <View style={styles.cardImage}></View>
+                  <View style={styles.cardInfo}>
+                    <View style={styles.cardInfoCompany}>
+                      <Text style={styles.comText}>풀무원 베이비밀</Text>
+                    </View>
+                    <View style={styles.cardInfoProduct}>
+                      <Text style={styles.comTitle}>닭가슴살 바나나죽</Text>
+                    </View>
+                    <View style={styles.cardInfoHashtag}>
+                      <Text style={styles.comHash}>
+                        #8-9개월 #닭알레르기 #잘먹음
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.cardScore}>
+                    <Text style={{color: '#32cc73'}}>4.5</Text>
+                    <Text>(2,121)</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.cardList}>
+                <View style={styles.innerCardList}>
+                  <View style={styles.cardImage}></View>
+                  <View style={styles.cardInfo}>
+                    <View style={styles.cardInfoCompany}>
+                      <Text style={styles.comText}>BUTLER(버틀러)</Text>
+                    </View>
+                    <View style={styles.cardInfoProduct}>
+                      <Text style={styles.comTitle}>프로바이오틱스 세제</Text>
+                    </View>
+                    <View style={styles.cardInfoHashtag}>
+                      <Text style={styles.comHash}>
+                        #세정력 #아기냄새 #인스타
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.cardScore}>
+                    <Text style={{color: '#32cc73'}}>4.5</Text>
+                    <Text>(2,121)</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.cardList}>
+                <View style={styles.innerCardList}>
+                  <View style={styles.cardImage}></View>
+                  <View style={styles.cardInfo}>
+                    <View style={styles.cardInfoCompany}>
+                      <Text style={styles.comText}>풀무원 베이비밀</Text>
+                    </View>
+                    <View style={styles.cardInfoProduct}>
+                      <Text style={styles.comTitle}>닭가슴살 바나나죽</Text>
+                    </View>
+                    <View style={styles.cardInfoHashtag}>
+                      <Text style={styles.comHash}>
+                        #8-9개월 #닭알레르기 #잘먹음
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.cardScore}>
+                    <Text style={{color: '#32cc73'}}>4.5</Text>
+                    <Text>(2,121)</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.slide02Dot}>
+              <View style={[styles.dot, {backgroundColor: '#32cc73'}]}></View>
+              <View style={styles.dot}></View>
+              <View style={styles.dot}></View>
+              <View style={styles.dot}></View>
+            </View>
+          </View>
+          {/* add */}
+          <View
+            style={{
+              backgroundColor: 'lightgray',
+              height: 90,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 30,
+              marginBottom: 30,
+            }}>
+            <Text>add</Text>
+          </View>
+          {/*  */}
+          <Footer />
+        </ScrollView>
+      </Fragment>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   bottomNavigation: {
@@ -413,5 +425,3 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 });
-
-export default Pick;
