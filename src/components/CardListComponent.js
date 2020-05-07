@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   Dimensions,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
@@ -161,7 +162,15 @@ export default class CardList extends PureComponent {
     return (
       <Fragment>
         <View>
-          <View style={styles.slide02}>
+          <View
+            style={[
+              styles.slide02,
+              Platform.OS === 'ios'
+                ? null
+                : {
+                    overflow: 'hidden',
+                  },
+            ]}>
             <View style={styles.slideCard}>
               <View style={styles.slideCardHeader}>
                 <Text
@@ -186,44 +195,47 @@ export default class CardList extends PureComponent {
 
               {this.pagination()}
             </View>
-          </View>
-          {this.props.session ? (
-            <BlurView
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: 6,
-                right: 0,
-                bottom: 5,
-                display: this.state.display,
-              }}
-              blurType="ultraThinMaterialDark"
-              blurAmount={1}>
-              <View
+            {this.props.session ? (
+              <BlurView
                 style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flex: 1,
-                }}>
-                <Text style={{color: 'white', fontSize: 17}}>
-                  로그인이 필요한 기능입니다
-                </Text>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('Login')}
+                  position: 'absolute',
+                  left: 0,
+                  top: 6,
+                  right: 0,
+                  bottom: 5,
+                  display: this.state.display,
+                }}
+                blurType={
+                  Platform.OS === 'ios' ? 'ultraThinMaterialDark' : 'dark'
+                }
+                blurAmount={1}>
+                <View
                   style={{
-                    borderColor: 'white',
-                    borderWidth: 1,
-                    borderRadius: 50,
-                    padding: 5,
-                    paddingLeft: 15,
-                    paddingRight: 15,
-                    marginTop: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                    backgroundColor: 'transparent',
                   }}>
-                  <Text style={{color: 'white'}}>로그인하시겠어요?</Text>
-                </TouchableOpacity>
-              </View>
-            </BlurView>
-          ) : null}
+                  <Text style={{color: 'white', fontSize: 17}}>
+                    로그인이 필요한 기능입니다
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Login')}
+                    style={{
+                      borderColor: 'white',
+                      borderWidth: 1,
+                      borderRadius: 50,
+                      padding: 5,
+                      paddingLeft: 15,
+                      paddingRight: 15,
+                      marginTop: 10,
+                    }}>
+                    <Text style={{color: 'white'}}>로그인하시겠어요?</Text>
+                  </TouchableOpacity>
+                </View>
+              </BlurView>
+            ) : null}
+          </View>
         </View>
       </Fragment>
     );
@@ -232,7 +244,6 @@ export default class CardList extends PureComponent {
 
 const styles = StyleSheet.create({
   slide02: {
-    // backgroundColor: 'green',
     shadowOffset: {
       height: 5,
     },

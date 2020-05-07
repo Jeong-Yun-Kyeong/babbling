@@ -122,7 +122,7 @@ const JOIN = (navigation) => {
   );
 };
 // 노로그인
-const NO_LOGIN = (navigation) => {
+const NO_LOGIN = (navigation, route) => {
   let fontSize = 13;
   let screenWidth = Dimensions.get('screen').width;
   if (screenWidth >= 834) {
@@ -139,7 +139,13 @@ const NO_LOGIN = (navigation) => {
       }}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Main');
+          // navigation.navigate('Main');
+          console.log(navigation);
+          console.log(route);
+          // navigation.navigate('Main', {
+          //   screen: 'HOME',
+          // });
+          //TODO:
         }}>
         <Text style={{color: 'white', fontSize: fontSize}}>
           로그인 없이 앱 둘러보기
@@ -149,7 +155,7 @@ const NO_LOGIN = (navigation) => {
   );
 };
 
-const Login = ({navigation}) => {
+const Login = ({navigation, route}) => {
   return (
     <Fragment>
       <View
@@ -199,7 +205,7 @@ const Login = ({navigation}) => {
             title={'이메일로 로그인'}
           />
           {JOIN(navigation)}
-          {NO_LOGIN(navigation)}
+          {NO_LOGIN(navigation, route)}
         </View>
       </View>
     </Fragment>

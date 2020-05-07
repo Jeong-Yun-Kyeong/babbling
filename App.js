@@ -5,6 +5,7 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import MypageTop from './src/navigations/MypageTopNavigation';
 import PickStack from './src/navigations/PickStackNavigation';
+import Header from './src/navigations/BottomNavigation';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <NavigationContainer>
         <AuthStack />
         {/* <PickStack /> */}
+        {/* <Header /> */}
       </NavigationContainer>
     </>
   );
