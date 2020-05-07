@@ -11,8 +11,8 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        {/* <AuthStack /> */}
-        <PickStack />
+        <AuthStack />
+        {/* <PickStack /> */}
       </NavigationContainer>
     </>
   );
