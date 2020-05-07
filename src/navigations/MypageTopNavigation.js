@@ -8,7 +8,7 @@ import {
   ImageBackground,
   StyleSheet,
   Dimensions,
-  Platform
+  Platform,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -217,7 +217,7 @@ class MypageTop extends Component {
               zIndex: -3,
             }}
             blurType="dark"
-            blurAmount={1}
+            blurAmount={10}
             automaticallyAdjustContentInsets={true}
           />
           <ImageBackground
@@ -242,13 +242,16 @@ class MypageTop extends Component {
             style={{
               width: Dimensions.get('screen').width,
               height: 300,
+              // backgroundColor: 'black',
             }}>
                 {(this.state.carouselLoading) ?
             <Carousel
+              bounces={false}
               ref={(c) => {
                 this._carousel = c;
                 //this.setState({slidersPosition:this._carousel.slidersPosition});
               }}
+              scrollEventThrottle={16}
               data={this.state.entries}
               //renderItem={({item,index})=> this._renderItem(item,index)}
               renderItem={({item,index})=>this._renderItem(item,index,this.state.curProfileIndex)}

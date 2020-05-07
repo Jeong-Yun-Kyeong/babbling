@@ -4,7 +4,7 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Pick from '../screens/PickScreen';
+import Pick from '../screens/PickTwoScreen';
 import Category from '../screens/CategoryScreen';
 import CategoryTab from '../navigations/CatogoryTopNavigation';
 
@@ -16,26 +16,26 @@ import Compare from '../screens/CompareScreen';
 const Stack = createStackNavigator();
 
 const PickHeader = {
-  headerLeft: () => (
-    <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
-  ),
-  headerTitle: () => null,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HEART')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('MYPAGE')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 50,
-    shadowRadius: 0,
-    shadowOffset: {height: 0},
-  },
-  headerForceInset: {top: 'never', bottom: 'never'},
+  headerShown: false,
+  // headerLeft: () => (
+  //   <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
+  // ),
+  // headerTitle: () => null,
+  // headerRight: () => (
+  //   <View style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('HEART')} />
+  //     </View>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('MYPAGE')} />
+  //     </View>
+  //   </View>
+  // ),
+  // headerStyle: {
+  //   height: Platform.OS === 'ios' ? getStatusBarHeight() + 50 : 50,
+  //   shadowOffset: {height: 0},
+  //   elevation: 0,
+  // },
 };
 
 const PickInnerHeader = (navigation) => ({
@@ -81,9 +81,8 @@ const PickInnerHeader = (navigation) => ({
     </View>
   ),
   headerStyle: {
-    height: getStatusBarHeight() + 62,
+    height: Platform.OS === 'ios' ? getStatusBarHeight() + 62 : 62,
   },
-  headerForceInset: {top: 'never', bottom: 'never'},
 });
 
 const DetailHeader = (navigation) => ({

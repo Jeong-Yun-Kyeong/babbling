@@ -18,19 +18,12 @@ const Stack = createStackNavigator();
 
 const SignStack = ({navigation}) => {
   return (
-    <Stack.Navigator
-      screenOptions={
-        {
-          //   headerShown: false,
-        }
-      }>
+    <Stack.Navigator>
       <Stack.Screen
         name="Login"
         component={Login}
         options={({route}) => ({
-          headerStyle: {
-            height: 0,
-          },
+          headerShown: false,
         })}
       />
       <Stack.Screen
@@ -68,13 +61,17 @@ const EmailLoginHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
-  headerTitle: () => <Text style={{fontSize: 17}}>로그인</Text>,
+  headerTitleAlign: 'center',
+  headerTitle: () => (
+    <View style={{alignSelf: 'center'}}>
+      <Text style={{fontSize: 17}}>로그인</Text>
+    </View>
+  ),
   headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
     shadowOffset: {
       height: 0,
     },
+    elevation: 0,
   },
 });
 
@@ -89,13 +86,13 @@ const JoinHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>이메일로 회원가입하기</Text>,
   headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
     shadowOffset: {
       height: 0,
     },
+    elevation: 0,
   },
 });
 
@@ -110,13 +107,13 @@ const PWHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 찾기</Text>,
   headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
     shadowOffset: {
       height: 0,
     },
+    elevation: 0,
   },
 });
 
@@ -131,14 +128,13 @@ const PWChangeHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 변경하기</Text>,
-
   headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
     shadowOffset: {
       height: 0,
     },
+    elevation: 0,
   },
 });
 

@@ -11,6 +11,7 @@ import {
 import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {BlurView} from '@react-native-community/blur';
 
 // const DATAS = [1, 2, 3];
 
@@ -21,10 +22,12 @@ export default class CardList extends PureComponent {
       activeSlide: 0,
       page: this.props.page,
       datas: null,
+      display: 'none',
     };
   }
 
   componentWillMount() {
+    this.setState({datas: this.props.datas});
     Array.prototype.division = function (n) {
       var arr = this;
       var len = arr.length;
@@ -37,9 +40,11 @@ export default class CardList extends PureComponent {
 
       return tmp;
     };
-    console.log(this.props.datas);
-    let datas = this.props.datas;
-    let {page} = this.state;
+  }
+  componentDidMount() {
+    // console.log(this.props.datas);
+    // let datas = this.state.datas;
+    let {page, datas} = this.state;
     // 3개씩 끊는법 배열을
 
     let array = [];
@@ -48,11 +53,16 @@ export default class CardList extends PureComponent {
     } else {
       array = datas.division(page);
     }
-    console.log(array);
+    // console.log(array);
 
     this.setState({
       datas: array,
     });
+    setTimeout(() => this.setState({display: 'flex'}), 100);
+  }
+
+  componentWillUnmount() {
+    this.setState({display: !this.state.display});
   }
 
   _intoDetail = () => {
@@ -60,7 +70,7 @@ export default class CardList extends PureComponent {
   };
 
   _getList = (datas) => {
-    console.log(datas);
+    // console.log(datas);
     return datas.map((data, index) => {
       // console.log(data.img);
       if (index > 5) {
@@ -121,8 +131,8 @@ export default class CardList extends PureComponent {
   };
 
   _renderItem = ({item, index}) => {
-    console.log(item);
-    console.log(item.length);
+    // console.log(item);
+    // console.log(item.length);
     return this._getList(item);
   };
 
@@ -136,6 +146,7 @@ export default class CardList extends PureComponent {
         containerStyle={{backgroundColor: 'white', paddingVertical: 10}}
         dotStyle={{
           backgroundColor: '#32cc73',
+          marginHorizontal: -3,
         }}
         inactiveDotStyle={{
           backgroundColor: '#f0f0f0',
@@ -149,29 +160,70 @@ export default class CardList extends PureComponent {
   render() {
     return (
       <Fragment>
-        <View style={styles.slide02}>
-          <View style={styles.slideCard}>
-            <View style={styles.slideCardHeader}>
-              <Text
-                style={{fontSize: 16, fontWeight: 'bold', color: '#5d5d5d'}}>
-                {/* 우리 아이를 위한 추천 */}
-                {this.props.title}
-              </Text>
-            </View>
-            <Carousel
-              ref={(c) => {
-                this._carousel = c;
-              }}
-              data={this.state.datas}
-              renderItem={this._renderItem}
-              sliderWidth={Dimensions.get('screen').width - 28}
-              itemWidth={Dimensions.get('screen').width - 28}
-              onSnapToItem={(index) => this.setState({activeSlide: index})}
-              removeClippedSubviews={false}
-            />
+        <View>
+          <View style={styles.slide02}>
+            <View style={styles.slideCard}>
+              <View style={styles.slideCardHeader}>
+                <Text
+                  style={{fontSize: 17, fontWeight: '600', color: '#1e1e1e'}}>
+                  {/* 우리 아이를 위한 추천 */}
+                  {this.props.title}
+                </Text>
+              </View>
+              <Carousel
+                ref={(c) => {
+                  this._carousel = c;
+                }}
+                data={this.state.datas}
+                renderItem={this._renderItem}
+                sliderWidth={Dimensions.get('screen').width - 28}
+                itemWidth={Dimensions.get('screen').width - 28}
+                onSnapToItem={(index) => this.setState({activeSlide: index})}
+                removeClippedSubviews={false}
+                inactiveSlideOpacity={1}
+                inactiveSlideScale={1}
+              />
 
-            {this.pagination()}
+              {this.pagination()}
+            </View>
           </View>
+          {this.props.session ? (
+            <BlurView
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 6,
+                right: 0,
+                bottom: 5,
+                display: this.state.display,
+              }}
+              blurType="ultraThinMaterialDark"
+              blurAmount={1}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flex: 1,
+                }}>
+                <Text style={{color: 'white', fontSize: 17}}>
+                  로그인이 필요한 기능입니다
+                </Text>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('Login')}
+                  style={{
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    borderRadius: 50,
+                    padding: 5,
+                    paddingLeft: 15,
+                    paddingRight: 15,
+                    marginTop: 10,
+                  }}>
+                  <Text style={{color: 'white'}}>로그인하시겠어요?</Text>
+                </TouchableOpacity>
+              </View>
+            </BlurView>
+          ) : null}
         </View>
       </Fragment>
     );
@@ -180,28 +232,24 @@ export default class CardList extends PureComponent {
 
 const styles = StyleSheet.create({
   slide02: {
-    backgroundColor: 'rgba(245,245,245,.5)',
-    // height: 550,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  slideCard: {
-    backgroundColor: 'white',
-    marginLeft: 14,
-    marginRight: 14,
-    marginTop: 20,
-    borderRadius: 20,
-    overflow: 'hidden',
-    //
-    shadowColor: '#000',
+    // backgroundColor: 'green',
     shadowOffset: {
-      width: 0,
       height: 5,
     },
     shadowOpacity: 0.15,
     shadowRadius: 20,
 
     elevation: 5,
+  },
+  slideCard: {
+    backgroundColor: 'white',
+    marginLeft: 14,
+    marginRight: 14,
+    paddingBottom: 8,
+    marginTop: 15,
+    marginBottom: 10,
+    borderRadius: 20,
+    overflow: 'hidden',
   },
   slideCardHeader: {
     // backgroundColor:'lightgray',
@@ -228,7 +276,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 5,
   },
-  cardInfoCompany: {},
+  cardInfoCompany: {marginBottom: 3},
   comText: {
     color: '#5C5C5C',
     fontSize: 12,
