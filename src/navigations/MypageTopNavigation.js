@@ -1,4 +1,4 @@
-import React, {Fragment, PureComponent} from 'react';
+import React, {Fragment, PureComponent, Component} from 'react';
 import {
   Text,
   View,
@@ -17,7 +17,7 @@ import MypageTab from '../navigations/MypageTabNavigation';
 import Carousel from 'react-native-snap-carousel';
 import {BlurView} from '@react-native-community/blur';
 
-class MypageTop extends PureComponent {
+class MypageTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,22 +47,58 @@ class MypageTop extends PureComponent {
           month: 2,
         },
       ],
-      itemWidth: Dimensions.get('window').width * 0.21,
+      itemWidth: Dimensions.get('window').width * 0.23,
       width: Dimensions.get('window').width,
       curProfileIndex: 0,
 
       interpolation: 20,
       inactiveScale: 0.7,
+
+      isIos: (Platform.OS === 'ios'),
+
+      slidersPosition: {},
+      
+      carouselLoading: true,
+      onScrollTrigger: true,
+
     };
   }
 
-  setCurrentProfile = (index) => {
+  setCurrentProfile = (event) => {
     //this.setState({curProfileIndex:index},console.log(this.state.curProfileIndex));
+    // if(this.state.onScrollTrigger) {
+    //   setTimeout(()=>{
+    //     if(this.state.onScrollTrigger) this.setState(()=>({onScrollTrigger:false}));
+    //   },1000)
+    // } else {
+    //   this.setState(()=>({curProfileIndex:this._carousel.currentIndex, onScrollTrigger:true}, console.log(this._carousel.currentIndex)));
+    // }
+    // if(this.state.onScrollTrigger) {
+    //   this.setState((prev)=>({onScrollTrigger:!(prev.onScrollTrigger)}));
+    //   this.setOnscrollTriggerOn();
+    // }
+
+    //this.setState((prev)=>{if(prev.onScrollTrigger==this.state.onScrollTrigger)return{onScrollTrigger:!(prev.onScrollTrigger)}});
   };
 
-  setCarouselByPos = (event) => {
-    // console.log(this._carousel.currentScrollPosition);
-    console.log('scroll: ', this._carousel.currentIndex);
+  setOnscrollTriggerOff = ()=>{
+    setTimeout(()=>{
+      this.setOnscrollTriggerOn();
+    },50);
+  }
+
+  setOnscrollTriggerOn = ()=>{
+    console.log("ready");
+    setTimeout(()=>{
+      this.setState((prev)=>({onScrollTrigger:!(prev.onScrollTrigger)}));
+    },50);
+  }
+
+  setCarouselByPos = (evnet) => {
+    //console.log(this._carousel.currentScrollPosition);
+    //console.log('max', this.state.slidersPosition);
+    //console.log(this._carousel.currentIndex);
+    this.setState({curProfileIndex:this._carousel.currentIndex});
   };
 
   setCarousel = (evnet) => {
@@ -77,12 +113,11 @@ class MypageTop extends PureComponent {
   };
 
   snapToItemByOnPress = (index) => {
-    Platform.Os === 'ios'
-      ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0)
-      : this._carousel.snapToItem(index, true, true);
-
-    // this._carousel.triggerRenderingHack(-1);
-    console.log('snap current index: ', this._carousel.currentIndex);
+    // console.log(index);
+    //;
+    (this.state.isIos) ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0) : this._carousel.snapToItem(index, true, true);
+    //this._carousel.triggerRenderingHack(-1);
+    //console.log(this.state.curProfileIndex);
     // let currentIdx = this._carousel.currentIndex;
     // console.log(currentIdx - index);
   };
@@ -100,11 +135,29 @@ class MypageTop extends PureComponent {
       this.state.itemWidth *
         (0.5 + (this.state.entries.length - 1.5) * this.state.inactiveScale) +
       (this.state.entries.length - 1) * 20;
-    // console.log('sliderWidth', sliderWidth);
+
+      // setTimeout(() => {
+      //   this.setState({ carouselLoading: true });
+      // }, 10);
+      //this.setState(()=>({slidersPosition:this._carousel.slidersPosition}),console.log('positions',this.state.slidersPosition));
+    this.setCurProfileInterval();
   }
 
-  _renderItem = ({item, index, dataIndex}) => {
-    console.log(dataIndex);
+  setCurProfileInterval = ()=> {
+    this.curProfileInterval = setInterval(()=>{
+      var curIndex  = 0;
+      for(var i=0;i<this.state.slidersPosition.length;i++) {
+        if(Math.abs(this._carousel.currentScrollPosition-this.state.slidersPosition[i])<this.state.slidersPosition[1]*0.5) {
+          curIndex = i;
+          break;
+        }
+      }
+      this.setState((prev)=>({curProfileIndex:curIndex}));
+      //console.log(this.state.curProfileIndex);
+    },50);
+  }
+
+  _renderItem = (item, index, curIndex) => {
     return (
       <View style={styles.slide}>
         <TouchableHighlight
@@ -124,21 +177,27 @@ class MypageTop extends PureComponent {
             style={{width: this.state.itemWidth, height: this.state.itemWidth}}
           />
         </TouchableHighlight>
+        {(curIndex == index) ? 
+          <View style={styles.slideContent}>
+            <Text style={[styles.title, styles.visible]}>{item.title}</Text>
+              <View style={[styles.buttonContainer, styles.visible]}>
+                <TouchableOpacity>
+                  <Text style={[styles.capsule, styles.visible]}>
+                    {item.month}개월
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={[styles.capsule, styles.visible]}>알레르기</Text>
+                </TouchableOpacity>
+              </View>
+          </View> :
+          <></>
+        }
 
-        {/* <Text style={[styles.title, styles.visible]}>{item.title}</Text> */}
-        {/* <View style={[styles.buttonContainer, styles.visible]}>
-          <TouchableOpacity>
-            <Text style={[styles.capsule, styles.visible]}>
-              {item.month}개월
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={[styles.capsule, styles.visible]}>알레르기</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     );
   };
+
 
   render() {
     return (
@@ -185,23 +244,38 @@ class MypageTop extends PureComponent {
               height: 300,
               // backgroundColor: 'black',
             }}>
+                {(this.state.carouselLoading) ?
             <Carousel
               bounces={false}
               ref={(c) => {
                 this._carousel = c;
+                //this.setState({slidersPosition:this._carousel.slidersPosition});
               }}
               scrollEventThrottle={16}
               data={this.state.entries}
-              renderItem={this._renderItem}
-              sliderWidth={Dimensions.get('screen').width}
-              itemWidth={100}
-              inactiveSlideScale={0.7}
-              onScroll={(event) => {
-                this.setCarouselByPos(event);
-              }}
-              removeClippedSubviews={false}
-              onScrollIndexChanged={(i) => console.log(i)}
-            />
+              //renderItem={({item,index})=> this._renderItem(item,index)}
+              renderItem={({item,index})=>this._renderItem(item,index,this.state.curProfileIndex)}
+              sliderWidth={this.state.width}
+              itemWidth={this.state.itemWidth}
+              onLayout={()=>{this.setState({slidersPosition:this._carousel.slidersPosition})}}
+              // sliderWidth={this.state.width}
+              // itemWidth={this.state.itemWidth}
+              // sliderStyle={{height: 100}}
+              inactiveSlideScale={this.state.inactiveScale}
+
+              activeSlideOffset={-100}
+
+              //onSnapToItem = {(slideIndex)=>{this.setState({curProfileIndex:slideIndex},console.log('ps',slideIndex));}}
+              
+              // onScroll={(event) => {
+              //   var curIndex = this._carousel.currentIndex;
+              //   this.setState({curProfileIndex:curIndex});
+              //   //this.setCarouselByPos(event);
+              // }}
+              //onScroll = {(event)=>{this.setCurrentProfile()}}
+
+              // removeClippedSubviews={false}
+            /> : <></>}
           </View>
         </View>
 
@@ -216,6 +290,10 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  slideContent: {
     justifyContent: 'center',
     alignItems: 'center',
   },
