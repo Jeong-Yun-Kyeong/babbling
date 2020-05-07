@@ -184,7 +184,7 @@ const Login = ({navigation}) => {
         <BlurView
           style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}
           blurType="dark"
-          blurAmount={1}
+          blurAmount={5}
         />
         <SafeAreaView />
         {/* {alert(Dimensions.get('screen').width)} */}

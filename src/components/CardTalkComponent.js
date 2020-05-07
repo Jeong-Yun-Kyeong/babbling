@@ -70,9 +70,12 @@ export default class CardList extends PureComponent {
         <View style={talks.talks}>
           {/* 헤더 */}
           <View style={talks.header}>
-            <View style={{flex: 9, justifyContent: 'center'}}>
-              <Text style={talks.headerTitle}>{this.props.title}</Text>
-            </View>
+            {this.props.title ? (
+              <View style={{flex: 9, justifyContent: 'center'}}>
+                <Text style={talks.headerTitle}>{this.props.title}</Text>
+              </View>
+            ) : null}
+
             <TouchableOpacity
               onPress={this.props.more}
               style={{flex: 1, marginRight: 24, justifyContent: 'center'}}>
@@ -87,18 +90,16 @@ export default class CardList extends PureComponent {
 }
 
 const talks = StyleSheet.create({
-  talks: {
-    backgroundColor: 'rgba(245,245,245,.5)',
-  },
+  talks: {},
   header: {
     flexDirection: 'row',
     height: 50,
   },
   headerTitle: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 'bold',
     marginLeft: 24,
-    color: 'rgb(50,50,50)',
+    color: '#1d1d1d',
   },
   gridBox: {
     backgroundColor: 'white',

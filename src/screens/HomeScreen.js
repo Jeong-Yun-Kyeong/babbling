@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 import CardList from '../components/CardListComponent';
 import CardTalk from '../components/CardTalkComponent';
+import Footer from './FooterScreen';
+import CardPost from '../components/CardPostComponent';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 const SLIDE01 = [
   {
@@ -121,9 +124,6 @@ const TALK01 = [
     type: '자유게시판',
   },
 ];
-import Footer from './FooterScreen';
-import CardPost from '../components/CardPostComponent';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 const IMAGESLIDE = [
   {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
@@ -131,6 +131,7 @@ const IMAGESLIDE = [
     url: 'https://i.ibb.co/gRrCrcq/slide01.png',
   },
 ];
+
 export default class Home extends PureComponent {
   constructor(props) {
     super(props);
@@ -138,11 +139,23 @@ export default class Home extends PureComponent {
       modal: false,
       images: [],
       activeSlide: 0,
+      slide01: [],
     };
   }
 
-  componentDidMount() {
-    this.setState({images: IMAGESLIDE});
+  getBase = () => {
+    this.setState({images: IMAGESLIDE, slide01: SLIDE01});
+  };
+
+  componentWillMount() {
+    // window.addEventListener('base', this.getBase(), false);
+    this.getBase();
+    // console.log('getbase');
+    // this.setState({images: IMAGESLIDE, slide01: SLIDE011});
+  }
+
+  componentWillUnmount() {
+    // window.removeEventListener('base', this.getBase(), false);
   }
 
   _intoDetail = () => {
@@ -164,13 +177,13 @@ export default class Home extends PureComponent {
         style={{paddingVertical: 0}}
         dotsLength={images.length}
         activeDotIndex={activeSlide}
-        containerStyle={{backgroundColor: 'white', paddingVertical: 10}}
+        containerStyle={{
+          backgroundColor: 'white',
+          paddingVertical: 10,
+        }}
         dotStyle={{
-          // width: 8,
-          // height: 8,
-          // borderRadius: 8,
-          // marginHorizontal: 8,
           backgroundColor: '#32cc73',
+          marginHorizontal: -3,
         }}
         inactiveDotStyle={{
           backgroundColor: '#f0f0f0',
@@ -184,12 +197,22 @@ export default class Home extends PureComponent {
   _renderItem = ({item, index}) => {
     return (
       <View
-        style={{justifyContent: 'center', alignItems: 'center'}}
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 8,
+          overflow: 'hidden',
+          marginLeft: 2,
+          marginRight: 2,
+        }}
         key={index}>
         <Image
           source={{uri: item.url}}
           resizeMode={'cover'}
-          style={{width: Dimensions.get('screen').width - 40, height: '100%'}}
+          style={{
+            width: Dimensions.get('screen').width - 20,
+            height: '100%',
+          }}
         />
         {/* <Text>{item.url}</Text> */}
       </View>
@@ -208,7 +231,7 @@ export default class Home extends PureComponent {
             {/* slide01 */}
             <View
               style={{
-                height: 300,
+                height: 200,
                 // alignItems: 'center',
                 backgroundColor: 'white',
               }}>
@@ -219,18 +242,27 @@ export default class Home extends PureComponent {
                 data={this.state.images}
                 renderItem={this._renderItem}
                 sliderWidth={Dimensions.get('screen').width}
-                itemWidth={Dimensions.get('screen').width - 50}
+                itemWidth={Dimensions.get('screen').width - 20}
                 onSnapToItem={(index) => this.setState({activeSlide: index})}
                 removeClippedSubviews={false}
+                inactiveSlideOpacity={1}
+                inactiveSlideScale={1}
+                loop={true}
+                loopClonesPerSide={2}
               />
               {this.pagination()}
             </View>
             {/* slide02 */}
+            {console.log(this.state.slide01)}
+            {console.log(this.state.images)}
             <CardList
               navigation={this.props.navigation}
               title={'우리 아이를 위한 추천'}
-              datas={SLIDE01}
+              datas={this.state.slide01}
+              // datas={SLIDE011}
               page={3}
+              session={true}
+              //TODO:로그인화면 갔다가 다시 돌아오면 데이터 갱신안됨 네비게이션 파람데이터로 처리하면 될듯(아마도)
             />
             {/* slide03 */}
             <CardList
@@ -239,15 +271,12 @@ export default class Home extends PureComponent {
               datas={SLIDE02}
               page={3}
             />
-            {/* 임시 */}
-            <View style={{height: 30, flex: 1}}></View>
             {/* 수입장난감 */}
             <Image
               source={require('../images/add01.png')}
-              style={{width: '100%', backgroundColor: 'lightgray'}}
+              resizeMode="contain"
+              style={{width: '100%', marginTop: 30, marginBottom: 20}}
             />
-            {/* 임시 */}
-            <View style={{height: 30, flex: 1}}></View>
             {/* 수다톡 */}
             <CardTalk
               datas={TALK01}
@@ -277,48 +306,11 @@ export default class Home extends PureComponent {
               <CardPost
                 nav={() => this.props.navigation.navigate('PostDetail')}
               />
-              {/* <View style={posting.textBox}>
-                <View
-                  style={{backgroundColor: 'lightgray', height: 200}}></View>
-                <View style={{padding: 15, paddingLeft: 20}}>
-                  <View>
-                    <Text style={{fontSize: 16}}>
-                      임산부는 반드시 피하세요!
-                    </Text>
-                    <Text style={{marginTop: 10}}>베블링 | 육아꿀팁</Text>
-                  </View>
-                  <View></View>
-                </View>
-              </View> */}
               {/*  */}
-              {/* <View style={posting.textBox}>
-                <View
-                  style={{backgroundColor: 'lightgray', height: 200}}></View>
-                <View style={{padding: 15, paddingLeft: 20}}>
-                  <View>
-                    <Text style={{fontSize: 16}}>
-                      감기약, 바르게 알고 먹이자
-                    </Text>
-                    <Text style={{marginTop: 10}}>베블링 | 육아꿀팁</Text>
-                  </View>
-                  <View></View>
-                </View>
-              </View> */}
               <CardPost
                 nav={() => this.props.navigation.navigate('PostDetail')}
               />
               {/*  */}
-              {/* <View style={posting.textBox}>
-                <View
-                  style={{backgroundColor: 'lightgray', height: 200}}></View>
-                <View style={{padding: 15, paddingLeft: 20}}>
-                  <View>
-                    <Text style={{fontSize: 16}}>탄5 단2 지3</Text>
-                    <Text style={{marginTop: 10}}>베블링 | 육아꿀팁</Text>
-                  </View>
-                  <View></View>
-                </View>
-              </View> */}
               <CardPost
                 nav={() => this.props.navigation.navigate('PostDetail')}
               />

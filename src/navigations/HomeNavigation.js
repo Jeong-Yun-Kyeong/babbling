@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Platform,
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import 'react-native-gesture-handler';
@@ -36,6 +37,7 @@ import FAQ from '../screens/FAQScreen';
 import QnA from '../screens/QnAScreen';
 import TalkDetail from '../screens/TalkDetailScreen';
 import PostDetail from '../screens/PostDetailScreen';
+import Search from '../screens/SearchScreen';
 
 const Stack = createStackNavigator();
 
@@ -94,7 +96,11 @@ const HomeSearchHeader = (navigation) => ({
     </TouchableOpacity>
   ),
   headerTitle: () => (
-    <View
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('Search');
+      }}
+      activeOpacity={1}
       style={{
         borderWidth: 1,
         borderColor: '#32cc73',
@@ -108,15 +114,11 @@ const HomeSearchHeader = (navigation) => ({
         marginLeft: 24 + 24,
         flexDirection: 'row',
       }}>
-      <TextInput
-        placeholder="수딩내추럴 인텐스 모이스처 크림"
-        style={{flex: 9}}
-        onFocus={() => {
-          console.log('test');
-        }}
-      />
+      <Text style={{color: 'gray', flex: 9}}>
+        수딩내추럴 인텐스 모이스처 크림
+      </Text>
       <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
-    </View>
+    </TouchableOpacity>
   ),
   headerRight: () => null,
   headerStyle: {
@@ -539,6 +541,48 @@ const PostDetailHeader = (navigation) => ({
   },
 });
 
+const SearchHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => (
+    <View
+      style={{
+        borderWidth: 1,
+        borderColor: '#32cc73',
+        borderRadius: 50,
+        padding: 5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        width: Dimensions.get('screen').width - (24 + 24 + 24 + 24),
+        marginLeft: 24 + 24,
+        flexDirection: 'row',
+      }}>
+      <TextInput
+        placeholder="수딩내추럴 인텐스 모이스처 크림"
+        style={{flex: 9}}
+        onFocus={() => {
+          console.log('test');
+        }}
+        autoFocus={true}
+      />
+      <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
+    </View>
+  ),
+  headerRight: () => null,
+  headerStyle: {
+    height: getStatusBarHeight() + 52,
+  },
+});
+
 const HomeStack = () => {
   return (
     <Stack.Navigator>
@@ -577,12 +621,13 @@ const HomeStack = () => {
               </TouchableOpacity>
             </View>
           ),
+          headerTitleAlign: 'center',
           headerStyle: {
-            height: getStatusBarHeight() + 62,
-            shadowRadius: 0,
+            height: Platform.OS === 'ios' ? getStatusBarHeight() + 62 : 62,
             shadowOffset: {
               height: 0,
             },
+            elevation: 0,
           },
           headerForceInset: {top: 'never', bottom: 'never'},
         })}
@@ -696,6 +741,12 @@ const HomeStack = () => {
         options={({navigation}) => PostDetailHeader(navigation)}
       />
       {/*  */}
+      {/* Search */}
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={({navigation}) => SearchHeader(navigation)}
+      />
     </Stack.Navigator>
   );
 };
