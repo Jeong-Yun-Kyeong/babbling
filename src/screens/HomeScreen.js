@@ -84,6 +84,14 @@ const SLIDE02 = [
     score: 4.5,
     count: '2,121',
   },
+  {
+    img: '../images/1.jpeg',
+    title: '남양',
+    name: '아이꼬야 동결건조 과일 귤',
+    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+    score: 4.5,
+    count: '2,121',
+  },
 ];
 
 const TALK01 = [
