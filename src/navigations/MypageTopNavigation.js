@@ -243,7 +243,7 @@ class MypageTop extends Component {
               //inactiveSlideShift={-35}
 
               onScrollBeginDrag = {(slideIndex)=>{console.log("on")}}
-              onScrollEndDrag = {(slideIndex)=>{console.log("off");
+              onSnapToItem = {(slideIndex)=>{console.log("off");
                 this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
 
               //onScroll = {(event)=>{}}
