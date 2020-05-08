@@ -122,17 +122,23 @@ export default class Footer extends PureComponent {
                   marginBottom: 5,
                 }}></View>
               {/* 기타 */}
-              <TouchableOpacity
+              <View
                 style={{
                   padding: 8,
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <SvgXml xml={SVG('YOUTUBE')} style={{margin: 3}} />
-                <SvgXml xml={SVG('INSTAGRAM')} style={{margin: 3}} />
-                <SvgXml xml={SVG('NAVERBLOG')} style={{margin: 3}} />
-              </TouchableOpacity>
+                <TouchableOpacity>
+                  <SvgXml xml={SVG('YOUTUBE')} style={{margin: 3}} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <SvgXml xml={SVG('INSTAGRAM')} style={{margin: 3}} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <SvgXml xml={SVG('NAVERBLOG')} style={{margin: 3}} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
 

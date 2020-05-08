@@ -25,21 +25,21 @@ class MypageTop extends Component {
         {
           profile:
             'https://img.momtalk.kr/image/information/2018/02/02/1517581280.jpg',
-          imgType:'www',
+          imgType: 'www',
           title: '베베',
           month: 1,
         },
         {
           profile:
             'https://post-phinf.pstatic.net/MjAxOTEwMjJfNzQg/MDAxNTcxNzAxOTM5MjI0.DBtZSvk5URtD1I23MNxUikr5k9_akF7Mo0qbJcKjBvog.Tmg6E01kz9QvZMoBwxSonfx7XuY9ji3ZOP-i7er0xrIg.PNG/%EC%A0%9C%EB%AA%A9%EC%9D%84_%EC%9E%85%EB%A0%A5%ED%95%98%EC%84%B8%EC%9A%94_%2818%29.png?type=w1200',
-          imgType:'www',
+          imgType: 'www',
           title: '에베',
           month: 3,
         },
         {
           profile:
             'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F99FD2D345B3E399E110FAB',
-          imgType:'www',
+          imgType: 'www',
           title: '아베',
           month: 2,
         },
@@ -59,26 +59,23 @@ class MypageTop extends Component {
       interpolation: 20,
       inactiveScale: 0.7,
 
-      isIos: (Platform.OS === 'ios'),
+      isIos: Platform.OS === 'ios',
 
       slidersPosition: {},
-      
+
       carouselLoading: true,
       onScrollTrigger: true,
 
-      sliderBackgroundIndex:0,
-
+      sliderBackgroundIndex: 0,
     };
   }
 
-  setIsScroll = ()=> {
-    
-  }
+  setIsScroll = () => {};
 
   snapToItemByOnPress = (index) => {
-
-    (this.state.isIos) ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0) : this._carousel.snapToItem(index, true, true);
-
+    this.state.isIos
+      ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0)
+      : this._carousel.snapToItem(index, true, true);
   };
 
   find_dimesions(layout) {
@@ -90,51 +87,58 @@ class MypageTop extends Component {
   }
 
   componentDidMount() {
-      // setTimeout(() => {
-      //   this.setState({ carouselLoading: true });
-      // }, 10);
-      //this.setState(()=>({slidersPosition:this._carousel.slidersPosition}),console.log('positions',this.state.slidersPosition));
-    
+    // setTimeout(() => {
+    //   this.setState({ carouselLoading: true });
+    // }, 10);
+    //this.setState(()=>({slidersPosition:this._carousel.slidersPosition}),console.log('positions',this.state.slidersPosition));
+
     this.setCurProfileInterval();
   }
 
-  setCurProfileInterval = ()=> {
-    this.curProfileInterval = setInterval(()=>{
-      var curIndex  = 0;
-      for(var i=0;i<this.state.slidersPosition.length;i++) {
-        if(Math.abs(this._carousel.currentScrollPosition-this.state.slidersPosition[i])<this.state.slidersPosition[1]*0.5) {
-          curIndex = i;
-          break;
-        }
-      }
-      this.setState((prev)=>({curProfileIndex:curIndex}));
+  setCurProfileInterval = () => {
+    this.curProfileInterval = setInterval(() => {
+      var curIndex = 0;
+      // console.log(this.state.slidersPosition);
+      // for (var i = 0; i < this.state.slidersPosition.length; i++) {
+      //   if (
+      //     Math.abs(
+      //       this._carousel.currentScrollPosition -
+      //         this.state.slidersPosition[i],
+      //     ) <
+      //     this.state.slidersPosition[1] * 0.5
+      //   ) {
+      //     curIndex = i;
+      //     break;
+      //   }
+      // }
+      this.setState((prev) => ({curProfileIndex: curIndex}));
       //console.log(this.state.curProfileIndex);
-    },50);
-  }
+    }, 50);
+  };
 
-  unsetCurProfileInterval = ()=> {
-    if(this.curProfileInterval) {
+  unsetCurProfileInterval = () => {
+    if (this.curProfileInterval) {
       clearInterval(this.curProfileInterval);
       this.curProfileInterval = null;
     }
-  }
+  };
 
   componentWillUnmount() {
     this.unsetCurProfileInterval();
   }
 
-  getImageSource = ({profile,imgType})=>{
-    if(imgType=='www') {
-      return {uri:profile};
-    } else if(imgType=='local') {
+  getImageSource = ({profile, imgType}) => {
+    if (imgType == 'www') {
+      return {uri: profile};
+    } else if (imgType == 'local') {
       return profile;
     } else {
-      return {uri:""};
+      return {uri: ''};
     }
-  }
+  };
 
   _renderItem = (item, index, curIndex) => {
-    let invisible = (curIndex!=index) ? styles.visible : {};
+    let invisible = curIndex != index ? styles.visible : {};
 
     return (
       <View style={styles.slide}>
@@ -155,26 +159,21 @@ class MypageTop extends Component {
             resizeMode="cover"
             style={{width: this.state.itemWidth, height: this.state.itemWidth}}
           />
-
         </TouchableHighlight>
         <View style={[styles.slideContent, invisible]}>
           <Text style={[styles.title, invisible]}>{item.title}</Text>
-            <View style={[styles.buttonContainer, invisible]}>
-              <TouchableOpacity>
-                <Text style={[styles.capsule, invisible]}>
-                  {item.month}개월
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={[styles.capsule, invisible]}>알레르기</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={[styles.buttonContainer, invisible]}>
+            <TouchableOpacity>
+              <Text style={[styles.capsule, invisible]}>{item.month}개월</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={[styles.capsule, invisible]}>알레르기</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-
       </View>
     );
   };
-
 
   render() {
     return (
@@ -201,7 +200,9 @@ class MypageTop extends Component {
             // source={
             //   {uri:this.state.entries[this.state.sliderBackgroundIndex].profile}
             //   || require('../images/icon/plusIcon.png') || ""}
-            source={this.getImageSource(this.state.entries[this.state.sliderBackgroundIndex])}
+            source={this.getImageSource(
+              this.state.entries[this.state.sliderBackgroundIndex],
+            )}
             style={{
               position: 'absolute',
               left: 0,
@@ -221,36 +222,52 @@ class MypageTop extends Component {
               height: 300,
               // backgroundColor: 'black',
             }}>
-                {(this.state.carouselLoading) ?
-            <Carousel
-              bounces={false}
-              ref={(c) => {
-                this._carousel = c;
-                //this.setState({slidersPosition:this._carousel.slidersPosition});
-              }}
-              scrollEventThrottle={16}
-              data={this.state.entries}
-              //renderItem={({item,index})=> this._renderItem(item,index)}
-              renderItem={({item,index})=>this._renderItem(item,index,this.state.curProfileIndex)}
-              sliderWidth={this.state.width}
-              itemWidth={this.state.itemWidth}
-              onLayout={()=>{this.setState({slidersPosition:this._carousel.slidersPosition})}}
-              // sliderWidth={this.state.width}
-              // itemWidth={this.state.itemWidth}
-              // sliderStyle={{height: 100}}
-              inactiveSlideScale={this.state.inactiveScale}
+            {this.state.carouselLoading ? (
+              <Carousel
+                bounces={false}
+                ref={(c) => {
+                  this._carousel = c;
+                  //this.setState({slidersPosition:this._carousel.slidersPosition});
+                }}
+                scrollEventThrottle={16}
+                data={this.state.entries}
+                //renderItem={({item,index})=> this._renderItem(item,index)}
+                renderItem={({item, index}) =>
+                  this._renderItem(item, index, this.state.curProfileIndex)
+                }
+                sliderWidth={this.state.width}
+                itemWidth={this.state.itemWidth}
+                onLayout={() => {
+                  console.log(this._carousel);
+                  console.log(this._carousel.slidersPosition);
+                  // this.setState({
+                  //   slidersPosition: this._carousel.slidersPosition,
+                  // });
+                }}
+                // sliderWidth={this.state.width}
+                // itemWidth={this.state.itemWidth}
+                // sliderStyle={{height: 100}}
+                inactiveSlideScale={this.state.inactiveScale}
+                //inactiveSlideShift={-35}
 
-              //inactiveSlideShift={-35}
+                onScrollBeginDrag={(slideIndex) => {
+                  console.log('on');
+                }}
+                onSnapToItem={(slideIndex) => {
+                  console.log('off');
+                  this.setState({
+                    sliderBackgroundIndex: this.state.curProfileIndex,
+                  });
+                }}
 
-              onScrollBeginDrag = {(slideIndex)=>{console.log("on")}}
-              onSnapToItem = {(slideIndex)=>{console.log("off");
-                this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
+                //onScroll = {(event)=>{}}
 
-              //onScroll = {(event)=>{}}
-
-              // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
-              // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
-            /> : <></>}
+                // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
+                // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
+              />
+            ) : (
+              <></>
+            )}
           </View>
         </View>
 
@@ -299,7 +316,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 3,
   },
-  visible: {opacity:0},
+  visible: {opacity: 0},
 });
 
 export default MypageTop;
