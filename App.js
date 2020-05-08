@@ -14,7 +14,6 @@ const App = () => {
       <NavigationContainer>
         <AuthStack />
         {/* <PickStack /> */}
-        {/* <Header /> */}
       </NavigationContainer>
     </>
   );
