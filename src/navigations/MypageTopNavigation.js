@@ -246,7 +246,7 @@ class MypageTop extends Component {
               onMomentumScrollEnd = {(slideIndex)=>{console.log("off");
                 this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
 
-              onScroll = {(event)=>{}}
+              //onScroll = {(event)=>{}}
 
               // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
               // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
