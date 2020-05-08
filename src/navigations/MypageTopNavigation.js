@@ -24,25 +24,30 @@ class MypageTop extends Component {
       entries: [
         {
           profile:
-            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+            'https://img.momtalk.kr/image/information/2018/02/02/1517581280.jpg',
+          imgType:'www',
           title: '베베',
           month: 1,
         },
         {
           profile:
-            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+            'https://post-phinf.pstatic.net/MjAxOTEwMjJfNzQg/MDAxNTcxNzAxOTM5MjI0.DBtZSvk5URtD1I23MNxUikr5k9_akF7Mo0qbJcKjBvog.Tmg6E01kz9QvZMoBwxSonfx7XuY9ji3ZOP-i7er0xrIg.PNG/%EC%A0%9C%EB%AA%A9%EC%9D%84_%EC%9E%85%EB%A0%A5%ED%95%98%EC%84%B8%EC%9A%94_%2818%29.png?type=w1200',
+          imgType:'www',
           title: '에베',
           month: 3,
         },
         {
           profile:
-            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+            'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F99FD2D345B3E399E110FAB',
+          imgType:'www',
           title: '아베',
           month: 2,
         },
         {
           profile:
-            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+            //'https://icons.iconarchive.com/icons/icons8/ios7/512/User-Interface-Plus-icon.png',
+            require('../images/icon/plusIcon.png'),
+          imgType:'local',
           title: '아베',
           month: 2,
         },
@@ -61,65 +66,19 @@ class MypageTop extends Component {
       carouselLoading: true,
       onScrollTrigger: true,
 
+      sliderBackgroundIndex:0,
+
     };
   }
 
-  setCurrentProfile = (event) => {
-    //this.setState({curProfileIndex:index},console.log(this.state.curProfileIndex));
-    // if(this.state.onScrollTrigger) {
-    //   setTimeout(()=>{
-    //     if(this.state.onScrollTrigger) this.setState(()=>({onScrollTrigger:false}));
-    //   },1000)
-    // } else {
-    //   this.setState(()=>({curProfileIndex:this._carousel.currentIndex, onScrollTrigger:true}, console.log(this._carousel.currentIndex)));
-    // }
-    // if(this.state.onScrollTrigger) {
-    //   this.setState((prev)=>({onScrollTrigger:!(prev.onScrollTrigger)}));
-    //   this.setOnscrollTriggerOn();
-    // }
-
-    //this.setState((prev)=>{if(prev.onScrollTrigger==this.state.onScrollTrigger)return{onScrollTrigger:!(prev.onScrollTrigger)}});
-  };
-
-  setOnscrollTriggerOff = ()=>{
-    setTimeout(()=>{
-      this.setOnscrollTriggerOn();
-    },50);
+  setIsScroll = ()=> {
+    
   }
-
-  setOnscrollTriggerOn = ()=>{
-    console.log("ready");
-    setTimeout(()=>{
-      this.setState((prev)=>({onScrollTrigger:!(prev.onScrollTrigger)}));
-    },50);
-  }
-
-  setCarouselByPos = (evnet) => {
-    //console.log(this._carousel.currentScrollPosition);
-    //console.log('max', this.state.slidersPosition);
-    //console.log(this._carousel.currentIndex);
-    this.setState({curProfileIndex:this._carousel.currentIndex});
-  };
-
-  setCarousel = (evnet) => {
-    console.log(this._carousel.currentIndex);
-  };
-
-  setCarouselByBefore = (index) => {
-    console.log('before', index);
-  };
-  setCarouselByAfter = (index) => {
-    console.log('after', index);
-  };
 
   snapToItemByOnPress = (index) => {
-    // console.log(index);
-    //;
+
     (this.state.isIos) ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0) : this._carousel.snapToItem(index, true, true);
-    //this._carousel.triggerRenderingHack(-1);
-    //console.log(this.state.curProfileIndex);
-    // let currentIdx = this._carousel.currentIndex;
-    // console.log(currentIdx - index);
+
   };
 
   find_dimesions(layout) {
@@ -131,15 +90,11 @@ class MypageTop extends Component {
   }
 
   componentDidMount() {
-    let sliderWidth =
-      this.state.itemWidth *
-        (0.5 + (this.state.entries.length - 1.5) * this.state.inactiveScale) +
-      (this.state.entries.length - 1) * 20;
-
       // setTimeout(() => {
       //   this.setState({ carouselLoading: true });
       // }, 10);
       //this.setState(()=>({slidersPosition:this._carousel.slidersPosition}),console.log('positions',this.state.slidersPosition));
+    
     this.setCurProfileInterval();
   }
 
@@ -157,7 +112,30 @@ class MypageTop extends Component {
     },50);
   }
 
+  unsetCurProfileInterval = ()=> {
+    if(this.curProfileInterval) {
+      clearInterval(this.curProfileInterval);
+      this.curProfileInterval = null;
+    }
+  }
+
+  componentWillUnmount() {
+    this.unsetCurProfileInterval();
+  }
+
+  getImageSource = ({profile,imgType})=>{
+    if(imgType=='www') {
+      return {uri:profile};
+    } else if(imgType=='local') {
+      return profile;
+    } else {
+      return {uri:""};
+    }
+  }
+
   _renderItem = (item, index, curIndex) => {
+    let invisible = (curIndex!=index) ? styles.visible : {};
+
     return (
       <View style={styles.slide}>
         <TouchableHighlight
@@ -172,27 +150,26 @@ class MypageTop extends Component {
             overflow: 'hidden',
           }}>
           <Image
-            source={{uri: item.profile}}
+            //source={{uri: item.profile} || require('../images/icon/plusIcon.png') || ""}
+            source={this.getImageSource(item)}
             resizeMode="cover"
             style={{width: this.state.itemWidth, height: this.state.itemWidth}}
           />
+
         </TouchableHighlight>
-        {(curIndex == index) ? 
-          <View style={styles.slideContent}>
-            <Text style={[styles.title, styles.visible]}>{item.title}</Text>
-              <View style={[styles.buttonContainer, styles.visible]}>
-                <TouchableOpacity>
-                  <Text style={[styles.capsule, styles.visible]}>
-                    {item.month}개월
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text style={[styles.capsule, styles.visible]}>알레르기</Text>
-                </TouchableOpacity>
-              </View>
-          </View> :
-          <></>
-        }
+        <View style={[styles.slideContent, invisible]}>
+          <Text style={[styles.title, invisible]}>{item.title}</Text>
+            <View style={[styles.buttonContainer, invisible]}>
+              <TouchableOpacity>
+                <Text style={[styles.capsule, invisible]}>
+                  {item.month}개월
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={[styles.capsule, invisible]}>알레르기</Text>
+              </TouchableOpacity>
+            </View>
+        </View>
 
       </View>
     );
@@ -221,10 +198,10 @@ class MypageTop extends Component {
             automaticallyAdjustContentInsets={true}
           />
           <ImageBackground
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-            }}
+            // source={
+            //   {uri:this.state.entries[this.state.sliderBackgroundIndex].profile}
+            //   || require('../images/icon/plusIcon.png') || ""}
+            source={this.getImageSource(this.state.entries[this.state.sliderBackgroundIndex])}
             style={{
               position: 'absolute',
               left: 0,
@@ -263,18 +240,16 @@ class MypageTop extends Component {
               // sliderStyle={{height: 100}}
               inactiveSlideScale={this.state.inactiveScale}
 
-              activeSlideOffset={-100}
+              //inactiveSlideShift={-35}
 
-              //onSnapToItem = {(slideIndex)=>{this.setState({curProfileIndex:slideIndex},console.log('ps',slideIndex));}}
-              
-              // onScroll={(event) => {
-              //   var curIndex = this._carousel.currentIndex;
-              //   this.setState({curProfileIndex:curIndex});
-              //   //this.setCarouselByPos(event);
-              // }}
-              //onScroll = {(event)=>{this.setCurrentProfile()}}
+              onScrollBeginDrag = {(slideIndex)=>{console.log("on")}}
+              onMomentumScrollEnd = {(slideIndex)=>{console.log("off");
+                this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
 
-              // removeClippedSubviews={false}
+              onScroll = {(event)=>{}}
+
+              // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
+              // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
             /> : <></>}
           </View>
         </View>
@@ -324,7 +299,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 3,
   },
-  visible: {},
+  visible: {opacity:0},
 });
 
 export default MypageTop;
