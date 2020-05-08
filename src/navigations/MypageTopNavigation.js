@@ -14,7 +14,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 import MypageTab from '../navigations/MypageTabNavigation';
 
-import Carousel from 'react-native-snap-carousel';
+import Carousel from '../../custom_node_modules/react-native-snap-carousel/src/index';
 import {BlurView} from '@react-native-community/blur';
 
 class MypageTop extends Component {
@@ -48,7 +48,7 @@ class MypageTop extends Component {
             //'https://icons.iconarchive.com/icons/icons8/ios7/512/User-Interface-Plus-icon.png',
             require('../images/icon/plusIcon.png'),
           imgType:'local',
-          title: '아베',
+          title: '아베베',
           month: 2,
         },
       ],
@@ -243,10 +243,10 @@ class MypageTop extends Component {
               //inactiveSlideShift={-35}
 
               onScrollBeginDrag = {(slideIndex)=>{console.log("on")}}
-              onMomentumScrollEnd = {(slideIndex)=>{console.log("off");
+              onSnapToItem = {(slideIndex)=>{console.log("off");
                 this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
 
-              onScroll = {(event)=>{}}
+              //onScroll = {(event)=>{}}
 
               // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
               // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
