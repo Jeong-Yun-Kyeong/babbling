@@ -270,7 +270,7 @@ export default class Home extends PureComponent {
               datas={this.state.slide01}
               // datas={SLIDE011}
               page={3}
-              session={true}
+              //session={true}
               //TODO:로그인화면 갔다가 다시 돌아오면 데이터 갱신안됨 네비게이션 파람데이터로 처리하면 될듯(아마도)
             />
             {/* slide03 */}
