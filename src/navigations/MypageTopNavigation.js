@@ -71,49 +71,14 @@ class MypageTop extends Component {
     };
   }
 
-  setCurrentProfile = (event) => {
-    //this.setState({curProfileIndex:index},console.log(this.state.curProfileIndex));
-    // if(this.state.onScrollTrigger) {
-    //   setTimeout(()=>{
-    //     if(this.state.onScrollTrigger) this.setState(()=>({onScrollTrigger:false}));
-    //   },1000)
-    // } else {
-    //   this.setState(()=>({curProfileIndex:this._carousel.currentIndex, onScrollTrigger:true}, console.log(this._carousel.currentIndex)));
-    // }
-    // if(this.state.onScrollTrigger) {
-    //   this.setState((prev)=>({onScrollTrigger:!(prev.onScrollTrigger)}));
-    //   this.setOnscrollTriggerOn();
-    // }
-
-    //this.setState((prev)=>{if(prev.onScrollTrigger==this.state.onScrollTrigger)return{onScrollTrigger:!(prev.onScrollTrigger)}});
-  };
-
-  setCarouselByPos = (evnet) => {
-    //console.log(this._carousel.currentScrollPosition);
-    //console.log('max', this.state.slidersPosition);
-    //console.log(this._carousel.currentIndex);
-    this.setState({curProfileIndex:this._carousel.currentIndex});
-  };
-
-  setCarousel = (evnet) => {
-    console.log(this._carousel.currentIndex);
-  };
-
-  setCarouselByBefore = (index) => {
-    console.log('before', index);
-  };
-  setCarouselByAfter = (index) => {
-    console.log('after', index);
-  };
+  setIsScroll = ()=> {
+    
+  }
 
   snapToItemByOnPress = (index) => {
-    // console.log(index);
-    //;
+
     (this.state.isIos) ? setTimeout(() => this._carousel.snapToItem(index, true, true), 0) : this._carousel.snapToItem(index, true, true);
-    //this._carousel.triggerRenderingHack(-1);
-    //console.log(this.state.curProfileIndex);
-    // let currentIdx = this._carousel.currentIndex;
-    // console.log(currentIdx - index);
+
   };
 
   find_dimesions(layout) {
@@ -125,11 +90,6 @@ class MypageTop extends Component {
   }
 
   componentDidMount() {
-    let sliderWidth =
-      this.state.itemWidth *
-        (0.5 + (this.state.entries.length - 1.5) * this.state.inactiveScale) +
-      (this.state.entries.length - 1) * 20;
-
       // setTimeout(() => {
       //   this.setState({ carouselLoading: true });
       // }, 10);
@@ -285,6 +245,8 @@ class MypageTop extends Component {
               onScrollBeginDrag = {(slideIndex)=>{console.log("on")}}
               onMomentumScrollEnd = {(slideIndex)=>{console.log("off");
                 this.setState({sliderBackgroundIndex:this.state.curProfileIndex});}}
+
+              onScroll = {(event)=>{}}
 
               // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
               // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
