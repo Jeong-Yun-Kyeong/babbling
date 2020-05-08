@@ -197,7 +197,7 @@ export default class CardList extends PureComponent {
                 bottom: 5,
                 display: this.state.display,
               }}
-              blurType="ultraThinMaterialDark"
+              blurType="dark"
               blurAmount={1}>
               <View
                 style={{
