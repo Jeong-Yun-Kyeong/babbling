@@ -19,6 +19,7 @@ export default class Footer extends PureComponent {
           <Image
             source={require('../images/add02.png')}
             style={{width: '100%'}}
+            resizeMode="contain"
           />
         </View>
         {/*  */}
@@ -80,7 +81,7 @@ export default class Footer extends PureComponent {
                 elevation: 5,
               }}>
               {/* 칭찬 */}
-              <View
+              <TouchableOpacity
                 style={{
                   padding: 8,
                   alignItems: 'center',
@@ -90,7 +91,7 @@ export default class Footer extends PureComponent {
                   style={{color: '#32cc73', fontSize: 12, fontWeight: '500'}}>
                   베블링 칭찬하기
                 </Text>
-              </View>
+              </TouchableOpacity>
               {/* 카플 */}
               <View
                 style={{
@@ -100,7 +101,7 @@ export default class Footer extends PureComponent {
                   marginBottom: 5,
                 }}></View>
               {/*  */}
-              <View
+              <TouchableOpacity
                 style={{
                   // flex: 1,
                   padding: 8,
@@ -111,7 +112,7 @@ export default class Footer extends PureComponent {
                   style={{color: '#32cc73', fontSize: 12, fontWeight: '500'}}>
                   베블링 카카오 플러스 친구
                 </Text>
-              </View>
+              </TouchableOpacity>
               {/*  */}
               <View
                 style={{
@@ -121,7 +122,7 @@ export default class Footer extends PureComponent {
                   marginBottom: 5,
                 }}></View>
               {/* 기타 */}
-              <View
+              <TouchableOpacity
                 style={{
                   padding: 8,
                   flexDirection: 'row',
@@ -131,7 +132,7 @@ export default class Footer extends PureComponent {
                 <SvgXml xml={SVG('YOUTUBE')} style={{margin: 3}} />
                 <SvgXml xml={SVG('INSTAGRAM')} style={{margin: 3}} />
                 <SvgXml xml={SVG('NAVERBLOG')} style={{margin: 3}} />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
 

@@ -12,6 +12,7 @@ import {
 
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
+import CompareButton from '../components/atom/CompareButton';
 
 const CATEGORY = [
   '분유',
@@ -122,25 +123,14 @@ const List = (datas) => {
   });
 };
 
-const Category = ({naviation}) => {
+const Category = ({navigation}) => {
   return (
     <Fragment>
-      <View
-        style={{
-          backgroundColor: '#32CC73',
-          width: 60,
-          height: 60,
-          borderRadius: 60,
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'absolute',
-          right: 20,
-          bottom: 20,
-          zIndex: 10,
-        }}>
-        <SvgXml xml={SVG('COMPARE')} />
-        <Text style={{color: 'white', fontSize: 11, marginTop: 3}}>비교함</Text>
-      </View>
+      <CompareButton
+        goCompare={() => {
+          navigation.navigate('Compare');
+        }}
+      />
       <ScrollView style={{backgroundColor: 'white', marginTop: 4}}>
         <View
           style={{backgroundColor: 'white', paddingLeft: 16, paddingRight: 16}}>
