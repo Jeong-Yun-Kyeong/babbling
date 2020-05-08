@@ -3,38 +3,17 @@ import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
 
-const SLIDE01 = [
-  {
-    title: '베베랩',
-    name: '고보습 베리어 베이비 로션 200ml',
-    hashTag: '#첫로션  #고보습  #산양유',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    title: 'BUTLER(버틀러)',
-    name: '프로바이오틱스 세제',
-    hashTag: '#세정력  #아기냄새  #인스타',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    title: '풀무원 베이비밀',
-    name: '닭가슴살 바나나죽',
-    hashTag: '#8-9개월  #닭알레르기  #잘먹음',
-    score: 4.5,
-    count: '2,121',
-  },
-];
-
 export default class List extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  _intoDetail = () => {
-    this.props.navigation.navigate('Detail');
+  _intoDetail = (data) => {
+    this.props.navigation.navigate('Detail', {
+      brand: data.title,
+      name: data.name,
+    });
   };
 
   _getList = (datas) => {
@@ -46,7 +25,7 @@ export default class List extends PureComponent {
         <View style={styles.cardList} key={index}>
           <TouchableOpacity
             style={styles.innerCardList}
-            onPress={this._intoDetail}>
+            onPress={() => this._intoDetail(data)}>
             <View
               style={[
                 styles.cardImage,
@@ -56,8 +35,8 @@ export default class List extends PureComponent {
               <View
                 style={{
                   backgroundColor: 'pink',
-                  width: 55,
-                  height: 55,
+                  width: 60,
+                  height: 60,
                   borderRadius: 5,
                 }}></View>
             </View>

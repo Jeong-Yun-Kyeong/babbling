@@ -135,9 +135,10 @@ const TALK01 = [
 
 const IMAGESLIDE = [
   {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-  {
-    url: 'https://i.ibb.co/gRrCrcq/slide01.png',
-  },
+  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
+  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
+  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
+  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
 ];
 
 export default class Home extends PureComponent {
@@ -156,10 +157,7 @@ export default class Home extends PureComponent {
   };
 
   componentWillMount() {
-    // window.addEventListener('base', this.getBase(), false);
     this.getBase();
-    // console.log('getbase');
-    // this.setState({images: IMAGESLIDE, slide01: SLIDE011});
   }
 
   componentWillUnmount() {
@@ -209,10 +207,10 @@ export default class Home extends PureComponent {
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-          borderRadius: 8,
+          borderRadius: 3,
           overflow: 'hidden',
-          marginLeft: 2,
-          marginRight: 2,
+          marginLeft: 1,
+          marginRight: 1,
         }}
         key={index}>
         <Image
@@ -240,7 +238,7 @@ export default class Home extends PureComponent {
             {/* slide01 */}
             <View
               style={{
-                height: 200,
+                height: 250,
                 // alignItems: 'center',
                 backgroundColor: 'white',
               }}>
@@ -270,7 +268,7 @@ export default class Home extends PureComponent {
               datas={this.state.slide01}
               // datas={SLIDE011}
               page={3}
-              //session={true}
+              session={true}
               //TODO:로그인화면 갔다가 다시 돌아오면 데이터 갱신안됨 네비게이션 파람데이터로 처리하면 될듯(아마도)
             />
             {/* slide03 */}
