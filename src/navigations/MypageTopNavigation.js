@@ -14,7 +14,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 import MypageTab from '../navigations/MypageTabNavigation';
 
-import Carousel from 'react-native-snap-carousel';
+import Carousel from '../../custom_node_modules/react-native-snap-carousel/src/index';
 import {BlurView} from '@react-native-community/blur';
 
 class MypageTop extends Component {
@@ -47,8 +47,8 @@ class MypageTop extends Component {
           profile:
             //'https://icons.iconarchive.com/icons/icons8/ios7/512/User-Interface-Plus-icon.png',
             require('../images/icon/plusIcon.png'),
-          imgType: 'local',
-          title: '아베',
+          imgType:'local',
+          title: '아베베',
           month: 2,
         },
       ],
