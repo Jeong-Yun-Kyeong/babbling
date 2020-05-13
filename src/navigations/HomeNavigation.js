@@ -39,6 +39,8 @@ import TalkDetail from '../screens/TalkDetailScreen';
 import PostDetail from '../screens/PostDetailScreen';
 import Search from '../screens/SearchScreen';
 
+import RegisterBaby from '../screens/RegisterBabyScreen';
+
 const Stack = createStackNavigator();
 
 const DetailHeader = (navigation) => ({
@@ -498,6 +500,26 @@ const QnAHeader = (navigation) => ({
   },
 });
 
+const RegisterBabyHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+
 const TalkDetailHeader = (navigation) => ({
   // headerLeft: () => (
   //   <TouchableOpacity
@@ -728,6 +750,14 @@ const HomeStack = () => {
         component={QnA}
         options={({navigation}) => QnAHeader(navigation)}
       />
+
+      {/* RegisterBaby */}
+      <Stack.Screen
+        name="RegisterBaby"
+        component={RegisterBaby}
+        options={({navigation}) => RegisterBabyHeader(navigation)}
+      />
+
       {/* end mypage */}
       {/* Talk */}
       <Stack.Screen
@@ -747,6 +777,7 @@ const HomeStack = () => {
         component={Search}
         options={({navigation}) => SearchHeader(navigation)}
       />
+
     </Stack.Navigator>
   );
 };
