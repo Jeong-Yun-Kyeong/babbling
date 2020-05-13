@@ -84,7 +84,7 @@ class MypageTop extends PureComponent {
   profileOnclick = (item,index)=> {
     if(this.state.curProfileIndex == index) {
       if(item.addProfile) {
-        //this.props.navigation.navigate('RegisterBaby');
+        this.props.navigation.navigate('RegisterBaby');
       } else {
 
       }
