@@ -12,7 +12,7 @@ export default class LabelInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      width: 333,
+      width: 240,
       fontSize: 13,
       fontSize2: 15,
       textPadding: 10,
@@ -26,9 +26,9 @@ export default class LabelInput extends PureComponent {
       this.setState({width: 500, fontSize: 18, fontSize2: 22, textPadding: 15});
     }
     console.log(this.state.width);
-    if (this.state.width >= screenWidth - 80) {
-      this.setState({width: screenWidth - 80});
-    }
+    // if (this.state.width >= screenWidth - 80) {
+    //   this.setState({width: screenWidth - 80});
+    // }
   }
 
   render() {
@@ -38,7 +38,7 @@ export default class LabelInput extends PureComponent {
           style={{
             paddingBottom: 8,
             paddingTop: 8,
-            width: this.props.button ? this.state.width - 40 : this.state.width,
+            width: this.state.width,
           }}>
           {this.props.label ? (
             <Text style={{fontSize: this.state.fontSize, color: '#4d4d4d'}}>
@@ -66,7 +66,7 @@ export default class LabelInput extends PureComponent {
         {this.props.button ? (
           <TouchableOpacity
             style={{
-              backgroundColor: 'lightgray',
+              backgroundColor: '#f3f3f3',
               padding: 10,
               borderRadius: 50,
               marginBottom: 8,

@@ -19,43 +19,43 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 const SLIDE01 = [
   {
     img: '../images/1.jpeg',
-    title: '베베랩',
-    name: '고보습 베리어 베이비 로션 200ml',
-    hashTag: '#첫로션 #고보습 #산양유',
+    brand_name: '베베랩',
+    name: '어린이 치약',
+    hashtag: '#첫로션 #고보습 #산양유',
     score: 4.5,
-    count: '2,121',
+    score_count: '2,121',
   },
   {
-    img: '../images/2.jpeg',
-    title: 'BUTLER(버틀러)',
-    name: '프로바이오틱스 세제',
-    hashTag: '#세정력 #아기냄새 #인스타',
+    img: '../images/1.jpeg',
+    brand_name: '베베랩',
+    name: '어린이 치약',
+    hashtag: '#첫로션 #고보습 #산양유',
     score: 4.5,
-    count: '2,121',
+    score_count: '2,121',
   },
   {
-    img: '../images/3.jpeg',
-    title: '풀무원 베이비밀',
-    name: '닭가슴살 바나나죽',
-    hashTag: '#8-9개월 #닭알레르기 #잘먹음',
+    img: '../images/1.jpeg',
+    brand_name: '베베랩',
+    name: '어린이 치약',
+    hashtag: '#첫로션 #고보습 #산양유',
     score: 4.5,
-    count: '2,121',
+    score_count: '2,121',
   },
   {
-    img: '../images/2.jpeg',
-    title: 'BUTLER(버틀러)',
-    name: '프로바이오틱스 세제',
-    hashTag: '#세정력 #아기냄새 #인스타',
+    img: '../images/1.jpeg',
+    brand_name: '베베랩',
+    name: '어린이 치약',
+    hashtag: '#첫로션 #고보습 #산양유',
     score: 4.5,
-    count: '2,121',
+    score_count: '2,121',
   },
   {
-    img: '../images/3.jpeg',
-    title: '풀무원 베이비밀',
-    name: '닭가슴살 바나나죽',
-    hashTag: '#8-9개월 #닭알레르기 #잘먹음',
+    img: '../images/1.jpeg',
+    brand_name: '베베랩',
+    name: '어린이 치약',
+    hashtag: '#첫로션 #고보습 #산양유',
     score: 4.5,
-    count: '2,121',
+    score_count: '2,121',
   },
 ];
 
@@ -149,19 +149,35 @@ export default class Home extends PureComponent {
       images: [],
       activeSlide: 0,
       slide01: [],
+      slide02: [],
     };
   }
 
   getBase = () => {
     this.setState({images: IMAGESLIDE, slide01: SLIDE01});
+
+    // .then((resJson) => console.log('data================', resJson));
   };
 
-  componentWillMount() {
+  async componentDidMount() {
     this.getBase();
+    const response = await fetch('http://172.30.1.9/product/semi-drug/');
+
+    const resJson = await response.json();
+    this.setState({slide02: resJson});
+    this.setState({slide01: SLIDE01});
+    console.log(resJson);
+    // .then((res) => res.json())
+    // .then((resJson) => {
+    //   console.log(resJson);
+    //   this.setState({slide02: resJson});
+    // })
+    // .catch((err) => console.log(err));
+    // window.addEventListener('load', this.getBase(), false);
   }
 
   componentWillUnmount() {
-    // window.removeEventListener('base', this.getBase(), false);
+    // window.removeEventListener('load', this.getBase(), false);
   }
 
   _intoDetail = () => {
@@ -227,6 +243,7 @@ export default class Home extends PureComponent {
   };
 
   render() {
+    let {slide02, slide01} = this.state;
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -260,22 +277,18 @@ export default class Home extends PureComponent {
               {this.pagination()}
             </View>
             {/* slide02 */}
-            {console.log(this.state.slide01)}
-            {console.log(this.state.images)}
             <CardList
               navigation={this.props.navigation}
               title={'우리 아이를 위한 추천'}
-              datas={this.state.slide01}
-              // datas={SLIDE011}
+              datas={slide01}
               page={3}
               session={true}
-              //TODO:로그인화면 갔다가 다시 돌아오면 데이터 갱신안됨 네비게이션 파람데이터로 처리하면 될듯(아마도)
             />
-            {/* slide03 */}
+            {/*  */}
             <CardList
               navigation={this.props.navigation}
               title={'베스트 셀러'}
-              datas={SLIDE02}
+              datas={slide02}
               page={3}
             />
             {/* 수입장난감 */}
