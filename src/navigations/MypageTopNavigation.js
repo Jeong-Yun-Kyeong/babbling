@@ -1,4 +1,4 @@
-import React, {Fragment, PureComponent, Component} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {
   Text,
   View,
@@ -10,14 +10,13 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 import MypageTab from '../navigations/MypageTabNavigation';
 
 import Carousel from '../../custom_node_modules/react-native-snap-carousel/src/index';
 import {BlurView} from '@react-native-community/blur';
 
-class MypageTop extends Component {
+class MypageTop extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +46,7 @@ class MypageTop extends Component {
           profile:
             //'https://icons.iconarchive.com/icons/icons8/ios7/512/User-Interface-Plus-icon.png',
             require('../images/icon/plusIcon.png'),
-          imgType:'local',
+          imgType: 'local',
           title: '아베베',
           month: 2,
         },
@@ -87,32 +86,25 @@ class MypageTop extends Component {
   }
 
   componentDidMount() {
-    // setTimeout(() => {
-    //   this.setState({ carouselLoading: true });
-    // }, 10);
-    //this.setState(()=>({slidersPosition:this._carousel.slidersPosition}),console.log('positions',this.state.slidersPosition));
-
     this.setCurProfileInterval();
   }
 
   setCurProfileInterval = () => {
     this.curProfileInterval = setInterval(() => {
       var curIndex = 0;
-      // console.log(this.state.slidersPosition);
-      // for (var i = 0; i < this.state.slidersPosition.length; i++) {
-      //   if (
-      //     Math.abs(
-      //       this._carousel.currentScrollPosition -
-      //         this.state.slidersPosition[i],
-      //     ) <
-      //     this.state.slidersPosition[1] * 0.5
-      //   ) {
-      //     curIndex = i;
-      //     break;
-      //   }
-      // }
+      for (var i = 0; i < this.state.slidersPosition.length; i++) {
+        if (
+          Math.abs(
+            this._carousel.currentScrollPosition -
+              this.state.slidersPosition[i],
+          ) <
+          this.state.slidersPosition[1] * 0.5
+        ) {
+          curIndex = i;
+          break;
+        }
+      }
       this.setState((prev) => ({curProfileIndex: curIndex}));
-      //console.log(this.state.curProfileIndex);
     }, 50);
   };
 
@@ -144,9 +136,7 @@ class MypageTop extends Component {
       <View style={styles.slide}>
         <TouchableHighlight
           underlayColor="#fff"
-          //activeOpacity={0.6}
           onPress={() => this.snapToItemByOnPress(index)}
-          // onPress={() => console.log(index)}
           style={{
             width: this.state.itemWidth,
             height: this.state.itemWidth,
@@ -154,7 +144,6 @@ class MypageTop extends Component {
             overflow: 'hidden',
           }}>
           <Image
-            //source={{uri: item.profile} || require('../images/icon/plusIcon.png') || ""}
             source={this.getImageSource(item)}
             resizeMode="cover"
             style={{width: this.state.itemWidth, height: this.state.itemWidth}}
@@ -197,9 +186,6 @@ class MypageTop extends Component {
             automaticallyAdjustContentInsets={true}
           />
           <ImageBackground
-            // source={
-            //   {uri:this.state.entries[this.state.sliderBackgroundIndex].profile}
-            //   || require('../images/icon/plusIcon.png') || ""}
             source={this.getImageSource(
               this.state.entries[this.state.sliderBackgroundIndex],
             )}
@@ -220,36 +206,26 @@ class MypageTop extends Component {
             style={{
               width: Dimensions.get('screen').width,
               height: 300,
-              // backgroundColor: 'black',
             }}>
             {this.state.carouselLoading ? (
               <Carousel
                 bounces={false}
                 ref={(c) => {
                   this._carousel = c;
-                  //this.setState({slidersPosition:this._carousel.slidersPosition});
                 }}
                 scrollEventThrottle={16}
                 data={this.state.entries}
-                //renderItem={({item,index})=> this._renderItem(item,index)}
                 renderItem={({item, index}) =>
                   this._renderItem(item, index, this.state.curProfileIndex)
                 }
                 sliderWidth={this.state.width}
                 itemWidth={this.state.itemWidth}
                 onLayout={() => {
-                  console.log(this._carousel);
-                  console.log(this._carousel.slidersPosition);
-                  // this.setState({
-                  //   slidersPosition: this._carousel.slidersPosition,
-                  // });
+                  this.setState({
+                    slidersPosition: this._carousel.slidersPosition,
+                  });
                 }}
-                // sliderWidth={this.state.width}
-                // itemWidth={this.state.itemWidth}
-                // sliderStyle={{height: 100}}
                 inactiveSlideScale={this.state.inactiveScale}
-                //inactiveSlideShift={-35}
-
                 onScrollBeginDrag={(slideIndex) => {
                   console.log('on');
                 }}
@@ -259,11 +235,7 @@ class MypageTop extends Component {
                     sliderBackgroundIndex: this.state.curProfileIndex,
                   });
                 }}
-
-                //onScroll = {(event)=>{}}
-
-                // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
-                // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
+                removeClippedSubviews={false}
               />
             ) : (
               <></>
