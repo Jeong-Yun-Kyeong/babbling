@@ -39,6 +39,8 @@ export default class FormButton extends PureComponent {
             width: this.state.width,
             height: this.state.height,
             borderRadius: 52,
+            borderWidth: (this.props.borderColor) ? 1 : 0,
+            borderColor: this.props.borderColor || 'red',
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',

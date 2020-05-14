@@ -12,11 +12,8 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        {/* <AuthStack /> */}
+        <AuthStack />
         {/* <PickStack /> */}
-
-        <Header/>
-
       </NavigationContainer>
     </>
   );

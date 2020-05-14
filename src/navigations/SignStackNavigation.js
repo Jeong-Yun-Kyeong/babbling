@@ -13,6 +13,8 @@ import SVG from '../components/SvgComponent';
 import Join from '../screens/JoinScreen';
 import PassWord from '../screens/PWScreen';
 import PWChange from '../screens/PWChangeScreen';
+import BabyPlus from '../screens/BabyPlusScreen';
+import BabyAlergy from '../screens/BabyAlergyScreen';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +47,17 @@ const SignStack = ({navigation}) => {
         name="PWChange"
         component={PWChange}
         options={({route}) => PWChangeHeader(navigation)}
+      />
+      {/* 아이추가 */}
+      <Stack.Screen
+        name="BabyPlus"
+        component={BabyPlus}
+        options={({route}) => BabyPlusHeader(navigation,route)}
+      />
+      <Stack.Screen
+        name="BabyAlergy"
+        component={BabyAlergy}
+        options={({route}) => BabyAlergyHeader(navigation,route)}
       />
     </Stack.Navigator>
   );
@@ -137,5 +150,79 @@ const PWChangeHeader = (navigation) => ({
     elevation: 0,
   },
 });
+
+const BabyPlusHeader = (navigation,route) => {
+
+  //const {isRegister} = navigation.getParam('params',{isRegister:false,});
+  //const {isRegister} = navigation.state.params;
+  //const {isRegister} = {isRegister:true};
+
+  const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 {(isRegister==true) ? "추가" : "등록"}하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.navigate('BabyAlergy',route.params);
+        }}>
+        <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  }
+};
+
+const BabyAlergyHeader = (navigation,route) => {
+  
+  const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 {(isRegister==true) ? "추가" : "등록"}하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.navigate('EmailLogin');
+        }}>
+        <Text style={{fontSize: 15, color: '#32cc73'}}>저장</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  }
+};
 
 export default SignStack;

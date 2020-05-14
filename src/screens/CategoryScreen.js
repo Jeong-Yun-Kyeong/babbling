@@ -31,8 +31,51 @@ const CATEGORY = [
   '치약',
   '수입관',
 ];
-const DATAS = [1, 2, 3];
-const List = (datas) => {
+// const DATAS = [1, 2, 3];
+
+const DATAS = [
+  {
+    img: '../images/4.jpeg',
+    title: '베베랩',
+    name: '고보습 베리어 베이비 로션 200ml',
+    hashTag: '#첫로션 #고보습 #산양유',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/5.jpeg',
+    title: 'HIPP',
+    name: 'HIPPIS 바나나페어 망고',
+    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/1.jpeg',
+    title: '남양',
+    name: '아이꼬야 동결건조 과일 귤',
+    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/5.jpeg',
+    title: 'HIPP',
+    name: 'HIPPIS 바나나페어 망고',
+    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+    score: 4.5,
+    count: '2,121',
+  },
+  {
+    img: '../images/1.jpeg',
+    title: '남양',
+    name: '아이꼬야 동결건조 과일 귤',
+    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+    score: 4.5,
+    count: '2,121',
+  },
+];
+const List = (datas, navigation) => {
   return datas.map((data, index) => {
     return (
       <View
@@ -44,7 +87,9 @@ const List = (datas) => {
         }}
         key={index}>
         <TouchableOpacity
-          onPress={() => alert('준비중입니다.')}
+          onPress={() =>
+            navigation.navigate('Detail', {brand: data.title, name: data.name})
+          }
           style={{
             flexDirection: 'row',
             justifyContent: 'center',
@@ -81,7 +126,7 @@ const List = (datas) => {
                   color: 'rgb(50,50,50)',
                   fontSize: 13,
                 }}>
-                베베앙
+                {data.title}
               </Text>
             </View>
             <View>
@@ -90,7 +135,8 @@ const List = (datas) => {
                   fontWeight: '400',
                   fontSize: 15,
                 }}>
-                클래스 프리미엄 엠보싱 저자극 아기물티슈(455g, 70매)
+                {/* 클래스 프리미엄 엠보싱 저자극 아기물티슈(455g, 70매) */}
+                {data.name}
               </Text>
             </View>
             <View>
@@ -100,7 +146,8 @@ const List = (datas) => {
                   marginTop: 5,
                   fontSize: 11,
                 }}>
-                #해쉬태그 #해쉬태그 #해쉬태그
+                {/* #해쉬태그 #해쉬태그 #해쉬태그 */}
+                {data.hashTag}
               </Text>
             </View>
           </View>
@@ -114,8 +161,8 @@ const List = (datas) => {
               width: 75,
             }}>
             <SvgXml xml={SVG('STAR_CHECKED')} />
-            <Text style={{color: '#32cc73', fontSize: 13}}>4.0</Text>
-            <Text style={{color: 'gray', fontSize: 10}}>(2,121)</Text>
+            <Text style={{color: '#32cc73', fontSize: 13}}>{data.score}</Text>
+            <Text style={{color: 'gray', fontSize: 10}}>({data.count})</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -162,7 +209,7 @@ const Category = ({navigation}) => {
             </View>
           </View>
           {/* body */}
-          {List(DATAS)}
+          {List(DATAS, navigation)}
         </View>
       </ScrollView>
     </Fragment>
