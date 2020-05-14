@@ -237,9 +237,6 @@ class MypageTop extends PureComponent {
             automaticallyAdjustContentInsets={true}
           />
           <ImageBackground
-            // source={
-            //   {uri:this.state.entries[this.state.sliderBackgroundIndex].profile}
-            //   || require('../images/icon/plusIcon.png') || ""}
             source={this.getImageSource(renderSlideData[this.state.sliderBackgroundIndex])}
             style={{
               position: 'absolute',
@@ -264,33 +261,22 @@ class MypageTop extends PureComponent {
               bounces={false}
               ref={(c) => {
                 this._carousel = c;
-                //this.setState({slidersPosition:this._carousel.slidersPosition});
               }}
               scrollEventThrottle={16}
               data={renderSlideData}
-              //renderItem={({item,index})=> this._renderItem(item,index)}
+
               renderItem={({item,index})=>this._renderItem(item,index,this.state.curProfileIndex)}
               sliderWidth={this.state.width}
               itemWidth={this.state.itemWidth}
               onLayout={()=>{this.setState({slidersPosition:this._carousel.slidersPosition})}}
-              // sliderWidth={this.state.width}
-              // itemWidth={this.state.itemWidth}
-              // sliderStyle={{height: 100}}
+
               inactiveSlideScale={this.state.inactiveScale}
-
-              //inactiveSlideShift={-35}
-
-              //onBeforeSnapToItem={(slideIndex)=>{this.setCurProfile();}}
               onSnapToItem = {(slideIndex)=>{
-                //console.log("snap",this.state.curProfileIndex);
+
                 this.setCurProfile(true);
-                //this.setState(()=>({sliderBackgroundIndex:this.state.curProfileIndex}));
+
               }}
 
-              //onScroll = {(event)=>{}}
-
-              // onBeforeSnapToItem = {(slideIndex)=>{this.setCurProfileInterval();}}
-              // onSnapToItem = {(slideIndex)=>{this.unsetCurProfileInterval();}}
             /> : <></>}
 
           </View>
