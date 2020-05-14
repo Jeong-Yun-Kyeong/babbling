@@ -282,7 +282,7 @@ export default class Home extends PureComponent {
               title={'우리 아이를 위한 추천'}
               datas={slide01}
               page={3}
-              session={true}
+              // session={true}
             />
             {/*  */}
             <CardList

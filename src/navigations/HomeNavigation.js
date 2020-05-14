@@ -39,6 +39,9 @@ import TalkDetail from '../screens/TalkDetailScreen';
 import PostDetail from '../screens/PostDetailScreen';
 import Search from '../screens/SearchScreen';
 
+import BabyPlus from '../screens/BabyPlusScreen';
+import BabyAlergy from '../screens/BabyAlergyScreen';
+
 const Stack = createStackNavigator();
 
 const DetailHeader = (navigation) => ({
@@ -583,6 +586,80 @@ const SearchHeader = (navigation) => ({
   },
 });
 
+const BabyPlus_myHeader = (navigation) => {
+
+  //const {isRegister} = navigation.getParam('params',{isRegister:false,});
+  //const {isRegister} = navigation.state.params;
+  //const {isRegister} = {isRegister:true};
+
+  //const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.navigate('BabyAlergy_my');
+        }}>
+        <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  }
+};
+
+const BabyAlergy_myHeader = (navigation) => {
+  
+  //const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.pop();
+        }}>
+        <Text style={{fontSize: 15, color: '#32cc73'}}>저장</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  }
+};
+
 const HomeStack = () => {
   return (
     <Stack.Navigator>
@@ -747,6 +824,18 @@ const HomeStack = () => {
         component={Search}
         options={({navigation}) => SearchHeader(navigation)}
       />
+
+      <Stack.Screen
+        name="BabyPlus_my"
+        component={BabyPlus}
+        options={({navigation}) => BabyPlus_myHeader(navigation)}
+      />
+      <Stack.Screen
+        name="BabyAlergy_my"
+        component={BabyAlergy}
+        options={({navigation}) => BabyAlergy_myHeader(navigation)}
+      />
+
     </Stack.Navigator>
   );
 };

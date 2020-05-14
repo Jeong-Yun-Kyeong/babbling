@@ -41,7 +41,7 @@ export default class LabelInput extends PureComponent {
             width: this.state.width,
           }}>
           {this.props.label ? (
-            <Text style={{fontSize: this.state.fontSize, color: '#4d4d4d'}}>
+            <Text style={{fontSize: this.state.fontSize, color: this.props.labelColor || '#4d4d4d'}}>
               {this.props.label}
             </Text>
           ) : null}
@@ -53,20 +53,21 @@ export default class LabelInput extends PureComponent {
               borderBottomWidth: 1,
             }}>
             <TextInput
-              placeholder={this.props.placeholder}
+              placeholder={this.props.placeholder || ''}
               style={{
                 padding: this.state.textPadding,
                 fontSize: this.state.fontSize,
-                color: 'black',
+                color: this.props.textColor || 'black',
               }}
               placeholderTextColor={'#9d9d9d'}
+              defaultValue = {this.props.defaultValue || ''}
             />
           </View>
         </View>
         {this.props.button ? (
           <TouchableOpacity
             style={{
-              backgroundColor: '#f3f3f3',
+              backgroundColor: this.props.buttonColor || '#f3f3f3',
               padding: 10,
               borderRadius: 50,
               marginBottom: 8,
