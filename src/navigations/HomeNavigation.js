@@ -14,6 +14,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/HomeScreen';
 import Detail from '../screens/DetailTestScreen';
+import Review from '../screens/ReviewList';
 import Jjim from '../screens/JjimScreen';
 import HomeSearch from '../screens/HomeSearchScreen';
 import Ingredients from '../screens/IngredientsTestScreen';
@@ -60,6 +61,30 @@ const DetailHeader = (navigation) => ({
       <View style={{flex: 1, padding: 5}}>
         <SvgXml xml={SVG('HELP')} />
       </View>
+      <View style={{flex: 1, padding: 5}}>
+        <SvgXml xml={SVG('SHARE')} />
+      </View>
+    </View>
+  ),
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+  },
+  headerForceInset: {top: 'never', bottom: 'never'},
+});
+
+const ReviewHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17, textAlign:'center'}}>제품 리뷰</Text>,
+  headerRight: () => (
+    <View style={{flexDirection: 'row', marginRight: 24}}>
       <View style={{flex: 1, padding: 5}}>
         <SvgXml xml={SVG('SHARE')} />
       </View>
@@ -713,6 +738,11 @@ const HomeStack = () => {
         name="Detail"
         component={Detail}
         options={({navigation, route}) => DetailHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Review"
+        component={Review}
+        options={({navigation, route}) => ReviewHeader(navigation)}
       />
       <Stack.Screen
         name="Jjim"

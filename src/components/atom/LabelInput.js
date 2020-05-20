@@ -12,20 +12,17 @@ export default class LabelInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      width: 240,
-      fontSize: 13,
-      fontSize2: 15,
-      textPadding: 10,
+      screenWidth: Dimensions.get('screen').width,
+
+      width: '100%',
+      fontSize: 12,
+      fontSize_input: 14,
+      textPadding: 15,
       button: false,
     };
   }
 
   componentWillMount() {
-    let screenWidth = Dimensions.get('screen').width;
-    if (screenWidth >= 834) {
-      this.setState({width: 500, fontSize: 18, fontSize2: 22, textPadding: 15});
-    }
-    console.log(this.state.width);
     // if (this.state.width >= screenWidth - 80) {
     //   this.setState({width: screenWidth - 80});
     // }
@@ -33,15 +30,13 @@ export default class LabelInput extends PureComponent {
 
   render() {
     return (
-      <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+      <View style={[{flexDirection: 'row', alignItems: 'flex-end'},(this.props.style || {})]}>
         <View
           style={{
-            paddingBottom: 8,
-            paddingTop: 8,
-            width: this.state.width,
+            width: '100%'
           }}>
           {this.props.label ? (
-            <Text style={{fontSize: this.state.fontSize, color: this.props.labelColor || '#4d4d4d'}}>
+            <Text style={{paddingLeft: this.state.textPadding, fontSize: this.state.fontSize, color: this.props.labelColor || '#00000099', fontWeight:'bold'}}>
               {this.props.label}
             </Text>
           ) : null}
@@ -49,17 +44,19 @@ export default class LabelInput extends PureComponent {
           <View
             style={{
               flexGrow: 1,
-              borderBottomColor: '#aaaaaa',
+              borderBottomColor: '#00000099',
               borderBottomWidth: 1,
             }}>
             <TextInput
               placeholder={this.props.placeholder || ''}
               style={{
-                padding: this.state.textPadding,
-                fontSize: this.state.fontSize,
+                paddingLeft: this.state.textPadding,
+                paddingTop: 7,
+                paddingBottom: 5,
+                fontSize: this.state.fontSize_input,
                 color: this.props.textColor || 'black',
               }}
-              placeholderTextColor={'#9d9d9d'}
+              placeholderTextColor={'#00000059'}
               defaultValue = {this.props.defaultValue || ''}
             />
           </View>
@@ -67,13 +64,13 @@ export default class LabelInput extends PureComponent {
         {this.props.button ? (
           <TouchableOpacity
             style={{
-              backgroundColor: this.props.buttonColor || '#f3f3f3',
+              backgroundColor: this.props.buttonColor || '#f5f5f5',
               padding: 10,
               borderRadius: 50,
               marginBottom: 8,
               // marginRight: 40,
             }}>
-            <Text style={{fontSize: this.state.fontSize - 2}}>
+            <Text style={{fontSize: this.state.fontSize - 2, color:'#000000dd', fontWeight:'bold'}}>
               {this.props.btnTitle}
             </Text>
           </TouchableOpacity>

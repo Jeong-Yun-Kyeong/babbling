@@ -14,6 +14,9 @@ import {SvgXml} from 'react-native-svg';
 import {BlurView} from '@react-native-community/blur';
 import SVG from '../components/SvgComponent';
 import FormButton from '../components/atom/FormButton';
+
+import * as ScreenMargin from '../values/ScreenMargin';
+
 // 로고
 const LOGO = () => {
   let height = 52;
@@ -89,7 +92,7 @@ const SNS_LOGIN = (navigation) => {
 // 회원가입버튼
 const JOIN = (navigation) => {
   let width = 268;
-  let fontSize = 13;
+  let fontSize = 12;
   let screenWidth = Dimensions.get('screen').width;
   if (screenWidth >= 834) {
     width = 400;
@@ -101,8 +104,9 @@ const JOIN = (navigation) => {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: width,
+        marginTop: 20
       }}>
-      <Text style={{color: 'white', fontSize: fontSize}}>
+      <Text style={{color: '#ffffff99', fontSize: fontSize}}>
         회원이 아니신가요?
       </Text>
       <TouchableOpacity
@@ -111,7 +115,7 @@ const JOIN = (navigation) => {
         }}>
         <Text
           style={{
-            color: 'white',
+            color: '#ffffff99',
             textDecorationLine: 'underline',
             fontSize: fontSize,
           }}>
@@ -123,7 +127,7 @@ const JOIN = (navigation) => {
 };
 // 노로그인
 const NO_LOGIN = (navigation, route) => {
-  let fontSize = 13;
+  let fontSize = 12;
   let screenWidth = Dimensions.get('screen').width;
   if (screenWidth >= 834) {
     fontSize = 17;
@@ -141,7 +145,7 @@ const NO_LOGIN = (navigation, route) => {
         onPress={() => {
           navigation.navigate('Main');
         }}>
-        <Text style={{color: 'white', fontSize: fontSize}}>
+        <Text style={{color: '#ffffff99', fontSize: fontSize}}>
           로그인 없이 앱 둘러보기
         </Text>
       </TouchableOpacity>
@@ -150,11 +154,16 @@ const NO_LOGIN = (navigation, route) => {
 };
 
 const Login = ({navigation, route}) => {
+
+  console.log(ScreenMargin.getMargin(route.name));
+
+  let screenPadding = ScreenMargin.getMargin(route.name);
+
   return (
     <Fragment>
       <View
         style={{
-          flex: 1,
+          flex: 1
         }}>
         <Image
           source={require('../images/loginBackground.png')}
@@ -188,7 +197,7 @@ const Login = ({navigation, route}) => {
         />
         <SafeAreaView />
         {/* {alert(Dimensions.get('screen').width)} */}
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',  marginHorizontal:screenPadding}}>
           {/* 뷰1 */}
           {LOGO()}
           {SNS_LOGIN(navigation)}
@@ -197,6 +206,7 @@ const Login = ({navigation, route}) => {
               navigation.navigate('EmailLogin');
             }}
             title={'이메일로 로그인'}
+            style={{width:'100%',marginTop:40}}
           />
           {JOIN(navigation)}
           {NO_LOGIN(navigation, route)}

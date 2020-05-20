@@ -1,42 +1,33 @@
 import React, {PureComponent} from 'react';
-import {Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
 export default class FormButton extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      screenWidth: Dimensions.get('screen').width,
+
       width: 327,
-      height: 48,
-      fontSize: 15,
+      height: 52,
+      fontSize: 16,
       marginTop: 20,
     };
   }
 
   componentWillMount() {
-    let screenWidth = Dimensions.get('screen').width;
-    if (screenWidth >= 834) {
-      this.setState({
-        width: 380,
-        height: 65,
-        fontSize: 22,
-        marginTop: 35,
-      });
-    }
-    if (this.state.width >= screenWidth - 80) {
-      this.setState({width: screenWidth - 80});
-    }
+
   }
 
   render() {
     return (
-      <>
+      <View style={this.props.style || {}}>
         <TouchableOpacity
           onPress={this.props.nav}
           style={{
             backgroundColor: this.props.backgroundColor
               ? this.props.backgroundColor
-              : 'rgba(255,255,255,0.7)',
-            width: this.state.width,
+              : 'rgba(255,255,255,0.87)',
+            width: '97%',
             height: this.state.height,
             borderRadius: 52,
             borderWidth: (this.props.borderColor) ? 1 : 0,
@@ -44,8 +35,6 @@ export default class FormButton extends PureComponent {
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
-            marginBottom: 20,
-            marginTop: this.state.marginTop,
           }}>
           <Text
             style={{
@@ -55,7 +44,7 @@ export default class FormButton extends PureComponent {
             {this.props.title}
           </Text>
         </TouchableOpacity>
-      </>
+      </View>
     );
   }
 }
