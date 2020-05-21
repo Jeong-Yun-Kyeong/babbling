@@ -59,5 +59,9 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Poppins-Bold.ttf</string>
+	</array>
 </dict>
 </plist>

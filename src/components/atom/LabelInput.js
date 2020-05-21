@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Component} from 'react';
 import {
   Text,
   View,
@@ -7,8 +7,9 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import {BLACK60, BLACK35} from '../../Constant';
 
-export default class LabelInput extends PureComponent {
+export default class LabelInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +45,7 @@ export default class LabelInput extends PureComponent {
             <Text
               style={{
                 fontSize: this.state.fontSize,
-                color: this.props.labelColor || '#4d4d4d',
+                color: this.props.labelColor || BLACK60,
               }}>
               {this.props.label}
             </Text>
@@ -53,7 +54,7 @@ export default class LabelInput extends PureComponent {
           <View
             style={{
               flexGrow: 1,
-              borderBottomColor: '#aaaaaa',
+              borderBottomColor: BLACK60,
               borderBottomWidth: 1,
             }}>
             <TextInput
@@ -63,10 +64,10 @@ export default class LabelInput extends PureComponent {
                 fontSize: this.state.fontSize,
                 color: this.props.textColor || 'black',
               }}
-              placeholderTextColor={'#9d9d9d'}
-              value={this.props.value}
+              placeholderTextColor={BLACK35}
               defaultValue={this.props.defaultValue || ''}
-              onChange={this.props.onChangeValue}
+              value={this.props.email}
+              onChangeText={this.props.onChangeText}
             />
           </View>
         </View>
