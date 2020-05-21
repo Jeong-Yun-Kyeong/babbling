@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../SvgComponent';
 
@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
     right: 20,
     bottom: 20,
     zIndex: 10,
+    //
+    shadowOffset: {
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+
+    elevation: 5,
   },
   text: {
     color: 'white',

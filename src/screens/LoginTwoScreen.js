@@ -122,7 +122,7 @@ const JOIN = (navigation) => {
   );
 };
 // 노로그인
-const NO_LOGIN = (navigation) => {
+const NO_LOGIN = (navigation, route) => {
   let fontSize = 13;
   let screenWidth = Dimensions.get('screen').width;
   if (screenWidth >= 834) {
@@ -149,7 +149,7 @@ const NO_LOGIN = (navigation) => {
   );
 };
 
-const Login = ({navigation}) => {
+const Login = ({navigation, route}) => {
   return (
     <Fragment>
       <View
@@ -184,7 +184,7 @@ const Login = ({navigation}) => {
         <BlurView
           style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}
           blurType="dark"
-          blurAmount={1}
+          blurAmount={5}
         />
         <SafeAreaView />
         {/* {alert(Dimensions.get('screen').width)} */}
@@ -199,7 +199,7 @@ const Login = ({navigation}) => {
             title={'이메일로 로그인'}
           />
           {JOIN(navigation)}
-          {NO_LOGIN(navigation)}
+          {NO_LOGIN(navigation, route)}
         </View>
       </View>
     </Fragment>

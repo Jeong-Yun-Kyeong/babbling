@@ -91,6 +91,7 @@ function PowderedMilk({navigation, route}) {
 
   return (
     <Tab.Navigator
+      lazy={true}
       tabBarOptions={{
         scrollEnabled: true,
         activeTintColor: '#32cc73',

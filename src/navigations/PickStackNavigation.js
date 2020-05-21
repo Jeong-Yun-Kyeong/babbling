@@ -4,7 +4,7 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Pick from '../screens/PickScreen';
+import Pick from '../screens/PickTwoScreen';
 import Category from '../screens/CategoryScreen';
 import CategoryTab from '../navigations/CatogoryTopNavigation';
 
@@ -16,74 +16,77 @@ import Compare from '../screens/CompareScreen';
 const Stack = createStackNavigator();
 
 const PickHeader = {
-  headerLeft: () => (
-    <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
-  ),
-  headerTitle: () => null,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HEART')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('MYPAGE')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 50,
-    shadowRadius: 0,
-    shadowOffset: {height: 0},
-  },
-  headerForceInset: {top: 'never', bottom: 'never'},
+  headerShown: false,
+  // headerLeft: () => (
+  //   <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
+  // ),
+  // headerTitle: () => null,
+  // headerRight: () => (
+  //   <View style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('HEART')} />
+  //     </View>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('MYPAGE')} />
+  //     </View>
+  //   </View>
+  // ),
+  // headerStyle: {
+  //   height: Platform.OS === 'ios' ? getStatusBarHeight() + 50 : 50,
+  //   shadowOffset: {height: 0},
+  //   elevation: 0,
+  // },
 };
 
 const PickInnerHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => (
-    <View>
-      <View
-        style={{
-          borderRadius: 50,
-          borderWidth: 2,
-          borderColor: '#31CC73',
-          margin: 10,
-          padding: 3,
-          paddingLeft: 15,
-          justifyContent: 'center',
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: Dimensions.get('screen').width * (60 / 100),
-          marginLeft: -15,
-        }}>
-        <Text style={{flex: 9}}>수딩내추럴 ...</Text>
+  headerShown: false,
+  // headerLeft: () => (
+  //   <TouchableOpacity
+  //     style={{marginLeft: 24}}
+  //     onPress={() => {
+  //       navigation.goBack();
+  //     }}>
+  //     <SvgXml xml={SVG('BACKIOS')} />
+  //   </TouchableOpacity>
+  // ),
+  // headerTitle: () => (
+  //   <View>
+  //     <View
+  //       style={{
+  //         borderRadius: 50,
+  //         borderWidth: 2,
+  //         borderColor: '#31CC73',
+  //         margin: 10,
+  //         padding: 3,
+  //         paddingLeft: 15,
+  //         justifyContent: 'center',
+  //         flexDirection: 'row',
+  //         alignItems: 'center',
+  //         // width: Dimensions.get('screen').width * (60 / 100),
+  //         // marginLeft: -15,
+  //         width: '100%',
+  //       }}>
+  //       <Text style={{flex: 9}} numberOfLines={1}>
+  //         제품 홍보 글귀
+  //       </Text>
 
-        <SvgXml xml={SVG('SEARCH')} width="24" height="24" style={{flex: 1}} />
-      </View>
-    </View>
-  ),
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HEART')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('MYPAGE')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-  },
-  headerForceInset: {top: 'never', bottom: 'never'},
+  //       <SvgXml xml={SVG('SEARCH')} width="24" height="24" style={{flex: 1}} />
+  //     </View>
+  //   </View>
+  // ),
+  // headerRight: () => (
+  //   <View style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('HEART')} />
+  //     </View>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('MYPAGE')} />
+  //     </View>
+  //   </View>
+  // ),
+  // headerStyle: {
+  //   height: Platform.OS === 'ios' ? getStatusBarHeight() + 62 : 62,
+  // },
 });
 
 const DetailHeader = (navigation) => ({

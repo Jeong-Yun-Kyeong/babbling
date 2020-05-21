@@ -1,4 +1,4 @@
-import React, {Fragment, PureComponent} from 'react';
+import React, {Fragment, Component} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,24 +7,35 @@ import {
   Image,
   FlatList,
   Dimensions,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {BlurView} from '@react-native-community/blur';
 
 // const DATAS = [1, 2, 3];
 
-export default class CardList extends PureComponent {
+export default class CardList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeSlide: 0,
-      page: this.props.page,
-      datas: null,
+      page: props.page,
+      datas: props.datas,
+      display: 'none',
+      minHeight: props.page * 75,
+      session: props.session,
+
+      rendered: true,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    setTimeout(() => this.setState({display: 'flex'}), 100);
+  }
+
+  _countPagenation = (val) => {
     Array.prototype.division = function (n) {
       var arr = this;
       var len = arr.length;
@@ -37,105 +48,122 @@ export default class CardList extends PureComponent {
 
       return tmp;
     };
-    console.log(this.props.datas);
-    let datas = this.props.datas;
-    let {page} = this.state;
-    // 3개씩 끊는법 배열을
+    //
+    let datas = val;
 
     let array = [];
     if (datas.length <= 3) {
       array.push(datas);
     } else {
-      array = datas.division(page);
+      array = datas.division(this.state.page);
     }
-    console.log(array);
+    // console.log('자르기; ', array);
+    return array;
+  };
 
-    this.setState({
-      datas: array,
-    });
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps.datas, nextState.datas);
+    nextState.datas = nextProps.datas;
+    return nextProps.datas.length == 0 ? false : true;
   }
 
-  _intoDetail = () => {
-    this.props.navigation.navigate('Detail');
+  componentWillUnmount() {
+    this.setState({display: !this.state.display});
+  }
+
+  _intoDetail = (brand, name) => {
+    this.props.navigation.navigate('Detail', {
+      brand: brand,
+      name: name,
+    });
   };
 
   _getList = (datas) => {
-    console.log(datas);
-    return datas.map((data, index) => {
-      // console.log(data.img);
-      if (index > 5) {
-        return null;
-      } else {
-        return (
-          <View style={styles.cardList} key={index}>
-            <TouchableOpacity
-              style={styles.innerCardList}
-              onPress={this._intoDetail}>
-              <View
-                style={[
-                  styles.cardImage,
-                  {justifyContent: 'center', alignItems: 'center'},
-                ]}>
+    // console.log(datas);
+    if (datas.length > 0) {
+      return datas.map((data, index) => {
+        // console.log(data.img);
+        if (index > 5) {
+          return null;
+        } else {
+          return (
+            <View style={styles.cardList} key={index}>
+              <TouchableOpacity
+                style={styles.innerCardList}
+                onPress={() => this._intoDetail(data.title, data.name)}>
                 <View
-                  style={{
-                    backgroundColor: 'white',
-                    width: 55,
-                    height: 55,
-                    borderRadius: 5,
-                  }}>
-                  <Image
-                    source={require('../images/1.jpeg')}
-                    style={{width: 55, height: 55}}
-                    resizeMode="contain"
+                  style={[
+                    styles.cardImage,
+                    {justifyContent: 'center', alignItems: 'center'},
+                  ]}>
+                  <View
+                    style={{
+                      backgroundColor: 'white',
+                      width: 55,
+                      height: 55,
+                      borderRadius: 5,
+                    }}>
+                    <Image
+                      // source={uri('../images/1.jpeg')}
+                      source={{
+                        uri: 'http://172.30.1.9/media/' + data.name + '.jpg',
+                      }}
+                      style={{width: 55, height: 55}}
+                      resizeMode="contain"
+                    />
+                  </View>
+                </View>
+                <View style={styles.cardInfo}>
+                  <View style={styles.cardInfoCompany}>
+                    {/* <Text style={styles.comText}>{data.title}</Text> */}
+                    <Text style={styles.comText}>{data.brand_name}</Text>
+                  </View>
+                  <View style={styles.cardInfoProduct}>
+                    <Text style={styles.comTitle}>{data.name}</Text>
+                  </View>
+                  <View style={styles.cardInfoHashtag}>
+                    {/* <Text style={styles.comHash}>{data.hashTag}</Text> */}
+                    <Text style={styles.comHash}>{data.hashtag}</Text>
+                  </View>
+                </View>
+                <View style={styles.cardScore}>
+                  <SvgXml
+                    xml={SVG('STAR_CHECKED')}
+                    width="20"
+                    height="20"
+                    style={{marginRight: -3, marginTop: -5}}
                   />
+                  <Text style={{color: '#31CC74', fontSize: 12}}>
+                    {data.score}
+                  </Text>
+                  <Text style={{fontSize: 9, color: 'gray'}}>
+                    ({data.score_count})
+                  </Text>
                 </View>
-              </View>
-              <View style={styles.cardInfo}>
-                <View style={styles.cardInfoCompany}>
-                  <Text style={styles.comText}>{data.title}</Text>
-                </View>
-                <View style={styles.cardInfoProduct}>
-                  <Text style={styles.comTitle}>{data.name}</Text>
-                </View>
-                <View style={styles.cardInfoHashtag}>
-                  <Text style={styles.comHash}>{data.hashTag}</Text>
-                </View>
-              </View>
-              <View style={styles.cardScore}>
-                <SvgXml
-                  xml={SVG('STAR_CHECKED')}
-                  width="20"
-                  height="20"
-                  style={{marginRight: -3, marginTop: -5}}
-                />
-                <Text style={{color: '#31CC74', fontSize: 12}}>
-                  {data.score}
-                </Text>
-                <Text style={{fontSize: 9, color: 'gray'}}>({data.count})</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        );
-      }
-    });
+              </TouchableOpacity>
+            </View>
+          );
+        }
+      });
+    }
   };
 
   _renderItem = ({item, index}) => {
-    console.log(item);
-    console.log(item.length);
     return this._getList(item);
   };
 
-  pagination = () => {
+  pagination = (result) => {
     const {activeSlide} = this.state;
     return (
       <Pagination
         style={{paddingVertical: 0}}
-        dotsLength={this.state.datas.length}
+        // dotsLength={this.state.datas.length}
+        dotsLength={result.length}
         activeDotIndex={activeSlide}
         containerStyle={{backgroundColor: 'white', paddingVertical: 10}}
         dotStyle={{
           backgroundColor: '#32cc73',
+          marginHorizontal: -3,
         }}
         inactiveDotStyle={{
           backgroundColor: '#f0f0f0',
@@ -147,30 +175,98 @@ export default class CardList extends PureComponent {
   };
 
   render() {
+    let {session, datas} = this.state;
+    let result = this._countPagenation(datas);
     return (
       <Fragment>
-        <View style={styles.slide02}>
-          <View style={styles.slideCard}>
-            <View style={styles.slideCardHeader}>
-              <Text
-                style={{fontSize: 16, fontWeight: 'bold', color: '#5d5d5d'}}>
-                {/* 우리 아이를 위한 추천 */}
-                {this.props.title}
-              </Text>
-            </View>
-            <Carousel
-              ref={(c) => {
-                this._carousel = c;
-              }}
-              data={this.state.datas}
-              renderItem={this._renderItem}
-              sliderWidth={Dimensions.get('screen').width - 28}
-              itemWidth={Dimensions.get('screen').width - 28}
-              onSnapToItem={(index) => this.setState({activeSlide: index})}
-              removeClippedSubviews={false}
-            />
+        <View>
+          <View
+            style={[
+              styles.slide02,
+              Platform.OS === 'ios'
+                ? null
+                : {
+                    overflow: 'hidden',
+                  },
+            ]}>
+            <View style={[styles.slideCard, {minHeight: this.state.minHeight}]}>
+              <View style={styles.slideCardHeader}>
+                <Text
+                  style={{fontSize: 17, fontWeight: '600', color: '#1e1e1e'}}>
+                  {/* 우리 아이를 위한 추천 */}
+                  {this.props.title}
+                </Text>
+              </View>
+              {/* {datas.length > 0 ? ( */}
+              <>
+                {/* {console.log(this._countPagenation(datas))} */}
+                <Carousel
+                  ref={(c) => {
+                    this._carousel = c;
+                  }}
+                  // data={this.state.datas}
+                  data={result}
+                  renderItem={this._renderItem}
+                  sliderWidth={Dimensions.get('screen').width - 28}
+                  itemWidth={Dimensions.get('screen').width - 28}
+                  onSnapToItem={(index) => {
+                    console.log(index);
+                    this.setState({activeSlide: index});
+                  }}
+                  removeClippedSubviews={false}
+                  inactiveSlideOpacity={1}
+                  inactiveSlideScale={1}
+                />
 
-            {this.pagination()}
+                {this.pagination(result)}
+              </>
+              {/* ) : (
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <Text>진행되는중</Text>
+                </View>
+              )} */}
+            </View>
+            {console.log(session)}
+            {session ? (
+              <BlurView
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 6,
+                  right: 0,
+                  bottom: 5,
+                  display: this.state.display,
+                }}
+                blurType={
+                  Platform.OS === 'ios' ? 'ultraThinMaterialDark' : 'dark'
+                }
+                blurAmount={1}>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                    backgroundColor: 'transparent',
+                  }}>
+                  <Text style={{color: 'white', fontSize: 17}}>
+                    로그인이 필요한 기능입니다
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Login')}
+                    style={{
+                      borderColor: 'white',
+                      borderWidth: 1,
+                      borderRadius: 50,
+                      padding: 5,
+                      paddingLeft: 15,
+                      paddingRight: 15,
+                      marginTop: 10,
+                    }}>
+                    <Text style={{color: 'white'}}>로그인하시겠어요?</Text>
+                  </TouchableOpacity>
+                </View>
+              </BlurView>
+            ) : null}
           </View>
         </View>
       </Fragment>
@@ -180,28 +276,23 @@ export default class CardList extends PureComponent {
 
 const styles = StyleSheet.create({
   slide02: {
-    backgroundColor: 'rgba(245,245,245,.5)',
-    // height: 550,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  slideCard: {
-    backgroundColor: 'white',
-    marginLeft: 14,
-    marginRight: 14,
-    marginTop: 20,
-    borderRadius: 20,
-    overflow: 'hidden',
-    //
-    shadowColor: '#000',
     shadowOffset: {
-      width: 0,
       height: 5,
     },
     shadowOpacity: 0.15,
     shadowRadius: 20,
 
     elevation: 5,
+  },
+  slideCard: {
+    backgroundColor: 'white',
+    marginLeft: 14,
+    marginRight: 14,
+    paddingBottom: 8,
+    marginTop: 15,
+    marginBottom: 10,
+    borderRadius: 20,
+    overflow: 'hidden',
   },
   slideCardHeader: {
     // backgroundColor:'lightgray',
@@ -228,7 +319,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 5,
   },
-  cardInfoCompany: {},
+  cardInfoCompany: {marginBottom: 3},
   comText: {
     color: '#5C5C5C',
     fontSize: 12,

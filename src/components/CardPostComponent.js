@@ -1,6 +1,7 @@
 import React, {Fragment, PureComponent} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {SvgXml} from 'react-native-svg';
+import SVG from './SvgComponent';
 
 export default class CardPost extends PureComponent {
   constructor(props) {
@@ -19,12 +20,21 @@ export default class CardPost extends PureComponent {
           overflow: 'hidden',
         }}>
         <View style={{backgroundColor: 'lightgray', height: 200}}></View>
-        <View style={{padding: 15, paddingLeft: 20}}>
+        <View
+          style={{
+            padding: 15,
+            paddingLeft: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
           <View>
             <Text style={{fontSize: 16}}>임산부는 반드시 피하세요!</Text>
             <Text style={{marginTop: 10}}>베블링 | 육아꿀팁</Text>
           </View>
-          <View></View>
+          <View>
+            <SvgXml xml={SVG('SCRAP')} />
+          </View>
         </View>
       </TouchableOpacity>
     );
