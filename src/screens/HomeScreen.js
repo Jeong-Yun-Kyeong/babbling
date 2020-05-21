@@ -157,30 +157,19 @@ export default class Home extends PureComponent {
 
   getBase = () => {
     this.setState({images: IMAGESLIDE, slide01: SLIDE01});
-
-    // .then((resJson) => console.log('data================', resJson));
   };
 
   async componentDidMount() {
     this.getBase();
-    const response = await fetch('http://172.30.1.9/product/semi-drug/');
+    const response = await fetch('http://babbling.co.kr/product/semi-drug/');
 
     const resJson = await response.json();
     this.setState({slide02: resJson});
     this.setState({slide01: SLIDE01});
     console.log(resJson);
-    // .then((res) => res.json())
-    // .then((resJson) => {
-    //   console.log(resJson);
-    //   this.setState({slide02: resJson});
-    // })
-    // .catch((err) => console.log(err));
-    // window.addEventListener('load', this.getBase(), false);
   }
 
-  componentWillUnmount() {
-    // window.removeEventListener('load', this.getBase(), false);
-  }
+  componentWillUnmount() {}
 
   _intoDetail = () => {
     this.props.navigation.navigate('Detail');

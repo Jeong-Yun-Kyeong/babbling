@@ -43,34 +43,175 @@ import Search from '../screens/SearchScreen';
 import BabyPlus from '../screens/BabyPlusScreen';
 import BabyAlergy from '../screens/BabyAlergyScreen';
 
+import {DARKMINT} from '../Constant';
+
+import {HeaderOptions} from '../components/molecule/HeaderOptions';
+
 const Stack = createStackNavigator();
 
-const DetailHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>상세페이지</Text>,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HELP')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('SHARE')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-  },
-  headerForceInset: {top: 'never', bottom: 'never'},
-});
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Main"
+        component={Home}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'Babbling',
+            title: null,
+            right: [
+              {svg: 'SEARCH', nav: 'HomeSearch'},
+              {svg: 'HEART', nav: 'Jjim'},
+              {svg: 'MYPAGE', nav: 'MyPage'},
+            ],
+          })
+        }
+      />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'BACKIOS',
+            title: '상세페이지',
+            right: [
+              {svg: 'HELP', nav: ''},
+              {svg: 'SHARE', nav: ''},
+            ],
+          })
+        }
+      />
+      <Stack.Screen
+        name="Jjim"
+        component={Jjim}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {left: 'BACK', title: '찜 목록', right: []})
+        }
+      />
+      <Stack.Screen
+        name="HomeSearch"
+        component={HomeSearch}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'BACKIOS',
+            title: 'SearchBar',
+            right: [],
+          })
+        }
+      />
+      <Stack.Screen
+        name="MyPage"
+        component={MypageTop}
+        options={({navigation, route}) =>
+          HeaderOptions(
+            navigation,
+            {
+              left: 'BACKIOS_W',
+              title: null,
+              right: [
+                {svg: 'ALARM', nav: 'Alarm'},
+                {svg: 'SETTING', nav: 'Settings'},
+              ],
+            },
+            true,
+          )
+        }
+      />
+      <Stack.Screen
+        name="Ingredients"
+        component={Ingredients}
+        options={({navigation, route}) => IngredientsHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Compare"
+        component={Compare}
+        options={({navigation}) => CompareHeader(navigation)}
+      />
+      <Stack.Screen
+        name="ReviewWrite"
+        component={ReviewWrite}
+        options={({navigation}) => ReviewWriteHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Reply"
+        component={Reply}
+        options={({navigation}) => ReplyHeader(navigation)}
+      />
+      {/* mypage */}
+      <Stack.Screen
+        name="MyWrote"
+        component={MyWrote}
+        options={({navigation}) => MyWroteHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Scrap"
+        component={ScrapTop}
+        options={({navigation}) => ScrapHeader(navigation)}
+      />
+      <Stack.Screen
+        name="MyReple"
+        component={MyReple}
+        options={({navigation}) => MyRepleHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventJjim"
+        component={EventJjim}
+        options={({navigation}) => EventJjimHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventWinning"
+        component={EventWinning}
+        options={({navigation}) => EventWinningHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventApply"
+        component={EventApply}
+        options={({navigation}) => EventApplyHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EvaluationReview"
+        component={EvalutaionReview}
+        options={({navigation}) => EvalutaionReviewHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Alarm"
+        component={Alarm}
+        options={({navigation}) => AlarmHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={({navigation}) => SettingsHeader(navigation)}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
+        options={({navigation}) => FAQHeader(navigation)}
+      />
+      <Stack.Screen
+        name="QnA"
+        component={QnA}
+        options={({navigation}) => QnAHeader(navigation)}
+      />
+      {/* end mypage */}
+      {/* Talk */}
+      <Stack.Screen
+        name="TalkDetail"
+        component={TalkDetail}
+        options={({navigation}) => TalkDetailHeader(navigation)}
+      />
+      <Stack.Screen
+        name="PostDetail"
+        component={PostDetail}
+        options={({navigation}) => PostDetailHeader(navigation)}
+      />
+      {/*  */}
+      {/* Search */}
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={({navigation}) => SearchHeader(navigation)}
+      />
 
 const ReviewHeader = (navigation) => ({
   headerLeft: () => (
@@ -114,90 +255,8 @@ const JjimHeader = (navigation) => ({
   // },
 });
 
-const HomeSearchHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Search');
-      }}
-      activeOpacity={1}
-      style={{
-        borderWidth: 1,
-        borderColor: '#32cc73',
-        borderRadius: 50,
-        padding: 5,
-        paddingLeft: 15,
-        paddingRight: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        width: Dimensions.get('screen').width - (24 + 24 + 24 + 24),
-        marginLeft: 24 + 24,
-        flexDirection: 'row',
-      }}>
-      <Text style={{color: 'gray', flex: 9}}>
-        수딩내추럴 인텐스 모이스처 크림
-      </Text>
-      <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
-    </TouchableOpacity>
-  ),
-  headerRight: () => null,
-  headerStyle: {
-    height: getStatusBarHeight() + 52,
-    shadowRadius: 0,
-    shadowOffset: {height: 0},
-  },
-});
-const MyPageHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS_W')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () =>
-    // <>
-    //   <Text style={{color: 'white'}}>마이페이지</Text>
-    // </>
-    null,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <TouchableOpacity
-        style={{flex: 1}}
-        onPress={() => {
-          navigation.navigate('Alarm');
-        }}>
-        <SvgXml xml={SVG('ALARM')} width="24" height="24" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{flex: 1, marginLeft: 16}}
-        onPress={() => {
-          navigation.navigate('Settings');
-        }}>
-        <SvgXml xml={SVG('SETTING')} width="24" height="24" />
-      </TouchableOpacity>
-    </View>
-  ),
-  headerTransparent: true,
-  // headerStyle: {
-  //   backgroundColor: 'black',
-  //   //   height: getStatusBarHeight() + 62,
-  //   style: {
-  //     backgroundColor: 'black',
-  //   },
-  // },
-});
+
+export default HomeStack;
 
 const IngredientsHeader = (navigation) => ({
   headerLeft: () => (
@@ -225,7 +284,6 @@ const IngredientsHeader = (navigation) => ({
     },
   },
 });
-
 const CompareHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -241,7 +299,6 @@ const CompareHeader = (navigation) => ({
     height: getStatusBarHeight() + 62,
   },
 });
-
 const ReviewWriteHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -268,7 +325,6 @@ const ReviewWriteHeader = (navigation) => ({
     },
   },
 });
-
 const ReplyHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -288,7 +344,6 @@ const ReplyHeader = (navigation) => ({
     },
   },
 });
-
 const MyWroteHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -308,7 +363,6 @@ const MyWroteHeader = (navigation) => ({
     },
   },
 });
-
 const ScrapHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -328,7 +382,6 @@ const ScrapHeader = (navigation) => ({
     },
   },
 });
-
 const MyRepleHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -348,8 +401,10 @@ const MyRepleHeader = (navigation) => ({
     },
   },
 });
+const Event
 
-const EventJjimHeader = (navigation) => ({
+
+= (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
       style={{marginLeft: 24}}
@@ -368,7 +423,6 @@ const EventJjimHeader = (navigation) => ({
     },
   },
 });
-
 const EventWinningHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -388,7 +442,6 @@ const EventWinningHeader = (navigation) => ({
     },
   },
 });
-
 const EventApplyHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -408,7 +461,6 @@ const EventApplyHeader = (navigation) => ({
     },
   },
 });
-
 const EvalutaionReviewHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -437,7 +489,6 @@ const EvalutaionReviewHeader = (navigation) => ({
     },
   },
 });
-
 const AlarmHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -457,7 +508,6 @@ const AlarmHeader = (navigation) => ({
     },
   },
 });
-
 const SettingsHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -477,7 +527,6 @@ const SettingsHeader = (navigation) => ({
     },
   },
 });
-
 const FAQHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -497,7 +546,6 @@ const FAQHeader = (navigation) => ({
     },
   },
 });
-
 const QnAHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -526,7 +574,6 @@ const QnAHeader = (navigation) => ({
     },
   },
 });
-
 const TalkDetailHeader = (navigation) => ({
   // headerLeft: () => (
   //   <TouchableOpacity
@@ -548,7 +595,6 @@ const TalkDetailHeader = (navigation) => ({
     },
   },
 });
-
 const PostDetailHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -569,7 +615,6 @@ const PostDetailHeader = (navigation) => ({
     },
   },
 });
-
 const SearchHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
@@ -611,9 +656,7 @@ const SearchHeader = (navigation) => ({
     height: getStatusBarHeight() + 52,
   },
 });
-
 const BabyPlus_myHeader = (navigation) => {
-
   //const {isRegister} = navigation.getParam('params',{isRegister:false,});
   //const {isRegister} = navigation.state.params;
   //const {isRegister} = {isRegister:true};
@@ -648,11 +691,9 @@ const BabyPlus_myHeader = (navigation) => {
       },
       elevation: 0,
     },
-  }
+  };
 };
-
 const BabyAlergy_myHeader = (navigation) => {
-  
   //const {isRegister} = route.params || {isRegister:false};
 
   return {
@@ -683,6 +724,7 @@ const BabyAlergy_myHeader = (navigation) => {
       },
       elevation: 0,
     },
+
   }
 };
 
@@ -869,6 +911,5 @@ const HomeStack = () => {
 
     </Stack.Navigator>
   );
-};
 
-export default HomeStack;
+};

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Component} from 'react';
 import {
   Text,
   View,
@@ -7,8 +7,9 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import {BLACK60, BLACK35} from '../../Constant';
 
-export default class LabelInput extends PureComponent {
+export default class LabelInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,7 +54,8 @@ export default class LabelInput extends PureComponent {
             width: '100%'
           }}>
           {this.props.label ? (
-            <Text style={{paddingLeft: this.state.textPadding, fontSize: this.state.fontSize, color: this.props.labelColor || '#00000099', fontWeight:'bold'}}>
+            <Text style={{paddingLeft: this.state.textPadding, fontSize: this.state.fontSize, color: this.props.labelColor || BLACK60, fontWeight:'bold'}}>
+
               {this.props.label}
             </Text>
           ) : null}
@@ -61,7 +63,7 @@ export default class LabelInput extends PureComponent {
           <View
             style={{
               flexGrow: 1,
-              borderBottomColor: '#00000099',
+              borderBottomColor: BLACK60,
               borderBottomWidth: 1,
             }}>
             <TextInput
@@ -73,7 +75,8 @@ export default class LabelInput extends PureComponent {
                 fontSize: this.state.fontSize_input,
                 color: this.props.textColor || 'black',
               }}
-              placeholderTextColor={'#00000059'}
+
+              placeholderTextColor={BLACK35}
               defaultValue = {this.state.text}
 
               ref={(input)=>{this._myInput = input}}
@@ -82,6 +85,7 @@ export default class LabelInput extends PureComponent {
               
 
               {...textSumbitProps}
+
             />
           </View>
         </View>
