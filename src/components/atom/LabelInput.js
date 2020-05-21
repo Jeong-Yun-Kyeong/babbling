@@ -41,7 +41,11 @@ export default class LabelInput extends PureComponent {
             width: this.state.width,
           }}>
           {this.props.label ? (
-            <Text style={{fontSize: this.state.fontSize, color: this.props.labelColor || '#4d4d4d'}}>
+            <Text
+              style={{
+                fontSize: this.state.fontSize,
+                color: this.props.labelColor || '#4d4d4d',
+              }}>
               {this.props.label}
             </Text>
           ) : null}
@@ -60,7 +64,9 @@ export default class LabelInput extends PureComponent {
                 color: this.props.textColor || 'black',
               }}
               placeholderTextColor={'#9d9d9d'}
-              defaultValue = {this.props.defaultValue || ''}
+              value={this.props.value}
+              defaultValue={this.props.defaultValue || ''}
+              onChange={this.props.onChangeValue}
             />
           </View>
         </View>

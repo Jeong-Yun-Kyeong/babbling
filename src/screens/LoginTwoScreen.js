@@ -14,6 +14,7 @@ import {SvgXml} from 'react-native-svg';
 import {BlurView} from '@react-native-community/blur';
 import SVG from '../components/SvgComponent';
 import FormButton from '../components/atom/FormButton';
+import {FONTSIZE} from '../Constant';
 // 로고
 const LOGO = () => {
   let height = 52;
@@ -102,7 +103,7 @@ const JOIN = (navigation) => {
         justifyContent: 'space-evenly',
         width: width,
       }}>
-      <Text style={{color: 'white', fontSize: fontSize}}>
+      <Text style={{color: 'white', fontSize: FONTSIZE.MIDDLE}}>
         회원이 아니신가요?
       </Text>
       <TouchableOpacity
@@ -113,7 +114,7 @@ const JOIN = (navigation) => {
           style={{
             color: 'white',
             textDecorationLine: 'underline',
-            fontSize: fontSize,
+            fontSize: FONTSIZE.MIDDLE,
           }}>
           회원가입하기
         </Text>
@@ -141,7 +142,7 @@ const NO_LOGIN = (navigation, route) => {
         onPress={() => {
           navigation.navigate('Main');
         }}>
-        <Text style={{color: 'white', fontSize: fontSize}}>
+        <Text style={{color: 'white', fontSize: FONTSIZE.SMALL}}>
           로그인 없이 앱 둘러보기
         </Text>
       </TouchableOpacity>

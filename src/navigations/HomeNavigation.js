@@ -42,623 +42,11 @@ import Search from '../screens/SearchScreen';
 import BabyPlus from '../screens/BabyPlusScreen';
 import BabyAlergy from '../screens/BabyAlergyScreen';
 
+import {DARKMINT} from '../Constant';
+
+import {HeaderOptions} from '../components/molecule/HeaderOptions';
+
 const Stack = createStackNavigator();
-
-const DetailHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>상세페이지</Text>,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HELP')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('SHARE')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-  },
-  headerForceInset: {top: 'never', bottom: 'never'},
-});
-
-const JjimHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text>찜 목록</Text>,
-  headerRight: () => null,
-  // headerStyle: {
-  //   height: getStatusBarHeight() + 62,
-  // },
-});
-
-const HomeSearchHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Search');
-      }}
-      activeOpacity={1}
-      style={{
-        borderWidth: 1,
-        borderColor: '#32cc73',
-        borderRadius: 50,
-        padding: 5,
-        paddingLeft: 15,
-        paddingRight: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        width: Dimensions.get('screen').width - (24 + 24 + 24 + 24),
-        marginLeft: 24 + 24,
-        flexDirection: 'row',
-      }}>
-      <Text style={{color: 'gray', flex: 9}}>
-        수딩내추럴 인텐스 모이스처 크림
-      </Text>
-      <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
-    </TouchableOpacity>
-  ),
-  headerRight: () => null,
-  headerStyle: {
-    height: getStatusBarHeight() + 52,
-    shadowRadius: 0,
-    shadowOffset: {height: 0},
-  },
-});
-const MyPageHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS_W')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () =>
-    // <>
-    //   <Text style={{color: 'white'}}>마이페이지</Text>
-    // </>
-    null,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <TouchableOpacity
-        style={{flex: 1}}
-        onPress={() => {
-          navigation.navigate('Alarm');
-        }}>
-        <SvgXml xml={SVG('ALARM')} width="24" height="24" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{flex: 1, marginLeft: 16}}
-        onPress={() => {
-          navigation.navigate('Settings');
-        }}>
-        <SvgXml xml={SVG('SETTING')} width="24" height="24" />
-      </TouchableOpacity>
-    </View>
-  ),
-  headerTransparent: true,
-  // headerStyle: {
-  //   backgroundColor: 'black',
-  //   //   height: getStatusBarHeight() + 62,
-  //   style: {
-  //     backgroundColor: 'black',
-  //   },
-  // },
-});
-
-const IngredientsHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>전체 성분</Text>,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HELP')} />
-      </View>
-    </View>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 0,
-    },
-  },
-});
-
-const CompareHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>비교</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-  },
-});
-
-const ReviewWriteHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <Text style={{color: 'gray', fontSize: 16}}>등록</Text>
-      </View>
-    </View>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>리뷰 작성</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const ReplyHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>답글</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const MyWroteHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>내가 쓴글</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const ScrapHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>스크랩</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 0,
-    },
-  },
-});
-
-const MyRepleHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>댓글/답글</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const EventJjimHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>찜한 이벤트</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const EventWinningHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>당첨된 이벤트</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const EventApplyHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>신청 이벤트</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const EvalutaionReviewHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>평가단 리뷰 작성</Text>,
-  headerRight: () => (
-    <TouchableOpacity
-      style={{marginRight: 24}}
-      onPress={() => {
-        // navigation.goBack();
-      }}>
-      <Text style={{color: 'gray', fontSize: 17}}>등록</Text>
-    </TouchableOpacity>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const AlarmHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>알림</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const SettingsHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>설정</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const FAQHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>FAQ</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const QnAHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>문의하기</Text>,
-  headerRight: () => (
-    <TouchableOpacity
-      style={{marginRight: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <Text style={{fontSize: 17, color: 'gray'}}>등록</Text>
-    </TouchableOpacity>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-
-const TalkDetailHeader = (navigation) => ({
-  // headerLeft: () => (
-  //   <TouchableOpacity
-  //     style={{marginLeft: 24}}
-  //     onPress={() => {
-  //       navigation.goBack();
-  //     }}>
-  //     <SvgXml xml={SVG('BACKIOS')} />
-  //   </TouchableOpacity>
-  // ),
-  // headerTitle: () => (
-  //   <Text style={{fontSize: 16}}>더보기 종류에 따른 지정값들어가야됨</Text>
-  // ),
-  headerStyle: {
-    height: 0,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 0,
-    },
-  },
-});
-
-const PostDetailHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => <Text style={{fontSize: 16}}>제목이 들어와야됨</Text>,
-  headerStyle: {
-    backgroundColor: 'transparent',
-    height: getStatusBarHeight() + 62,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 1,
-    },
-  },
-});
-
-const SearchHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitle: () => (
-    <View
-      style={{
-        borderWidth: 1,
-        borderColor: '#32cc73',
-        borderRadius: 50,
-        padding: 5,
-        paddingLeft: 15,
-        paddingRight: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        width: Dimensions.get('screen').width - (24 + 24 + 24 + 24),
-        marginLeft: 24 + 24,
-        flexDirection: 'row',
-      }}>
-      <TextInput
-        placeholder="수딩내추럴 인텐스 모이스처 크림"
-        style={{flex: 9}}
-        onFocus={() => {
-          console.log('test');
-        }}
-        autoFocus={true}
-      />
-      <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
-    </View>
-  ),
-  headerRight: () => null,
-  headerStyle: {
-    height: getStatusBarHeight() + 52,
-  },
-});
-
-const BabyPlus_myHeader = (navigation) => {
-
-  //const {isRegister} = navigation.getParam('params',{isRegister:false,});
-  //const {isRegister} = navigation.state.params;
-  //const {isRegister} = {isRegister:true};
-
-  //const {isRegister} = route.params || {isRegister:false};
-
-  return {
-    animationEnabled: false,
-    headerLeft: () => (
-      <TouchableOpacity
-        style={{marginLeft: 24}}
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <SvgXml xml={SVG('BACKIOS')} />
-      </TouchableOpacity>
-    ),
-    headerTitleAlign: 'center',
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
-    headerRight: () => (
-      <TouchableOpacity
-        style={{marginRight: 24}}
-        onPress={() => {
-          navigation.navigate('BabyAlergy_my');
-        }}>
-        <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
-      </TouchableOpacity>
-    ),
-    headerStyle: {
-      shadowOffset: {
-        height: 0,
-      },
-      elevation: 0,
-    },
-  }
-};
-
-const BabyAlergy_myHeader = (navigation) => {
-  
-  //const {isRegister} = route.params || {isRegister:false};
-
-  return {
-    animationEnabled: false,
-    headerLeft: () => (
-      <TouchableOpacity
-        style={{marginLeft: 24}}
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <SvgXml xml={SVG('BACKIOS')} />
-      </TouchableOpacity>
-    ),
-    headerTitleAlign: 'center',
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
-    headerRight: () => (
-      <TouchableOpacity
-        style={{marginRight: 24}}
-        onPress={() => {
-          navigation.pop();
-        }}>
-        <Text style={{fontSize: 15, color: '#32cc73'}}>저장</Text>
-      </TouchableOpacity>
-    ),
-    headerStyle: {
-      shadowOffset: {
-        height: 0,
-      },
-      elevation: 0,
-    },
-  }
-};
 
 const HomeStack = () => {
   return (
@@ -666,68 +54,67 @@ const HomeStack = () => {
       <Stack.Screen
         name="Main"
         component={Home}
-        options={({navigation, route}) => ({
-          headerLeft: () => (
-            <Text style={{fontSize: 35, fontWeight: 'bold', marginLeft: 24}}>
-              Babbling
-            </Text>
-          ),
-          headerTitle: () => null,
-          headerRight: () => (
-            <View style={{flexDirection: 'row', marginRight: 24, height: 30}}>
-              <TouchableOpacity
-                style={{flex: 1, padding: 5}}
-                onPress={() => {
-                  navigation.navigate('HomeSearch');
-                }}>
-                <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{flex: 1, padding: 5}}
-                onPress={() => {
-                  navigation.navigate('Jjim');
-                }}>
-                <SvgXml xml={SVG('HEART')} width="24" height="24" />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{flex: 1, padding: 5}}
-                onPress={() => {
-                  navigation.navigate('MyPage');
-                }}>
-                <SvgXml xml={SVG('MYPAGE')} width="24" height="24" />
-              </TouchableOpacity>
-            </View>
-          ),
-          headerTitleAlign: 'center',
-          headerStyle: {
-            height: Platform.OS === 'ios' ? getStatusBarHeight() + 62 : 62,
-            shadowOffset: {
-              height: 0,
-            },
-            elevation: 0,
-          },
-          headerForceInset: {top: 'never', bottom: 'never'},
-        })}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'Babbling',
+            title: null,
+            right: [
+              {svg: 'SEARCH', nav: 'HomeSearch'},
+              {svg: 'HEART', nav: 'Jjim'},
+              {svg: 'MYPAGE', nav: 'MyPage'},
+            ],
+          })
+        }
       />
       <Stack.Screen
         name="Detail"
         component={Detail}
-        options={({navigation, route}) => DetailHeader(navigation)}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'BACKIOS',
+            title: '상세페이지',
+            right: [
+              {svg: 'HELP', nav: ''},
+              {svg: 'SHARE', nav: ''},
+            ],
+          })
+        }
       />
       <Stack.Screen
         name="Jjim"
         component={Jjim}
-        options={({navigation, route}) => JjimHeader(navigation)}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {left: 'BACK', title: '찜 목록', right: []})
+        }
       />
       <Stack.Screen
         name="HomeSearch"
         component={HomeSearch}
-        options={({navigation, route}) => HomeSearchHeader(navigation)}
+        options={({navigation, route}) =>
+          HeaderOptions(navigation, {
+            left: 'BACKIOS',
+            title: 'SearchBar',
+            right: [],
+          })
+        }
       />
       <Stack.Screen
         name="MyPage"
         component={MypageTop}
-        options={({navigation, route}) => MyPageHeader(navigation)}
+        options={({navigation, route}) =>
+          HeaderOptions(
+            navigation,
+            {
+              left: 'BACKIOS_W',
+              title: null,
+              right: [
+                {svg: 'ALARM', nav: 'Alarm'},
+                {svg: 'SETTING', nav: 'Settings'},
+              ],
+            },
+            true,
+          )
+        }
       />
       <Stack.Screen
         name="Ingredients"
@@ -835,9 +222,474 @@ const HomeStack = () => {
         component={BabyAlergy}
         options={({navigation}) => BabyAlergy_myHeader(navigation)}
       />
-
     </Stack.Navigator>
   );
 };
 
 export default HomeStack;
+
+const IngredientsHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>전체 성분</Text>,
+  headerRight: () => (
+    <View style={{flexDirection: 'row', marginRight: 24}}>
+      <View style={{flex: 1, padding: 5}}>
+        <SvgXml xml={SVG('HELP')} />
+      </View>
+    </View>
+  ),
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    shadowRadius: 0,
+    shadowOffset: {
+      height: 0,
+    },
+  },
+});
+const CompareHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>비교</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+  },
+});
+const ReviewWriteHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerRight: () => (
+    <View style={{flexDirection: 'row', marginRight: 24}}>
+      <View style={{flex: 1, padding: 5}}>
+        <Text style={{color: 'gray', fontSize: 16}}>등록</Text>
+      </View>
+    </View>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>리뷰 작성</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const ReplyHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>답글</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const MyWroteHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>내가 쓴글</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const ScrapHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>스크랩</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 0,
+    },
+  },
+});
+const MyRepleHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>댓글/답글</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const EventJjimHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>찜한 이벤트</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const EventWinningHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>당첨된 이벤트</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const EventApplyHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>신청 이벤트</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const EvalutaionReviewHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>평가단 리뷰 작성</Text>,
+  headerRight: () => (
+    <TouchableOpacity
+      style={{marginRight: 24}}
+      onPress={() => {
+        // navigation.goBack();
+      }}>
+      <Text style={{color: 'gray', fontSize: 17}}>등록</Text>
+    </TouchableOpacity>
+  ),
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const AlarmHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>알림</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const SettingsHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>설정</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const FAQHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>FAQ</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const QnAHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17}}>문의하기</Text>,
+  headerRight: () => (
+    <TouchableOpacity
+      style={{marginRight: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <Text style={{fontSize: 17, color: 'gray'}}>등록</Text>
+    </TouchableOpacity>
+  ),
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
+const TalkDetailHeader = (navigation) => ({
+  // headerLeft: () => (
+  //   <TouchableOpacity
+  //     style={{marginLeft: 24}}
+  //     onPress={() => {
+  //       navigation.goBack();
+  //     }}>
+  //     <SvgXml xml={SVG('BACKIOS')} />
+  //   </TouchableOpacity>
+  // ),
+  // headerTitle: () => (
+  //   <Text style={{fontSize: 16}}>더보기 종류에 따른 지정값들어가야됨</Text>
+  // ),
+  headerStyle: {
+    height: 0,
+    shadowRadius: 0,
+    shadowOffset: {
+      height: 0,
+    },
+  },
+});
+const PostDetailHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 16}}>제목이 들어와야됨</Text>,
+  headerStyle: {
+    backgroundColor: 'transparent',
+    height: getStatusBarHeight() + 62,
+    shadowRadius: 0,
+    shadowOffset: {
+      height: 1,
+    },
+  },
+});
+const SearchHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => (
+    <View
+      style={{
+        borderWidth: 1,
+        borderColor: '#32cc73',
+        borderRadius: 50,
+        padding: 5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        width: Dimensions.get('screen').width - (24 + 24 + 24 + 24),
+        marginLeft: 24 + 24,
+        flexDirection: 'row',
+      }}>
+      <TextInput
+        placeholder="수딩내추럴 인텐스 모이스처 크림"
+        style={{flex: 9}}
+        onFocus={() => {
+          console.log('test');
+        }}
+        autoFocus={true}
+      />
+      <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
+    </View>
+  ),
+  headerRight: () => null,
+  headerStyle: {
+    height: getStatusBarHeight() + 52,
+  },
+});
+const BabyPlus_myHeader = (navigation) => {
+  //const {isRegister} = navigation.getParam('params',{isRegister:false,});
+  //const {isRegister} = navigation.state.params;
+  //const {isRegister} = {isRegister:true};
+
+  //const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.navigate('BabyAlergy_my');
+        }}>
+        <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  };
+};
+const BabyAlergy_myHeader = (navigation) => {
+  //const {isRegister} = route.params || {isRegister:false};
+
+  return {
+    animationEnabled: false,
+    headerLeft: () => (
+      <TouchableOpacity
+        style={{marginLeft: 24}}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <SvgXml xml={SVG('BACKIOS')} />
+      </TouchableOpacity>
+    ),
+    headerTitleAlign: 'center',
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 24}}
+        onPress={() => {
+          navigation.pop();
+        }}>
+        <Text style={{fontSize: 15, color: '#32cc73'}}>저장</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      shadowOffset: {
+        height: 0,
+      },
+      elevation: 0,
+    },
+  };
+};
