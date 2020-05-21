@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import LabelInput from '../components/atom/LabelInput';
 import FormButton from '../components/atom/FormButton';
+import {BLACK60, DARKMINT} from '../Constant';
 
 export default class EmailLogin extends PureComponent {
   constructor(props) {
@@ -26,10 +27,15 @@ export default class EmailLogin extends PureComponent {
   _signIn = () => {
     console.log('로그인 테스트');
     console.log(this.state.email, this.state.password);
+    //fetch로 로그인 데이터 넘겨주고 성공하면 키값 가지고 홈으로 넘어가기
   };
 
-  _test = () => {
-    console.log();
+  handelEmailChange = (email) => {
+    this.setState({email});
+  };
+
+  handelPWChange = (password) => {
+    this.setState({password});
   };
 
   render() {
@@ -46,9 +52,14 @@ export default class EmailLogin extends PureComponent {
                 placeholder={'이메일 입력'}
                 label={'이메일'}
                 value={this.state.email}
-                onChangeValue={this._test}
+                onChangeText={this.handelEmailChange}
               />
-              <LabelInput placeholder={'8자리 이상'} label={'비밀번호'} />
+              <LabelInput
+                placeholder={'8자리 이상'}
+                label={'비밀번호'}
+                value={this.state.password}
+                onChangeText={this.handelPWChange}
+              />
             </View>
 
             <FormButton
@@ -56,7 +67,7 @@ export default class EmailLogin extends PureComponent {
                 this._signIn();
               }}
               title={'로그인'}
-              backgroundColor={'#32cc73'}
+              backgroundColor={DARKMINT}
               color={'white'}
             />
 
@@ -68,12 +79,12 @@ export default class EmailLogin extends PureComponent {
                 width: 268,
                 alignSelf: 'center',
               }}>
-              <Text style={{color: 'gray'}}>비밀번호를 잊어버리셨나요?</Text>
+              <Text style={{color: BLACK60}}>비밀번호를 잊어버리셨나요?</Text>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('PassWord');
                 }}>
-                <Text style={{textDecorationLine: 'underline', color: 'gray'}}>
+                <Text style={{textDecorationLine: 'underline', color: BLACK60}}>
                   비밀번호 찾기
                 </Text>
               </TouchableOpacity>
