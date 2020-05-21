@@ -25,6 +25,8 @@ export default class Join extends PureComponent {
       check_01: false,
       check_02: false,
     };
+
+    
   }
 
   render() {
@@ -44,19 +46,31 @@ export default class Join extends PureComponent {
               placeholder={'Babbling@babylab.com'}
               label={'이메일'}
               style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.firstTextInput = input}}
+              onSubmitEditing ={()=>this.secondTextInput.focus()}
             />
             <LabelInput
               placeholder={'********'}
               label={'비밀번호(8자리 이상)'}
               style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.secondTextInput = input}}
+              onSubmitEditing ={()=>this.thirdTextInput.focus()}
             />
-            <LabelInput placeholder={'********'} label={'비밀번호 확인'} style={{marginVertical:12,marginRight:62}}/>
+            <LabelInput
+              placeholder={'********'}
+              label={'비밀번호 확인'}
+              style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.thirdTextInput = input}}
+              onSubmitEditing ={()=>this.ForthTextInput.focus()}
+            />
             <LabelInput
               placeholder={'홍길동'}
               label={'이름'}
               button={true}
               btnTitle={'실명확인'}
               style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.ForthTextInput = input}}
+              onSubmitEditing ={()=>this.FifthtextInput.focus()}
             />
             <LabelInput
               placeholder={'대전광역시 유성구 덕명로 97번길 19'}
@@ -64,8 +78,14 @@ export default class Join extends PureComponent {
               button={true}
               btnTitle={'우편번호 검색'}
               style={{marginTop:12,marginRight:62}}
+              ref={(input)=>{this.FifthtextInput = input}}
+              onSubmitEditing ={()=>this.SixthTextInput.focus()}
             />
-            <LabelInput placeholder={'(직접입력)'} label={false} style={{marginBotom:12,marginRight:62}}/>
+            <LabelInput
+              placeholder={'(직접입력)'}
+              label={false} style={{marginBotom:12,marginRight:62}}
+              ref={(input)=>{this.SixthTextInput = input}}
+            />
             {/*  */}
             {/*  */}
             <TouchableOpacity

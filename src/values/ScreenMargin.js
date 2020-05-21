@@ -12,7 +12,11 @@ export function getMargin(routeName) {
         ) {
         screenMargin = 40;
     } else if(routeName== 'BabyAlergy' ||
-    routeName== 'BabyAlergy_my'
+    routeName== 'Detail' ||
+    routeName== 'Review' ||
+    routeName== 'Reply' ||
+    routeName== 'TalkDetail' ||
+    routeName== 'PostDetail' 
     
     ) {
         screenMargin = 32;

@@ -19,16 +19,33 @@ export default class LabelInput extends PureComponent {
       fontSize_input: 14,
       textPadding: 15,
       button: false,
+
+      text:''
     };
+  }
+
+  focus() {
+    this._myInput.focus();
+  }
+
+  getText() {
+    return this.state.text;
   }
 
   componentWillMount() {
     // if (this.state.width >= screenWidth - 80) {
     //   this.setState({width: screenWidth - 80});
     // }
+    this.setState({text:this.props.defaultValue || ''});
   }
 
   render() {
+
+    const textSumbitProps = {};
+    if(this.props.onSubmitEditing) {
+      textSumbitProps.onSubmitEditing = this.props.onSubmitEditing;
+    }
+
     return (
       <View style={[{flexDirection: 'row', alignItems: 'flex-end'},(this.props.style || {})]}>
         <View
@@ -57,7 +74,14 @@ export default class LabelInput extends PureComponent {
                 color: this.props.textColor || 'black',
               }}
               placeholderTextColor={'#00000059'}
-              defaultValue = {this.props.defaultValue || ''}
+              defaultValue = {this.state.text}
+
+              ref={(input)=>{this._myInput = input}}
+
+              onChangeText={(text)=>this.setState({text:text})}
+              
+
+              {...textSumbitProps}
             />
           </View>
         </View>

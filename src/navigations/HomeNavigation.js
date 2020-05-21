@@ -86,13 +86,14 @@ const ReviewHeader = (navigation) => ({
   headerRight: () => (
     <View style={{flexDirection: 'row', marginRight: 24}}>
       <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('SHARE')} />
+        <SvgXml xml={SVG('WRITEING')} />
       </View>
     </View>
   ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-  },
+  headerTitleAlign: 'center',
+  // headerStyle: {
+  //   height: getStatusBarHeight() + 62,
+  // },
   headerForceInset: {top: 'never', bottom: 'never'},
 });
 
