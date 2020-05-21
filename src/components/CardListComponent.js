@@ -13,8 +13,14 @@ import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {BlurView} from '@react-native-community/blur';
-
-// const DATAS = [1, 2, 3];
+import {
+  FONTSIZE,
+  BLACK35,
+  BLACK60,
+  BLACK87,
+  DARKMINT,
+  WHITESPACE,
+} from '../Constant';
 
 export default class CardList extends Component {
   constructor(props) {
@@ -24,9 +30,8 @@ export default class CardList extends Component {
       page: props.page,
       datas: props.datas,
       display: 'none',
-      minHeight: props.page * 75,
+      minHeight: props.page * 80,
       session: props.session,
-
       rendered: true,
     };
   }
@@ -87,58 +92,99 @@ export default class CardList extends Component {
           return null;
         } else {
           return (
-            <View style={styles.cardList} key={index}>
+            <View
+              style={{
+                // backgroundColor: 'lightgray',
+                paddingTop: 10,
+                paddingBottom: 10,
+                height: 80,
+              }}
+              key={index}>
               <TouchableOpacity
-                style={styles.innerCardList}
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  paddingLeft: 12,
+                  paddingRight: 12,
+                }}
                 onPress={() => this._intoDetail(data.title, data.name)}>
                 <View
-                  style={[
-                    styles.cardImage,
-                    {justifyContent: 'center', alignItems: 'center'},
-                  ]}>
-                  <View
-                    style={{
-                      backgroundColor: 'white',
-                      width: 55,
-                      height: 55,
-                      borderRadius: 5,
-                    }}>
-                    <Image
+                  style={{
+                    backgroundColor: 'coral',
+                    width: 60,
+                    height: 60,
+                    borderRadius: 5,
+                    alignSelf: 'center',
+                  }}>
+                  {/* <Image
                       // source={uri('../images/1.jpeg')}
                       source={{
                         uri: 'http://172.30.1.9/media/' + data.name + '.jpg',
                       }}
                       style={{width: 55, height: 55}}
                       resizeMode="contain"
-                    />
-                  </View>
+                    /> */}
                 </View>
-                <View style={styles.cardInfo}>
-                  <View style={styles.cardInfoCompany}>
-                    {/* <Text style={styles.comText}>{data.title}</Text> */}
-                    <Text style={styles.comText}>{data.brand_name}</Text>
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    flexGrow: 1,
+                    paddingLeft: 12,
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'column',
+                      flex: 1,
+                    }}>
+                    <View style={{marginBottom: 5}}>
+                      <Text
+                        style={{
+                          color: BLACK60,
+                          fontSize: FONTSIZE.SMALL,
+                        }}>
+                        {data.brand_name}
+                      </Text>
+                    </View>
+                    <View style={{}}>
+                      <Text
+                        style={{
+                          fontWeight: '500',
+                          fontSize: FONTSIZE.LARGE,
+                          color: BLACK87,
+                        }}>
+                        {data.name}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flexGrow: 1,
+                        justifyContent: 'flex-end',
+                      }}>
+                      <Text
+                        style={{
+                          color: DARKMINT,
+                          fontSize: FONTSIZE.SMALL,
+                        }}>
+                        {data.hashtag}
+                      </Text>
+                    </View>
                   </View>
-                  <View style={styles.cardInfoProduct}>
-                    <Text style={styles.comTitle}>{data.name}</Text>
+                  <View
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      width: 80,
+                    }}>
+                    <SvgXml xml={SVG('STAR_CHECKED')} width="16" height="16" />
+                    <Text style={{color: DARKMINT, fontSize: FONTSIZE.SMALL}}>
+                      {data.score}
+                    </Text>
+                    <Text style={{fontSize: FONTSIZE.SMALL, color: BLACK35}}>
+                      ({data.score_count})
+                    </Text>
                   </View>
-                  <View style={styles.cardInfoHashtag}>
-                    {/* <Text style={styles.comHash}>{data.hashTag}</Text> */}
-                    <Text style={styles.comHash}>{data.hashtag}</Text>
-                  </View>
-                </View>
-                <View style={styles.cardScore}>
-                  <SvgXml
-                    xml={SVG('STAR_CHECKED')}
-                    width="20"
-                    height="20"
-                    style={{marginRight: -3, marginTop: -5}}
-                  />
-                  <Text style={{color: '#31CC74', fontSize: 12}}>
-                    {data.score}
-                  </Text>
-                  <Text style={{fontSize: 9, color: 'gray'}}>
-                    ({data.score_count})
-                  </Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -162,14 +208,16 @@ export default class CardList extends Component {
         activeDotIndex={activeSlide}
         containerStyle={{backgroundColor: 'white', paddingVertical: 10}}
         dotStyle={{
-          backgroundColor: '#32cc73',
-          marginHorizontal: -3,
+          backgroundColor: DARKMINT,
+          marginHorizontal: -3.5,
+          width: 6,
+          height: 6,
         }}
         inactiveDotStyle={{
-          backgroundColor: '#f0f0f0',
+          backgroundColor: 'rgba(245,245,245,1)',
         }}
         inactiveDotOpacity={1}
-        inactiveDotScale={0.9}
+        inactiveDotScale={1}
       />
     );
   };
@@ -189,10 +237,25 @@ export default class CardList extends Component {
                     overflow: 'hidden',
                   },
             ]}>
-            <View style={[styles.slideCard, {minHeight: this.state.minHeight}]}>
+            <View
+              style={{
+                minHeight: this.state.minHeight,
+                backgroundColor: 'white',
+                marginLeft: WHITESPACE,
+                marginRight: WHITESPACE,
+                paddingBottom: 5,
+                marginTop: 8,
+                marginBottom: 8,
+                borderRadius: 20,
+                overflow: 'hidden',
+              }}>
               <View style={styles.slideCardHeader}>
                 <Text
-                  style={{fontSize: 17, fontWeight: '600', color: '#1e1e1e'}}>
+                  style={{
+                    fontSize: FONTSIZE.TITLE,
+                    fontWeight: '600',
+                    color: BLACK87,
+                  }}>
                   {/* 우리 아이를 위한 추천 */}
                   {this.props.title}
                 </Text>
@@ -279,8 +342,9 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 5,
     },
-    shadowOpacity: 0.15,
-    shadowRadius: 20,
+    shadowColor: 'rgb(0,0,0)',
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
 
     elevation: 5,
   },
@@ -298,48 +362,34 @@ const styles = StyleSheet.create({
     // backgroundColor:'lightgray',
     height: 50,
     justifyContent: 'center',
-    paddingLeft: 24,
-  },
-  cardList: {
-    // backgroundColor:'lightgray',
-    height: 75,
-  },
-  innerCardList: {
-    flexDirection: 'row',
-  },
-  cardImage: {
-    // backgroundColor:'rgba(13,155,55,0.8)',
-    width: 75,
-    height: 75,
-    flex: 2,
+    paddingLeft: 12,
   },
   cardInfo: {
     height: 75,
     // backgroundColor:'pink',
     justifyContent: 'center',
-    flex: 5,
+    // flex: 5,
   },
   cardInfoCompany: {marginBottom: 3},
   comText: {
     color: '#5C5C5C',
-    fontSize: 12,
+    fontSize: FONTSIZE.SMALL,
   },
   comTitle: {
     fontWeight: '500',
-    fontSize: 14,
+    fontSize: FONTSIZE.LARGE,
   },
   comHash: {
     color: '#31CC74',
     marginTop: 10,
-    fontSize: 10,
+    fontSize: FONTSIZE.SMALL,
   },
   cardScore: {
-    flex: 2,
     // backgroundColor: 'skyblue',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    width: 75,
+    width: 80,
   },
   slide02Dot: {
     // backgroundColor:'gray',

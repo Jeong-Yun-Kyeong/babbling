@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,59 +14,77 @@ import {
 import LabelInput from '../components/atom/LabelInput';
 import FormButton from '../components/atom/FormButton';
 
-const EmailLogin = ({navigation}) => {
-  let width = 268;
-  let screenWidth = Dimensions.get('screen').width;
-  // alert(screenWidth);
-  if (screenWidth >= 834) {
-    width = 380;
+export default class EmailLogin extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null,
+    };
   }
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView />
-      <View
-        style={{backgroundColor: 'white', flex: 1, justifyContent: 'center'}}>
-        <View style={{flex: 1}}></View>
-        <View style={{flex: 1, zIndex: 10}}>
-          <View style={{alignItems: 'center'}}>
-            <LabelInput placeholder={'이메일 입력'} label={'이메일'} />
-            <LabelInput placeholder={'8자리 이상'} label={'비밀번호'} />
-          </View>
 
-          <FormButton
-            nav={() => {}}
-            title={'로그인'}
-            backgroundColor={'#32cc73'}
-            color={'white'}
-          />
+  _signIn = () => {
+    console.log('로그인 테스트');
+    console.log(this.state.email, this.state.password);
+  };
 
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              marginTop: 20,
-              width: width,
-              alignSelf: 'center',
-            }}>
-            <Text style={{color: 'gray'}}>비밀번호를 잊어버리셨나요?</Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('PassWord');
+  _test = () => {
+    console.log();
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView />
+        <View
+          style={{backgroundColor: 'white', flex: 1, justifyContent: 'center'}}>
+          <View style={{flex: 1}}></View>
+          <View style={{flex: 1, zIndex: 10}}>
+            <View style={{alignItems: 'center'}}>
+              <LabelInput
+                placeholder={'이메일 입력'}
+                label={'이메일'}
+                value={this.state.email}
+                onChangeValue={this._test}
+              />
+              <LabelInput placeholder={'8자리 이상'} label={'비밀번호'} />
+            </View>
+
+            <FormButton
+              nav={() => {
+                this._signIn();
+              }}
+              title={'로그인'}
+              backgroundColor={'#32cc73'}
+              color={'white'}
+            />
+
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                marginTop: 20,
+                width: 268,
+                alignSelf: 'center',
               }}>
-              <Text style={{textDecorationLine: 'underline', color: 'gray'}}>
-                비밀번호 찾기
-              </Text>
-            </TouchableOpacity>
+              <Text style={{color: 'gray'}}>비밀번호를 잊어버리셨나요?</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PassWord');
+                }}>
+                <Text style={{textDecorationLine: 'underline', color: 'gray'}}>
+                  비밀번호 찾기
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={{flex: 1}}></View>
+          <View style={{flex: 1}}></View>
         </View>
-        <View style={{flex: 1}}></View>
-        <View style={{flex: 1}}></View>
-      </View>
-    </Fragment>
-  );
-};
+      </Fragment>
+    );
+  }
+}
 
 const styles = StyleSheet.create({});
-
-export default EmailLogin;
