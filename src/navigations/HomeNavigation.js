@@ -14,6 +14,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/HomeScreen';
 import Detail from '../screens/DetailTestScreen';
+import Review from '../screens/ReviewList';
 import Jjim from '../screens/JjimScreen';
 import HomeSearch from '../screens/HomeSearchScreen';
 import Ingredients from '../screens/IngredientsTestScreen';
@@ -212,19 +213,48 @@ const HomeStack = () => {
         options={({navigation}) => SearchHeader(navigation)}
       />
 
-      <Stack.Screen
-        name="BabyPlus_my"
-        component={BabyPlus}
-        options={({navigation}) => BabyPlus_myHeader(navigation)}
-      />
-      <Stack.Screen
-        name="BabyAlergy_my"
-        component={BabyAlergy}
-        options={({navigation}) => BabyAlergy_myHeader(navigation)}
-      />
-    </Stack.Navigator>
-  );
-};
+const ReviewHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text style={{fontSize: 17, textAlign:'center'}}>제품 리뷰</Text>,
+  headerRight: () => (
+    <View style={{flexDirection: 'row', marginRight: 24}}>
+      <View style={{flex: 1, padding: 5}}>
+        <SvgXml xml={SVG('WRITEING')} />
+      </View>
+    </View>
+  ),
+  headerTitleAlign: 'center',
+  // headerStyle: {
+  //   height: getStatusBarHeight() + 62,
+  // },
+  headerForceInset: {top: 'never', bottom: 'never'},
+});
+
+const JjimHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitle: () => <Text>찜 목록</Text>,
+  headerRight: () => null,
+  // headerStyle: {
+  //   height: getStatusBarHeight() + 62,
+  // },
+});
+
 
 export default HomeStack;
 
@@ -371,7 +401,10 @@ const MyRepleHeader = (navigation) => ({
     },
   },
 });
-const EventJjimHeader = (navigation) => ({
+const Event
+
+
+= (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
       style={{marginLeft: 24}}
@@ -691,5 +724,192 @@ const BabyAlergy_myHeader = (navigation) => {
       },
       elevation: 0,
     },
-  };
+
+  }
+};
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Main"
+        component={Home}
+        options={({navigation, route}) => ({
+          headerLeft: () => (
+            <Text style={{fontSize: 35, fontWeight: 'bold', marginLeft: 24}}>
+              Babbling
+            </Text>
+          ),
+          headerTitle: () => null,
+          headerRight: () => (
+            <View style={{flexDirection: 'row', marginRight: 24, height: 30}}>
+              <TouchableOpacity
+                style={{flex: 1, padding: 5}}
+                onPress={() => {
+                  navigation.navigate('HomeSearch');
+                }}>
+                <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{flex: 1, padding: 5}}
+                onPress={() => {
+                  navigation.navigate('Jjim');
+                }}>
+                <SvgXml xml={SVG('HEART')} width="24" height="24" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{flex: 1, padding: 5}}
+                onPress={() => {
+                  navigation.navigate('MyPage');
+                }}>
+                <SvgXml xml={SVG('MYPAGE')} width="24" height="24" />
+              </TouchableOpacity>
+            </View>
+          ),
+          headerTitleAlign: 'center',
+          headerStyle: {
+            height: Platform.OS === 'ios' ? getStatusBarHeight() + 62 : 62,
+            shadowOffset: {
+              height: 0,
+            },
+            elevation: 0,
+          },
+          headerForceInset: {top: 'never', bottom: 'never'},
+        })}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={({navigation, route}) => DetailHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Review"
+        component={Review}
+        options={({navigation, route}) => ReviewHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Jjim"
+        component={Jjim}
+        options={({navigation, route}) => JjimHeader(navigation)}
+      />
+      <Stack.Screen
+        name="HomeSearch"
+        component={HomeSearch}
+        options={({navigation, route}) => HomeSearchHeader(navigation)}
+      />
+      <Stack.Screen
+        name="MyPage"
+        component={MypageTop}
+        options={({navigation, route}) => MyPageHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Ingredients"
+        component={Ingredients}
+        options={({navigation, route}) => IngredientsHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Compare"
+        component={Compare}
+        options={({navigation}) => CompareHeader(navigation)}
+      />
+      <Stack.Screen
+        name="ReviewWrite"
+        component={ReviewWrite}
+        options={({navigation}) => ReviewWriteHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Reply"
+        component={Reply}
+        options={({navigation}) => ReplyHeader(navigation)}
+      />
+      {/* mypage */}
+      <Stack.Screen
+        name="MyWrote"
+        component={MyWrote}
+        options={({navigation}) => MyWroteHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Scrap"
+        component={ScrapTop}
+        options={({navigation}) => ScrapHeader(navigation)}
+      />
+      <Stack.Screen
+        name="MyReple"
+        component={MyReple}
+        options={({navigation}) => MyRepleHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventJjim"
+        component={EventJjim}
+        options={({navigation}) => EventJjimHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventWinning"
+        component={EventWinning}
+        options={({navigation}) => EventWinningHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EventApply"
+        component={EventApply}
+        options={({navigation}) => EventApplyHeader(navigation)}
+      />
+      <Stack.Screen
+        name="EvaluationReview"
+        component={EvalutaionReview}
+        options={({navigation}) => EvalutaionReviewHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Alarm"
+        component={Alarm}
+        options={({navigation}) => AlarmHeader(navigation)}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={({navigation}) => SettingsHeader(navigation)}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
+        options={({navigation}) => FAQHeader(navigation)}
+      />
+      <Stack.Screen
+        name="QnA"
+        component={QnA}
+        options={({navigation}) => QnAHeader(navigation)}
+      />
+      {/* end mypage */}
+      {/* Talk */}
+      <Stack.Screen
+        name="TalkDetail"
+        component={TalkDetail}
+        options={({navigation}) => TalkDetailHeader(navigation)}
+      />
+      <Stack.Screen
+        name="PostDetail"
+        component={PostDetail}
+        options={({navigation}) => PostDetailHeader(navigation)}
+      />
+      {/*  */}
+      {/* Search */}
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={({navigation}) => SearchHeader(navigation)}
+      />
+
+      <Stack.Screen
+        name="BabyPlus_my"
+        component={BabyPlus}
+        options={({navigation}) => BabyPlus_myHeader(navigation)}
+      />
+      <Stack.Screen
+        name="BabyAlergy_my"
+        component={BabyAlergy}
+        options={({navigation}) => BabyAlergy_myHeader(navigation)}
+      />
+
+    </Stack.Navigator>
+  );
+
 };

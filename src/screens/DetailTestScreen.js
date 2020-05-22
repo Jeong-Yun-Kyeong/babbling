@@ -53,6 +53,7 @@ export default class Detail extends PureComponent {
     console.log(this.props.route.params.brand, this.props.route.params.name);
   }
 
+
   render() {
     return (
       <Fragment>
@@ -595,6 +596,7 @@ export default class Detail extends PureComponent {
 
               {/*  */}
               <TouchableOpacity
+                onPress={()=>this.props.navigation.navigate('Review')}
                 style={{
                   backgroundColor: '#f9f9f9',
                   flexDirection: 'row',

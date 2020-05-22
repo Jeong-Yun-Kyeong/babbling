@@ -13,13 +13,13 @@ export default class CardPost extends PureComponent {
     return (
       <TouchableOpacity
         onPress={this.props.nav}
-        style={{
+        style={[{
           backgroundColor: 'white',
-          margin: 15,
-          borderRadius: 10,
+          borderRadius: 8,
           overflow: 'hidden',
-        }}>
-        <View style={{backgroundColor: 'lightgray', height: 200}}></View>
+          elevation:3
+        },this.props.style || {}]}>
+        <View style={{backgroundColor: 'lightgray', aspectRatio:1.7}}></View>
         <View
           style={{
             padding: 15,
