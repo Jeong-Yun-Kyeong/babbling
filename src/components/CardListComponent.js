@@ -22,184 +22,245 @@ import {
   WHITESPACE,
 } from '../Constant';
 
+// const DATA = [
+//   {
+//     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+//     title: 'First Item',
+//   },
+//   {
+//     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+//     title: 'Second Item',
+//   },
+//   {
+//     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+//     title: 'Third Item',
+//   },
+//   {
+//     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+//     title: 'First Item',
+//   },
+//   {
+//     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+//     title: 'Second Item',
+//   },
+//   {
+//     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+//     title: 'Third Item',
+//   },
+// ];
+
+// function Item({title}) {
+//   return (
+//     <View style={{}}>
+//       <Text style={{}}>{title}</Text>
+//     </View>
+//   );
+// }
+
+// const CardList = () => {
+//   return (
+//     <>
+//       <FlatList
+//         data={DATA}
+//         renderItem={({item}) => <Item title={item.title} />}
+//         keyExtractor={(item) => item.id}
+//       />
+//     </>
+//   );
+// };
+
+// export default CardList;
+
 export default class CardList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSlide: 0,
+      activeSlide: props.slide,
       page: props.page,
       datas: props.datas,
       display: 'none',
       minHeight: props.page * 80,
       session: props.session,
-      rendered: true,
+      arrayVal: [],
     };
   }
-
-  componentDidMount() {
-    setTimeout(() => this.setState({display: 'flex'}), 100);
-  }
-
+  componentDidMount() {}
   _countPagenation = (val) => {
     Array.prototype.division = function (n) {
       var arr = this;
       var len = arr.length;
       var cnt = Math.floor(len / n);
       var tmp = [];
-
       for (var i = 0; i <= cnt; i++) {
         tmp.push(arr.splice(0, n));
       }
-
       return tmp;
     };
     //
-    let datas = val;
 
+    let datas = val;
     let array = [];
+
+    console.log('val============', val);
+    //데이터 잘리는거 처리함
     if (datas.length <= 3) {
-      array.push(datas);
+      if (datas.length == 0) {
+        array = this.state.arrayVal.length > 0 ? this.state.arrayVal : [];
+      } else {
+        array.push(datas);
+      }
     } else {
       array = datas.division(this.state.page);
+      this.setState({arrayVal: array});
     }
-    // console.log('자르기; ', array);
+    console.log('자르기; ', array);
     return array;
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps.datas, nextState.datas);
-    nextState.datas = nextProps.datas;
-    return nextProps.datas.length == 0 ? false : true;
-  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(this.state);
+    console.log('==============', nextProps, prevState);
+    let result = {activeSlide: prevState.activeSlide};
 
-  componentWillUnmount() {
-    this.setState({display: !this.state.display});
+    if (nextProps.datas.length > 0) {
+      result = {
+        datas: nextProps.datas,
+        activeSlide: prevState.activeSlide,
+      };
+    }
+    console.log(result);
+    return result;
   }
+  // componentWillUpdate(nextProps, nextState) {
+  //   nextProps.datas = nextState.datas;
+  // }
 
-  _intoDetail = (brand, name) => {
+  componentWillUnmount() {}
+  _intoDetail = (data) => {
     this.props.navigation.navigate('Detail', {
-      brand: brand,
-      name: name,
+      data: data,
     });
   };
-
   _getList = (datas) => {
-    // console.log(datas);
     if (datas.length > 0) {
       return datas.map((data, index) => {
-        // console.log(data.img);
-        if (index > 5) {
-          return null;
-        } else {
-          return (
-            <View
+        let url =
+          'http://babbling.co.kr/media/product/' +
+          data.code +
+          '/' +
+          data.brand_name +
+          '/' +
+          data.name +
+          '.jpg';
+        console.log(url);
+        return (
+          <View
+            style={{
+              // backgroundColor: 'lightgray',
+              paddingTop: 10,
+              paddingBottom: 10,
+              height: 80,
+            }}
+            key={index}>
+            <TouchableOpacity
               style={{
-                // backgroundColor: 'lightgray',
-                paddingTop: 10,
-                paddingBottom: 10,
-                height: 80,
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                paddingLeft: 12,
+                paddingRight: 12,
               }}
-              key={index}>
-              <TouchableOpacity
+              onPress={() => this._intoDetail(data)}>
+              <View
                 style={{
+                  backgroundColor: 'white',
+                  width: 60,
+                  height: 60,
+                  borderRadius: 5,
+                  alignSelf: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Image
+                  source={{
+                    uri: url,
+                  }}
+                  style={{width: 55, height: 55}}
+                  resizeMode="contain"
+                />
+              </View>
+              <View
+                style={{
+                  justifyContent: 'space-between',
                   flexDirection: 'row',
-                  justifyContent: 'flex-start',
+                  flexGrow: 1,
                   paddingLeft: 12,
-                  paddingRight: 12,
-                }}
-                onPress={() => this._intoDetail(data.title, data.name)}>
+                }}>
                 <View
                   style={{
-                    backgroundColor: 'coral',
-                    width: 60,
-                    height: 60,
-                    borderRadius: 5,
-                    alignSelf: 'center',
+                    flexDirection: 'column',
+                    flex: 1,
                   }}>
-                  {/* <Image
-                      // source={uri('../images/1.jpeg')}
-                      source={{
-                        uri: 'http://172.30.1.9/media/' + data.name + '.jpg',
-                      }}
-                      style={{width: 55, height: 55}}
-                      resizeMode="contain"
-                    /> */}
-                </View>
-                <View
-                  style={{
-                    justifyContent: 'space-between',
-                    flexDirection: 'row',
-                    flexGrow: 1,
-                    paddingLeft: 12,
-                  }}>
-                  <View
-                    style={{
-                      flexDirection: 'column',
-                      flex: 1,
-                    }}>
-                    <View style={{marginBottom: 5}}>
-                      <Text
-                        style={{
-                          color: BLACK60,
-                          fontSize: FONTSIZE.SMALL,
-                        }}>
-                        {data.brand_name}
-                      </Text>
-                    </View>
-                    <View style={{}}>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: FONTSIZE.LARGE,
-                          color: BLACK87,
-                        }}>
-                        {data.name}
-                      </Text>
-                    </View>
-                    <View
+                  <View style={{marginBottom: 5}}>
+                    <Text
                       style={{
-                        flexGrow: 1,
-                        justifyContent: 'flex-end',
+                        color: BLACK60,
+                        fontSize: FONTSIZE.SMALL,
                       }}>
-                      <Text
-                        style={{
-                          color: DARKMINT,
-                          fontSize: FONTSIZE.SMALL,
-                        }}>
-                        {data.hashtag}
-                      </Text>
-                    </View>
+                      {data.brand_name}
+                    </Text>
+                  </View>
+                  <View style={{}}>
+                    <Text
+                      style={{
+                        fontWeight: '500',
+                        fontSize: FONTSIZE.LARGE,
+                        color: BLACK87,
+                      }}>
+                      {data.name}
+                    </Text>
                   </View>
                   <View
                     style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      flexDirection: 'row',
-                      width: 80,
+                      flexGrow: 1,
+                      justifyContent: 'flex-end',
                     }}>
-                    <SvgXml xml={SVG('STAR_CHECKED')} width="16" height="16" />
-                    <Text style={{color: DARKMINT, fontSize: FONTSIZE.SMALL}}>
-                      {data.score}
-                    </Text>
-                    <Text style={{fontSize: FONTSIZE.SMALL, color: BLACK35}}>
-                      ({data.score_count})
+                    <Text
+                      style={{
+                        color: DARKMINT,
+                        fontSize: FONTSIZE.SMALL,
+                      }}>
+                      {data.hash_tag}
                     </Text>
                   </View>
                 </View>
-              </TouchableOpacity>
-            </View>
-          );
-        }
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    width: 80,
+                  }}>
+                  <SvgXml xml={SVG('STAR_CHECKED')} width="16" height="16" />
+                  <Text style={{color: DARKMINT, fontSize: FONTSIZE.SMALL}}>
+                    {data.star}
+                  </Text>
+                  <Text style={{fontSize: FONTSIZE.SMALL, color: BLACK35}}>
+                    ({data.star_count})
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        );
       });
     }
   };
-
   _renderItem = ({item, index}) => {
     return this._getList(item);
   };
-
   pagination = (result) => {
-    const {activeSlide} = this.state;
+    let {activeSlide} = this.state;
+    // console.log(activeSlide);
     return (
       <Pagination
         style={{paddingVertical: 0}}
@@ -221,10 +282,11 @@ export default class CardList extends Component {
       />
     );
   };
-
   render() {
-    let {session, datas} = this.state;
+    let {session, datas, activeSlide} = this.state;
+    console.log(datas);
     let result = this._countPagenation(datas);
+    console.log('result', result);
     return (
       <Fragment>
         <View>
@@ -264,23 +326,33 @@ export default class CardList extends Component {
                   sliderWidth={Dimensions.get('screen').width - 28}
                   itemWidth={Dimensions.get('screen').width - 28}
                   onSnapToItem={(index) => {
-                    console.log(index);
-                    this.setState({activeSlide: index});
+                    // console.log('iii', index);
+                    this.setState((prev) => ({activeSlide: index}));
+                    // this.setState({activeSlide: index});
+                    // console.log('ddd', this.state.activeSlide);
                   }}
-                  removeClippedSubviews={false}
+                  // removeClippedSubviews={false}
                   inactiveSlideOpacity={1}
                   inactiveSlideScale={1}
                 />
-
-                {this.pagination(result)}
+                {this.pagination(result, activeSlide)}
+                {/* {console.log(activeSlide)} */}
               </>
+              {/* flatlist */}
+              {/* <>
+                <FlatList
+                  data={this.props.datas}
+                  renderItem={({item}) => <Text>{item.name}</Text>}
+                  keyExtractor={(item) => item.idx}
+                />
+              </> */}
               {/* ) : (
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                  <Text>진행되는중</Text>
-                </View>
-              )} */}
+                  <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text>진행되는중</Text>
+                  </View>
+                )} */}
             </View>
-            {console.log(session)}
+            {/* {console.log(session)} */}
             {session ? (
               <BlurView
                 style={{
@@ -396,5 +468,3 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
-
-// export default Home;

@@ -1,5 +1,21 @@
 let SVGArray = [];
-
+{
+  const WRIGHT_W = `<svg id="writing_W" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_989" data-name="사각형 989" width="30" height="30" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Writing" clip-path="url(#clip-path)">
+    <g id="edit" transform="translate(2.5 2.5)">
+      <path id="패스_2689" data-name="패스 2689" d="M21.25,26.55H5.5A3.512,3.512,0,0,1,2,23.05V7.3A3.512,3.512,0,0,1,5.5,3.8h6.013a1.25,1.25,0,0,1,0,2.5H5.5a1,1,0,0,0-1,1V23.05a1,1,0,0,0,1,1H21.25a1,1,0,0,0,1-1V17.038a1.25,1.25,0,0,1,2.5,0V23.05a3.513,3.513,0,0,1-3.5,3.5Z" transform="translate(-2 -1.55)" fill="#fff"/>
+      <path id="패스_2690" data-name="패스 2690" d="M13.15,20.25H8.65A1.25,1.25,0,0,1,7.4,19V14.5a1.25,1.25,0,0,1,.362-.887l11.25-11.25A1.25,1.25,0,0,1,19.9,2h0a1.25,1.25,0,0,1,.887.362l4.5,4.5a1.25,1.25,0,0,1,0,1.775l-11.25,11.25A1.25,1.25,0,0,1,13.15,20.25ZM9.9,17.75h2.738l10-10L19.9,5.013l-10,10Z" transform="translate(-0.65 -2)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
+`;
+  SVGArray['WRIGHT_W'] = WRIGHT_W;
+}
 //CATEGORY
 {
   //목욕

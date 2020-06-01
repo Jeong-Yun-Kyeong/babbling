@@ -10,7 +10,10 @@ import {
   Image,
   TextInput,
   Dimensions,
+  Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+//
 import LabelInput from '../components/atom/LabelInput';
 import FormButton from '../components/atom/FormButton';
 import {BLACK60, DARKMINT} from '../Constant';

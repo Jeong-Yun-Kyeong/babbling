@@ -15,84 +15,91 @@ import CardTalk from '../components/CardTalkComponent';
 import Footer from './FooterScreen';
 import CardPost from '../components/CardPostComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import SlideImageBanner from '../components/SlideImageBannerComponent';
 
 import * as ScreenMargin from '../values/ScreenMargin';
 
 const SLIDE01 = [
   {
-    img: '../images/1.jpeg',
-    brand_name: '베베랩',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
     name: '어린이 치약',
-    hashtag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    score_count: '2,121',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    brand_name: '베베랩',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
     name: '어린이 치약',
-    hashtag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    score_count: '2,121',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    brand_name: '베베랩',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
     name: '어린이 치약',
-    hashtag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    score_count: '2,121',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    brand_name: '베베랩',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
     name: '어린이 치약',
-    hashtag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    score_count: '2,121',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    brand_name: '베베랩',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
     name: '어린이 치약',
-    hashtag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    score_count: '2,121',
-  },
-];
-
-const SLIDE02 = [
-  {
-    img: '../images/4.jpeg',
-    title: '베베랩',
-    name: '고보습 베리어 베이비 로션 200ml',
-    hashTag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    count: '2,121',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/5.jpeg',
-    title: 'HIPP',
-    name: 'HIPPIS 바나나페어 망고',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
+    name: '어린이 치약',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
+    name: '어린이 치약',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
   {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
+    name: '어린이 치약',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
+  },
+  {
+    idx: 4,
+    code: 401010,
+    brand_name: '벨레다',
+    name: '어린이 치약',
+    hash_tag: '#첫로션 #고보습 #산양유',
+    star: 4.5,
+    star_count: '2,121',
   },
 ];
 
@@ -135,14 +142,6 @@ const TALK01 = [
   },
 ];
 
-const IMAGESLIDE = [
-  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-  {url: 'https://i.ibb.co/gRrCrcq/slide01.png'},
-];
-
 export default class Home extends PureComponent {
   constructor(props) {
     super(props);
@@ -155,18 +154,29 @@ export default class Home extends PureComponent {
     };
   }
 
-  getBase = () => {
-    this.setState({images: IMAGESLIDE, slide01: SLIDE01});
+  getImages = async () => {
+    const images = await fetch(
+      'http://babbling.co.kr/home/banner',
+    ).then((res) => res.json());
+    return images;
   };
 
-  async componentDidMount() {
-    this.getBase();
-    const response = await fetch('http://babbling.co.kr/product/semi-drug/');
+  getBase = async () => {
+    const images = await this.getImages();
+    this.setState({images: images});
+  };
 
-    const resJson = await response.json();
-    this.setState({slide02: resJson});
-    this.setState({slide01: SLIDE01});
-    console.log(resJson);
+  componentDidMount() {
+    this.getBase();
+    fetch('http://babbling.co.kr/product/')
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log('fetc', resJson);
+        this.setState({
+          slide02: resJson,
+          slide01: SLIDE01,
+        });
+      });
   }
 
   componentWillUnmount() {}
@@ -201,13 +211,14 @@ export default class Home extends PureComponent {
         inactiveDotStyle={{
           backgroundColor: '#f0f0f0',
         }}
-        inactiveDotOpacity={1}
+        inactiveDotOpacity={0.9}
         inactiveDotScale={0.9}
       />
     );
   };
 
   _renderItem = ({item, index}) => {
+    let url = 'http://babbling.co.kr/media/home_board/' + item.image;
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -221,7 +232,9 @@ export default class Home extends PureComponent {
         }}
         key={index}>
         <Image
-          source={{uri: item.url}}
+          source={{
+            uri: url,
+          }}
           resizeMode={'cover'}
           style={{
             width: Dimensions.get('screen').width - 20,
@@ -268,34 +281,66 @@ export default class Home extends PureComponent {
               />
               {this.pagination()}
             </View>
-            <View style={{width:'100%', paddingHorizontal:screenMargin}}>
-              {/* slide02 */}
-              <CardList
-                navigation={this.props.navigation}
-                title={'우리 아이를 위한 추천'}
-                datas={slide01}
-                page={3}
-                slideMarginVertical={8}
-                // session={true}
-              />
-              {/*  */}
-              <CardList
-                navigation={this.props.navigation}
-                title={'베스트 셀러'}
-                datas={slide02}
-                page={3}
-                slideMarginVertical={8}
-              />              
-            </View>
+            {/* slide02 */}
+            <CardList
+              navigation={this.props.navigation}
+              title={'우리 아이를 위한 추천'}
+              datas={slide02}
+              page={3}
+              // session={true}
+              slide={0}
+            />
+            {/*  */}
+            {console.log(
+              '-----------------',
+              this.state.slide02.length > 0,
+              this.state.slide02,
+            )}
+            {/* {this.state.slide02.length > 0 ? ( */}
+            <CardList
+              navigation={this.props.navigation}
+              title={'베스트 셀러'}
+              datas={slide01}
+              page={3}
+              slide={0}
+            />
+            {/* // ) : null} */}
+//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
+//               {/* slide02 */}
+//               <CardList
+//                 navigation={this.props.navigation}
+//                 title={'우리 아이를 위한 추천'}
+//                 datas={slide01}
+//                 page={3}
+//                 slideMarginVertical={8}
+//                 // session={true}
+//               />
+//               {/*  */}
+//               <CardList
+//                 navigation={this.props.navigation}
+//                 title={'베스트 셀러'}
+//                 datas={slide02}
+//                 page={3}
+//                 slideMarginVertical={8}
+//               />              
+//             </View>
 
             {/* 수입장난감 */}
-            <Image
+            <SlideImageBanner
+              images={[
+                {url: '../images/add01.png'},
+                {url: '../images/add01.png'},
+              ]}
+            />
+            {/* <Image
               source={require('../images/add01.png')}
               resizeMode="contain"
-              style={{width: '100%', marginTop: 32, marginBottom: 26}}
-            />
+              style={{width: '100%', marginTop: 30, marginBottom: 20}}
+            /> */}
+//               style={{width: '100%', marginTop: 32, marginBottom: 26}}
+//             />
 
-            <View style={{width:'100%', paddingHorizontal:screenMargin}}>
+//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
             {/* 수다톡 */}
               <CardTalk
                 datas={TALK01}

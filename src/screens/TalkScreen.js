@@ -31,6 +31,9 @@ const TALK01 = [
   },
 ];
 import Footer from './FooterScreen';
+import {SvgXml} from 'react-native-svg';
+import SVG from '../components/SvgComponent';
+import {DARKMINT} from '../Constant';
 
 export default class Talk extends PureComponent {
   constructor(props) {
@@ -153,11 +156,12 @@ export default class Talk extends PureComponent {
           style={{
             width: 56,
             height: 56,
-            backgroundColor: '#32cc73',
+            backgroundColor: DARKMINT,
             borderRadius: 56,
             position: 'absolute',
             right: 20,
             bottom: 20,
+            //
             shadowOffset: {
               width: 0,
               height: 5,
@@ -166,7 +170,13 @@ export default class Talk extends PureComponent {
             shadowRadius: 3.84,
 
             elevation: 5,
-          }}></TouchableOpacity>
+            //
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <SvgXml xml={SVG('WRIGHT_W')} />
+          {/* <SvgXml xml={SVG(BATH)} /> */}
+        </TouchableOpacity>
       </Fragment>
     );
   }
