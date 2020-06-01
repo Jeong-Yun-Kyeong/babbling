@@ -23,6 +23,7 @@ const getTabBarVisibility = (route) => {
   // console.log(routeName);
   if (
     routeName === 'Detail' ||
+    routeName === 'Review' ||
     routeName === 'Jjim' ||
     routeName === 'HomeSearch' ||
     routeName === 'MyPage' ||

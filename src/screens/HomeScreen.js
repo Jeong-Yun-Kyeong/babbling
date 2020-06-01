@@ -17,6 +17,8 @@ import CardPost from '../components/CardPostComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import SlideImageBanner from '../components/SlideImageBannerComponent';
 
+import * as ScreenMargin from '../values/ScreenMargin';
+
 const SLIDE01 = [
   {
     idx: 4,
@@ -246,6 +248,7 @@ export default class Home extends PureComponent {
 
   render() {
     let {slide02, slide01} = this.state;
+    const screenMargin = ScreenMargin.getMargin(this.props.route.name);
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -253,7 +256,7 @@ export default class Home extends PureComponent {
         <ScrollView
           style={{backgroundColor: 'white'}}
           showsVerticalScrollIndicator={false}>
-          <View style={{backgroundColor: '#f9f9f9'}}>
+          <View style={{backgroundColor: '#f9f9f9',width:'100%'}}>
             {/* slide01 */}
             <View
               style={{
@@ -268,7 +271,7 @@ export default class Home extends PureComponent {
                 data={this.state.images}
                 renderItem={this._renderItem}
                 sliderWidth={Dimensions.get('screen').width}
-                itemWidth={Dimensions.get('screen').width - 20}
+                itemWidth={Dimensions.get('screen').width - screenMargin*2}
                 onSnapToItem={(index) => this.setState({activeSlide: index})}
                 removeClippedSubviews={false}
                 inactiveSlideOpacity={1}
@@ -302,6 +305,26 @@ export default class Home extends PureComponent {
               slide={0}
             />
             {/* // ) : null} */}
+//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
+//               {/* slide02 */}
+//               <CardList
+//                 navigation={this.props.navigation}
+//                 title={'우리 아이를 위한 추천'}
+//                 datas={slide01}
+//                 page={3}
+//                 slideMarginVertical={8}
+//                 // session={true}
+//               />
+//               {/*  */}
+//               <CardList
+//                 navigation={this.props.navigation}
+//                 title={'베스트 셀러'}
+//                 datas={slide02}
+//                 page={3}
+//                 slideMarginVertical={8}
+//               />              
+//             </View>
+
             {/* 수입장난감 */}
             <SlideImageBanner
               images={[
@@ -314,45 +337,56 @@ export default class Home extends PureComponent {
               resizeMode="contain"
               style={{width: '100%', marginTop: 30, marginBottom: 20}}
             /> */}
+//               style={{width: '100%', marginTop: 32, marginBottom: 26}}
+//             />
+
+//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
             {/* 수다톡 */}
-            <CardTalk
-              datas={TALK01}
-              title={'인기 수다톡'}
-              more={() => {
-                this.props.navigation.navigate('TALK', {
-                  screen: 'TalkTop',
-                });
-              }}
-              nav={() => this.props.navigation.navigate('TalkDetail')}
-            />
-            {/* 포스팅 */}
-            <View style={posting.titleBox}>
-              {/*  */}
-              <View style={posting.title}>
-                <View
-                  style={{
-                    flex: 9,
-                  }}>
-                  <Text style={posting.titleText}>포스팅</Text>
+              <CardTalk
+                datas={TALK01}
+                title={'인기 수다톡'}
+                more={() => {
+                  this.props.navigation.navigate('TALK', {
+                    screen: 'TalkTop',
+                  });
+                }}
+                nav={() => this.props.navigation.navigate('TalkDetail')}
+                itemMarginVertical={8} //아이템 상하 간 간격
+                style={{marginBottom:46}}
+              />
+              {/* 포스팅 */}
+              <View style={[posting.titleBox,{marginBottom:47}]}>
+                {/*  */}
+                <View style={posting.title}>
+                  <View
+                    style={{
+                      flex: 9,
+                    }}>
+                    <Text style={posting.titleText}>포스팅</Text>
+                  </View>
+                  <TouchableOpacity onPress={this._rootNavi} style={{flex: 1}}>
+                    <Text style={posting.titleMore}>더보기</Text>
+                  </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={this._rootNavi} style={{flex: 1}}>
-                  <Text style={posting.titleMore}>더보기</Text>
-                </TouchableOpacity>
-              </View>
-              {/*  */}
-              <CardPost
-                nav={() => this.props.navigation.navigate('PostDetail')}
-              />
-              {/*  */}
-              <CardPost
-                nav={() => this.props.navigation.navigate('PostDetail')}
-              />
-              {/*  */}
-              <CardPost
-                nav={() => this.props.navigation.navigate('PostDetail')}
-              />
-              {/*  */}
+                {/*  */}
+                <CardPost
+                  nav={() => this.props.navigation.navigate('PostDetail')}
+                  style={{marginVertical:8, marginHorizontal:6}}
+                />
+                {/*  */}
+                <CardPost
+                  nav={() => this.props.navigation.navigate('PostDetail')}
+                  style={{marginVertical:8, marginHorizontal:6}}
+                />
+                {/*  */}
+                <CardPost
+                  nav={() => this.props.navigation.navigate('PostDetail')}
+                  style={{marginVertical:8, marginHorizontal:6}}
+                />
+                {/*  */}
+              </View>              
             </View>
+
             {/* footer */}
             <Footer />
             {/*  */}
@@ -375,9 +409,9 @@ const posting = StyleSheet.create({
 
     elevation: 5,
   },
-  title: {flexDirection: 'row', paddingLeft: 24, paddingRight: 24, height: 30},
+  title: {flexDirection: 'row', marginHorizontal:16, marginBottom:8},
   titleText: {fontSize: 16, fontWeight: 'bold'},
-  titleMore: {fontSize: 12, color: 'gray'},
+  titleMore: {fontSize: 10, color: 'gray'},
   textBox: {
     backgroundColor: 'white',
     margin: 15,

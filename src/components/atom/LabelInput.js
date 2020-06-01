@@ -16,39 +16,48 @@ export default class LabelInput extends Component {
       width: 295,
       fontSize: 12,
       fontSize2: 14,
+//       screenWidth: Dimensions.get('screen').width,
+
+//       width: '100%',
+//       fontSize: 12,
+//       fontSize_input: 14,
       textPadding: 15,
       button: false,
+
+      text:''
     };
   }
 
+  focus() {
+    this._myInput.focus();
+  }
+
+  getText() {
+    return this.state.text;
+  }
+
   componentWillMount() {
-    let screenWidth = Dimensions.get('screen').width;
-    if (screenWidth >= 834) {
-      this.setState({width: 500, fontSize: 18, fontSize2: 22, textPadding: 15});
-    }
-    console.log(this.state.width);
     // if (this.state.width >= screenWidth - 80) {
     //   this.setState({width: screenWidth - 80});
     // }
+    this.setState({text:this.props.defaultValue || ''});
   }
 
   render() {
+
+    const textSumbitProps = {};
+    if(this.props.onSubmitEditing) {
+      textSumbitProps.onSubmitEditing = this.props.onSubmitEditing;
+    }
+
     return (
-      <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+      <View style={[{flexDirection: 'row', alignItems: 'flex-end'},(this.props.style || {})]}>
         <View
           style={{
-            paddingBottom: 8,
-            paddingTop: 8,
-            width: this.state.width,
+            width: '100%'
           }}>
           {this.props.label ? (
-            <Text
-              style={{
-                marginLeft: 15,
-                marginBottom: 5,
-                fontSize: this.state.fontSize,
-                color: this.props.labelColor || BLACK60,
-              }}>
+            <Text style={{paddingLeft: this.state.textPadding, fontSize: this.state.fontSize, color: this.props.labelColor || BLACK60, fontWeight:'bold'}}>
               {this.props.label}
             </Text>
           ) : null}
@@ -62,28 +71,41 @@ export default class LabelInput extends Component {
             <TextInput
               placeholder={this.props.placeholder || ''}
               style={{
-                padding: this.state.textPadding,
-                fontSize: this.state.fontSize2,
+//                 padding: this.state.textPadding,
+//                 fontSize: this.state.fontSize2,
+                paddingLeft: this.state.textPadding,
+                paddingTop: 7,
+                paddingBottom: 5,
+                fontSize: this.state.fontSize_input,
                 color: this.props.textColor || 'black',
               }}
+
               placeholderTextColor={BLACK35}
               defaultValue={this.props.defaultValue || ''}
               value={this.props.email}
               onChangeText={this.props.onChangeText}
               secureTextEntry={this.props.secureTextEntry}
+//               defaultValue = {this.state.text}
+
+              ref={(input)=>{this._myInput = input}}
+
+//               onChangeText={(text)=>this.setState({text:text})}
+              
+
+              {...textSumbitProps}
             />
           </View>
         </View>
         {this.props.button ? (
           <TouchableOpacity
             style={{
-              backgroundColor: this.props.buttonColor || '#f3f3f3',
+              backgroundColor: this.props.buttonColor || '#f5f5f5',
               padding: 10,
               borderRadius: 50,
               marginBottom: 8,
               // marginRight: 40,
             }}>
-            <Text style={{fontSize: this.state.fontSize - 2}}>
+            <Text style={{fontSize: this.state.fontSize - 2, color:'#000000dd', fontWeight:'bold'}}>
               {this.props.btnTitle}
             </Text>
           </TouchableOpacity>
