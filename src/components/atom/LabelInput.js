@@ -13,10 +13,10 @@ export default class LabelInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: 240,
-      fontSize: 13,
-      fontSize2: 15,
-      textPadding: 10,
+      width: 295,
+      fontSize: 12,
+      fontSize2: 14,
+      textPadding: 15,
       button: false,
     };
   }
@@ -44,6 +44,8 @@ export default class LabelInput extends Component {
           {this.props.label ? (
             <Text
               style={{
+                marginLeft: 15,
+                marginBottom: 5,
                 fontSize: this.state.fontSize,
                 color: this.props.labelColor || BLACK60,
               }}>
@@ -55,19 +57,20 @@ export default class LabelInput extends Component {
             style={{
               flexGrow: 1,
               borderBottomColor: BLACK60,
-              borderBottomWidth: 1,
+              borderBottomWidth: 0.5,
             }}>
             <TextInput
               placeholder={this.props.placeholder || ''}
               style={{
                 padding: this.state.textPadding,
-                fontSize: this.state.fontSize,
+                fontSize: this.state.fontSize2,
                 color: this.props.textColor || 'black',
               }}
               placeholderTextColor={BLACK35}
               defaultValue={this.props.defaultValue || ''}
               value={this.props.email}
               onChangeText={this.props.onChangeText}
+              secureTextEntry={this.props.secureTextEntry}
             />
           </View>
         </View>
