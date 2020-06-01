@@ -14,6 +14,7 @@ import {
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Settings extends PureComponent {
   constructor(props) {
@@ -24,6 +25,17 @@ export default class Settings extends PureComponent {
       eventToggle: false,
     };
   }
+
+  signout = async () => {
+    const data = await AsyncStorage.getItem('key');
+    console.log('data:   ', data);
+    AsyncStorage.clear();
+    const data2 = await AsyncStorage.getItem('key');
+    console.log('data:   ', data2);
+    this.props.navigation.navigate('LoginMain', {
+      screen: 'Login',
+    });
+  };
 
   render() {
     return (
@@ -246,7 +258,10 @@ export default class Settings extends PureComponent {
                 alignItems: 'flex-end',
               }}>
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.signout();
+                  }}>
                   <Text style={{color: 'gray', fontSize: 13}}>로그아웃</Text>
                 </TouchableOpacity>
                 <View
@@ -256,7 +271,7 @@ export default class Settings extends PureComponent {
                     marginLeft: 10,
                     marginRight: 10,
                   }}></View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {}}>
                   <Text style={{color: 'gray', fontSize: 13}}>회원탈퇴</Text>
                 </TouchableOpacity>
               </View>

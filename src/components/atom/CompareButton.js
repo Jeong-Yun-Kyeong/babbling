@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../SvgComponent';
+import {DARKMINT} from '../../Constant';
 
 export default class CompareButton extends PureComponent {
   constructor(props) {
@@ -22,9 +23,9 @@ export default class CompareButton extends PureComponent {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#32CC73',
-    width: 60,
-    height: 60,
+    backgroundColor: DARKMINT,
+    width: 56,
+    height: 56,
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',

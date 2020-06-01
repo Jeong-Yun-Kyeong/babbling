@@ -13,11 +13,14 @@ export default class LabelInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      screenWidth: Dimensions.get('screen').width,
-
-      width: '100%',
+      width: 295,
       fontSize: 12,
-      fontSize_input: 14,
+      fontSize2: 14,
+//       screenWidth: Dimensions.get('screen').width,
+
+//       width: '100%',
+//       fontSize: 12,
+//       fontSize_input: 14,
       textPadding: 15,
       button: false,
 
@@ -55,7 +58,6 @@ export default class LabelInput extends Component {
           }}>
           {this.props.label ? (
             <Text style={{paddingLeft: this.state.textPadding, fontSize: this.state.fontSize, color: this.props.labelColor || BLACK60, fontWeight:'bold'}}>
-
               {this.props.label}
             </Text>
           ) : null}
@@ -64,11 +66,13 @@ export default class LabelInput extends Component {
             style={{
               flexGrow: 1,
               borderBottomColor: BLACK60,
-              borderBottomWidth: 1,
+              borderBottomWidth: 0.5,
             }}>
             <TextInput
               placeholder={this.props.placeholder || ''}
               style={{
+//                 padding: this.state.textPadding,
+//                 fontSize: this.state.fontSize2,
                 paddingLeft: this.state.textPadding,
                 paddingTop: 7,
                 paddingBottom: 5,
@@ -77,15 +81,18 @@ export default class LabelInput extends Component {
               }}
 
               placeholderTextColor={BLACK35}
-              defaultValue = {this.state.text}
+              defaultValue={this.props.defaultValue || ''}
+              value={this.props.email}
+              onChangeText={this.props.onChangeText}
+              secureTextEntry={this.props.secureTextEntry}
+//               defaultValue = {this.state.text}
 
               ref={(input)=>{this._myInput = input}}
 
-              onChangeText={(text)=>this.setState({text:text})}
+//               onChangeText={(text)=>this.setState({text:text})}
               
 
               {...textSumbitProps}
-
             />
           </View>
         </View>

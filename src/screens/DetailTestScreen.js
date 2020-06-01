@@ -55,6 +55,7 @@ export default class Detail extends PureComponent {
 
 
   render() {
+    const Datas = this.props.route.params.data;
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -73,13 +74,33 @@ export default class Detail extends PureComponent {
                     // backgroundColor: 'coral',
                   }}>
                   <Image
-                    source={require('../images/1.jpeg')}
+                    source={{
+                      uri:
+                        'http://babbling.co.kr/media/product/' +
+                        Datas.code +
+                        '/' +
+                        Datas.brand_name +
+                        '/' +
+                        Datas.name +
+                        '.jpg',
+                    }}
                     style={{
-                      maxHeight: 180,
-                      maxWidth: 180,
+                      width: 180,
+                      height: 180,
+                      // maxHeight: 180,
+                      // maxWidth: 180,
                     }}
                     resizeMode="contain"
                   />
+                  {console.log(
+                    'http://babbling.co.kr/media/product/' +
+                      Datas.code +
+                      '/' +
+                      Datas.brand_name +
+                      '/' +
+                      Datas.name +
+                      '.jpg',
+                  )}
                 </View>
                 {/* 상품명 */}
                 <View
@@ -91,7 +112,7 @@ export default class Detail extends PureComponent {
                   }}>
                   <Text style={{fontSize: 10, color: 'gray'}}>
                     {/* 존슨즈 베이비 */}
-                    {this.props.route.params.brand}
+                    {this.props.route.params.data.brand_name}
                   </Text>
                   <Text
                     style={{
@@ -101,7 +122,7 @@ export default class Detail extends PureComponent {
                       marginBottom: 10,
                     }}>
                     {/* 수딩내추럴 인텐스 모이스처 크림 */}
-                    {this.props.route.params.name}
+                    {this.props.route.params.data.name}
                   </Text>
                 </View>
                 {/* 평가,용량 및 가격 */}
@@ -156,8 +177,10 @@ export default class Detail extends PureComponent {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}>
-                      <Text style={{color: '#31CC74'}}> 4.72</Text>
-                      <Text>(520)</Text>
+                      <Text style={{color: '#31CC74'}}>
+                        {this.props.route.params.data.star}
+                      </Text>
+                      <Text>({this.props.route.params.data.star_count})</Text>
                     </View>
                   </View>
                   {/* 가격,용량등 */}

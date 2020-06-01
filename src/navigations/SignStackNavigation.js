@@ -15,6 +15,7 @@ import PassWord from '../screens/PWScreen';
 import PWChange from '../screens/PWChangeScreen';
 import BabyPlus from '../screens/BabyPlusScreen';
 import BabyAlergy from '../screens/BabyAlergyScreen';
+import {BLACK60} from '../Constant';
 
 const Stack = createStackNavigator();
 
@@ -52,12 +53,12 @@ const SignStack = ({navigation}) => {
       <Stack.Screen
         name="BabyPlus"
         component={BabyPlus}
-        options={({route}) => BabyPlusHeader(navigation,route)}
+        options={({route}) => BabyPlusHeader(navigation, route)}
       />
       <Stack.Screen
         name="BabyAlergy"
         component={BabyAlergy}
-        options={({route}) => BabyAlergyHeader(navigation,route)}
+        options={({route}) => BabyAlergyHeader(navigation, route)}
       />
     </Stack.Navigator>
   );
@@ -77,7 +78,7 @@ const EmailLoginHeader = (navigation) => ({
   headerTitleAlign: 'center',
   headerTitle: () => (
     <View style={{alignSelf: 'center'}}>
-      <Text style={{fontSize: 17}}>로그인</Text>
+      <Text style={{fontSize: 16, color: BLACK60}}>로그인</Text>
     </View>
   ),
   headerStyle: {
@@ -151,13 +152,12 @@ const PWChangeHeader = (navigation) => ({
   },
 });
 
-const BabyPlusHeader = (navigation,route) => {
-
+const BabyPlusHeader = (navigation, route) => {
   //const {isRegister} = navigation.getParam('params',{isRegister:false,});
   //const {isRegister} = navigation.state.params;
   //const {isRegister} = {isRegister:true};
 
-  const {isRegister} = route.params || {isRegister:false};
+  const {isRegister} = route.params || {isRegister: false};
 
   return {
     animationEnabled: false,
@@ -171,12 +171,16 @@ const BabyPlusHeader = (navigation,route) => {
       </TouchableOpacity>
     ),
     headerTitleAlign: 'center',
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 {(isRegister==true) ? "추가" : "등록"}하기</Text>,
+    headerTitle: () => (
+      <Text style={{fontSize: 17}}>
+        우리 아이 {isRegister == true ? '추가' : '등록'}하기
+      </Text>
+    ),
     headerRight: () => (
       <TouchableOpacity
         style={{marginRight: 24}}
         onPress={() => {
-          navigation.navigate('BabyAlergy',route.params);
+          navigation.navigate('BabyAlergy', route.params);
         }}>
         <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
       </TouchableOpacity>
@@ -187,12 +191,11 @@ const BabyPlusHeader = (navigation,route) => {
       },
       elevation: 0,
     },
-  }
+  };
 };
 
-const BabyAlergyHeader = (navigation,route) => {
-  
-  const {isRegister} = route.params || {isRegister:false};
+const BabyAlergyHeader = (navigation, route) => {
+  const {isRegister} = route.params || {isRegister: false};
 
   return {
     animationEnabled: false,
@@ -206,7 +209,11 @@ const BabyAlergyHeader = (navigation,route) => {
       </TouchableOpacity>
     ),
     headerTitleAlign: 'center',
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 {(isRegister==true) ? "추가" : "등록"}하기</Text>,
+    headerTitle: () => (
+      <Text style={{fontSize: 17}}>
+        우리 아이 {isRegister == true ? '추가' : '등록'}하기
+      </Text>
+    ),
     headerRight: () => (
       <TouchableOpacity
         style={{marginRight: 24}}
@@ -222,7 +229,7 @@ const BabyAlergyHeader = (navigation,route) => {
       },
       elevation: 0,
     },
-  }
+  };
 };
 
 export default SignStack;
