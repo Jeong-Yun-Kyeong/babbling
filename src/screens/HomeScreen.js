@@ -154,7 +154,7 @@ export default class Home extends PureComponent {
 
   getImages = async () => {
     const images = await fetch(
-      'http://babbling.co.kr/home/banner',
+      'http://babbling.co.kr/home/banner/',
     ).then((res) => res.json());
     return images;
   };
@@ -216,7 +216,8 @@ export default class Home extends PureComponent {
   };
 
   _renderItem = ({item, index}) => {
-    let url = 'http://babbling.co.kr/media/home_board/' + item.image;
+    let url = 'http://babbling.co.kr/media/' + item.image;
+    console.log(url, item);
     return (
       <TouchableOpacity
         activeOpacity={0.8}
