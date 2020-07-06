@@ -7,6 +7,9 @@ export {WHITESPACE, HEADER_WHITESPACE};
 // 폰트 크기
 export {HEADER_FONTSIZE, FONTSIZE};
 //
+export {URL};
+//
+const URL = 'http://babbling.babylab.kr';
 //
 const DARKMINT = 'rgb(47,211,121)';
 const BLACK35 = 'rgba(0,0,0,0.35)';

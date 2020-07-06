@@ -16,6 +16,7 @@ import Footer from './FooterScreen';
 import CardPost from '../components/CardPostComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import SlideImageBanner from '../components/SlideImageBannerComponent';
+import {URL} from '../Constant';
 
 const SLIDE01 = [
   {
@@ -153,9 +154,7 @@ export default class Home extends PureComponent {
   }
 
   getImages = async () => {
-    const images = await fetch(
-      'http://babbling.co.kr/home/banner/',
-    ).then((res) => res.json());
+    const images = await fetch(URL + '/home/banner/').then((res) => res.json());
     return images;
   };
 
@@ -166,7 +165,7 @@ export default class Home extends PureComponent {
 
   componentDidMount() {
     this.getBase();
-    fetch('http://babbling.co.kr/product/')
+    fetch(URL + '/product/')
       .then((res) => res.json())
       .then((resJson) => {
         console.log('fetc', resJson);
@@ -216,7 +215,7 @@ export default class Home extends PureComponent {
   };
 
   _renderItem = ({item, index}) => {
-    let url = 'http://babbling.co.kr/media/' + item.image;
+    let url = URL + '/media/' + item.image;
     console.log(url, item);
     return (
       <TouchableOpacity
