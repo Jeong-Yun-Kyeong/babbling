@@ -14,6 +14,8 @@ import FormButton from '../components/atom/FormButton';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 
+import * as ScreenMargin from '../values/ScreenMargin';
+
 export default class Join extends PureComponent {
   constructor(props) {
     super(props);
@@ -23,9 +25,12 @@ export default class Join extends PureComponent {
       check_01: false,
       check_02: false,
     };
+
+    
   }
 
   render() {
+    const screenMargin = ScreenMargin.getMargin(this.props.route.name);
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -35,38 +40,52 @@ export default class Join extends PureComponent {
             style={{
               // backgroundColor: 'skyblue',
               marginTop: 16,
-              marginLeft: 16,
-              marginRight: 16,
+              marginHorizontal:screenMargin
             }}>
-            <View
-              style={{
-                marginLeft: 20,
-                marginRight: 20,
-                // backgroundColor: 'pink',
-              }}>
-              <LabelInput
-                placeholder={'Babbling@babylab.com'}
-                label={'이메일'}
-              />
-              <LabelInput
-                placeholder={'********'}
-                label={'비밀번호(8자리 이상)'}
-              />
-              <LabelInput placeholder={'********'} label={'비밀번호 확인'} />
-              <LabelInput
-                placeholder={'홍길동'}
-                label={'이름'}
-                button={true}
-                btnTitle={'실명확인'}
-              />
-              <LabelInput
-                placeholder={'대전광역시 유성구 덕명로 97번길 19'}
-                label={'주소지입력'}
-                button={true}
-                btnTitle={'우편번호 검색'}
-              />
-              <LabelInput placeholder={'(직접입력)'} label={false} />
-            </View>
+            <LabelInput
+              placeholder={'Babbling@babylab.com'}
+              label={'이메일'}
+              style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.firstTextInput = input}}
+              onSubmitEditing ={()=>this.secondTextInput.focus()}
+            />
+            <LabelInput
+              placeholder={'********'}
+              label={'비밀번호(8자리 이상)'}
+              style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.secondTextInput = input}}
+              onSubmitEditing ={()=>this.thirdTextInput.focus()}
+            />
+            <LabelInput
+              placeholder={'********'}
+              label={'비밀번호 확인'}
+              style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.thirdTextInput = input}}
+              onSubmitEditing ={()=>this.ForthTextInput.focus()}
+            />
+            <LabelInput
+              placeholder={'홍길동'}
+              label={'이름'}
+              button={true}
+              btnTitle={'실명확인'}
+              style={{marginVertical:12,marginRight:62}}
+              ref={(input)=>{this.ForthTextInput = input}}
+              onSubmitEditing ={()=>this.FifthtextInput.focus()}
+            />
+            <LabelInput
+              placeholder={'대전광역시 유성구 덕명로 97번길 19'}
+              label={'주소지입력'}
+              button={true}
+              btnTitle={'우편번호 검색'}
+              style={{marginTop:12,marginRight:62}}
+              ref={(input)=>{this.FifthtextInput = input}}
+              onSubmitEditing ={()=>this.SixthTextInput.focus()}
+            />
+            <LabelInput
+              placeholder={'(직접입력)'}
+              label={false} style={{marginBotom:12,marginRight:62}}
+              ref={(input)=>{this.SixthTextInput = input}}
+            />
             {/*  */}
             {/*  */}
             <TouchableOpacity
@@ -88,7 +107,8 @@ export default class Join extends PureComponent {
                 }
               }}
               style={{
-                padding: 20,
+                marginTop:36,
+                marginBottom:16,
                 flexDirection: 'row',
                 alignItems: 'center',
                 position: 'relative',
@@ -106,8 +126,8 @@ export default class Join extends PureComponent {
                 backgroundColor: '#f3f3f3',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                paddingLeft: 20,
-                paddingRight: 20,
+                marginHorizontal:-20,
+                paddingHorizontal:20,
                 paddingTop: 20,
                 paddingBottom: 20,
                 alignItems: 'center',
@@ -194,6 +214,7 @@ export default class Join extends PureComponent {
               backgroundColor={'#32cc73'}
               color={'white'}
               nav={() => this.props.navigation.navigate('BabyPlus')}
+              style={{marginTop:56,marginBottom:30}}
             />
           </View>
         </ScrollView>
