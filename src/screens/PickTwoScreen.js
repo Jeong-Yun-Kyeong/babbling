@@ -18,6 +18,7 @@ import Footer from './FooterScreen';
 import CompareButton from '../components/atom/CompareButton';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import List from '../components/ListComponent';
+import {URL} from '../Constant';
 
 SVG('MILKPRODUCT');
 // <SvgXml xml={milkProduct} width="24" height="24" />
@@ -123,12 +124,22 @@ export default class Pick extends PureComponent {
     this.state = {
       images: [],
       activeSlide: 0,
+      slide2: [],
     };
     this.AnimatedHeaderValue = new Animated.Value(0);
   }
 
   componentWillMount() {
     this.setState({images: IMAGESLIDE});
+    console.log('시작');
+    fetch(URL + '/product/')
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log('데이터 받아오기', resJson);
+        this.setState({
+          slide02: resJson,
+        });
+      });
   }
 
   _renderItem = ({item, index}) => {
@@ -292,10 +303,11 @@ export default class Pick extends PureComponent {
               </View>
 
               {/* slide02 */}
+              {console.log(this.state.slide2)}
               <List
                 navigation={this.props.navigation}
                 title={'베베를 위한 추천 pick'}
-                datas={SLIDE02}
+                datas={this.state.slide02}
                 page={3}
               />
               {/* TODO:여기 위 아래 부분 비슷해서 컴포넌트 썻는데 실제로 다른거같아서 추후 처리 필요 페이지네이션부분은 컴포넌트화 안되어있음 */}

@@ -206,7 +206,7 @@ const Login = ({navigation, route}) => {
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',  marginHorizontal:screenPadding}}>
           {/* 뷰1 */}
           {LOGO()}
-          {SNS_LOGIN(navigation)}
+          {/* {SNS_LOGIN(navigation)} */}
           <FormButton
             nav={() => {
               navigation.navigate('EmailLogin');

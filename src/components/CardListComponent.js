@@ -20,56 +20,8 @@ import {
   BLACK87,
   DARKMINT,
   WHITESPACE,
+  URL,
 } from '../Constant';
-
-// const DATA = [
-//   {
-//     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//     title: 'First Item',
-//   },
-//   {
-//     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//     title: 'Second Item',
-//   },
-//   {
-//     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//     title: 'Third Item',
-//   },
-//   {
-//     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//     title: 'First Item',
-//   },
-//   {
-//     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//     title: 'Second Item',
-//   },
-//   {
-//     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//     title: 'Third Item',
-//   },
-// ];
-
-// function Item({title}) {
-//   return (
-//     <View style={{}}>
-//       <Text style={{}}>{title}</Text>
-//     </View>
-//   );
-// }
-
-// const CardList = () => {
-//   return (
-//     <>
-//       <FlatList
-//         data={DATA}
-//         renderItem={({item}) => <Item title={item.title} />}
-//         keyExtractor={(item) => item.id}
-//       />
-//     </>
-//   );
-// };
-
-// export default CardList;
 
 export default class CardList extends Component {
   constructor(props) {
@@ -145,7 +97,8 @@ export default class CardList extends Component {
     if (datas.length > 0) {
       return datas.map((data, index) => {
         let url =
-          'http://babbling.co.kr/media/product/' +
+          URL +
+          '/media/product/' +
           data.code +
           '/' +
           data.brand_name +
