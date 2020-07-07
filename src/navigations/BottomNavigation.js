@@ -10,7 +10,6 @@ import HomeStack from './HomeNavigation';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import EventStack from './EventStackNavigation';
-import Login from '../screens/LoginScreen';
 import TalkStack from './TalkStackNavigation';
 
 const Tab = createBottomTabNavigator();

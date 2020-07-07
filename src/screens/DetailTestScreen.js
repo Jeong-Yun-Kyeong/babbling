@@ -15,6 +15,7 @@ import {
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import BuyAndCompare from '../components/molecule/BuyAndCompareBottom';
+import {URL} from '../Constant';
 
 const DATAS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const HorizonScroll = (datas) => {
@@ -53,147 +54,309 @@ export default class Detail extends PureComponent {
     console.log(this.props.route.params.brand, this.props.route.params.name);
   }
 
+  ingredients01 = () => {
+    return (
+      <View>
+        <View>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 12, width: 90}}>EWG 주의 등급</Text>
+              <Text style={{fontSize: 12}}>n개</Text>
+            </View>
+            <SvgXml xml={SVG('CAUTION')} />
+          </View>
+        </View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: 12, width: 90}}>KCII 안정성</Text>
+            <Text style={{fontSize: 12}}>n개</Text>
+          </View>
+          <SvgXml xml={SVG('KCII_DANGER')} />
+        </View>
+      </View>
+    );
+  };
+
+  ingredients02 = () => {
+    return (
+      <View>
+        <View>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 12, width: 90}}>알레르기</Text>
+              <Text style={{fontSize: 12}}>n개</Text>
+            </View>
+            <SvgXml xml={SVG('ALLERGY')} />
+          </View>
+        </View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: 12, width: 90}}>식품첨가물</Text>
+            <Text style={{fontSize: 12}}>nn개</Text>
+          </View>
+          <SvgXml xml={SVG('FOOD_ADDITIVES')} />
+        </View>
+      </View>
+    );
+  };
+
+  ingredients03 = () => {
+    return (
+      <View>
+        <View>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 12, width: 90}}>알레르기 유발</Text>
+              <Text style={{fontSize: 12}}>n개</Text>
+            </View>
+            <SvgXml xml={SVG('ALLERGY')} />
+          </View>
+        </View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: 12, width: 90}}>독성정보</Text>
+            <Text style={{fontSize: 12}}>nn개</Text>
+          </View>
+          <SvgXml xml={SVG('TOXIC')} />
+        </View>
+      </View>
+    );
+  };
+
+  ingredients04 = () => {
+    return (
+      <View>
+        <View>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontSize: 12, width: 90}}>필수성분</Text>
+              <Text style={{fontSize: 12}}>n개</Text>
+            </View>
+            <SvgXml xml={SVG('ESSENTIAL')} />
+          </View>
+        </View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: 12, width: 90}}>EWG 주의등급</Text>
+            <Text style={{fontSize: 12}}>n개</Text>
+          </View>
+          <SvgXml xml={SVG('CAUTION')} />
+        </View>
+      </View>
+    );
+  };
+
+  ingredientsCount = (kind) => {
+    switch (kind) {
+      case '1':
+        return this.ingredients01();
+      case '2':
+        return this.ingredients02();
+      case '3':
+        return this.ingredients03();
+      case '4':
+        return this.ingredients04();
+      default:
+        console.log('없음');
+    }
+  };
+
+  _basicInformation = (datas) => {
+    return (
+      <View
+        style={{
+          backgroundColor: 'white',
+          marginTop: 1,
+          paddingLeft: 39,
+          paddingRight: 39,
+        }}>
+        {/* 이미지 */}
+        <View
+          style={{
+            height: 240,
+            justifyContent: 'center',
+            alignItems: 'center',
+            // backgroundColor: 'coral',
+          }}>
+          <Image
+            source={{
+              uri:
+                URL +
+                '/media/product/' +
+                datas.code +
+                '/' +
+                datas.brand_name +
+                '/' +
+                datas.name +
+                '.jpg',
+            }}
+            style={{
+              width: 180,
+              height: 180,
+              // maxHeight: 180,
+              // maxWidth: 180,
+            }}
+            resizeMode="contain"
+          />
+          {console.log(
+            URL +
+              '/media/product/' +
+              datas.code +
+              '/' +
+              datas.brand_name +
+              '/' +
+              datas.name +
+              '.jpg',
+          )}
+        </View>
+        {/* 상품명 */}
+        <View
+          style={{
+            // backgroundColor: 'aquamarine',
+            height: 43,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 10, color: 'gray'}}>
+            {/* 존슨즈 베이비 */}
+            {datas.brand_name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 14,
+              fontWeight: 'bold',
+              marginTop: 10,
+              marginBottom: 10,
+            }}>
+            {/* 수딩내추럴 인텐스 모이스처 크림 */}
+            {datas.name}
+          </Text>
+        </View>
+        {/* 평가,용량 및 가격 */}
+        <View
+          style={{
+            flexDirection: 'row',
+            // backgroundColor: 'cornflowerblue',
+            height: 52,
+          }}>
+          {/* 우유병그림 및 평점 */}
+          <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <SvgXml xml={SVG('STAR_CHECKED')} width="26" height="26" />
+              <SvgXml
+                xml={SVG('STAR_CHECKED')}
+                width="26"
+                height="26"
+                style={{marginLeft: -9}}
+              />
+              <SvgXml
+                xml={SVG('STAR_CHECKED')}
+                width="26"
+                height="26"
+                style={{marginLeft: -9}}
+              />
+              <SvgXml
+                xml={SVG('STAR_CHECKED')}
+                width="26"
+                height="26"
+                style={{marginLeft: -9}}
+              />
+              <SvgXml
+                xml={SVG('STAR_CHECKED')}
+                width="26"
+                height="26"
+                style={{marginLeft: -9}}
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#31CC74'}}>
+                {datas.star == null ? 0.0 : datas.star}
+              </Text>
+              <Text style={{color: 'rgba(0,0,0,0.35)'}}>
+                ({datas.star_count == null ? 0 : datas.star_count})
+              </Text>
+            </View>
+          </View>
+          {/* 가격,용량등 */}
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'rgba(0,0,0,0.6)', fontSize: 12}}>
+              435g(80매)
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   render() {
     const Datas = this.props.route.params.data;
+    console.log.datas;
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-          <ScrollView style={{backgroundColor: 'white'}}>
-            <View style={{backgroundColor: '#f9f9f9'}}>
+          <ScrollView
+            style={{backgroundColor: 'white'}}
+            showsVerticalScrollIndicator={false}>
+            <View style={{backgroundColor: 'rgb(245,245,245)'}}>
               {/* 제품이미지 */}
-              <View
-                style={{backgroundColor: 'white', height: 335, marginTop: 1}}>
-                {/* 이미지 */}
-                <View
-                  style={{
-                    height: 240,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    // backgroundColor: 'coral',
-                  }}>
-                  <Image
-                    source={{
-                      uri:
-                        'http://babbling.co.kr/media/product/' +
-                        Datas.code +
-                        '/' +
-                        Datas.brand_name +
-                        '/' +
-                        Datas.name +
-                        '.jpg',
-                    }}
-                    style={{
-                      width: 180,
-                      height: 180,
-                      // maxHeight: 180,
-                      // maxWidth: 180,
-                    }}
-                    resizeMode="contain"
-                  />
-                  {console.log(
-                    'http://babbling.co.kr/media/product/' +
-                      Datas.code +
-                      '/' +
-                      Datas.brand_name +
-                      '/' +
-                      Datas.name +
-                      '.jpg',
-                  )}
-                </View>
-                {/* 상품명 */}
-                <View
-                  style={{
-                    // backgroundColor: 'aquamarine',
-                    height: 43,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 10, color: 'gray'}}>
-                    {/* 존슨즈 베이비 */}
-                    {this.props.route.params.data.brand_name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}>
-                    {/* 수딩내추럴 인텐스 모이스처 크림 */}
-                    {this.props.route.params.data.name}
-                  </Text>
-                </View>
-                {/* 평가,용량 및 가격 */}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    // backgroundColor: 'cornflowerblue',
-                    height: 52,
-                  }}>
-                  {/* 우유병그림 및 평점 */}
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <SvgXml
-                        xml={SVG('STAR_CHECKED')}
-                        width="26"
-                        height="26"
-                      />
-                      <SvgXml
-                        xml={SVG('STAR_CHECKED')}
-                        width="26"
-                        height="26"
-                        style={{marginLeft: -9}}
-                      />
-                      <SvgXml
-                        xml={SVG('STAR_CHECKED')}
-                        width="26"
-                        height="26"
-                        style={{marginLeft: -9}}
-                      />
-                      <SvgXml
-                        xml={SVG('STAR_CHECKED')}
-                        width="26"
-                        height="26"
-                        style={{marginLeft: -9}}
-                      />
-                      <SvgXml
-                        xml={SVG('STAR_CHECKED')}
-                        width="26"
-                        height="26"
-                        style={{marginLeft: -9}}
-                      />
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}>
-                      <Text style={{color: '#31CC74'}}>
-                        {this.props.route.params.data.star}
-                      </Text>
-                      <Text>({this.props.route.params.data.star_count})</Text>
-                    </View>
-                  </View>
-                  {/* 가격,용량등 */}
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <Text>정가 435g(80매) / 24,000원</Text>
-                  </View>
-                </View>
-              </View>
-
+              {this._basicInformation(Datas)}
               {/* 성분그래프?? */}
               <View
                 style={{
@@ -217,138 +380,27 @@ export default class Detail extends PureComponent {
                     }}></View>
                 </View>
                 {/*  */}
-                <View style={{flexDirection: 'row', marginBottom: 14}}>
-                  <Text style={{fontSize: 12}}>총 성분</Text>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    width: 400,
+                    height: 50,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'rgb(0,0,0)',
+                  }}
+                  onPress={() => {}}
+                  style={{flexDirection: 'row', marginBottom: 14}}>
+                  <Text style={{fontSize: 12, color: 'rgba(0,0,0,0.87)'}}>
+                    총 성분
+                  </Text>
                   <Text style={{fontSize: 12, marginLeft: 18}}>nn개</Text>
-                </View>
+                  <View style={{}}>
+                    <SvgXml xml={SVG('DOWNMORE')} />
+                  </View>
+                </TouchableOpacity>
                 {/* 디테일1 내용 */}
-                <View>
-                  <View>
-                    <View
-                      style={{
-                        justifyContent: 'space-between',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}>
-                      <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontSize: 12, width: 90}}>
-                          EWG 주의 등급
-                        </Text>
-                        <Text style={{fontSize: 12}}>n개</Text>
-                      </View>
-                      <SvgXml xml={SVG('CAUTION')} />
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontSize: 12, width: 90}}>KCII 안정성</Text>
-                      <Text style={{fontSize: 12}}>n개</Text>
-                    </View>
-                    <SvgXml xml={SVG('KCII_DANGER')} />
-                  </View>
-                </View>
-                {/*  */}
-                <View style={{backgroundColor: 'coral', height: 3}}></View>
-                {/* 디테일2 내용, 식품? */}
-                <View>
-                  <View>
-                    <View
-                      style={{
-                        justifyContent: 'space-between',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}>
-                      <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontSize: 12, width: 90}}>알레르기</Text>
-                        <Text style={{fontSize: 12}}>n개</Text>
-                      </View>
-                      <SvgXml xml={SVG('ALLERGY')} />
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontSize: 12, width: 90}}>식품첨가물</Text>
-                      <Text style={{fontSize: 12}}>nn개</Text>
-                    </View>
-                    <SvgXml xml={SVG('FOOD_ADDITIVES')} />
-                  </View>
-                </View>
-                {/*  */}
-                <View style={{backgroundColor: 'coral', height: 3}}></View>
-                {/* 디테일3 내용, 화장품? */}
-                <View>
-                  <View>
-                    <View
-                      style={{
-                        justifyContent: 'space-between',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}>
-                      <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontSize: 12, width: 90}}>
-                          알레르기 유발
-                        </Text>
-                        <Text style={{fontSize: 12}}>n개</Text>
-                      </View>
-                      <SvgXml xml={SVG('ALLERGY')} />
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontSize: 12, width: 90}}>독성정보</Text>
-                      <Text style={{fontSize: 12}}>nn개</Text>
-                    </View>
-                    <SvgXml xml={SVG('TOXIC')} />
-                  </View>
-                </View>
-                {/*  */}
-                <View style={{backgroundColor: 'coral', height: 3}}></View>
-                {/* 디테일4 내용, 치약? */}
-                <View>
-                  <View>
-                    <View
-                      style={{
-                        justifyContent: 'space-between',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}>
-                      <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontSize: 12, width: 90}}>필수성분</Text>
-                        <Text style={{fontSize: 12}}>n개</Text>
-                      </View>
-                      <SvgXml xml={SVG('ESSENTIAL')} />
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontSize: 12, width: 90}}>
-                        EWG 주의등급
-                      </Text>
-                      <Text style={{fontSize: 12}}>n개</Text>
-                    </View>
-                    <SvgXml xml={SVG('CAUTION')} />
-                  </View>
-                </View>
+                <View>{this.ingredientsCount(Datas.code.charAt(0))}</View>
               </View>
 
               {/*  */}
@@ -363,7 +415,9 @@ export default class Detail extends PureComponent {
                   paddingRight: 25,
                 }}
                 onPress={() => {
-                  this.props.navigation.navigate('Ingredients');
+                  this.props.navigation.navigate('Ingredients', {
+                    kind: Datas.code.charAt(0),
+                  });
                 }}>
                 <View></View>
                 <Text style={{fontSize: 17, color: 'gray'}}>
@@ -373,10 +427,18 @@ export default class Detail extends PureComponent {
               </TouchableOpacity>
               {/* doc tip */}
               <TouchableOpacity
+                style={{backgroundColor: 'pink'}}
                 onPress={() => {
                   this.setState({modalVisible: true});
                 }}>
-                <Image source={require('../images/DrTip.png')} />
+                <Image
+                  source={require('../images/doctor_tip/doc_tip_banner.png')}
+                  resizeMode="contain"
+                  style={{
+                    width: Dimensions.get('window').width,
+                    resizeMode: 'contain',
+                  }}
+                />
               </TouchableOpacity>
               {/* caution! */}
               <View style={{backgroundColor: 'rgb(245,245,245)', padding: 15}}>
@@ -717,7 +779,7 @@ export default class Detail extends PureComponent {
                 backgroundColor: 'coral',
                 width: 350,
                 height: 350,
-                borderRadius: 20,
+                borderRadius: 10,
                 overflow: 'hidden',
               }}>
               <View

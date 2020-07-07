@@ -2,6 +2,7 @@ import React, {Fragment, PureComponent} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from './SvgComponent';
+import {URL} from '../Constant';
 
 export default class List extends PureComponent {
   constructor(props) {
@@ -11,16 +12,27 @@ export default class List extends PureComponent {
 
   _intoDetail = (data) => {
     this.props.navigation.navigate('Detail', {
-      brand: data.title,
-      name: data.name,
+      data: data,
     });
   };
 
   _getList = (datas) => {
+    console.log(datas);
     let height = this.props.height;
     const limit = parseInt(height / 75);
+
     //널로 바꾸는것 보다는 데이터 자체의 길이를 자르고 처리하는게 리소스 소모가 줄어들지도 모른다.
     return datas.map((data, index) => {
+      let url =
+        URL +
+        '/media/product/' +
+        data.code +
+        '/' +
+        data.brand_name +
+        '/' +
+        data.name +
+        '.jpg';
+      console.log(url);
       return index >= limit ? null : (
         <View style={styles.cardList} key={index}>
           <TouchableOpacity
@@ -31,18 +43,25 @@ export default class List extends PureComponent {
                 styles.cardImage,
                 {justifyContent: 'center', alignItems: 'center'},
               ]}>
+              <Image
+                source={{
+                  uri: url,
+                }}
+                style={{width: 55, height: 55}}
+                resizeMode="contain"
+              />
               {/* {this._image(data.img)} */}
-              <View
+              {/* <View
                 style={{
                   backgroundColor: 'pink',
                   width: 60,
                   height: 60,
                   borderRadius: 5,
-                }}></View>
+                }}></View> */}
             </View>
             <View style={styles.cardInfo}>
               <View style={styles.cardInfoCompany}>
-                <Text style={styles.comText}>{data.title}</Text>
+                <Text style={styles.comText}>{data.brand_name}</Text>
               </View>
               <View style={styles.cardInfoProduct}>
                 <Text style={styles.comTitle}>{data.name}</Text>
@@ -58,8 +77,10 @@ export default class List extends PureComponent {
                 height="20"
                 style={{marginRight: -3, marginTop: -5}}
               />
-              <Text style={{color: '#31CC74', fontSize: 12}}>{data.score}</Text>
-              <Text style={{fontSize: 9, color: 'gray'}}>({data.count})</Text>
+              <Text style={{color: '#31CC74', fontSize: 12}}>{data.star}</Text>
+              <Text style={{fontSize: 9, color: 'gray'}}>
+                ({data.star_count})
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

@@ -67,7 +67,23 @@ export default class Ingredients extends PureComponent {
       two: 'none',
       three: 'none',
       four: 'flex',
+      kind: props.route.params.data,
     };
+  }
+
+  componentDidMount() {
+    switch (this.state.kind) {
+      case '1':
+        this.setState({one: 'flex', two: 'none', three: 'none', four: 'none'});
+      case '2':
+        this.setState({one: 'none', two: 'flex', three: 'none', four: 'none'});
+      case '3':
+        this.setState({one: 'none', two: 'none', three: 'flex', four: 'none'});
+      case '4':
+        this.setState({one: 'none', two: 'none', three: 'none', four: 'flex'});
+      default:
+        console.log('없음');
+    }
   }
 
   _list = (datas) => {
@@ -262,7 +278,7 @@ export default class Ingredients extends PureComponent {
               </View>
             </View>
             {/*  */}
-            <Text>TEST CODE</Text>
+            {/* <Text>TEST CODE</Text>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity
                 style={{padding: 10}}
@@ -312,7 +328,7 @@ export default class Ingredients extends PureComponent {
                 }}>
                 <Text>4</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             {/* one */}
             <View style={{display: this.state.one}}>
               {/* icon */}
