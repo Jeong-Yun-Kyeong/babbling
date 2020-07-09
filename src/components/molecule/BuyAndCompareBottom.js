@@ -34,8 +34,8 @@ export default class BuyAndCompare extends PureComponent {
           <View
             style={{
               backgroundColor: 'white',
-              borderTopWidth: 1,
-              borderTopColor: 'gray',
+              borderTopWidth: 2,
+              borderTopColor: 'rgba(0,0,0,0.16)',
               height: 60,
             }}>
             <View style={{flexDirection: 'row', height: 60}}>

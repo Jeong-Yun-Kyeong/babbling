@@ -47,6 +47,7 @@ export default class Detail extends PureComponent {
     this.state = {
       modalVisible: false,
       imageModalVisible: false,
+      ingredeintCountView: 'none',
     };
   }
 
@@ -346,13 +347,14 @@ export default class Detail extends PureComponent {
 
   render() {
     const Datas = this.props.route.params.data;
-    console.log.datas;
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
           <ScrollView
-            style={{backgroundColor: 'white'}}
+            style={{
+              backgroundColor: 'white',
+            }}
             showsVerticalScrollIndicator={false}>
             <View style={{backgroundColor: 'rgb(245,245,245)'}}>
               {/* 제품이미지 */}
@@ -365,7 +367,7 @@ export default class Detail extends PureComponent {
                   paddingLeft: 24,
                   paddingRight: 24,
                   paddingTop: 18,
-                  paddingBottom: 18,
+                  // paddingBottom: 18,
                 }}>
                 <View style={{}}>
                   <SvgXml xml={SVG('SAFETY')} width="44" height="44" />
@@ -374,7 +376,7 @@ export default class Detail extends PureComponent {
                 <View style={{paddingTop: 15, paddingBottom: 10}}>
                   <View
                     style={{
-                      backgroundColor: 'green',
+                      backgroundColor: 'rgb(65,195,0)',
                       height: 16,
                       borderRadius: 16,
                     }}></View>
@@ -383,27 +385,35 @@ export default class Detail extends PureComponent {
                 <TouchableOpacity
                   style={{
                     flexDirection: 'row',
-                    width: 400,
-                    height: 50,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'rgb(0,0,0)',
+                    marginBottom: 14,
                   }}
-                  onPress={() => {}}
-                  style={{flexDirection: 'row', marginBottom: 14}}>
+                  onPress={() => {
+                    this.state.ingredeintCountView == 'none'
+                      ? this.setState({ingredeintCountView: 'flex'})
+                      : this.setState({ingredeintCountView: 'none'});
+                  }}>
                   <Text style={{fontSize: 12, color: 'rgba(0,0,0,0.87)'}}>
                     총 성분
                   </Text>
                   <Text style={{fontSize: 12, marginLeft: 18}}>nn개</Text>
-                  <View style={{}}>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: 'flex-end',
+                    }}>
                     <SvgXml xml={SVG('DOWNMORE')} />
                   </View>
                 </TouchableOpacity>
                 {/* 디테일1 내용 */}
-                <View>{this.ingredientsCount(Datas.code.charAt(0))}</View>
+                <View
+                  style={{
+                    display: this.state.ingredeintCountView,
+                    paddingBottom: 20,
+                  }}>
+                  {this.ingredientsCount(Datas.code.charAt(0))}
+                </View>
               </View>
-
-              {/*  */}
+              {/* 전성분보러가기 */}
               <TouchableOpacity
                 style={{
                   backgroundColor: 'white',
@@ -417,6 +427,7 @@ export default class Detail extends PureComponent {
                 onPress={() => {
                   this.props.navigation.navigate('Ingredients', {
                     kind: Datas.code.charAt(0),
+                    ingredient: Datas.ingredients,
                   });
                 }}>
                 <View></View>
@@ -425,24 +436,30 @@ export default class Detail extends PureComponent {
                 </Text>
                 <SvgXml xml={SVG('ARROWRIGHT')} />
               </TouchableOpacity>
+
               {/* doc tip */}
               <TouchableOpacity
-                style={{backgroundColor: 'pink'}}
                 onPress={() => {
                   this.setState({modalVisible: true});
                 }}>
                 <Image
                   source={require('../images/doctor_tip/doc_tip_banner.png')}
-                  resizeMode="contain"
                   style={{
                     width: Dimensions.get('window').width,
-                    resizeMode: 'contain',
+                    height: (173 * Dimensions.get('window').width) / 1040,
                   }}
+                  resizeMode="contain"
                 />
               </TouchableOpacity>
+
               {/* caution! */}
-              <View style={{backgroundColor: 'rgb(245,245,245)', padding: 15}}>
-                <Text style={{fontSize: 10, color: 'rgb(70,70,70)'}}>
+              <View style={{backgroundColor: 'rgb(245,245,245)', padding: 16}}>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    color: 'rgb(70,70,70)',
+                    marginBottom: 3,
+                  }}>
                   Caution!
                 </Text>
                 <Text style={{fontSize: 10, color: 'rgb(70,70,70)'}}>
@@ -450,12 +467,17 @@ export default class Detail extends PureComponent {
                   유발성분을 한번 더 확인하시길 바랍니다.
                 </Text>
               </View>
-              {/*  */}
+
+              {/* 리뷰 */}
               <View
                 style={{backgroundColor: 'white', padding: 15, paddingTop: 35}}>
                 <View style={{flexDirection: 'row', marginBottom: 10}}>
-                  <Text>우리 아이를 위한 솔직 리뷰</Text>
-                  <Text style={{color: '#31CC74'}}>520</Text>
+                  <Text style={{color: 'rgba(0,0,0,0.6)', fontSize: 14}}>
+                    우리 아이를 위한 솔직 리뷰
+                  </Text>
+                  <Text style={{color: 'rgb(47,211,121)', fontSize: 14}}>
+                    {Datas.star_count == null ? 0 : Datas.star_count}
+                  </Text>
                 </View>
                 <ScrollView
                   horizontal={true}
@@ -474,7 +496,7 @@ export default class Detail extends PureComponent {
                         fontSize: 25,
                         fontWeight: 'bold',
                       }}>
-                      4.72
+                      {Datas.star == null ? 0.0 : Datas.star}
                     </Text>
                     <View style={{flexDirection: 'row'}}>
                       <SvgXml
@@ -514,12 +536,14 @@ export default class Detail extends PureComponent {
                       this.props.navigation.navigate('ReviewWrite');
                     }}
                     style={{
-                      borderWidth: 0.5,
-                      borderColor: 'black',
-                      height: 90,
-                      width: 90,
+                      borderWidth: 1,
+                      borderColor: 'rgb(112,112,112)',
+                      height: 96,
+                      width: 96,
                       borderRadius: 5,
-                      margin: 3,
+                      margin: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}>
                     <Text>+</Text>
                   </TouchableOpacity>
@@ -528,37 +552,17 @@ export default class Detail extends PureComponent {
                       this.setState({imageModalVisible: true});
                     }}
                     style={{
-                      borderWidth: 0.5,
-                      borderColor: 'black',
-                      height: 90,
-                      width: 90,
+                      borderWidth: 1,
+                      borderColor: 'rgb(112,112,112)',
+                      height: 96,
+                      width: 96,
                       borderRadius: 5,
-                      margin: 3,
-                    }}></TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setState({imageModalVisible: true});
-                    }}
-                    style={{
-                      borderWidth: 0.5,
-                      borderColor: 'black',
-                      height: 90,
-                      width: 90,
-                      borderRadius: 5,
-                      margin: 3,
-                    }}></TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setState({imageModalVisible: true});
-                    }}
-                    style={{
-                      borderWidth: 0.5,
-                      borderColor: 'black',
-                      height: 90,
-                      width: 90,
-                      borderRadius: 5,
-                      margin: 3,
-                    }}></TouchableOpacity>
+                      margin: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text>click!</Text>
+                  </TouchableOpacity>
                 </ScrollView>
               </View>
               {/*  */}
@@ -568,10 +572,10 @@ export default class Detail extends PureComponent {
                 }}>
                 <View
                   style={{
-                    backgroundColor: 'black',
+                    backgroundColor: 'rgba(0,0,0,0.6)',
                     height: 0.5,
-                    marginLeft: 15,
-                    marginRight: 15,
+                    marginLeft: 16,
+                    marginRight: 16,
                   }}></View>
               </View>
               {/* 댓글 */}
@@ -582,7 +586,6 @@ export default class Detail extends PureComponent {
                     // height: 150,
                     padding: 17,
                   }}>
-                  {/* 이미지 */}
                   <View style={{marginRight: 14}}>
                     <View
                       style={{
@@ -679,8 +682,7 @@ export default class Detail extends PureComponent {
               </View>
 
               {/*  */}
-              <TouchableOpacity
-                onPress={()=>this.props.navigation.navigate('Review')}
+              {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#f9f9f9',
                   flexDirection: 'row',
@@ -691,19 +693,18 @@ export default class Detail extends PureComponent {
                   리뷰 nnn개 전체보기
                 </Text>
                 <SvgXml xml={SVG('ARROWRIGHT')} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               {/*  */}
-              <View
+              {/* <View
                 style={{padding: 16, paddingTop: 32, backgroundColor: 'white'}}>
-                {/* image */}
                 <Image
                   source={require('../images/detail.png')}
                   resizeMode="contain"
                   style={{marginBottom: 10}}
                 />
-              </View>
+              </View> */}
               {/* more */}
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   flexDirection: 'row',
                   backgroundColor: '#f9f9f9',
@@ -714,14 +715,12 @@ export default class Detail extends PureComponent {
                   상세정보 더보기
                 </Text>
                 <SvgXml xml={SVG('ARROWRIGHT')} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               {/*  */}
-              <View style={{backgroundColor: 'white', paddingTop: 16}}>
-                {/* title */}
+              {/* <View style={{backgroundColor: 'white', paddingTop: 16}}>
                 <View style={{padding: 16}}>
                   <Text>추천상품</Text>
                 </View>
-                {/* body */}
                 <ScrollView
                   style={{
                     flexDirection: 'row',
@@ -734,14 +733,12 @@ export default class Detail extends PureComponent {
                   showsHorizontalScrollIndicator={false}>
                   {HorizonScroll(DATAS)}
                 </ScrollView>
-              </View>
+              </View> */}
               {/*  */}
-              <View style={{backgroundColor: 'white', paddingTop: 16}}>
-                {/* title */}
+              {/* <View style={{backgroundColor: 'white', paddingTop: 16}}>
                 <View style={{padding: 16}}>
                   <Text>최근 본 상품</Text>
                 </View>
-                {/* body */}
                 <ScrollView
                   style={{
                     flexDirection: 'row',
@@ -754,7 +751,7 @@ export default class Detail extends PureComponent {
                   showsHorizontalScrollIndicator={false}>
                   {HorizonScroll(DATAS)}
                 </ScrollView>
-              </View>
+              </View> */}
             </View>
           </ScrollView>
           {/*  */}
@@ -817,23 +814,6 @@ export default class Detail extends PureComponent {
                 style={{width: 350, height: 350}}
               />
             </View>
-
-            {/* <View style={{margin: 20, backgroundColor: 'green'}}>
-              <Image
-                source={require('../images/DocTip.png')}
-                resizeMode="contain"
-                style={{width: '100%'}}
-              />
-            </View> */}
-            {/* <View
-                  style={{position: 'absolute', left: 0, top: 0, zIndex: 10}}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setState({modalVisible: false});
-                    }}>
-                    <Text style={{color: 'white'}}>닫기</Text>
-                  </TouchableOpacity>
-                </View> */}
           </View>
         </Modal>
         <Modal visible={this.state.imageModalVisible}>

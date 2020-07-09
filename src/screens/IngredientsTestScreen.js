@@ -9,6 +9,7 @@ import {
   Modal,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
+import {URL} from '../Constant';
 
 import SVG from '../components/SvgComponent';
 
@@ -67,20 +68,57 @@ export default class Ingredients extends PureComponent {
       two: 'none',
       three: 'none',
       four: 'flex',
-      kind: props.route.params.data,
+      kind: props.route.params.kind,
+      ingredient: props.route.params.ingredient,
+      data: null,
     };
   }
 
+  _getIngredientsData = () => {
+    form = new FormData();
+    form.append('kind', this.state.kind);
+    form.append('ingredient', this.state.ingredient);
+    fetch(URL + '/product/detail/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log('--------------- data : ', resJson[0]);
+        this.setState({data: resJson[0]});
+      });
+  };
+
   componentDidMount() {
+    console.log(
+      '------------------가져오는 필수 데이터 : ' +
+        this.state.kind +
+        ', ' +
+        this.state.ingredient,
+    );
+    this._getIngredientsData();
+    console.log(this.state.kind);
     switch (this.state.kind) {
       case '1':
+        console.log(this.state.kind);
         this.setState({one: 'flex', two: 'none', three: 'none', four: 'none'});
+        break;
       case '2':
+        console.log(this.state.kind);
         this.setState({one: 'none', two: 'flex', three: 'none', four: 'none'});
+        break;
       case '3':
+        console.log(this.state.kind);
         this.setState({one: 'none', two: 'none', three: 'flex', four: 'none'});
+        break;
       case '4':
+        console.log(this.state.kind);
         this.setState({one: 'none', two: 'none', three: 'none', four: 'flex'});
+        break;
       default:
         console.log('없음');
     }
