@@ -157,6 +157,7 @@ export default class Home extends PureComponent {
 
   getImages = async () => {
     const images = await fetch(URL + '/home/banner/').then((res) => res.json());
+    console.log(images);
     return images;
   };
 
@@ -170,7 +171,6 @@ export default class Home extends PureComponent {
     fetch(URL + '/product/')
       .then((res) => res.json())
       .then((resJson) => {
-        console.log('fetc', resJson);
         this.setState({
           slide02: resJson,
           slide01: SLIDE01,
@@ -217,8 +217,9 @@ export default class Home extends PureComponent {
   };
 
   _renderItem = ({item, index}) => {
+    console.log('render 들어옴');
     let url = URL + '/media/' + item.image;
-    console.log(url, item);
+    console.log('------------------------------------------------', url);
     return (
       <TouchableOpacity
         activeOpacity={0.8}

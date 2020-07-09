@@ -53,7 +53,7 @@ export default class CardList extends Component {
     let datas = val;
     let array = [];
 
-    console.log('val============', val);
+    // console.log('val============', val);
     //데이터 잘리는거 처리함
     if (datas.length <= 3) {
       if (datas.length == 0) {
@@ -65,13 +65,13 @@ export default class CardList extends Component {
       array = datas.division(this.state.page);
       this.setState({arrayVal: array});
     }
-    console.log('자르기; ', array);
+    // console.log('자르기; ', array);
     return array;
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(this.state);
-    console.log('==============', nextProps, prevState);
+    // console.log(this.state);
+    // console.log('==============', nextProps, prevState);
     let result = {activeSlide: prevState.activeSlide};
 
     if (nextProps.datas.length > 0) {
@@ -80,7 +80,7 @@ export default class CardList extends Component {
         activeSlide: prevState.activeSlide,
       };
     }
-    console.log(result);
+    // console.log(result);
     return result;
   }
   // componentWillUpdate(nextProps, nextState) {
@@ -105,7 +105,7 @@ export default class CardList extends Component {
           '/' +
           data.name +
           '.jpg';
-        console.log(url);
+        // console.log(url);
         return (
           <View
             style={{
@@ -237,9 +237,9 @@ export default class CardList extends Component {
   };
   render() {
     let {session, datas, activeSlide} = this.state;
-    console.log(datas);
+    // console.log(datas);
     let result = this._countPagenation(datas);
-    console.log('result', result);
+    // console.log('result', result);
     return (
       <Fragment>
         <View>
