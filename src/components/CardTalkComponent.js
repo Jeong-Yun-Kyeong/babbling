@@ -26,7 +26,7 @@ export default class CardList extends PureComponent {
     return datas.map((data, index) => {
       return (
         <TouchableOpacity
-          style={talks.gridBox}
+          style={[talks.gridBox,{marginVertical:this.props.itemMarginVertical || 0}]}
           key={index}
           onPress={this.props.nav}>
           {/* {data.img == null ? null : <View style={talks.image}></View>} */}
@@ -67,7 +67,7 @@ export default class CardList extends PureComponent {
   render() {
     return (
       <Fragment>
-        <View style={talks.talks}>
+        <View style={[talks.talks,this.props.style || {}]}>
           {/* 헤더 */}
           <View style={talks.header}>
             {this.props.title ? (
@@ -78,7 +78,7 @@ export default class CardList extends PureComponent {
 
             <TouchableOpacity
               onPress={this.props.more}
-              style={{flex: 1, marginRight: 24, justifyContent: 'center'}}>
+              style={{flex: 1, justifyContent: 'center'}}>
               <Text style={{fontSize: 10, color: '#6B6B6B'}}>더보기</Text>
             </TouchableOpacity>
           </View>
@@ -93,20 +93,17 @@ const talks = StyleSheet.create({
   talks: {},
   header: {
     flexDirection: 'row',
-    height: 50,
+    marginBottom:8,
+    marginHorizontal:16
   },
   headerTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginLeft: 24,
     color: '#1d1d1d',
   },
   gridBox: {
     backgroundColor: 'white',
     borderRadius: 10,
-    margin: 15,
-    marginTop: 0,
-    marginBottom: 15,
     padding: 15,
     flexDirection: 'row',
     //

@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import LabelInput from '../components/atom/LabelInput';
 
+import * as ScreenMargin from '../values/ScreenMargin';
+
 export default class PWChange extends PureComponent {
   constructor(props) {
     super(props);
@@ -64,21 +66,24 @@ export default class PWChange extends PureComponent {
   });
 
   render() {
+    let screenMargin = ScreenMargin.getMargin(this.props.route.name);
+
     return (
       <Fragment>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView />
-        <View style={{backgroundColor: 'white', flex: 1}}>
-          <LabelInput placeholder={'********'} label={'임시 비밀번호'} />
-          <LabelInput
-            placeholder={'********'}
-            label={'새 비밀번호 (8자리 이상)'}
-          />
-          <LabelInput placeholder={'********'} label={'비밀번호 확인'} />
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView />
+      <View
+        style={{backgroundColor: 'white', flex: 1, justifyContent: 'center', paddingTop:40, paddingHorizontal:screenMargin}}>
+        <View style={{flex: 1, justifyContent: 'space-between'}}>
+          <LabelInput placeholder={'●●●●●●●●'} label={'임시 비밀번호'} />
+          <LabelInput placeholder={'●●●●●●●●'} label={'새 비밀번호'} />
+          <LabelInput placeholder={'●●●●●●●●'} label={'비밀번호 확인'} />
 
-          {/*  */}
+
         </View>
-      </Fragment>
+        <View style={{flex: 1}}></View>
+      </View>
+    </Fragment>
     );
   }
 }

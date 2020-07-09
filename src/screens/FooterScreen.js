@@ -25,8 +25,7 @@ export default class Footer extends PureComponent {
         {/*  */}
         <View
           style={{
-            paddingLeft: 15,
-            paddingRight: 15,
+            paddingHorizontal:16,
             backgroundColor: 'white',
             marginBottom: 3,
           }}>
@@ -64,7 +63,7 @@ export default class Footer extends PureComponent {
         {/*  */}
         <View style={{backgroundColor: '#f9f9f9', height: 400}}>
           {/* box */}
-          <View style={{padding: 15, backgroundColor: 'white'}}>
+          <View style={{padding: 16, backgroundColor: 'white'}}>
             <View
               style={{
                 flexDirection: 'row',
@@ -186,7 +185,7 @@ export default class Footer extends PureComponent {
                     shadowOpacity: 0.1,
                     shadowRadius: 3.84,
 
-                    elevation: 5,
+                    elevation: 1,
                     marginRight: 10,
                   }}>
                   <Text
@@ -213,7 +212,7 @@ export default class Footer extends PureComponent {
                     shadowOpacity: 0.1,
                     shadowRadius: 3.84,
 
-                    elevation: 5,
+                    elevation: 1,
                   }}>
                   <Text
                     style={{
@@ -286,7 +285,7 @@ export default class Footer extends PureComponent {
           {/*  */}
           <View
             style={[
-              {padding: 20, display: this.state.infoVisible},
+              {paddingHorizontal:20, paddingVertical:10, display: this.state.infoVisible},
               this.state.infoVisible == 'flex' ? null : {height: 0},
             ]}>
             <Text style={{fontSize: 10}}>주식회사 베이비랩</Text>

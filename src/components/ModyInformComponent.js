@@ -45,7 +45,8 @@ export default class ModyInformModal extends PureComponent {
   _inputAddressAdd = text=> {this.setState({addressAdd:text});}
 
   editAlergy = ()=> {
-    this.props.navigation.navigate('BabyAlergy_my').then(this.props.modalController(false));
+    this.props.navigation.navigate('BabyAlergy_my');
+    this.props.modalController(false);
 
   }
 
