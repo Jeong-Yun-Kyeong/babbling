@@ -256,7 +256,7 @@ export default class Home extends PureComponent {
         <ScrollView
           style={{backgroundColor: 'white'}}
           showsVerticalScrollIndicator={false}>
-          <View style={{backgroundColor: '#f9f9f9',width:'100%'}}>
+          <View style={{backgroundColor: '#f9f9f9', width: '100%'}}>
             {/* slide01 */}
             <View
               style={{
@@ -271,7 +271,7 @@ export default class Home extends PureComponent {
                 data={this.state.images}
                 renderItem={this._renderItem}
                 sliderWidth={Dimensions.get('screen').width}
-                itemWidth={Dimensions.get('screen').width - screenMargin*2}
+                itemWidth={Dimensions.get('screen').width - screenMargin * 2}
                 onSnapToItem={(index) => this.setState({activeSlide: index})}
                 removeClippedSubviews={false}
                 inactiveSlideOpacity={1}
@@ -281,49 +281,28 @@ export default class Home extends PureComponent {
               />
               {this.pagination()}
             </View>
-            {/* slide02 */}
-            <CardList
-              navigation={this.props.navigation}
-              title={'우리 아이를 위한 추천'}
-              datas={slide02}
-              page={3}
-              // session={true}
-              slide={0}
-            />
-            {/*  */}
-            {console.log(
-              '-----------------',
-              this.state.slide02.length > 0,
-              this.state.slide02,
-            )}
-            {/* {this.state.slide02.length > 0 ? ( */}
-            <CardList
-              navigation={this.props.navigation}
-              title={'베스트 셀러'}
-              datas={slide01}
-              page={3}
-              slide={0}
-            />
-            {/* // ) : null} */}
-//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
-//               {/* slide02 */}
-//               <CardList
-//                 navigation={this.props.navigation}
-//                 title={'우리 아이를 위한 추천'}
-//                 datas={slide01}
-//                 page={3}
-//                 slideMarginVertical={8}
-//                 // session={true}
-//               />
-//               {/*  */}
-//               <CardList
-//                 navigation={this.props.navigation}
-//                 title={'베스트 셀러'}
-//                 datas={slide02}
-//                 page={3}
-//                 slideMarginVertical={8}
-//               />              
-//             </View>
+            <View style={{width: '100%', paddingHorizontal: screenMargin}}>
+              {/* slide02 */}
+              <CardList
+                navigation={this.props.navigation}
+                title={'우리 아이를 위한 추천'}
+                datas={slide02}
+                page={3}
+                // session={true}
+                slide={0}
+                slideMarginVertical={8}
+              />
+              {/*  */}
+              {/* {this.state.slide02.length > 0 ? ( */}
+              <CardList
+                navigation={this.props.navigation}
+                title={'베스트 셀러'}
+                datas={slide01}
+                page={3}
+                slide={0}
+                slideMarginVertical={8}
+              />
+            </View>
 
             {/* 수입장난감 */}
             <SlideImageBanner
@@ -332,16 +311,9 @@ export default class Home extends PureComponent {
                 {url: '../images/add01.png'},
               ]}
             />
-            {/* <Image
-              source={require('../images/add01.png')}
-              resizeMode="contain"
-              style={{width: '100%', marginTop: 30, marginBottom: 20}}
-            /> */}
-//               style={{width: '100%', marginTop: 32, marginBottom: 26}}
-//             />
 
-//             <View style={{width:'100%', paddingHorizontal:screenMargin}}>
-            {/* 수다톡 */}
+            <View style={{width: '100%', paddingHorizontal: screenMargin}}>
+              {/* 수다톡 */}
               <CardTalk
                 datas={TALK01}
                 title={'인기 수다톡'}
@@ -352,10 +324,10 @@ export default class Home extends PureComponent {
                 }}
                 nav={() => this.props.navigation.navigate('TalkDetail')}
                 itemMarginVertical={8} //아이템 상하 간 간격
-                style={{marginBottom:46}}
+                style={{marginBottom: 46}}
               />
               {/* 포스팅 */}
-              <View style={[posting.titleBox,{marginBottom:47}]}>
+              <View style={[posting.titleBox, {marginBottom: 47}]}>
                 {/*  */}
                 <View style={posting.title}>
                   <View
@@ -371,20 +343,20 @@ export default class Home extends PureComponent {
                 {/*  */}
                 <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
-                  style={{marginVertical:8, marginHorizontal:6}}
+                  style={{marginVertical: 8, marginHorizontal: 6}}
                 />
                 {/*  */}
                 <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
-                  style={{marginVertical:8, marginHorizontal:6}}
+                  style={{marginVertical: 8, marginHorizontal: 6}}
                 />
                 {/*  */}
                 <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
-                  style={{marginVertical:8, marginHorizontal:6}}
+                  style={{marginVertical: 8, marginHorizontal: 6}}
                 />
                 {/*  */}
-              </View>              
+              </View>
             </View>
 
             {/* footer */}
@@ -409,7 +381,7 @@ const posting = StyleSheet.create({
 
     elevation: 5,
   },
-  title: {flexDirection: 'row', marginHorizontal:16, marginBottom:8},
+  title: {flexDirection: 'row', marginHorizontal: 16, marginBottom: 8},
   titleText: {fontSize: 16, fontWeight: 'bold'},
   titleMore: {fontSize: 10, color: 'gray'},
   textBox: {
