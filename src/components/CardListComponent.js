@@ -252,9 +252,12 @@ export default class CardList extends Component {
               //       overflow: 'hidden',
               //     },
             ]}>
-
-            <View style={[styles.slideCard, {minHeight: this.state.minHeight},{marginVertical:this.props.slideMarginVertical} || {}]}>
-
+            <View
+              style={[
+                styles.slideCard,
+                {minHeight: this.state.minHeight},
+                {marginVertical: this.props.slideMarginVertical} || {},
+              ]}>
               <View style={styles.slideCardHeader}>
                 <Text
                   style={{
@@ -372,7 +375,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
 
     elevation: 3,
-    // overflow: 'hidden',
+    overflow: 'hidden',
   },
   slideCardHeader: {
     // backgroundColor:'lightgray',
