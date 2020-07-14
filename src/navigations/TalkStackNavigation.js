@@ -44,7 +44,8 @@ import Search from '../screens/SearchScreen';
 //Accessterms screen추가
 import ACCESSTERMS from '../screens/AccesstermsScreen';
 import AccesstermsTop from './AccesstermsTopNavigation';
-// import CompanyProfile from '../screens/CompanyProfileScreen';
+//CompanyProfile screen추가
+import CompanyProfile from '../screens/CompanyProfileScreen';
 
 import {
   HeaderOptions,
@@ -64,7 +65,7 @@ import {
   BabyAlergy_myHeader,
   //header추가
   ACCESSTERMSHeader,
-  // CompanyProfileHeader,
+  CompanyProfileHeader,
 } from '../components/molecule/HeaderOptions';
 //
 import BabyPlus from '../screens/BabyPlusScreen';
@@ -359,11 +360,12 @@ const TalkStack = () => {
         component={AccesstermsTop}
         options={({navigation}) => ACCESSTERMSHeader(navigation)}
       />
-      {/* <Stack.Screen
+      {/* 회사소개 stack */}
+      <Stack.Screen
         name="CompanyProfile"
         component={CompanyProfile}
         options={({navigation}) => CompanyProfileHeader(navigation)}
-      /> */}
+      />
       {/* Footer end*/}
 
       {/* Search */}

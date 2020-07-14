@@ -452,6 +452,7 @@ const ACCESSTERMSHeader = (navigation) => ({
     },
   },
 });
+//CompanyProfileHeader추가
 const CompanyProfileHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
