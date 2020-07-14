@@ -2301,6 +2301,17 @@ const CAMERA = `<svg id="Camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink=
 </svg>
 `;
 SVGArray['CAMERA'] = CAMERA;
+// 별점
+{
+  const STAR_GRAY = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="14.437" viewBox="0 0 8 14.437">
+<g id="star_gray" transform="translate(-40.313 -120.36)">
+  <path id="패스_2836" data-name="패스 2836" d="M12.3,3.458a.832.832,0,0,1-.521-.521,1.3,1.3,0,0,0-1.642-.832,1.316,1.316,0,0,0-.839.832.817.817,0,0,1-.514.521A2.863,2.863,0,0,0,6.61,5.932h7.841A2.788,2.788,0,0,0,12.3,3.458Z" transform="translate(33.805 118.32)" fill="#eee"/>
+  <path id="패스_2837" data-name="패스 2837" d="M6.47,8.16v7.414a2.6,2.6,0,0,0,2.6,2.6h2.792a2.6,2.6,0,0,0,2.6-2.6V8.16Zm5.4,8.969H9.074a1.562,1.562,0,0,1-1.562-1.555V9.2h5.917v1.3H11.917a.521.521,0,0,0-.521.521.514.514,0,0,0,.521.514h1.5v.846h-1.5a.521.521,0,1,0,0,1.042h1.5v.846h-1.5a.521.521,0,0,0,0,1.042h1.5v.26a1.562,1.562,0,0,1-1.548,1.555Z" transform="translate(33.843 116.627)" fill="#eee"/>
+</g>
+</svg>
+`;
+  SVGArray['STAR_GRAY'] = STAR_GRAY;
+}
 
 const SVG = (props) => {
   return SVGArray[props];

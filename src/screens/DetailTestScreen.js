@@ -533,7 +533,9 @@ export default class Detail extends PureComponent {
 
                   <TouchableOpacity
                     onPress={() => {
-                      this.props.navigation.navigate('ReviewWrite');
+                      this.props.navigation.navigate('ReviewWrite', {
+                        data: Datas,
+                      });
                     }}
                     style={{
                       borderWidth: 1,

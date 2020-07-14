@@ -229,10 +229,8 @@ const HomeStack = () => {
         component={BabyAlergy}
         options={({navigation}) => BabyAlergy_myHeader(navigation)}
       />
-
     </Stack.Navigator>
   );
-
 };
 
 export default HomeStack;
@@ -247,7 +245,9 @@ const ReviewHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
-  headerTitle: () => <Text style={{fontSize: 17, textAlign:'center'}}>제품 리뷰</Text>,
+  headerTitle: () => (
+    <Text style={{fontSize: 17, textAlign: 'center'}}>제품 리뷰</Text>
+  ),
   headerRight: () => (
     <View style={{flexDirection: 'row', marginRight: 24}}>
       <View style={{flex: 1, padding: 5}}>
@@ -321,30 +321,33 @@ const CompareHeader = (navigation) => ({
   },
 });
 const ReviewWriteHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <Text style={{color: 'gray', fontSize: 16}}>등록</Text>
-      </View>
-    </View>
-  ),
-  headerTitle: () => <Text style={{fontSize: 17}}>리뷰 작성</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
+  headerShown: false,
+  // headerLeft: () => (
+  //   <TouchableOpacity
+  //     style={{marginLeft: 24}}
+  //     onPress={() => {
+  //       navigation.goBack();
+  //     }}>
+  //     <SvgXml xml={SVG('BACKIOS')} />
+  //   </TouchableOpacity>
+  // ),
+  // headerRight: () => (
+  //   <TouchableOpacity
+  //     onPress={() => {}}
+  //     style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <Text style={{color: 'gray', fontSize: 16}}>등록</Text>
+  //     </View>
+  //   </TouchableOpacity>
+  // ),
+  // headerTitle: () => <Text style={{fontSize: 17}}>리뷰 작성</Text>,
+  // headerStyle: {
+  //   height: getStatusBarHeight() + 62,
+  //   // shadowRadius: 0,
+  //   shadowOffset: {
+  //     height: 2,
+  //   },
+  // },
 });
 const ReplyHeader = (navigation) => ({
   headerLeft: () => (
@@ -422,7 +425,7 @@ const MyRepleHeader = (navigation) => ({
     },
   },
 });
-const Event= (navigation) => ({
+const Event = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity
       style={{marginLeft: 24}}
@@ -742,6 +745,5 @@ const BabyAlergy_myHeader = (navigation) => {
       },
       elevation: 0,
     },
-
-  }
+  };
 };
