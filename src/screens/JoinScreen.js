@@ -15,7 +15,7 @@ import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import * as ScreenMargin from '../values/ScreenMargin';
 import Postcode from 'react-native-daum-postcode';
-
+import {약관1, 약관2} from '../Constant';
 export default class Join extends PureComponent {
   constructor(props) {
     super(props);
@@ -62,6 +62,7 @@ export default class Join extends PureComponent {
             <LabelInput
               placeholder={'**********'}
               label={'비밀번호(10자리 이상)'}
+              secureTextEntry={true}
               style={{marginVertical: 12, marginRight: 62}}
               ref={(input) => {
                 this.secondTextInput = input;
@@ -74,6 +75,7 @@ export default class Join extends PureComponent {
             <LabelInput
               placeholder={'**********'}
               label={'비밀번호 확인'}
+              secureTextEntry={true}
               style={{marginVertical: 12, marginRight: 62}}
               ref={(input) => {
                 this.thirdTextInput = input;
@@ -282,8 +284,6 @@ export default class Join extends PureComponent {
                 } else if (num < 0 || eng < 0 || spe < 0 || engBig < 0) {
                   alert('영대소문자, 숫자, 특수문자를 혼합하여 입력해주세요.');
                   return;
-                } else {
-                  alert('통과');
                 }
                 //
                 if (data.re_password != data.password) {
@@ -308,6 +308,8 @@ export default class Join extends PureComponent {
                   alert('약관을 확인해주세요.');
                   return;
                 }
+                // alert(data);
+                console.log(data);
                 // this.props.navigation.navigate('BabyPlus');
               }}
               style={{marginTop: 56, marginBottom: 30}}
@@ -341,7 +343,7 @@ export default class Join extends PureComponent {
                 <Text style={styles.text}>베블링 이용약관 동의(필수)</Text>
                 <View style={styles.content_container}>
                   <ScrollView>
-                    <Text style={{color: '#000', fontSize: 11}}>eee</Text>
+                    <Text style={{color: '#000', fontSize: 11}}>{약관1}</Text>
                   </ScrollView>
                 </View>
                 <TouchableOpacity
@@ -370,7 +372,7 @@ export default class Join extends PureComponent {
                 <Text style={styles.text}>개인정보 수집이용 동의(필수)</Text>
                 <View style={styles.content_container}>
                   <ScrollView>
-                    <Text style={{color: '#000', fontSize: 11}}>ddd</Text>
+                    <Text style={{color: '#000', fontSize: 11}}>{약관2}</Text>
                   </ScrollView>
                 </View>
                 <TouchableOpacity
