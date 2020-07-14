@@ -81,6 +81,7 @@ export default class LabelInput extends Component {
               placeholder={this.props.placeholder || ''}
               editable={this.props.disabled}
               selectTextOnFocus={this.props.disabled}
+              secureTextEntry={this.props.secureTextEntry}
               style={{
                 //                 padding: this.state.textPadding,
                 //                 fontSize: this.state.fontSize2,
