@@ -215,7 +215,9 @@ export default class Footer extends PureComponent {
                     shadowRadius: 3.84,
 
                     elevation: 1,
-                  }}>
+                  }}
+                  // FAQ화면이동
+                  onPress={() => this.props.navigation.navigate('FAQ')}>
                   <Text
                     style={{
                       color: '#32cc73',
