@@ -9,9 +9,9 @@ export {HEADER_FONTSIZE, FONTSIZE};
 //
 export {URL};
 //
-// const URL = 'http://babbling.babylab.kr';
+const URL = 'http://babbling.babylab.kr';
 // WebServices로 변경
-const URL = 'http://172.30.1.57';
+// const URL = 'http://172.30.1.57';
 //
 const DARKMINT = 'rgb(47,211,121)';
 const BLACK35 = 'rgba(0,0,0,0.35)';

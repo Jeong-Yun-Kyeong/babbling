@@ -13,8 +13,8 @@ import LabelInput from '../components/atom/LabelInput';
 import FormButton from '../components/atom/FormButton';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
-
 import * as ScreenMargin from '../values/ScreenMargin';
+import Postcode from 'react-native-daum-postcode';
 
 export default class Join extends PureComponent {
   constructor(props) {
@@ -30,6 +30,7 @@ export default class Join extends PureComponent {
       name: '',
       address: '',
       sub_address: '',
+      addressModal: false,
     };
   }
 
@@ -101,13 +102,18 @@ export default class Join extends PureComponent {
               label={'주소지입력'}
               button={true}
               btnTitle={'우편번호 검색'}
+              value={this.state.address}
+              onPress={() => {
+                this.setState({addressModal: !this.state.addressModal});
+              }}
+              disabled={false}
               style={{marginTop: 12, marginRight: 62}}
               ref={(input) => {
                 this.FifthtextInput = input;
               }}
-              onChangeText={(text) => {
-                this.setState({address: text});
-              }}
+              // onChangeText={(text) => {
+              //   this.setState({address: text});
+              // }}
               onSubmitEditing={() => this.SixthTextInput.focus()}
             />
             <LabelInput
@@ -261,11 +267,11 @@ export default class Join extends PureComponent {
                   this.firstTextInput.focus();
                   return;
                 }
+                //
                 let pw = data.password;
                 let num = pw.search(/[0-9]/g);
                 let eng = pw.search(/[a-z]/gi);
                 let engBig = pw.search(/[A-Z]/);
-
                 let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
                 if (pw.length <= 8 || pw.length > 17) {
                   alert('8자리 ~ 16자리 이내로 입력해주세요.');
@@ -279,12 +285,29 @@ export default class Join extends PureComponent {
                 } else {
                   alert('통과');
                 }
-
+                //
                 if (data.re_password != data.password) {
                   alert('비밀번호를 다시 확인해주세요.');
                   return;
                 }
-                // 쭉 처리하기
+
+                //이름은 추후 휴대폰인증 붙여야될거같음
+                //주소지 입력은 우편번호 검색해서 완료 시 결과값에 특정 값 붙어서 나오는지 확인하고 처리하기
+                if (data.address == '') {
+                  alert('주소를 입력해주세요.');
+                  return;
+                }
+                //직접입력은 내용이 있나 없나만 처리
+                if (data.sub_address == '') {
+                  alert('상세주소를 확인해주세요.');
+                  return;
+                }
+                //약관동의 체크 안되있으면 안넘어감
+                console.log(this.state.check_all);
+                if (data.check_all == false) {
+                  alert('약관을 확인해주세요.');
+                  return;
+                }
                 // this.props.navigation.navigate('BabyPlus');
               }}
               style={{marginTop: 56, marginBottom: 30}}
@@ -374,6 +397,19 @@ export default class Join extends PureComponent {
               </View>
             </View>
           </SafeAreaView>
+        </Modal>
+        <Modal visible={this.state.addressModal}>
+          <SafeAreaView style={{backgroundColor: 'white'}} />
+          <Postcode
+            style={{flex: 1}}
+            jsOptions={{animated: true}}
+            onSelected={(data) => {
+              this.setState({
+                addressModal: !this.state.addressModal,
+                address: data.address,
+              });
+            }}
+          />
         </Modal>
       </Fragment>
     );
