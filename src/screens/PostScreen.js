@@ -8,16 +8,104 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  //
+  Dimensions,
 } from 'react-native';
 import Footer from './FooterScreen';
+//slide 추가
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {URL} from '../Constant';
+//slide 추가(데이터)
+const IMAGESLIDE = [
+  {
+    url: 'https://interiorssa.com/neo2/testImage/EVENT_banner (5).png',
+    title: '소중한 우리아이 피부',
+    tag: '입소문PICK',
+  },
+  {
+    url: 'https://interiorssa.com/neo2/testImage/EVENT_banner (5).png',
+    title: '신제품입니다.',
+    tag: '추라이추라이',
+  },
+];
+//slide추가 end
 
 export default class Post extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
+      //slide 추가(상단 슬라이드)
+      images: [],
+      activeSlide: 0,
+      slide02: [],
+      //slide 추가 end
     };
   }
+
+  //slide 추가(slide데이터 받아오기&slide하단 동그라미 표현)
+  componentWillMount() {
+    this.setState({images: IMAGESLIDE});
+    console.log('시작');
+    fetch(URL + '/product/')
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log('데이터 받아오기', resJson);
+        this.setState({
+          slide02: resJson,
+        });
+      });
+  }
+  pagination = () => {
+    const {images, activeSlide} = this.state;
+    return (
+      <Pagination
+        dotsLength={images.length}
+        activeDotIndex={activeSlide}
+        containerStyle={{
+          backgroundColor: 'transparent',
+          paddingVertical: 10,
+        }}
+        dotStyle={{
+          backgroundColor: '#32cc73',
+          marginHorizontal: -3,
+        }}
+        inactiveDotStyle={{
+          backgroundColor: '#fff',
+        }}
+        inactiveDotOpacity={1}
+        inactiveDotScale={0.9}
+      />
+    );
+  };
+  _renderItem = ({item, index}) => {
+    return (
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+        }}
+        key={index}>
+        <Image
+          source={{uri: item.url}}
+          resizeMode={'cover'}
+          style={{
+            width: Dimensions.get('screen').width,
+            height: '100%',
+          }}
+        />
+        <View style={{position: 'absolute', top: 40, left: 40}}>
+          <Text style={{fontSize: 20, fontWeight: '500', marginBottom: 3}}>
+            {item.title}
+          </Text>
+          <Text style={{fontSize: 20, fontWeight: '500'}}>#{item.tag}</Text>
+        </View>
+        {/* <Text>{item.url}</Text> */}
+      </View>
+    );
+  };
+  //slide 추가 end
 
   componentDidMount() {}
 
@@ -37,7 +125,36 @@ export default class Post extends PureComponent {
         <ScrollView
           style={{backgroundColor: 'white'}}
           showsVerticalScrollIndicator={false}>
-          <View style={{backgroundColor: '#f9f9f9'}}>
+          {/* 전체padding추가 */}
+          <View
+            style={{
+              backgroundColor: '#f9f9f9',
+              paddingRight: 16,
+              paddingLeft: 16,
+            }}>
+            {/* slide 추가 */}
+            <View style={{paddingTop: 9}}>
+              <View style={{height: 128, backgroundColor: 'white'}}>
+                <Carousel
+                  ref={(c) => {
+                    this._carousel = c;
+                  }}
+                  data={this.state.images}
+                  renderItem={this._renderItem}
+                  sliderWidth={Dimensions.get('screen').width - 32}
+                  itemWidth={Dimensions.get('screen').width}
+                  onSnapToItem={(index) => this.setState({activeSlide: index})}
+                  removeClippedSubviews={false}
+                  inactiveSlideOpacity={1}
+                  inactiveSlideScale={1}
+                  borderRadius={7}
+                  loop={true}
+                  loopClonesPerSide={2}
+                />
+              </View>
+              <View style={{marginTop: -20}}>{this.pagination()}</View>
+            </View>
+            {/* slide 추가 end */}
             {/* 포스팅 */}
             <View style={[posting.titleBox, {paddingTop: 20}]}>
               {/*  */}
@@ -152,10 +269,11 @@ export default class Post extends PureComponent {
                 </View>
               </View>
             </View>
-            {/* footer */}
-            <Footer />
-            {/*  */}
+            {/* view위치 변경 */}
           </View>
+          {/* footer */}
+          <Footer />
+          {/*  */}
         </ScrollView>
       </Fragment>
     );
