@@ -261,7 +261,13 @@ export default class Footer extends PureComponent {
                   margin: 5,
                   alignItems: 'center',
                 }}>
-                <Text style={{fontSize: 10}}>회사소개</Text>
+                {/* CompanyProfile화면으로 이동   */}
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('CompanyProfile')
+                  }>
+                  <Text style={{fontSize: 10}}>회사소개</Text>
+                </TouchableOpacity>
               </View>
               <View
                 style={{
