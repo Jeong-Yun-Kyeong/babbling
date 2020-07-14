@@ -432,6 +432,7 @@ const QnAHeader = (navigation) => ({
     },
   },
 });
+//ACCESSTERMSHeader추가
 const ACCESSTERMSHeader = (navigation) => ({
   headerLeft: () => (
     <TouchableOpacity

@@ -41,9 +41,11 @@ import Settings from '../screens/SettingScreen';
 import FAQ from '../screens/FAQScreen';
 import QnA from '../screens/QnAScreen';
 import Search from '../screens/SearchScreen';
-// import ACCESSTERMS from '../screens/AccesstermsScreen';
+//Accessterms screen추가
+import ACCESSTERMS from '../screens/AccesstermsScreen';
+import AccesstermsTop from './AccesstermsTopNavigation';
 // import CompanyProfile from '../screens/CompanyProfileScreen';
-// import AccesstermsTop from './AccesstermsTopNavigation';
+
 import {
   HeaderOptions,
   MyWroteHeader,
@@ -60,7 +62,8 @@ import {
   SearchHeader,
   BabyPlus_myHeader,
   BabyAlergy_myHeader,
-  // ACCESSTERMSHeader,
+  //header추가
+  ACCESSTERMSHeader,
   // CompanyProfileHeader,
 } from '../components/molecule/HeaderOptions';
 //
@@ -345,7 +348,8 @@ const TalkStack = () => {
         component={QnA}
         options={({navigation}) => QnAHeader(navigation)}
       />
-      {/* <Stack.Screen
+      {/* 이용약관 및 개인정보 stack */}
+      <Stack.Screen
         name="ACCESSTERMSTOP"
         component={ACCESSTERMS}
         options={({navigation}) => ACCESSTERMSHeader(navigation)}
@@ -355,7 +359,7 @@ const TalkStack = () => {
         component={AccesstermsTop}
         options={({navigation}) => ACCESSTERMSHeader(navigation)}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="CompanyProfile"
         component={CompanyProfile}
         options={({navigation}) => CompanyProfileHeader(navigation)}

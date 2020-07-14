@@ -245,7 +245,13 @@ export default class Footer extends PureComponent {
                   paddingLeft: 5,
                   alignItems: 'flex-start',
                 }}>
-                <Text style={{fontSize: 10}}>이용약관 및 개인정보처리방침</Text>
+                {/* ACCESSTERMS화면으로 이동 */}
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('ACCESSTERMS')}>
+                  <Text style={{fontSize: 10}}>
+                    이용약관 및 개인정보처리방침
+                  </Text>
+                </TouchableOpacity>
               </View>
               {/* <View
               style={{width: 1, height: '90%', backgroundColor: 'gray'}}></View> */}
