@@ -25,7 +25,7 @@ export default class Footer extends PureComponent {
         {/*  */}
         <View
           style={{
-            paddingHorizontal:16,
+            paddingHorizontal: 16,
             backgroundColor: 'white',
             marginBottom: 3,
           }}>
@@ -187,7 +187,9 @@ export default class Footer extends PureComponent {
 
                     elevation: 1,
                     marginRight: 10,
-                  }}>
+                    // QnA화면으로 이동
+                  }}
+                  onPress={() => this.props.navigation.navigate('QnA')}>
                   <Text
                     style={{
                       color: '#32cc73',
@@ -213,7 +215,9 @@ export default class Footer extends PureComponent {
                     shadowRadius: 3.84,
 
                     elevation: 1,
-                  }}>
+                  }}
+                  // FAQ화면이동
+                  onPress={() => this.props.navigation.navigate('FAQ')}>
                   <Text
                     style={{
                       color: '#32cc73',
@@ -241,7 +245,13 @@ export default class Footer extends PureComponent {
                   paddingLeft: 5,
                   alignItems: 'flex-start',
                 }}>
-                <Text style={{fontSize: 10}}>이용약관 및 개인정보처리방침</Text>
+                {/* ACCESSTERMS화면으로 이동 */}
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('ACCESSTERMS')}>
+                  <Text style={{fontSize: 10}}>
+                    이용약관 및 개인정보처리방침
+                  </Text>
+                </TouchableOpacity>
               </View>
               {/* <View
               style={{width: 1, height: '90%', backgroundColor: 'gray'}}></View> */}
@@ -285,7 +295,11 @@ export default class Footer extends PureComponent {
           {/*  */}
           <View
             style={[
-              {paddingHorizontal:20, paddingVertical:10, display: this.state.infoVisible},
+              {
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                display: this.state.infoVisible,
+              },
               this.state.infoVisible == 'flex' ? null : {height: 0},
             ]}>
             <Text style={{fontSize: 10}}>주식회사 베이비랩</Text>

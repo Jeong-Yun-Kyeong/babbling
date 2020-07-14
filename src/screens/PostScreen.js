@@ -156,7 +156,9 @@ export default class Post extends PureComponent {
             </View>
             {/* slide 추가 end */}
             {/* 포스팅 */}
-            <View style={[posting.titleBox, {paddingTop: 20}]}>
+            {/* marginTop추가 */}
+            <View style={{marginTop: 30}}></View>
+            <View style={[posting.titleBox]}>
               {/*  */}
               <View style={posting.title}>
                 <View
@@ -292,12 +294,20 @@ const posting = StyleSheet.create({
 
     elevation: 5,
   },
-  title: {flexDirection: 'row', paddingLeft: 24, paddingRight: 24, height: 30},
+  //margin변경
+  title: {
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 14,
+
+    height: 30,
+  },
   titleText: {fontSize: 16, fontWeight: 'bold'},
   titleMore: {fontSize: 12, color: 'gray'},
   textBox: {
     backgroundColor: 'white',
-    margin: 15,
+
+    marginBottom: 35,
     borderRadius: 10,
     overflow: 'hidden',
   },

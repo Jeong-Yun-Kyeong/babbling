@@ -11,6 +11,7 @@ import {
   //
   Dimensions,
 } from 'react-native';
+import * as ScreenMargin from '../values/ScreenMargin';
 import CardTalk from '../components/CardTalkComponent';
 //slide 추가(데이터)
 const IMAGESLIDE = [
@@ -176,17 +177,25 @@ export default class Talk extends PureComponent {
             </View>
             {/* slide 추가 end */}
             {/* slide03 */}
-            {/*  */}
-            <CardTalk
-              datas={TALK01}
-              title={'주간 베스트'}
-              more={() => {
-                this.props.navigation.navigate('TalkList');
-              }}
-              nav={() => {
-                this.props.navigation.navigate('TalkDetail');
-              }}
-            />
+            {/*marginTop 추가*/}
+            <View style={{marginTop: 30}}>
+              <CardTalk
+                datas={TALK01}
+                title={'주간 베스트'}
+                more={() => {
+                  this.props.navigation.navigate('TalkList');
+                }}
+                nav={() => {
+                  this.props.navigation.navigate('TalkDetail');
+                }}
+                //아이템 상하 간 간격
+                itemMarginVertical={8}
+                style={{marginBottom: 30}}
+                itemWidth={ScreenMargin.getMargin(this.props.route.name) - 36}
+                alignItems="center"
+                //아이템 상하 간 간격 end
+              />
+            </View>
             {/*  */}
             <CardTalk
               datas={TALK01}
@@ -197,6 +206,9 @@ export default class Talk extends PureComponent {
               nav={() => {
                 this.props.navigation.navigate('TalkDetail');
               }}
+              //아이템 상하 간 간격
+              itemMarginVertical={8}
+              style={{marginBottom: 30}}
             />
             {/*  */}
             <CardTalk
@@ -208,6 +220,9 @@ export default class Talk extends PureComponent {
               nav={() => {
                 this.props.navigation.navigate('TalkDetail');
               }}
+              //아이템 상하 간 간격
+              itemMarginVertical={8}
+              style={{marginBottom: 30}}
             />
             {/*  */}
             {/* 포스팅 */}
@@ -263,8 +278,8 @@ export default class Talk extends PureComponent {
             </View>
             {/* view위치 변경 */}
           </View>
-          {/* footer */}
-          <Footer />
+          {/* footer navigation붙이기*/}
+          <Footer navigation={this.props.navigation} />
           {/*  */}
         </ScrollView>
         <TouchableOpacity
@@ -312,13 +327,17 @@ const posting = StyleSheet.create({
 
     elevation: 5,
   },
-  title: {flexDirection: 'row', paddingLeft: 24, paddingRight: 24, height: 30},
+  //margin변경
+  title: {flexDirection: 'row', paddingLeft: 10, paddingRight: 14, height: 30},
   titleText: {fontSize: 16, fontWeight: 'bold'},
   titleMore: {fontSize: 12, color: 'gray'},
   textBox: {
     backgroundColor: 'white',
-    margin: 15,
+    //margin변경
+    marginTop: 10,
+    marginBottom: 30,
     borderRadius: 10,
+    //margin변경 end
     overflow: 'hidden',
   },
 });
