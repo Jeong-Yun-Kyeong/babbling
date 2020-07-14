@@ -64,10 +64,6 @@ export default class Ingredients extends PureComponent {
       modalVisible: false,
       modalTitle: '',
       modalCaution: '',
-      one: 'none',
-      two: 'none',
-      three: 'none',
-      four: 'flex',
       kind: props.route.params.kind,
       ingredient: props.route.params.ingredient,
       data: null,
@@ -102,26 +98,26 @@ export default class Ingredients extends PureComponent {
     );
     this._getIngredientsData();
     console.log(this.state.kind);
-    switch (this.state.kind) {
-      case '1':
-        console.log(this.state.kind);
-        this.setState({one: 'flex', two: 'none', three: 'none', four: 'none'});
-        break;
-      case '2':
-        console.log(this.state.kind);
-        this.setState({one: 'none', two: 'flex', three: 'none', four: 'none'});
-        break;
-      case '3':
-        console.log(this.state.kind);
-        this.setState({one: 'none', two: 'none', three: 'flex', four: 'none'});
-        break;
-      case '4':
-        console.log(this.state.kind);
-        this.setState({one: 'none', two: 'none', three: 'none', four: 'flex'});
-        break;
-      default:
-        console.log('없음');
-    }
+    // switch (this.state.kind) {
+    //   case '1':
+    //     console.log(this.state.kind);
+    //     this.setState({one: 'flex', two: 'none', three: 'none', four: 'none'});
+    //     break;
+    //   case '2':
+    //     console.log(this.state.kind);
+    //     this.setState({one: 'none', two: 'flex', three: 'none', four: 'none'});
+    //     break;
+    //   case '3':
+    //     console.log(this.state.kind);
+    //     this.setState({one: 'none', two: 'none', three: 'flex', four: 'none'});
+    //     break;
+    //   case '4':
+    //     console.log(this.state.kind);
+    //     this.setState({one: 'none', two: 'none', three: 'none', four: 'flex'});
+    //     break;
+    //   default:
+    //     console.log('없음');
+    // }
   }
 
   _list = (datas) => {
@@ -176,68 +172,72 @@ export default class Ingredients extends PureComponent {
   };
 
   _list_2 = (datas) => {
-    return datas.map((data, index) => {
-      return (
-        <View
-          style={{
-            paddingLeft: 24,
-            paddingRight: 24,
-            paddingTop: 6,
-            paddingBottom: 6,
-          }}
-          key={index}>
-          <TouchableOpacity
-            onPress={() =>
-              this.setState({
-                modalVisible: true,
-                modalTitle: data.name,
-                modalCaution: data.icon,
-              })
-            }>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              {/* icon */}
-              <SvgXml xml={SVG(data.icon)} width="36" height="36" />
+    console.log(datas);
+    if (datas != null) {
+      // console.log(datas.ingredients.split(', '));
+      return datas.ingredients.split(', ').map((data, index) => {
+        return (
+          <View
+            style={{
+              paddingLeft: 24,
+              paddingRight: 24,
+              paddingTop: 6,
+              paddingBottom: 6,
+            }}
+            key={index}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  modalVisible: true,
+                  modalTitle: data.name,
+                  modalCaution: data.icon,
+                })
+              }>
               <View
                 style={{
-                  flexGrow: 1,
                   flexDirection: 'row',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  paddingRight: 10,
+                  justifyContent: 'space-between',
                 }}>
-                {/* name */}
-                <Text style={{paddingLeft: 20}}>{data.name}</Text>
-                <View style={{flexDirection: 'row'}}>
-                  {/* allergy */}
-                  {data.allergy ? (
-                    <SvgXml
-                      xml={SVG('ALLERGY')}
-                      width="36"
-                      height="36"
-                      style={{marginRight: 10}}
-                    />
-                  ) : null}
-                  {/* toxic */}
-                  {data.toxic ? (
-                    <SvgXml xml={SVG('TOXIC')} width="36" height="36" />
-                  ) : null}
+                {/* icon */}
+                <SvgXml xml={SVG('UNMARKED')} width="36" height="36" />
+                <View
+                  style={{
+                    flexGrow: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingRight: 10,
+                  }}>
+                  {/* name */}
+                  <Text style={{paddingLeft: 20}}>{data}</Text>
+                  <View style={{flexDirection: 'row'}}>
+                    {/* allergy */}
+                    {data.allergy ? (
+                      <SvgXml
+                        xml={SVG('ALLERGY')}
+                        width="36"
+                        height="36"
+                        style={{marginRight: 10}}
+                      />
+                    ) : null}
+                    {/* toxic */}
+                    {data.toxic ? (
+                      <SvgXml xml={SVG('TOXIC')} width="36" height="36" />
+                    ) : null}
+                  </View>
                 </View>
+                {/* arrowright */}
+                <SvgXml xml={SVG('ARROWRIGHT')} />
               </View>
-              {/* arrowright */}
-              <SvgXml xml={SVG('ARROWRIGHT')} />
-            </View>
-          </TouchableOpacity>
-        </View>
-      );
-    });
+            </TouchableOpacity>
+          </View>
+        );
+      });
+    }
   };
 
-  _list_3_1 = (datas) => {
+  _list_3 = (datas) => {
     return datas.map((data, index) => {
       return (
         <View
@@ -483,6 +483,285 @@ export default class Ingredients extends PureComponent {
     );
   };
 
+  _ingredientList = (kind) => {
+    if (kind == 1) {
+      Datas = this.state.data;
+      return (
+        <View
+          style={{
+            paddingLeft: 24,
+            paddingRight: 24,
+            backgroundColor: 'white',
+            paddingBottom: 30,
+          }}>
+          {/* shadowBox */}
+          <View
+            style={{
+              backgroundColor: 'white',
+              padding: 16,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 4,
+              },
+              shadowOpacity: 0.05,
+              elevation: 5,
+            }}>
+            <View style={{marginBottom: 18}}>
+              <Text style={{color: '#32cc73', fontSize: 13}}>총 내용량</Text>
+            </View>
+            <View style={{marginBottom: 30}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginBottom: 5,
+                }}>
+                <Text style={{fontSize: 13}}>
+                  총 {Datas == null ? 0 : Datas.total_content}g
+                </Text>
+                <Text style={{fontSize: 13}}>
+                  {Datas == null
+                    ? 0
+                    : (Datas.total_content / Datas.serving_size) *
+                      Datas.calorie}
+                  Kcal
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={{fontSize: 13}}>
+                  1회 제공량({Datas == null ? 0 : Datas.serving_size}ml)
+                </Text>
+                <Text style={{fontSize: 13}}>
+                  {Datas == null ? 0 : Datas.calorie}Kcal
+                </Text>
+              </View>
+            </View>
+            {/*  */}
+            <View style={{marginBottom: 18, flexDirection: 'row'}}>
+              <Text style={{color: '#32cc73', fontSize: 13}}>영양성분</Text>
+              <Text style={{fontSize: 13}}>{'  '}(초유농도 14% 기준)</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flex: 1, paddingRight: 30}}>
+                {console.log()}
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>탄수화물</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.tansuhwamul}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>단백질</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.danbaegjil}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>지방</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.jibang}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>당류</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.danglyu}g
+                  </Text>
+                </View>
+              </View>
+              <View style={{width: 1, backgroundColor: 'gray'}}></View>
+              <View style={{flex: 1, paddingLeft: 30}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>나트륨</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.nateulyum}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>콜레스테롤</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.killeseutelol}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>포화지방</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.pohwajibang}g
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginBottom: 5,
+                  }}>
+                  <Text style={{fontSize: 13}}>트랜스지방</Text>
+                  <Text style={{fontSize: 13}}>
+                    {Datas == null ? 0 : Datas.teulaenseujibang}g
+                  </Text>
+                </View>
+              </View>
+            </View>
+            {/*  */}
+          </View>
+          {/* shadow2 */}
+          <View
+            style={{
+              marginTop: 16,
+              backgroundColor: 'white',
+              padding: 16,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 4,
+              },
+              shadowOpacity: 0.05,
+              elevation: 5,
+            }}>
+            <View style={{marginBottom: 18}}>
+              <Text style={{color: '#32cc73', fontSize: 13}}>
+                탄.단.지 비율
+              </Text>
+            </View>
+            <Text>그래프 들어가야됨</Text>
+            {/*  */}
+          </View>
+          {/* shadow3 */}
+          <View
+            style={{
+              marginTop: 16,
+              backgroundColor: 'white',
+              padding: 16,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 4,
+              },
+              shadowOpacity: 0.05,
+              elevation: 5,
+            }}>
+            <View style={{marginBottom: 18}}>
+              <Text style={{color: '#32cc73'}}>알레르기</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{paddingLeft: 16}}>
+                <SvgXml xml={SVG('MILK')} />
+                <Text>우유</Text>
+              </View>
+              <View style={{paddingLeft: 16}}>
+                <SvgXml xml={SVG('EGG')} />
+                <Text>계란</Text>
+              </View>
+              <View style={{paddingLeft: 16}}>
+                <SvgXml xml={SVG('SOYBEAN')} />
+                <Text>대두</Text>
+              </View>
+            </View>
+            {/*  */}
+          </View>
+          {/*  */}
+        </View>
+      );
+    } else if (kind == 2 || kind == 3) {
+      return (
+        <View style={{backgroundColor: 'white'}}>
+          <View>
+            {/* header */}
+            <View style={{padding: 24, paddingTop: 20, paddingBottom: 10}}>
+              <Text
+                style={{
+                  color: '#32cc73',
+                  fontWeight: '600',
+                  fontSize: 15,
+                }}>
+                전성분
+              </Text>
+            </View>
+            {/* body */}
+            <View>{this._list_2(this.state.data)}</View>
+          </View>
+        </View>
+      );
+    } else if (kind == 4) {
+      return (
+        <View style={{}}>
+          <View style={{marginBottom: 4, backgroundColor: 'white'}}>
+            {/* header */}
+            <View style={{padding: 24, paddingTop: 20, paddingBottom: 10}}>
+              <Text
+                style={{
+                  color: '#32cc73',
+                  fontWeight: '600',
+                  fontSize: 15,
+                }}>
+                필수성분
+              </Text>
+            </View>
+            {/* body */}
+            <View>{this._list_2(this.state.data)}</View>
+          </View>
+          <View style={{backgroundColor: 'white'}}>
+            {/* header */}
+            <View style={{padding: 24, paddingTop: 20, paddingBottom: 10}}>
+              <Text
+                style={{
+                  color: '#32cc73',
+                  fontWeight: '600',
+                  fontSize: 15,
+                }}>
+                전성분
+              </Text>
+            </View>
+            {/* body */}
+            <View>{this._list_2(this.state.data)}</View>
+          </View>
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     return (
       <>
@@ -513,7 +792,7 @@ export default class Ingredients extends PureComponent {
             {/* 성분 기준(식품에는 없음) */}
             {this.state.kind == 1 ? null : this._showEWG(this.state.kind)}
             {/* 바디부분 처리하기 */}
-
+            {this._ingredientList(this.state.kind)}
             {/*  */}
           </View>
         </ScrollView>

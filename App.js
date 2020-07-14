@@ -10,9 +10,9 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        {/* <AuthStack /> */}
+        <AuthStack />
         {/* <PickStack /> */}
-        <HomeStack />
+        {/* <HomeStack /> */}
       </NavigationContainer>
     </>
   );

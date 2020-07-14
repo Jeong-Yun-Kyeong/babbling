@@ -24,9 +24,13 @@ export default class Join extends PureComponent {
       check_all: false,
       check_01: false,
       check_02: false,
+      email: '',
+      password: '',
+      re_password: '',
+      name: '',
+      address: '',
+      sub_address: '',
     };
-
-    
   }
 
   render() {
@@ -40,51 +44,82 @@ export default class Join extends PureComponent {
             style={{
               // backgroundColor: 'skyblue',
               marginTop: 16,
-              marginHorizontal:screenMargin
+              marginHorizontal: screenMargin,
             }}>
             <LabelInput
               placeholder={'Babbling@babylab.com'}
               label={'이메일'}
-              style={{marginVertical:12,marginRight:62}}
-              ref={(input)=>{this.firstTextInput = input}}
-              onSubmitEditing ={()=>this.secondTextInput.focus()}
+              style={{marginVertical: 12, marginRight: 62}}
+              ref={(input) => {
+                this.firstTextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({email: text});
+              }}
+              onSubmitEditing={() => this.secondTextInput.focus()}
             />
             <LabelInput
-              placeholder={'********'}
-              label={'비밀번호(8자리 이상)'}
-              style={{marginVertical:12,marginRight:62}}
-              ref={(input)=>{this.secondTextInput = input}}
-              onSubmitEditing ={()=>this.thirdTextInput.focus()}
+              placeholder={'**********'}
+              label={'비밀번호(10자리 이상)'}
+              style={{marginVertical: 12, marginRight: 62}}
+              ref={(input) => {
+                this.secondTextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({password: text});
+              }}
+              onSubmitEditing={() => this.thirdTextInput.focus()}
             />
             <LabelInput
-              placeholder={'********'}
+              placeholder={'**********'}
               label={'비밀번호 확인'}
-              style={{marginVertical:12,marginRight:62}}
-              ref={(input)=>{this.thirdTextInput = input}}
-              onSubmitEditing ={()=>this.ForthTextInput.focus()}
+              style={{marginVertical: 12, marginRight: 62}}
+              ref={(input) => {
+                this.thirdTextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({re_password: text});
+              }}
+              onSubmitEditing={() => this.ForthTextInput.focus()}
             />
             <LabelInput
               placeholder={'홍길동'}
               label={'이름'}
               button={true}
               btnTitle={'실명확인'}
-              style={{marginVertical:12,marginRight:62}}
-              ref={(input)=>{this.ForthTextInput = input}}
-              onSubmitEditing ={()=>this.FifthtextInput.focus()}
+              style={{marginVertical: 12, marginRight: 62}}
+              ref={(input) => {
+                this.ForthTextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({name: text});
+              }}
+              onSubmitEditing={() => this.FifthtextInput.focus()}
             />
             <LabelInput
               placeholder={'대전광역시 유성구 덕명로 97번길 19'}
               label={'주소지입력'}
               button={true}
               btnTitle={'우편번호 검색'}
-              style={{marginTop:12,marginRight:62}}
-              ref={(input)=>{this.FifthtextInput = input}}
-              onSubmitEditing ={()=>this.SixthTextInput.focus()}
+              style={{marginTop: 12, marginRight: 62}}
+              ref={(input) => {
+                this.FifthtextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({address: text});
+              }}
+              onSubmitEditing={() => this.SixthTextInput.focus()}
             />
             <LabelInput
               placeholder={'(직접입력)'}
-              label={false} style={{marginBotom:12,marginRight:62}}
-              ref={(input)=>{this.SixthTextInput = input}}
+              label={false}
+              style={{marginBotom: 12, marginRight: 62}}
+              ref={(input) => {
+                this.SixthTextInput = input;
+              }}
+              onChangeText={(text) => {
+                this.setState({sub_address: text});
+              }}
             />
             {/*  */}
             {/*  */}
@@ -107,8 +142,8 @@ export default class Join extends PureComponent {
                 }
               }}
               style={{
-                marginTop:36,
-                marginBottom:16,
+                marginTop: 36,
+                marginBottom: 16,
                 flexDirection: 'row',
                 alignItems: 'center',
                 position: 'relative',
@@ -126,8 +161,8 @@ export default class Join extends PureComponent {
                 backgroundColor: '#f3f3f3',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                marginHorizontal:-20,
-                paddingHorizontal:20,
+                marginHorizontal: -20,
+                paddingHorizontal: 20,
                 paddingTop: 20,
                 paddingBottom: 20,
                 alignItems: 'center',
@@ -213,8 +248,46 @@ export default class Join extends PureComponent {
               title={'회원가입'}
               backgroundColor={'#32cc73'}
               color={'white'}
-              nav={() => this.props.navigation.navigate('BabyPlus')}
-              style={{marginTop:56,marginBottom:30}}
+              nav={() => {
+                let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+                let data = this.state;
+                // 이메일값이 없으면 안넘어가게 수정하기
+                if (data.email == '') {
+                  alert('이메일을 입력해주세요.');
+                  this.firstTextInput.focus();
+                  return;
+                } else if (!regEmail.test(data.email)) {
+                  alert('이메일 형식에 맞지 않습니다.');
+                  this.firstTextInput.focus();
+                  return;
+                }
+                let pw = data.password;
+                let num = pw.search(/[0-9]/g);
+                let eng = pw.search(/[a-z]/gi);
+                let engBig = pw.search(/[A-Z]/);
+
+                let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+                if (pw.length <= 8 || pw.length > 17) {
+                  alert('8자리 ~ 16자리 이내로 입력해주세요.');
+                  return;
+                } else if (pw.search(/\s/) != -1) {
+                  alert('비밀번호는 공백 없이 입력해주세요.');
+                  return;
+                } else if (num < 0 || eng < 0 || spe < 0 || engBig < 0) {
+                  alert('영대소문자, 숫자, 특수문자를 혼합하여 입력해주세요.');
+                  return;
+                } else {
+                  alert('통과');
+                }
+
+                if (data.re_password != data.password) {
+                  alert('비밀번호를 다시 확인해주세요.');
+                  return;
+                }
+                // 쭉 처리하기
+                // this.props.navigation.navigate('BabyPlus');
+              }}
+              style={{marginTop: 56, marginBottom: 30}}
             />
           </View>
         </ScrollView>

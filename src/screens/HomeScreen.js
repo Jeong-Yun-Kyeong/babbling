@@ -217,9 +217,7 @@ export default class Home extends PureComponent {
   };
 
   _renderItem = ({item, index}) => {
-    console.log('render 들어옴');
     let url = URL + '/media/' + item.image;
-    console.log('------------------------------------------------', url);
     return (
       <TouchableOpacity
         activeOpacity={0.8}
