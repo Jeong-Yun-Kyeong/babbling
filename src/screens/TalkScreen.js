@@ -278,8 +278,8 @@ export default class Talk extends PureComponent {
             </View>
             {/* view위치 변경 */}
           </View>
-          {/* footer */}
-          <Footer />
+          {/* footer navigation붙이기*/}
+          <Footer navigation={this.props.navigation} />
           {/*  */}
         </ScrollView>
         <TouchableOpacity

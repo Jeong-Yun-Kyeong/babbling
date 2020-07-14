@@ -25,7 +25,7 @@ export default class Footer extends PureComponent {
         {/*  */}
         <View
           style={{
-            paddingHorizontal:16,
+            paddingHorizontal: 16,
             backgroundColor: 'white',
             marginBottom: 3,
           }}>
@@ -187,7 +187,9 @@ export default class Footer extends PureComponent {
 
                     elevation: 1,
                     marginRight: 10,
-                  }}>
+                    // QnA화면으로 이동
+                  }}
+                  onPress={() => this.props.navigation.navigate('QnA')}>
                   <Text
                     style={{
                       color: '#32cc73',
@@ -285,7 +287,11 @@ export default class Footer extends PureComponent {
           {/*  */}
           <View
             style={[
-              {paddingHorizontal:20, paddingVertical:10, display: this.state.infoVisible},
+              {
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                display: this.state.infoVisible,
+              },
               this.state.infoVisible == 'flex' ? null : {height: 0},
             ]}>
             <Text style={{fontSize: 10}}>주식회사 베이비랩</Text>
