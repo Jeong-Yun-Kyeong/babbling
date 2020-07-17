@@ -14,10 +14,14 @@ import {SvgXml} from 'react-native-svg';
 import {BlurView} from '@react-native-community/blur';
 import SVG from '../components/SvgComponent';
 import FormButton from '../components/atom/FormButton';
-
+import appleAuth, {
+  AppleButton,
+  AppleAuthRequestOperation,
+  AppleAuthRequestScope,
+  AppleAuthCredentialState,
+} from '@invertase/react-native-apple-authentication';
 
 import * as ScreenMargin from '../values/ScreenMargin';
-
 
 import {FONTSIZE} from '../Constant';
 
@@ -42,6 +46,99 @@ const LOGO = () => {
     </View>
   );
 };
+//apple login or join 1
+onAppleButtonPress = async () => {
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    requestedOperation: AppleAuthRequestOperation.LOGIN,
+    requestedScopes: [
+      AppleAuthRequestScope.EMAIL,
+      AppleAuthRequestScope.FULL_NAME,
+    ],
+  });
+
+  const credentialState = await appleAuth.getCredentialStateForUser(
+    appleAuthRequestResponse.user,
+  );
+
+  if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
+    console.log('로그인됨?');
+    console.log(appleAuthRequestResponse);
+    console.log(appleAuthRequestResponse.user);
+    console.log(appleAuthRequestResponse.email);
+    console.log(appleAuthRequestResponse.fullName.familyName);
+    console.log(appleAuthRequestResponse.fullName.givenName);
+    signInWithApple(appleAuthRequestResponse);
+  }
+};
+//apple login or join 2
+const signInWithApple = (appleAuthRequestResponse) => {
+  let url = 'http://172.30.1.57/rest-auth/registration/';
+  form = new FormData();
+  form.append('username', appleAuthRequestResponse.user);
+  form.append('password1', appleAuthRequestResponse.user);
+  form.append('password2', appleAuthRequestResponse.user);
+  if (appleAuthRequestResponse.email != null) {
+    form.append('email', appleAuthRequestResponse.email);
+  }
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {
+      this.setState({
+        token: resJson.token,
+      });
+      if (resJson.username == 'A user with that username already exists.') {
+        console.log('로그인하게 하기');
+        //
+        loginForm = new FormData();
+        loginForm.append('username', appleAuthRequestResponse.user);
+        loginForm.append('password', appleAuthRequestResponse.user);
+        url = 'http://172.30.1.57/rest-auth/login/';
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: loginForm,
+        })
+          .then((res) => res.json())
+          .then((resJson) => {
+            console.log(resJson);
+            // pk값으로 개인정보 조회 후 (넘어가거나 등록 후) 아이정보 조회(선택하거나 자동선택하거나 추가하거나)
+            // _getUserAssistent(resJson.token)
+            // _getChildsData()
+          });
+        //
+      } else {
+        console.log('회원가입하게 하기');
+        console.log(resJson);
+        this.props.navigation.navigate('Join', {token: 'JWT ' + resJson.token});
+      }
+    });
+};
+//유저정보 가져오기
+_getUserAssistent = (token) => {
+  const url = 'http://172.30.1.57/user_assistent/';
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'JWT ' + token,
+    },
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {});
+};
+
 // sns 로그인 버튼들
 const SNS_LOGIN = (navigation) => {
   let radius = 52;
@@ -68,28 +165,63 @@ const SNS_LOGIN = (navigation) => {
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {}}>
+        <Image
+          source={require('../images/icon/naver.png')}
+          style={{width: radius + 5, height: radius + 5}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
-          backgroundColor: '#f9da31',
+          backgroundColor: '#FFEB00',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {}}>
+        <Image
+          source={require('../images/icon/kakao.png')}
+          style={{width: radius - 10, height: radius - 10}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
           backgroundColor: 'white',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {}}>
+        <Image
+          source={require('../images/icon/google.png')}
+          style={{width: radius + 25, height: radius + 25}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
-          backgroundColor: 'black',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+        }}
+        onPress={() => {
+          onAppleButtonPress();
+        }}>
+        <Image
+          source={require('../images/icon/apple.png')}
+          style={{width: radius, height: radius}}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -108,10 +240,9 @@ const JOIN = (navigation) => {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: width,
-        marginTop: 20
+        marginTop: 20,
       }}>
       <Text style={{color: '#ffffff99', fontSize: FONTSIZE.MIDDLE}}>
-
         회원이 아니신가요?
       </Text>
       <TouchableOpacity
@@ -151,7 +282,6 @@ const NO_LOGIN = (navigation, route) => {
           navigation.navigate('Main');
         }}>
         <Text style={{color: '#ffffff99', fontSize: FONTSIZE.SMALL}}>
-
           로그인 없이 앱 둘러보기
         </Text>
       </TouchableOpacity>
@@ -160,7 +290,6 @@ const NO_LOGIN = (navigation, route) => {
 };
 
 const Login = ({navigation, route}) => {
-
   console.log(ScreenMargin.getMargin(route.name));
 
   let screenPadding = ScreenMargin.getMargin(route.name);
@@ -169,7 +298,7 @@ const Login = ({navigation, route}) => {
     <Fragment>
       <View
         style={{
-          flex: 1
+          flex: 1,
         }}>
         <Image
           source={require('../images/loginBackground.png')}
@@ -203,18 +332,24 @@ const Login = ({navigation, route}) => {
         />
         <SafeAreaView />
         {/* {alert(Dimensions.get('screen').width)} */}
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',  marginHorizontal:screenPadding}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginHorizontal: screenPadding,
+          }}>
           {/* 뷰1 */}
           {LOGO()}
-          {/* {SNS_LOGIN(navigation)} */}
-          <FormButton
+          {SNS_LOGIN(navigation)}
+          {/* <FormButton
             nav={() => {
               navigation.navigate('EmailLogin');
             }}
             title={'이메일로 로그인'}
             style={{width:'100%',marginTop:40}}
-          />
-          {JOIN(navigation)}
+          /> */}
+          {/* {JOIN(navigation)} */}
           {NO_LOGIN(navigation, route)}
         </View>
       </View>
