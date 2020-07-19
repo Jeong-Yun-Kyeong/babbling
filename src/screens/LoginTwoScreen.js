@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -20,6 +20,11 @@ import appleAuth, {
   AppleAuthRequestScope,
   AppleAuthCredentialState,
 } from '@invertase/react-native-apple-authentication';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
 
 import * as ScreenMargin from '../values/ScreenMargin';
 
@@ -45,6 +50,41 @@ const LOGO = () => {
       <SvgXml xml={SVG('LOGO')} height={height} width={width} />
     </View>
   );
+};
+//google login or join1
+onGoogleButtonPress = async () => {
+  GoogleSignin.configure({
+    scopes: [], // what API you want to access on behalf of the user, default is email and profile
+    webClientId:
+      '557805776866-b1ar65jbtani5g6nctgbt2ovr8jl8nng.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    hostedDomain: '', // specifies a hosted domain restriction
+    loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+    forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+    accountName: '', // [Android] specifies an account name on the device that should be used
+  });
+
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    // setUserInfo(userInfo);
+    console.log(userInfo);
+    //userInfo.user // email, name, id
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+      console.log(error.code);
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+      console.log(error.code);
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+      console.log(error.code);
+    } else {
+      // some other error happened
+      console.log(error);
+    }
+  }
 };
 //apple login or join 1
 onAppleButtonPress = async () => {
@@ -201,7 +241,9 @@ const SNS_LOGIN = (navigation) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        onPress={() => {}}>
+        onPress={() => {
+          onGoogleButtonPress();
+        }}>
         <Image
           source={require('../images/icon/google.png')}
           style={{width: radius + 25, height: radius + 25}}
@@ -288,8 +330,10 @@ const NO_LOGIN = (navigation, route) => {
     </View>
   );
 };
+//main
+Login = ({navigation, route}) => {
+  const [userInfo, setUserInfo] = useState(null);
 
-const Login = ({navigation, route}) => {
   console.log(ScreenMargin.getMargin(route.name));
 
   let screenPadding = ScreenMargin.getMargin(route.name);
