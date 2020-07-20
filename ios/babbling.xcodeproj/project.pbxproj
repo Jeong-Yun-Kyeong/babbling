@@ -19,7 +19,6 @@
 		40E06751AC28A55F281CAEA4 /* libPods-babbling-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E98B3BDA4C5F6D278FD2F1F1 /* libPods-babbling-tvOSTests.a */; };
 		4F208E72D2E0252BD5A3EE5B /* libPods-babbling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */; };
 		5F69F72224C2F2EA00137AAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F69F72124C2F2EA00137AAD /* GoogleService-Info.plist */; };
-		5F69F72924C3F7A600137AAD /* libRNKakaoLogins.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */; };
 		5FD487A724766A7000F4A26B /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5FD487A624766A7000F4A26B /* Fonts */; };
 		76429EF9DCFD808A588B27FA /* libPods-babbling-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4268099D519B08885A5F34 /* libPods-babbling-tvOS.a */; };
 		8774F852E8D7D4FBFAE93F4A /* libPods-babblingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C5B3D1DD74C9F24FF3BF89 /* libPods-babblingTests.a */; };
@@ -39,13 +38,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "babbling-tvOS";
-		};
-		5F69F72724C3F78200137AAD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNKakaoLogins;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -68,7 +60,6 @@
 		3D03AECAC47167AEC06E8FC8 /* Pods-babbling-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		50C5B3D1DD74C9F24FF3BF89 /* libPods-babblingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babblingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F69F72124C2F2EA00137AAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKakaoLogins.xcodeproj; path = "../node_modules/@react-native-seoul/kakao-login/ios/RNKakaoLogins.xcodeproj"; sourceTree = "<group>"; };
 		5FD487A624766A7000F4A26B /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5FF3DD1B24BDF17D00B45C2D /* babblingRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babblingRelease.entitlements; path = babbling/babblingRelease.entitlements; sourceTree = "<group>"; };
 		5FF3DD1C24BDF58000B45C2D /* babbling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babbling.entitlements; path = babbling/babbling.entitlements; sourceTree = "<group>"; };
@@ -97,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F69F72924C3F7A600137AAD /* libRNKakaoLogins.a in Frameworks */,
 				4F208E72D2E0252BD5A3EE5B /* libPods-babbling.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,18 +158,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5F69F72424C3F78200137AAD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -348,12 +329,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5F69F72424C3F78200137AAD /* Products */;
-					ProjectRef = 5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* babbling */,
@@ -363,16 +338,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKakaoLogins.a;
-			remoteRef = 5F69F72724C3F78200137AAD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
