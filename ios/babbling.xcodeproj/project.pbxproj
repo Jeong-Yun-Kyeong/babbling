@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* babblingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* babblingTests.m */; };
+		0E259A6E904479C8334D0B25 /* libPods-babbling-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F365500473740F157D9D78 /* libPods-babbling-tvOSTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -16,13 +17,11 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* babblingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* babblingTests.m */; };
-		40E06751AC28A55F281CAEA4 /* libPods-babbling-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E98B3BDA4C5F6D278FD2F1F1 /* libPods-babbling-tvOSTests.a */; };
-		4F208E72D2E0252BD5A3EE5B /* libPods-babbling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */; };
-		5F69F72224C2F2EA00137AAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F69F72124C2F2EA00137AAD /* GoogleService-Info.plist */; };
-		5F69F72924C3F7A600137AAD /* libRNKakaoLogins.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */; };
+		4D37A61A157EC71AB72DCF18 /* libPods-babbling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B630136C0C9756C355F0408 /* libPods-babbling.a */; };
+		50BA1B8E0F93266DDF1A6183 /* libPods-babblingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38FBFD2DEEEDEB2AEE599D0 /* libPods-babblingTests.a */; };
 		5FD487A724766A7000F4A26B /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5FD487A624766A7000F4A26B /* Fonts */; };
-		76429EF9DCFD808A588B27FA /* libPods-babbling-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4268099D519B08885A5F34 /* libPods-babbling-tvOS.a */; };
-		8774F852E8D7D4FBFAE93F4A /* libPods-babblingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C5B3D1DD74C9F24FF3BF89 /* libPods-babblingTests.a */; };
+		99AA26DB8EE468A39805387D /* libPods-babbling-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3768A9AAF0767E88576C27 /* libPods-babbling-tvOS.a */; };
+		BE7B5B2924C5875E00841BA8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE7B5B2824C5875E00841BA8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +39,6 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "babbling-tvOS";
 		};
-		5F69F72724C3F78200137AAD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNKakaoLogins;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +46,7 @@
 		00E356EE1AD99517003FC87E /* babblingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = babblingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* babblingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = babblingTests.m; sourceTree = "<group>"; };
+		09316E8E07F71736FB84250D /* Pods-babblingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babblingTests.debug.xcconfig"; path = "Target Support Files/Pods-babblingTests/Pods-babblingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* babbling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = babbling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = babbling/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = babbling/AppDelegate.m; sourceTree = "<group>"; };
@@ -61,27 +54,25 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = babbling/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = babbling/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = babbling/main.m; sourceTree = "<group>"; };
+		2B630136C0C9756C355F0408 /* libPods-babbling.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* babbling-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "babbling-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* babbling-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "babbling-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A1D710D986292506D34FF74 /* Pods-babbling-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.release.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		3D03AECAC47167AEC06E8FC8 /* Pods-babbling-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		50C5B3D1DD74C9F24FF3BF89 /* libPods-babblingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babblingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F69F72124C2F2EA00137AAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKakaoLogins.xcodeproj; path = "../node_modules/@react-native-seoul/kakao-login/ios/RNKakaoLogins.xcodeproj"; sourceTree = "<group>"; };
+		2E3768A9AAF0767E88576C27 /* libPods-babbling-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		383FC7F4AC4735ED6D8E5CEB /* Pods-babbling-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOSTests/Pods-babbling-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		39584A66635E472C6C124284 /* Pods-babblingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babblingTests.release.xcconfig"; path = "Target Support Files/Pods-babblingTests/Pods-babblingTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C342B0DE7311C8B2DC738AE /* Pods-babbling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling.debug.xcconfig"; path = "Target Support Files/Pods-babbling/Pods-babbling.debug.xcconfig"; sourceTree = "<group>"; };
+		51F365500473740F157D9D78 /* libPods-babbling-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C7CF4BCA079A55AC5AB16A5 /* Pods-babbling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling.release.xcconfig"; path = "Target Support Files/Pods-babbling/Pods-babbling.release.xcconfig"; sourceTree = "<group>"; };
 		5FD487A624766A7000F4A26B /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5FF3DD1B24BDF17D00B45C2D /* babblingRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babblingRelease.entitlements; path = babbling/babblingRelease.entitlements; sourceTree = "<group>"; };
 		5FF3DD1C24BDF58000B45C2D /* babbling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babbling.entitlements; path = babbling/babbling.entitlements; sourceTree = "<group>"; };
-		661869202E81E1F3490CEDCE /* Pods-babbling-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOSTests/Pods-babbling-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		78C83D1B21D54DA16345101F /* Pods-babbling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling.debug.xcconfig"; path = "Target Support Files/Pods-babbling/Pods-babbling.debug.xcconfig"; sourceTree = "<group>"; };
-		859E132F43C379C4B6BD59D1 /* Pods-babbling-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-babbling-tvOSTests/Pods-babbling-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		89A06F9F36F3861287CF0141 /* Pods-babblingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babblingTests.release.xcconfig"; path = "Target Support Files/Pods-babblingTests/Pods-babblingTests.release.xcconfig"; sourceTree = "<group>"; };
-		8BC05674635ED5C95E0CDFE6 /* Pods-babbling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling.release.xcconfig"; path = "Target Support Files/Pods-babbling/Pods-babbling.release.xcconfig"; sourceTree = "<group>"; };
-		AB4268099D519B08885A5F34 /* libPods-babbling-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E471ECEA13B3B046D9CF4D49 /* Pods-babblingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babblingTests.debug.xcconfig"; path = "Target Support Files/Pods-babblingTests/Pods-babblingTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E98B3BDA4C5F6D278FD2F1F1 /* libPods-babbling-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD437002DB2C1CFBFDEDF3E /* Pods-babbling-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-babbling-tvOSTests/Pods-babbling-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B38FBFD2DEEEDEB2AEE599D0 /* libPods-babblingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babblingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7B5B2824C5875E00841BA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E03E04DB1D2907967F7E371A /* Pods-babbling-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F5591E00144BD976F46F4155 /* Pods-babbling-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.release.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8774F852E8D7D4FBFAE93F4A /* libPods-babblingTests.a in Frameworks */,
+				50BA1B8E0F93266DDF1A6183 /* libPods-babblingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F69F72924C3F7A600137AAD /* libRNKakaoLogins.a in Frameworks */,
-				4F208E72D2E0252BD5A3EE5B /* libPods-babbling.a in Frameworks */,
+				4D37A61A157EC71AB72DCF18 /* libPods-babbling.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76429EF9DCFD808A588B27FA /* libPods-babbling-tvOS.a in Frameworks */,
+				99AA26DB8EE468A39805387D /* libPods-babbling-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E06751AC28A55F281CAEA4 /* libPods-babbling-tvOSTests.a in Frameworks */,
+				0E259A6E904479C8334D0B25 /* libPods-babbling-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +131,7 @@
 		13B07FAE1A68108700A75B9A /* babbling */ = {
 			isa = PBXGroup;
 			children = (
-				5F69F72124C2F2EA00137AAD /* GoogleService-Info.plist */,
+				BE7B5B2824C5875E00841BA8 /* GoogleService-Info.plist */,
 				5FF3DD1C24BDF58000B45C2D /* babbling.entitlements */,
 				5FF3DD1B24BDF17D00B45C2D /* babblingRelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -160,26 +150,17 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */,
-				AB4268099D519B08885A5F34 /* libPods-babbling-tvOS.a */,
-				E98B3BDA4C5F6D278FD2F1F1 /* libPods-babbling-tvOSTests.a */,
-				50C5B3D1DD74C9F24FF3BF89 /* libPods-babblingTests.a */,
+				2B630136C0C9756C355F0408 /* libPods-babbling.a */,
+				2E3768A9AAF0767E88576C27 /* libPods-babbling-tvOS.a */,
+				51F365500473740F157D9D78 /* libPods-babbling-tvOSTests.a */,
+				B38FBFD2DEEEDEB2AEE599D0 /* libPods-babblingTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5F69F72424C3F78200137AAD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -214,14 +195,14 @@
 		9E3CC7BD506368B715C4F5DA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				78C83D1B21D54DA16345101F /* Pods-babbling.debug.xcconfig */,
-				8BC05674635ED5C95E0CDFE6 /* Pods-babbling.release.xcconfig */,
-				3D03AECAC47167AEC06E8FC8 /* Pods-babbling-tvOS.debug.xcconfig */,
-				3A1D710D986292506D34FF74 /* Pods-babbling-tvOS.release.xcconfig */,
-				661869202E81E1F3490CEDCE /* Pods-babbling-tvOSTests.debug.xcconfig */,
-				859E132F43C379C4B6BD59D1 /* Pods-babbling-tvOSTests.release.xcconfig */,
-				E471ECEA13B3B046D9CF4D49 /* Pods-babblingTests.debug.xcconfig */,
-				89A06F9F36F3861287CF0141 /* Pods-babblingTests.release.xcconfig */,
+				3C342B0DE7311C8B2DC738AE /* Pods-babbling.debug.xcconfig */,
+				5C7CF4BCA079A55AC5AB16A5 /* Pods-babbling.release.xcconfig */,
+				E03E04DB1D2907967F7E371A /* Pods-babbling-tvOS.debug.xcconfig */,
+				F5591E00144BD976F46F4155 /* Pods-babbling-tvOS.release.xcconfig */,
+				383FC7F4AC4735ED6D8E5CEB /* Pods-babbling-tvOSTests.debug.xcconfig */,
+				7AD437002DB2C1CFBFDEDF3E /* Pods-babbling-tvOSTests.release.xcconfig */,
+				09316E8E07F71736FB84250D /* Pods-babblingTests.debug.xcconfig */,
+				39584A66635E472C6C124284 /* Pods-babblingTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -233,7 +214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "babblingTests" */;
 			buildPhases = (
-				B5D6C2454188D1D49E9905AF /* [CP] Check Pods Manifest.lock */,
+				14FA270788CEED2EB87C19EA /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -252,13 +233,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "babbling" */;
 			buildPhases = (
-				B3C44BD30D529BD301A4B925 /* [CP] Check Pods Manifest.lock */,
+				EF179F5F286E8912928ABE85 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9B2BE78F88843CF8EC673DEB /* [CP] Copy Pods Resources */,
+				CE0AEBCB9AA7F28719617F1B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,7 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "babbling-tvOS" */;
 			buildPhases = (
-				9E3B20BA2031EF0DD7AD594B /* [CP] Check Pods Manifest.lock */,
+				FD7C91020DED78A4DDAF11D0 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -293,7 +274,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "babbling-tvOSTests" */;
 			buildPhases = (
-				1C2CAACA3381B9B9E89FA3D6 /* [CP] Check Pods Manifest.lock */,
+				3B230B118E49D82BD64841B1 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -348,12 +329,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5F69F72424C3F78200137AAD /* Products */;
-					ProjectRef = 5F69F72324C3F78200137AAD /* RNKakaoLogins.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* babbling */,
@@ -363,16 +338,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5F69F72824C3F78200137AAD /* libRNKakaoLogins.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKakaoLogins.a;
-			remoteRef = 5F69F72724C3F78200137AAD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -387,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FD487A724766A7000F4A26B /* Fonts in Resources */,
-				5F69F72224C2F2EA00137AAD /* GoogleService-Info.plist in Resources */,
+				BE7B5B2924C5875E00841BA8 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -425,7 +390,43 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		1C2CAACA3381B9B9E89FA3D6 /* [CP] Check Pods Manifest.lock */ = {
+		14FA270788CEED2EB87C19EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-babblingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		3B230B118E49D82BD64841B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -447,21 +448,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		9B2BE78F88843CF8EC673DEB /* [CP] Copy Pods Resources */ = {
+		CE0AEBCB9AA7F28719617F1B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -479,29 +466,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-babbling/Pods-babbling-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9E3B20BA2031EF0DD7AD594B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-babbling-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3C44BD30D529BD301A4B925 /* [CP] Check Pods Manifest.lock */ = {
+		EF179F5F286E8912928ABE85 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -517,28 +482,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-babbling-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B5D6C2454188D1D49E9905AF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-babblingTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -581,6 +524,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD7C91020DED78A4DDAF11D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-babbling-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -650,7 +615,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E471ECEA13B3B046D9CF4D49 /* Pods-babblingTests.debug.xcconfig */;
+			baseConfigurationReference = 09316E8E07F71736FB84250D /* Pods-babblingTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ZJ7ZVZQPJZ;
@@ -674,7 +639,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89A06F9F36F3861287CF0141 /* Pods-babblingTests.release.xcconfig */;
+			baseConfigurationReference = 39584A66635E472C6C124284 /* Pods-babblingTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -695,7 +660,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78C83D1B21D54DA16345101F /* Pods-babbling.debug.xcconfig */;
+			baseConfigurationReference = 3C342B0DE7311C8B2DC738AE /* Pods-babbling.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = babbling/babbling.entitlements;
@@ -719,7 +684,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BC05674635ED5C95E0CDFE6 /* Pods-babbling.release.xcconfig */;
+			baseConfigurationReference = 5C7CF4BCA079A55AC5AB16A5 /* Pods-babbling.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = babbling/babblingRelease.entitlements;
@@ -742,7 +707,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D03AECAC47167AEC06E8FC8 /* Pods-babbling-tvOS.debug.xcconfig */;
+			baseConfigurationReference = E03E04DB1D2907967F7E371A /* Pods-babbling-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -770,7 +735,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A1D710D986292506D34FF74 /* Pods-babbling-tvOS.release.xcconfig */;
+			baseConfigurationReference = F5591E00144BD976F46F4155 /* Pods-babbling-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -798,7 +763,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 661869202E81E1F3490CEDCE /* Pods-babbling-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 383FC7F4AC4735ED6D8E5CEB /* Pods-babbling-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -825,7 +790,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 859E132F43C379C4B6BD59D1 /* Pods-babbling-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 7AD437002DB2C1CFBFDEDF3E /* Pods-babbling-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
