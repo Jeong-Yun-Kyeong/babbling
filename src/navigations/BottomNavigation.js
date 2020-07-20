@@ -174,7 +174,7 @@ const Header = ({navigation, route}) => {
           },
         })}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="TALK"
         component={TalkStack}
         options={({route}) => ({
@@ -219,8 +219,8 @@ const Header = ({navigation, route}) => {
             );
           },
         })}
-      />
-      <Tab.Screen
+      /> */}
+      {/* <Tab.Screen
         name="EVENT"
         component={EventStack}
         options={({route}) => ({
@@ -265,7 +265,7 @@ const Header = ({navigation, route}) => {
             );
           },
         })}
-      />
+      /> */}
     </Tab.Navigator>
     // </NavigationContainer>
   );
