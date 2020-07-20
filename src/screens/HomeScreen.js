@@ -16,7 +16,7 @@ import Footer from './FooterScreen';
 import CardPost from '../components/CardPostComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import SlideImageBanner from '../components/SlideImageBannerComponent';
-import {URL} from '../Constant';
+import {URL, TESTTOKEN} from '../Constant';
 
 import * as ScreenMargin from '../values/ScreenMargin';
 
@@ -156,7 +156,11 @@ export default class Home extends PureComponent {
   }
 
   getImages = async () => {
-    const images = await fetch(URL + '/home/banner/').then((res) => res.json());
+    const images = await fetch(URL + '/home/banner/', {
+      headers: {
+        Authorization: 'JWT ' + TESTTOKEN,
+      },
+    }).then((res) => res.json());
     console.log(images);
     return images;
   };
@@ -168,7 +172,11 @@ export default class Home extends PureComponent {
 
   componentDidMount() {
     this.getBase();
-    fetch(URL + '/product/')
+    fetch(URL + '/product/', {
+      headers: {
+        Authorization: 'JWT ' + TESTTOKEN,
+      },
+    })
       .then((res) => res.json())
       .then((resJson) => {
         this.setState({
