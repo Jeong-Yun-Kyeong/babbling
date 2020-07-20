@@ -8,7 +8,7 @@ import EventStack from './src/navigations/EventStackNavigation';
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <NavigationContainer>
         <AuthStack />
         {/* <EventStack /> */}

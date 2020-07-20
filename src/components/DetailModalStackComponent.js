@@ -37,7 +37,11 @@ export default class DetailModal extends PureComponent {
                   <Text>닫기</Text>
                 </TouchableOpacity>
               ),
-              headerTitle: () => <Text style={{fontSize: 17}}>상세페이지</Text>,
+              headerTitle: () => (
+                <Text style={{fontSize: 17, flexGrow: 1, alignItems: 'center'}}>
+                  상세페이지
+                </Text>
+              ),
               headerRight: () => (
                 <View style={{flexDirection: 'row', marginRight: 24}}>
                   <View style={{flex: 1, padding: 5}}>

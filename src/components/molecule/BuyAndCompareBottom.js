@@ -46,7 +46,7 @@ export default class BuyAndCompare extends PureComponent {
                   alignItems: 'center',
                 }}>
                 <SvgXml xml={SVG('JJIM')} />
-                <Text style={{color: '#31CC74', fontSize: 11}}>찜</Text>
+                <Text style={{color: '#31CC74', fontSize: 10}}>찜</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -55,16 +55,18 @@ export default class BuyAndCompare extends PureComponent {
                   alignItems: 'center',
                 }}>
                 <SvgXml xml={SVG('PLUS')} />
-                <Text style={{color: '#31CC74', fontSize: 11}}>비교함담기</Text>
+                <Text style={{color: '#31CC74', fontSize: 10}}>비교함담기</Text>
               </TouchableOpacity>
+              {/* 구매버튼 margin 변경 */}
               <TouchableOpacity
                 style={{
                   flex: 6,
                   backgroundColor: '#31CC74',
-                  margin: 5,
+                  margin: 7,
                   borderRadius: 50,
                   justifyContent: 'center',
                   alignItems: 'center',
+                  marginRight: 17,
                 }}>
                 <Text style={{color: 'white', fontWeight: 'bold'}}>
                   구매하러 가기

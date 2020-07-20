@@ -51,7 +51,10 @@ const getTabBarVisibility = (route) => {
     routeName === 'QnA' ||
     routeName === 'BabyPlus_my' ||
     routeName === 'BabyAlergy_my' ||
-    routeName === 'Search'
+    routeName === 'Search' ||
+    //추가
+    routeName === 'CompanyProfile' ||
+    routeName === 'ACCESSTERMS'
   ) {
     return false;
   }

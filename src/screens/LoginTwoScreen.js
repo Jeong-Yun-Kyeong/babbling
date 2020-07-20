@@ -330,16 +330,19 @@ const NO_LOGIN = (navigation, route) => {
     </View>
   );
 };
-//main
 Login = ({navigation, route}) => {
-  const [userInfo, setUserInfo] = useState(null);
-
   console.log(ScreenMargin.getMargin(route.name));
 
   let screenPadding = ScreenMargin.getMargin(route.name);
 
   return (
     <Fragment>
+      {/* statusbar 투명하게 */}
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={'transparent'}
+        translucent={true}
+      />
       <View
         style={{
           flex: 1,

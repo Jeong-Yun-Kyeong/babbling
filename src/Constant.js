@@ -10,7 +10,7 @@ export {HEADER_FONTSIZE, FONTSIZE};
 export {URL};
 //
 export {약관1, 약관2};
-const URL = 'http://babbling.babylab.kr';
+const URL = 'http://babbling.co.kr';
 // WebServices로 변경
 // const URL = 'http://172.30.1.57';
 //

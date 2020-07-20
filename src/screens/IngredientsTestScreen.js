@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {URL} from '../Constant';
@@ -453,23 +454,30 @@ export default class Ingredients extends PureComponent {
               flexDirection: 'row',
               flexGrow: 1,
               justifyContent: 'space-between',
-              paddingLeft: 10,
+              paddingLeft: 5,
             }}>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
+              {/* paddingRight추가 */}
               <SvgXml xml={SVG('UNMARKED')} />
-              <Text style={{color: 'gray', fontSize: 11}}>미표기 등급</Text>
+              <Text style={{color: 'gray', fontSize: 11, paddingRight: 3}}>
+                미표기 등급
+              </Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <SvgXml xml={SVG('SAFETY')} />
-              <Text style={{color: 'gray', fontSize: 11}}>안전 등급</Text>
+              <Text style={{color: 'gray', fontSize: 11, paddingRight: 3}}>
+                안전 등급
+              </Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <SvgXml xml={SVG('CAUTION')} />
-              <Text style={{color: 'gray', fontSize: 11}}>주의 등급</Text>
+              <Text style={{color: 'gray', fontSize: 11, paddingRight: 3}}>
+                주의 등급
+              </Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <SvgXml xml={SVG('DANGER')} />
@@ -772,19 +780,28 @@ export default class Ingredients extends PureComponent {
             <View style={{backgroundColor: 'white'}}>
               <View
                 style={{
+                  //android 검색창 높이적용
+                  height: 34,
                   flexDirection: 'row',
                   borderRadius: 50,
                   borderWidth: 1,
                   borderColor: '#32cc73',
                   justifyContent: 'space-between',
-                  padding: 3,
                   paddingLeft: 24,
                   paddingRight: 14,
                   margin: 16,
                   marginTop: 3,
                 }}>
-                <TextInput placeholder="성분 검색" />
-                <View>
+                <TextInput
+                  placeholder="성분 검색"
+                  //android 검색창 높이적용
+                  style={{
+                    fontSize: 12,
+                    height: 34,
+                  }}
+                />
+                {/* 돋보기 center정렬 */}
+                <View style={{padding: 3}}>
                   <SvgXml xml={SVG('SEARCH')} />
                 </View>
               </View>

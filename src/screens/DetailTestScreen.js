@@ -370,7 +370,7 @@ export default class Detail extends PureComponent {
                   // paddingBottom: 18,
                 }}>
                 <View style={{}}>
-                  <SvgXml xml={SVG('SAFETY')} width="44" height="44" />
+                  <SvgXml xml={SVG('SAFETYMINT')} width="44" height="44" />
                 </View>
                 {/* graph */}
                 <View style={{paddingTop: 15, paddingBottom: 10}}>
