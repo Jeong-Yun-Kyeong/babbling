@@ -30,7 +30,7 @@ const Icon = (svg, label) => {
   };
 };
 
-function CategoryTop() {
+function CategoryTop(props) {
   return (
     <>
       <SafeAreaView style={{backgroundColor: 'white'}} />
@@ -42,7 +42,11 @@ function CategoryTop() {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <TouchableOpacity style={{marginLeft: 24, marginRight: 10}}>
+        <TouchableOpacity
+          style={{marginLeft: 24, marginRight: 10}}
+          onPress={() => {
+            props.navigation.goBack();
+          }}>
           <SvgXml xml={SVG('BACKIOS')} />
         </TouchableOpacity>
         <View

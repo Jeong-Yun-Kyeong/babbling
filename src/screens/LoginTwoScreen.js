@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,6 +14,17 @@ import {SvgXml} from 'react-native-svg';
 import {BlurView} from '@react-native-community/blur';
 import SVG from '../components/SvgComponent';
 import FormButton from '../components/atom/FormButton';
+import appleAuth, {
+  AppleButton,
+  AppleAuthRequestOperation,
+  AppleAuthRequestScope,
+  AppleAuthCredentialState,
+} from '@invertase/react-native-apple-authentication';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
 
 import * as ScreenMargin from '../values/ScreenMargin';
 
@@ -40,6 +51,134 @@ const LOGO = () => {
     </View>
   );
 };
+//google login or join1
+onGoogleButtonPress = async () => {
+  GoogleSignin.configure({
+    scopes: [], // what API you want to access on behalf of the user, default is email and profile
+    webClientId:
+      '557805776866-b1ar65jbtani5g6nctgbt2ovr8jl8nng.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    hostedDomain: '', // specifies a hosted domain restriction
+    loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+    forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+    accountName: '', // [Android] specifies an account name on the device that should be used
+  });
+
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    // setUserInfo(userInfo);
+    console.log(userInfo);
+    //userInfo.user // email, name, id
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+      console.log(error.code);
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+      console.log(error.code);
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+      console.log(error.code);
+    } else {
+      // some other error happened
+      console.log(error);
+    }
+  }
+};
+//apple login or join 1
+onAppleButtonPress = async () => {
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    requestedOperation: AppleAuthRequestOperation.LOGIN,
+    requestedScopes: [
+      AppleAuthRequestScope.EMAIL,
+      AppleAuthRequestScope.FULL_NAME,
+    ],
+  });
+
+  const credentialState = await appleAuth.getCredentialStateForUser(
+    appleAuthRequestResponse.user,
+  );
+
+  if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
+    console.log('로그인됨?');
+    console.log(appleAuthRequestResponse);
+    console.log(appleAuthRequestResponse.user);
+    console.log(appleAuthRequestResponse.email);
+    console.log(appleAuthRequestResponse.fullName.familyName);
+    console.log(appleAuthRequestResponse.fullName.givenName);
+    signInWithApple(appleAuthRequestResponse);
+  }
+};
+//apple login or join 2
+const signInWithApple = (appleAuthRequestResponse) => {
+  let url = 'http://172.30.1.57/rest-auth/registration/';
+  form = new FormData();
+  form.append('username', appleAuthRequestResponse.user);
+  form.append('password1', appleAuthRequestResponse.user);
+  form.append('password2', appleAuthRequestResponse.user);
+  if (appleAuthRequestResponse.email != null) {
+    form.append('email', appleAuthRequestResponse.email);
+  }
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {
+      this.setState({
+        token: resJson.token,
+      });
+      if (resJson.username == 'A user with that username already exists.') {
+        console.log('로그인하게 하기');
+        //
+        loginForm = new FormData();
+        loginForm.append('username', appleAuthRequestResponse.user);
+        loginForm.append('password', appleAuthRequestResponse.user);
+        url = 'http://172.30.1.57/rest-auth/login/';
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: loginForm,
+        })
+          .then((res) => res.json())
+          .then((resJson) => {
+            console.log(resJson);
+            // pk값으로 개인정보 조회 후 (넘어가거나 등록 후) 아이정보 조회(선택하거나 자동선택하거나 추가하거나)
+            // _getUserAssistent(resJson.token)
+            // _getChildsData()
+          });
+        //
+      } else {
+        console.log('회원가입하게 하기');
+        console.log(resJson);
+        this.props.navigation.navigate('Join', {token: 'JWT ' + resJson.token});
+      }
+    });
+};
+//유저정보 가져오기
+_getUserAssistent = (token) => {
+  const url = 'http://172.30.1.57/user_assistent/';
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'JWT ' + token,
+    },
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {});
+};
+
 // sns 로그인 버튼들
 const SNS_LOGIN = (navigation) => {
   let radius = 52;
@@ -66,28 +205,65 @@ const SNS_LOGIN = (navigation) => {
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {}}>
+        <Image
+          source={require('../images/icon/naver.png')}
+          style={{width: radius + 5, height: radius + 5}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
-          backgroundColor: '#f9da31',
+          backgroundColor: '#FFEB00',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {}}>
+        <Image
+          source={require('../images/icon/kakao.png')}
+          style={{width: radius - 10, height: radius - 10}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
           backgroundColor: 'white',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {
+          onGoogleButtonPress();
+        }}>
+        <Image
+          source={require('../images/icon/google.png')}
+          style={{width: radius + 25, height: radius + 25}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         style={{
-          backgroundColor: 'black',
           width: radius,
           height: radius,
           borderRadius: radius,
-        }}></TouchableOpacity>
+          overflow: 'hidden',
+        }}
+        onPress={() => {
+          onAppleButtonPress();
+        }}>
+        <Image
+          source={require('../images/icon/apple.png')}
+          style={{width: radius, height: radius}}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -154,8 +330,7 @@ const NO_LOGIN = (navigation, route) => {
     </View>
   );
 };
-
-const Login = ({navigation, route}) => {
+Login = ({navigation, route}) => {
   console.log(ScreenMargin.getMargin(route.name));
 
   let screenPadding = ScreenMargin.getMargin(route.name);
@@ -213,15 +388,15 @@ const Login = ({navigation, route}) => {
           }}>
           {/* 뷰1 */}
           {LOGO()}
-          {/* {SNS_LOGIN(navigation)} */}
-          <FormButton
+          {SNS_LOGIN(navigation)}
+          {/* <FormButton
             nav={() => {
               navigation.navigate('EmailLogin');
             }}
             title={'이메일로 로그인'}
-            style={{width: '100%', marginTop: 40}}
-          />
-          {JOIN(navigation)}
+            style={{width:'100%',marginTop:40}}
+          /> */}
+          {/* {JOIN(navigation)} */}
           {NO_LOGIN(navigation, route)}
         </View>
       </View>

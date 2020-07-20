@@ -8,22 +8,22 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from 'react-native';
 import Footer from './FooterScreen';
 
 const Event = ({navigation}) => {
   return (
     <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView />
+      {/* <StatusBar barStyle="dark-content" /> */}
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{backgroundColor: '#f3f3f3'}}>
-          {/*  */}
-          <View style={{padding: 17, backgroundColor: 'white', paddingTop: 24}}>
+          <View style={styles.boardWhiteSpace}>
             <View
               style={{
-                // width: 381,
                 height: 192,
+                flex: 1,
+                borderRadius: 20,
               }}>
               {/*  */}
               <TouchableOpacity
@@ -31,10 +31,49 @@ const Event = ({navigation}) => {
                   navigation.navigate('EventDetail');
                 }}
                 style={{
-                  backgroundColor: 'gray',
                   flex: 1,
                   borderRadius: 20,
-                }}></TouchableOpacity>
+                  shadowOffset: {
+                    height: 5,
+                  },
+                  // shadowColor: 'rgb(0,0,0)',
+                  shadowColor: 'red',
+                  shadowOpacity: 0.5,
+                  shadowRadius: 10,
+                  elevation: 5,
+                  // overflow: 'hidden',
+                }}>
+                <View style={{borderRadius: 20, overflow: 'hidden'}}>
+                  <Image
+                    source={require('../images/event_image0717.png')}
+                    // resizeMode="contain"
+                    style={{
+                      height: 192,
+                      width: Dimensions.get('screen').width - 16 - 16,
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
+              {/* title */}
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'absolute',
+                  top: 40,
+                  left: 33,
+                }}>
+                <Text
+                  style={{
+                    color: 'rgba(255,255,255,0.87)',
+                    lineHeight: 28,
+                    letterSpacing: -0.72,
+                    fontSize: 18,
+                    fontWeight: '600',
+                  }}>
+                  소중한 우리아이 피부
+                </Text>
+              </View>
               {/* d-day */}
               <View
                 style={{
@@ -60,13 +99,15 @@ const Event = ({navigation}) => {
                   height: 27,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  backgroundColor: 'rgba(255,255,255,0.6)',
+                  backgroundColor: 'rgba(255,255,255,0.8)',
                   borderRadius: 50,
                   position: 'absolute',
                   right: 20,
                   bottom: 20,
                 }}>
-                <Text style={{color: 'gray', fontSize: 13}}>1.10 ~ 1.12</Text>
+                <Text style={{color: 'rgba(0,0,0,0.6)', fontSize: 13}}>
+                  1.10 ~ 1.12
+                </Text>
               </View>
             </View>
           </View>
@@ -96,6 +137,12 @@ const Event = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  boardWhiteSpace: {
+    padding: 16,
+    backgroundColor: 'white',
+    paddingTop: 24,
+  },
+});
 
 export default Event;

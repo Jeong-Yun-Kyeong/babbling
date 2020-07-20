@@ -16,6 +16,8 @@ import SVG from '../components/SvgComponent';
 import * as ScreenMargin from '../values/ScreenMargin';
 import Postcode from 'react-native-daum-postcode';
 import {약관1, 약관2} from '../Constant';
+import IMP from 'iamport-react-native';
+import {Loading} from '../components/LoadingComponent';
 export default class Join extends PureComponent {
   constructor(props) {
     super(props);
