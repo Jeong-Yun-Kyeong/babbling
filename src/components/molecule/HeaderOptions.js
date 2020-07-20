@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   Dimensions,
   TextInput,
+  StyleSheet,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
@@ -26,13 +28,16 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
       <Text
         style={{
           fontSize: 32,
-          // fontWeight: 'bold',
+          //
+          // fontWeight: '900',
           marginLeft: 24,
           fontFamily: 'Poppins-Bold',
         }}>
         {json.left}
       </Text>
     ),
+  //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () =>
     json.title == 'SearchBar' ? (
       <TouchableOpacity
@@ -59,7 +64,7 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
         <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
       </TouchableOpacity>
     ) : (
-      <Text style={{fontSize: 17}}>{json.title}</Text>
+      <Text style={{fontSize: 17, alignItems: 'center'}}>{json.title}</Text>
     ),
   headerRight: () =>
     json.right.length > 0 ? (
@@ -77,7 +82,9 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
       </View>
     ) : null,
   headerStyle: {
+    //ios,android 구분하여 높이적용
     height: getStatusBarHeight() + 56,
+    // Platform.OS === 'ios' ? getStatusBarHeight() + 56 : getStatusBarHeight() + 56,
     shadowRadius: 0,
     shadowOffset: {
       height: 0,
@@ -97,6 +104,8 @@ const MyWroteHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
+  //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>내가 쓴글</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -115,7 +124,8 @@ const ScrapHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>스크랩</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -134,7 +144,8 @@ const MyRepleHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>댓글/답글</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -153,7 +164,8 @@ const EventJjimHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>찜한 이벤트</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -172,7 +184,8 @@ const EventWinningHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>당첨된 이벤트</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -191,7 +204,8 @@ const EventApplyHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>신청 이벤트</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -210,7 +224,8 @@ const EvalutaionReviewHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>평가단 리뷰 작성</Text>,
   headerRight: () => (
     <TouchableOpacity
@@ -238,7 +253,8 @@ const AlarmHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>알림</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -257,7 +273,8 @@ const SettingsHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>설정</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -280,7 +297,8 @@ const SearchHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => (
     <View
       style={{
@@ -393,7 +411,8 @@ const FAQHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>FAQ</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -413,7 +432,8 @@ const QnAHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>문의하기</Text>,
   headerRight: () => (
     <TouchableOpacity
@@ -442,7 +462,8 @@ const ACCESSTERMSHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>이용약관</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,
@@ -462,7 +483,8 @@ const CompanyProfileHeader = (navigation) => ({
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
-  ),
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>회사소개</Text>,
   headerStyle: {
     height: getStatusBarHeight() + 62,

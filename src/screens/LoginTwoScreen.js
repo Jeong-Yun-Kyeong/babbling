@@ -15,9 +15,7 @@ import {BlurView} from '@react-native-community/blur';
 import SVG from '../components/SvgComponent';
 import FormButton from '../components/atom/FormButton';
 
-
 import * as ScreenMargin from '../values/ScreenMargin';
-
 
 import {FONTSIZE} from '../Constant';
 
@@ -108,10 +106,9 @@ const JOIN = (navigation) => {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: width,
-        marginTop: 20
+        marginTop: 20,
       }}>
       <Text style={{color: '#ffffff99', fontSize: FONTSIZE.MIDDLE}}>
-
         회원이 아니신가요?
       </Text>
       <TouchableOpacity
@@ -151,7 +148,6 @@ const NO_LOGIN = (navigation, route) => {
           navigation.navigate('Main');
         }}>
         <Text style={{color: '#ffffff99', fontSize: FONTSIZE.SMALL}}>
-
           로그인 없이 앱 둘러보기
         </Text>
       </TouchableOpacity>
@@ -160,16 +156,21 @@ const NO_LOGIN = (navigation, route) => {
 };
 
 const Login = ({navigation, route}) => {
-
   console.log(ScreenMargin.getMargin(route.name));
 
   let screenPadding = ScreenMargin.getMargin(route.name);
 
   return (
     <Fragment>
+      {/* statusbar 투명하게 */}
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={'transparent'}
+        translucent={true}
+      />
       <View
         style={{
-          flex: 1
+          flex: 1,
         }}>
         <Image
           source={require('../images/loginBackground.png')}
@@ -203,7 +204,13 @@ const Login = ({navigation, route}) => {
         />
         <SafeAreaView />
         {/* {alert(Dimensions.get('screen').width)} */}
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',  marginHorizontal:screenPadding}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginHorizontal: screenPadding,
+          }}>
           {/* 뷰1 */}
           {LOGO()}
           {/* {SNS_LOGIN(navigation)} */}
@@ -212,7 +219,7 @@ const Login = ({navigation, route}) => {
               navigation.navigate('EmailLogin');
             }}
             title={'이메일로 로그인'}
-            style={{width:'100%',marginTop:40}}
+            style={{width: '100%', marginTop: 40}}
           />
           {JOIN(navigation)}
           {NO_LOGIN(navigation, route)}

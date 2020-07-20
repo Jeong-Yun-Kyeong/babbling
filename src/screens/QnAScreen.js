@@ -158,7 +158,18 @@ export default class QnA extends PureComponent {
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 marginHorizontal: -1,
+                //화살표 겹치기
+                position: 'relative',
               }}>
+              <SvgXml
+                xml={SVG('DOWNMORE')}
+                style={{
+                  //화살표 겹치기
+                  position: 'absolute',
+                  marginLeft: Dimensions.get('screen').width - 80,
+                  //화살표 겹치기end
+                }}
+              />
               <RNPickerSelect
                 onValueChange={(value) => console.log(value)}
                 placeholder={{
@@ -178,16 +189,27 @@ export default class QnA extends PureComponent {
                   this.inputRefs.picker2.togglePicker();
                 }}
                 style={{
-                  inputIOS: {
-                    width: Dimensions.get('screen').width - 85,
+                  inputAndroid: {
+                    width: Dimensions.get('screen').width - 48,
                     fontSize: 16,
-                    marginLeft: 7,
                     paddingTop: 13,
-                    paddingLeft: 6,
+                    paddingLeft: 15,
                     paddingHorizontal: 10,
                     paddingBottom: 12,
                     borderWidth: 0,
-                    borderColor: 'rgba(0, 0, 0, 0.0)',
+                    borderColor: 'rgba(0, 0, 0, 0)',
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                    color: 'black',
+                  },
+                  inputIOS: {
+                    width: Dimensions.get('screen').width - 48,
+                    fontSize: 16,
+                    paddingTop: 13,
+                    paddingLeft: 15,
+                    paddingHorizontal: 10,
+                    paddingBottom: 12,
+                    borderWidth: 0,
+                    borderColor: 'rgba(0, 0, 0, 0)',
                     backgroundColor: 'rgba(0, 0, 0, 0)',
                     color: 'black',
                   },
@@ -199,7 +221,6 @@ export default class QnA extends PureComponent {
                 useNativeAndroidPickerStyle={false} //android only
                 hideIcon={true}
               />
-              <SvgXml xml={SVG('DOWNMORE')} />
             </View>
             {/* RNPickerSelect end */}
             <View style={{marginBottom: 13}}>
@@ -318,6 +339,7 @@ export default class QnA extends PureComponent {
                   flexDirection: 'row',
                   justifyContent: 'space-around',
                   marginHorizontal: -1,
+                  position: 'relative',
                 }}>
                 <TextInput
                   placeholder={'이메일 (email@example.com)'}
@@ -339,7 +361,18 @@ export default class QnA extends PureComponent {
                   flexDirection: 'row',
                   justifyContent: 'space-around',
                   marginHorizontal: -1,
+                  //화살표 겹치기
+                  position: 'relative',
                 }}>
+                <SvgXml
+                  xml={SVG('DOWNMORE')}
+                  style={{
+                    //화살표 겹치기
+                    position: 'absolute',
+                    marginLeft: Dimensions.get('screen').width / 3 - 30,
+                    ////화살표 겹치기end
+                  }}
+                />
                 <RNPickerSelect
                   placeholder={{
                     label: '직접입력',
@@ -358,12 +391,25 @@ export default class QnA extends PureComponent {
                     this.inputRefs.company.focus();
                   }}
                   style={{
-                    inputIOS: {
-                      width: Dimensions.get('screen').width / 3 - 30,
+                    inputAndroid: {
+                      width: Dimensions.get('screen').width / 3 - 8,
                       fontSize: 16,
-                      marginLeft: 3,
+                      marginLeft: 8,
                       paddingTop: 13,
                       paddingLeft: 6,
+                      paddingHorizontal: 10,
+                      paddingBottom: 12,
+                      borderWidth: 0,
+                      borderColor: 'rgba(0, 0, 0, 0.5)',
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      color: 'black',
+                    },
+                    inputIOS: {
+                      width: Dimensions.get('screen').width / 3 - 8,
+                      fontSize: 16,
+                      marginLeft: 8,
+                      paddingTop: 13,
+                      paddingLeft: 7,
                       paddingHorizontal: 10,
                       paddingBottom: 12,
                       borderWidth: 0,
@@ -376,10 +422,10 @@ export default class QnA extends PureComponent {
                   ref={(el) => {
                     this.inputRefs.picker2 = el;
                   }}
-                  useNativeAndroidPickerStyle={true} //android only
+                  useNativeAndroidPickerStyle={false} //android only
+                  hideIcon={true}
                 />
                 {/* RNPickerSelect end*/}
-                <SvgXml xml={SVG('DOWNMORE')} />
               </View>
             </View>
             {/* email,dropdown추가 end*/}
