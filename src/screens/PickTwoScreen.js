@@ -18,7 +18,7 @@ import Footer from './FooterScreen';
 import CompareButton from '../components/atom/CompareButton';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import List from '../components/ListComponent';
-import {URL} from '../Constant';
+import {URL, TESTTOKEN} from '../Constant';
 
 SVG('MILKPRODUCT');
 // <SvgXml xml={milkProduct} width="24" height="24" />
@@ -132,7 +132,11 @@ export default class Pick extends PureComponent {
   componentWillMount() {
     this.setState({images: IMAGESLIDE});
     console.log('시작');
-    fetch(URL + '/product/')
+    fetch(URL + '/product/', {
+      headers: {
+        Authorization: 'JWT ' + TESTTOKEN,
+      },
+    })
       .then((res) => res.json())
       .then((resJson) => {
         console.log('데이터 받아오기', resJson);

@@ -199,7 +199,7 @@ const SNS_LOGIN = (navigation) => {
         width: width,
         // width: 327,
       }}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           backgroundColor: '#50b158',
           width: radius,
@@ -214,8 +214,8 @@ const SNS_LOGIN = (navigation) => {
           source={require('../images/icon/naver.png')}
           style={{width: radius + 5, height: radius + 5}}
         />
-      </TouchableOpacity>
-      <TouchableOpacity
+      </TouchableOpacity> */}
+      {/* <TouchableOpacity
         style={{
           backgroundColor: '#FFEB00',
           width: radius,
@@ -230,7 +230,7 @@ const SNS_LOGIN = (navigation) => {
           source={require('../images/icon/kakao.png')}
           style={{width: radius - 10, height: radius - 10}}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         style={{
           backgroundColor: 'white',
