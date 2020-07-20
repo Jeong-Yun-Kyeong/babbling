@@ -8,7 +8,7 @@ import HomeStack from './src/navigations/HomeNavigation';
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <NavigationContainer>
         <AuthStack />
         {/* <PickStack /> */}
