@@ -14,16 +14,16 @@ export default class Footer extends PureComponent {
   render() {
     return (
       <Fragment>
-        {/*  */}
+        {/*예스침한의원,공지,베블링칭찬하기,베블링카카오플러스친구,유투브,인스타,블로그 주석,1:1문의 작성하기*/}
         <View>
-          <Image
+          {/*}  <Image
             source={require('../images/add02.png')}
             style={{width: '100%'}}
             resizeMode="contain"
           />
-        </View>
-        {/*  */}
-        <View
+        </View> */}
+          {/*  */}
+          {/* <View
           style={{
             paddingHorizontal: 16,
             backgroundColor: 'white',
@@ -59,11 +59,11 @@ export default class Footer extends PureComponent {
               </Text>
             </View>
           </View>
-        </View>
-        {/*  */}
-        <View style={{backgroundColor: '#f9f9f9', height: 400}}>
+        </View> */}
+          {/*  */}
+          {/* <View style={{backgroundColor: '#f9f9f9', height: 400}}> */}
           {/* box */}
-          <View style={{padding: 16, backgroundColor: 'white'}}>
+          {/* <View style={{padding: 16, backgroundColor: 'white'}}>
             <View
               style={{
                 flexDirection: 'row',
@@ -78,9 +78,9 @@ export default class Footer extends PureComponent {
                 shadowOpacity: 0.1,
                 shadowRadius: 3.84,
                 elevation: 5,
-              }}>
-              {/* 칭찬 */}
-              <TouchableOpacity
+              }}> */}
+          {/* 칭찬 */}
+          {/* <TouchableOpacity
                 style={{
                   padding: 8,
                   alignItems: 'center',
@@ -90,17 +90,17 @@ export default class Footer extends PureComponent {
                   style={{color: '#32cc73', fontSize: 12, fontWeight: '500'}}>
                   베블링 칭찬하기
                 </Text>
-              </TouchableOpacity>
-              {/* 카플 */}
-              <View
+              </TouchableOpacity> */}
+          {/* 카플 */}
+          {/* <View
                 style={{
                   backgroundColor: '#dadada',
                   width: 1,
                   marginTop: 5,
                   marginBottom: 5,
-                }}></View>
-              {/*  */}
-              <TouchableOpacity
+                }}></View> */}
+          {/*  */}
+          {/* <TouchableOpacity
                 style={{
                   // flex: 1,
                   padding: 8,
@@ -111,17 +111,17 @@ export default class Footer extends PureComponent {
                   style={{color: '#32cc73', fontSize: 12, fontWeight: '500'}}>
                   베블링 카카오 플러스 친구
                 </Text>
-              </TouchableOpacity>
-              {/*  */}
-              <View
+              </TouchableOpacity> */}
+          {/*  */}
+          {/* <View
                 style={{
                   backgroundColor: '#dadada',
                   width: 1,
                   marginTop: 5,
                   marginBottom: 5,
-                }}></View>
-              {/* 기타 */}
-              <View
+                }}></View> */}
+          {/* 기타 */}
+          {/* <View
                 style={{
                   padding: 8,
                   flexDirection: 'row',
@@ -139,7 +139,7 @@ export default class Footer extends PureComponent {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+          </View> */}
 
           {/* 고객 */}
           <View
@@ -170,7 +170,7 @@ export default class Footer extends PureComponent {
                   flexGrow: 1,
                   justifyContent: 'flex-end',
                 }}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{
                     backgroundColor: 'white',
                     padding: 4,
@@ -198,7 +198,7 @@ export default class Footer extends PureComponent {
                     }}>
                     1:1 문의 작성하기
                   </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity
                   style={{
                     backgroundColor: 'white',

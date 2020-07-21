@@ -1072,7 +1072,7 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.7.tgz#a65ce0702f55cb67fd777995de6fc7b3e5781903"
   integrity sha512-9KbP7LTLFz9dx1heURJbO6nuVMdSjDez8znlrUzaB1nUwKVsTTwlKRuHxGUYIIkReLWrJQeCv9tidy+84z2eCw==
 
-"@react-native-seoul/kakao-login@^2.7.0":
+"@react-native-seoul/kakao-login@2.7.0":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@react-native-seoul/kakao-login/-/kakao-login-2.7.0.tgz#6a8990773dc81a4a74a6c7991ffa3fa1f216f38b"
   integrity sha512-/oFJuOuqBCliL4elsTvHCmhS0WyPa9WYpZ69+lHaAVObBYgoL/q0QHO6L9VktFsW5iI19sT8NN6+RiCARO9+CA==

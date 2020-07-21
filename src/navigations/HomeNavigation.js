@@ -59,11 +59,12 @@ const HomeStack = () => {
           HeaderOptions(navigation, {
             left: 'Babbling',
             title: null,
-            right: [
-              {svg: 'SEARCH', nav: 'HomeSearch'},
-              {svg: 'HEART', nav: 'Jjim'},
-              {svg: 'MYPAGE', nav: 'MyPage'},
-            ],
+            //search,jim.mypage 주석
+            // right: [
+            //   {svg: 'SEARCH', nav: 'HomeSearch'},
+            //   {svg: 'HEART', nav: 'Jjim'},
+            //   {svg: 'MYPAGE', nav: 'MyPage'},
+            // ],
           })
         }
       />
@@ -297,13 +298,14 @@ const IngredientsHeader = (navigation) => ({
   ), //android 가운데 정렬
   headerTitleAlign: 'center',
   headerTitle: () => <Text style={{fontSize: 17}}>전체 성분</Text>,
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HELP')} />
-      </View>
-    </View>
-  ),
+  // 물음표 주석
+  // headerRight: () => (
+  //   <View style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('HELP')} />
+  //     </View>
+  //   </View>
+  // ),
   headerStyle: {
     height: getStatusBarHeight() + 62,
     //header 그림자 제거

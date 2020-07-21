@@ -437,8 +437,8 @@ export default class Detail extends PureComponent {
                 <SvgXml xml={SVG('ARROWRIGHT')} />
               </TouchableOpacity>
 
-              {/* doc tip */}
-              <TouchableOpacity
+              {/* doc tip 주석 */}
+              {/* <TouchableOpacity
                 onPress={() => {
                   this.setState({modalVisible: true});
                 }}>
@@ -450,7 +450,7 @@ export default class Detail extends PureComponent {
                   }}
                   resizeMode="contain"
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               {/* caution! */}
               <View style={{backgroundColor: 'rgb(245,245,245)', padding: 16}}>
@@ -651,9 +651,10 @@ export default class Detail extends PureComponent {
                           />
                         </View>
                       </View>
-                      <View>
+                      {/* 하트찜 버튼 주석 */}
+                      {/* <View>
                         <SvgXml xml={SVG('HEART_GRAY')} />
-                      </View>
+                      </View> */}
                     </View>
                     <View
                       style={{
@@ -666,8 +667,9 @@ export default class Detail extends PureComponent {
                         리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용
                       </Text>
                     </View>
-                    <TouchableOpacity
-                      onPress={() => this.props.navigation.navigate('Reply')}
+                    {/* 댓글달기 주석 */}
+                    {/* <TouchableOpacity
+                      onPress={() => this.props.navigatison.navigate('Reply')}
                       style={{
                         marginTop: 15,
                         flexDirection: 'row',
@@ -678,7 +680,7 @@ export default class Detail extends PureComponent {
                         style={{color: 'gray', fontSize: 11, marginLeft: 4}}>
                         댓글달기 | 답글보기(3)
                       </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                   </View>
                 </View>
               </View>
@@ -759,12 +761,12 @@ export default class Detail extends PureComponent {
           {/*  */}
           {/*  */}
           {/*  */}
-          {/*  */}
-          <BuyAndCompare
+          {/* 찜,비교함,구매버튼 주석*/}
+          {/* <BuyAndCompare
             goCompare={() => {
               this.props.navigation.navigate('Compare');
             }}
-          />
+          /> */}
         </SafeAreaView>
         <Modal visible={this.state.modalVisible} transparent={true}>
           <View
