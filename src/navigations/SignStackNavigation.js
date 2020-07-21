@@ -2,17 +2,17 @@ import React from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+// import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 // import Login from '../screens/LoginScreen';
 import Login from '../screens/LoginTwoScreen';
-import EmailLogin from '../screens/EmailLoginScreen';
+// import EmailLogin from '../screens/EmailLoginScreen';
 
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
-import Join from '../screens/JoinScreen';
-import PassWord from '../screens/PWScreen';
-import PWChange from '../screens/PWChangeScreen';
+// import Join from '../screens/JoinScreen';
+// import PassWord from '../screens/PWScreen';
+// import PWChange from '../screens/PWChangeScreen';
 import BabyPlus from '../screens/BabyPlusScreen';
 import BabyAlergy from '../screens/BabyAlergyScreen';
 import {BLACK60} from '../Constant';
@@ -29,17 +29,17 @@ const SignStack = ({navigation}) => {
           headerShown: false,
         })}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="EmailLogin"
         component={EmailLogin}
         options={({route}) => EmailLoginHeader(navigation)}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name="Join"
         component={Join}
         options={({route}) => JoinHeader(navigation)}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name="PassWord"
         component={PassWord}
         options={({route}) => PWHeader(navigation)}
@@ -48,7 +48,7 @@ const SignStack = ({navigation}) => {
         name="PWChange"
         component={PWChange}
         options={({route}) => PWChangeHeader(navigation)}
-      />
+      /> */}
       {/* 아이추가 */}
       <Stack.Screen
         name="BabyPlus"
@@ -64,93 +64,93 @@ const SignStack = ({navigation}) => {
   );
 };
 
-const EmailLoginHeader = (navigation) => ({
-  animationEnabled: false,
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitleAlign: 'center',
-  headerTitle: () => (
-    <View style={{alignSelf: 'center'}}>
-      <Text style={{fontSize: 16, color: BLACK60}}>로그인</Text>
-    </View>
-  ),
-  headerStyle: {
-    shadowOffset: {
-      height: 0,
-    },
-    elevation: 0,
-  },
-});
+// const EmailLoginHeader = (navigation) => ({
+//   animationEnabled: false,
+//   headerLeft: () => (
+//     <TouchableOpacity
+//       style={{marginLeft: 24}}
+//       onPress={() => {
+//         navigation.goBack();
+//       }}>
+//       <SvgXml xml={SVG('BACKIOS')} />
+//     </TouchableOpacity>
+//   ),
+//   headerTitleAlign: 'center',
+//   headerTitle: () => (
+//     <View style={{alignSelf: 'center'}}>
+//       <Text style={{fontSize: 16, color: BLACK60}}>로그인</Text>
+//     </View>
+//   ),
+//   headerStyle: {
+//     shadowOffset: {
+//       height: 0,
+//     },
+//     elevation: 0,
+//   },
+// });
 
-const JoinHeader = (navigation) => ({
-  animationEnabled: false,
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitleAlign: 'center',
-  headerTitle: () => <Text style={{fontSize: 17}}>이메일로 회원가입하기</Text>,
-  headerStyle: {
-    shadowOffset: {
-      height: 0,
-    },
-    elevation: 0,
-  },
-});
+// const JoinHeader = (navigation) => ({
+//   animationEnabled: false,
+//   headerLeft: () => (
+//     <TouchableOpacity
+//       style={{marginLeft: 24}}
+//       onPress={() => {
+//         navigation.goBack();
+//       }}>
+//       <SvgXml xml={SVG('BACKIOS')} />
+//     </TouchableOpacity>
+//   ),
+//   headerTitleAlign: 'center',
+//   headerTitle: () => <Text style={{fontSize: 17}}>이메일로 회원가입하기</Text>,
+//   headerStyle: {
+//     shadowOffset: {
+//       height: 0,
+//     },
+//     elevation: 0,
+//   },
+// });
 
-const PWHeader = (navigation) => ({
-  animationEnabled: false,
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitleAlign: 'center',
-  headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 찾기</Text>,
-  headerStyle: {
-    shadowOffset: {
-      height: 0,
-    },
-    elevation: 0,
-  },
-});
+// const PWHeader = (navigation) => ({
+//   animationEnabled: false,
+//   headerLeft: () => (
+//     <TouchableOpacity
+//       style={{marginLeft: 24}}
+//       onPress={() => {
+//         navigation.goBack();
+//       }}>
+//       <SvgXml xml={SVG('BACKIOS')} />
+//     </TouchableOpacity>
+//   ),
+//   headerTitleAlign: 'center',
+//   headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 찾기</Text>,
+//   headerStyle: {
+//     shadowOffset: {
+//       height: 0,
+//     },
+//     elevation: 0,
+//   },
+// });
 
-const PWChangeHeader = (navigation) => ({
-  animationEnabled: false,
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ),
-  headerTitleAlign: 'center',
-  headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 변경하기</Text>,
-  headerStyle: {
-    shadowOffset: {
-      height: 0,
-    },
-    elevation: 0,
-  },
-});
+// const PWChangeHeader = (navigation) => ({
+//   animationEnabled: false,
+//   headerLeft: () => (
+//     <TouchableOpacity
+//       style={{marginLeft: 24}}
+//       onPress={() => {
+//         navigation.goBack();
+//       }}>
+//       <SvgXml xml={SVG('BACKIOS')} />
+//     </TouchableOpacity>
+//   ),
+//   headerTitleAlign: 'center',
+//   headerTitle: () => <Text style={{fontSize: 17}}>비밀번호 변경하기</Text>,
+//   headerStyle: {
+//     shadowOffset: {
+//       height: 0,
+//     },
+//     elevation: 0,
+//   },
+// });
 
 const BabyPlusHeader = (navigation, route) => {
   //const {isRegister} = navigation.getParam('params',{isRegister:false,});

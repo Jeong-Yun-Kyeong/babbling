@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
-import {URL} from '../Constant';
+import {URL, TESTTOKEN} from '../Constant';
 
 import SVG from '../components/SvgComponent';
 
@@ -80,6 +80,7 @@ export default class Ingredients extends PureComponent {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: 'JWT ' + TESTTOKEN,
       },
       body: form,
     })
