@@ -66,21 +66,22 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
     ) : (
       <Text style={{fontSize: 17, alignItems: 'center'}}>{json.title}</Text>
     ),
-  headerRight: () =>
-    json.right.length > 0 ? (
-      <View style={{flexDirection: 'row', marginRight: HEADER_WHITESPACE}}>
-        {json.right.map((data, index) => {
-          return (
-            <TouchableOpacity
-              style={{flex: 1, padding: 5}}
-              key={index}
-              onPress={() => navigation.navigate(data.nav)}>
-              <SvgXml xml={SVG(data.svg)} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : null,
+  //search,jim.mypage 주석
+  // headerRight: () =>
+  //   json.right.length > 0 ? (
+  //     <View style={{flexDirection: 'row', marginRight: HEADER_WHITESPACE}}>
+  //       {json.right.map((data, index) => {
+  //         return (
+  //           <TouchableOpacity
+  //             style={{flex: 1, padding: 5}}
+  //             key={index}
+  //             onPress={() => navigation.navigate(data.nav)}>
+  //             <SvgXml xml={SVG(data.svg)} />
+  //           </TouchableOpacity>
+  //         );
+  //       })}
+  //     </View>
+  //   ) : null,
   headerStyle: {
     //ios,android 구분하여 높이적용
     height: getStatusBarHeight() + 56,

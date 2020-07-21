@@ -310,18 +310,16 @@ export default class Home extends PureComponent {
                 slideMarginVertical={8}
               />
             </View>
-
             {/* 수입장난감 */}
-            <SlideImageBanner
+            {/* <SlideImageBanner
               images={[
                 {url: '../images/add01.png'},
                 {url: '../images/add01.png'},
               ]}
-            />
-
-            <View style={{width: '100%', paddingHorizontal: screenMargin}}>
-              {/* 수다톡 */}
-              <CardTalk
+            /> */}
+            {/* <View style={{width: '100%', paddingHorizontal: screenMargin}}> */}
+            {/* 수다톡 */}
+            {/* <CardTalk
                 datas={TALK01}
                 title={'인기 수다톡'}
                 more={() => {
@@ -332,11 +330,11 @@ export default class Home extends PureComponent {
                 nav={() => this.props.navigation.navigate('TalkDetail')}
                 itemMarginVertical={8} //아이템 상하 간 간격
                 style={{marginBottom: 46}}
-              />
-              {/* 포스팅 */}
-              <View style={[posting.titleBox, {marginBottom: 47}]}>
-                {/*  */}
-                <View style={posting.title}>
+            /> */}
+            {/* 포스팅 */}
+            {/* <View style={[posting.titleBox, {marginBottom: 47}]}> */}
+            {/*  */}
+            {/* <View style={posting.title}>
                   <View
                     style={{
                       flex: 9,
@@ -346,26 +344,25 @@ export default class Home extends PureComponent {
                   <TouchableOpacity onPress={this._rootNavi} style={{flex: 1}}>
                     <Text style={posting.titleMore}>더보기</Text>
                   </TouchableOpacity>
-                </View>
-                {/*  */}
-                <CardPost
+                </View> */}
+            {/*  */}
+            {/* <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
                   style={{marginVertical: 8, marginHorizontal: 6}}
-                />
-                {/*  */}
-                <CardPost
+                /> */}
+            {/*  */}
+            {/* <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
                   style={{marginVertical: 8, marginHorizontal: 6}}
-                />
-                {/*  */}
-                <CardPost
+                /> */}
+            {/*  */}
+            {/* <CardPost
                   nav={() => this.props.navigation.navigate('PostDetail')}
                   style={{marginVertical: 8, marginHorizontal: 6}}
-                />
-                {/*  */}
-              </View>
-            </View>
-
+                /> */}
+            {/*  */}
+            {/* </View>
+            </View> */}
             {/* footer */}
             <Footer />
             {/*  */}

@@ -778,7 +778,7 @@ export default class Ingredients extends PureComponent {
         <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
           <View style={{backgroundColor: '#f3f3f3'}}>
             {/* search bar */}
-            <View style={{backgroundColor: 'white'}}>
+            {/* <View style={{backgroundColor: 'white'}}>
               <View
                 style={{
                   //android 검색창 높이적용
@@ -800,13 +800,13 @@ export default class Ingredients extends PureComponent {
                     fontSize: 12,
                     height: 34,
                   }}
-                />
-                {/* 돋보기 center정렬 */}
-                <View style={{padding: 3}}>
+                /> */}
+            {/* 돋보기 center정렬 */}
+            {/* <View style={{padding: 3}}>
                   <SvgXml xml={SVG('SEARCH')} />
                 </View>
               </View>
-            </View>
+            </View> */}
             {/* 성분 기준(식품에는 없음) */}
             {this.state.kind == 1 ? null : this._showEWG(this.state.kind)}
             {/* 바디부분 처리하기 */}
