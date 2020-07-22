@@ -16,132 +16,10 @@ import Footer from './FooterScreen';
 import CardPost from '../components/CardPostComponent';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import SlideImageBanner from '../components/SlideImageBannerComponent';
-import {URL, TESTTOKEN} from '../Constant';
+import {URL} from '../Constant';
 
 import * as ScreenMargin from '../values/ScreenMargin';
-
-const SLIDE01 = [
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-  {
-    idx: 4,
-    code: 401010,
-    brand_name: '벨레다',
-    name: '어린이 치약',
-    hash_tag: '#첫로션 #고보습 #산양유',
-    star: 4.5,
-    star_count: '2,121',
-  },
-];
-
-const TALK01 = [
-  {
-    img: '../images/1.jpeg',
-    title: '사랑의 불시착',
-    content: `사랑의 불시착 와 내일 한다 드디어!!! 내일 주말이니까 하루종일 침대에 누워서 넷플릭스 봐야지 ㅇㅎㅎ`,
-    type: '자유게시판',
-  },
-  {
-    img: null,
-    title: '젖 뗀지 8개월 되어 갑니다.',
-    content: `현재 아기가 16개월 되어가고, 8개월정도까지 혼합수유 하다가 복집하면서 젖 뗐어요. 그래서 지금은 젖뗀지 어쩌고 저쩌고 이렇쿵 저렇쿵`,
-    type: '시시콜콜',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '사랑의 불시착',
-    content: `사랑의 불시착 와 내일 한다 드디어!!! 내일 주말이니까 하루종일 침대에 누워서 넷플릭스 봐야지 ㅇㅎㅎ`,
-    type: '자유게시판',
-  },
-  {
-    img: null,
-    title: '동백 꽃 필무렵 엉엉',
-    content: `사랑의 불시착 와 내일 한다 드디어!!! 내일 주말이니까 하루종일 침대에 누워서 넷플릭스 봐야지 ㅇㅎㅎ`,
-    type: '자유게시판',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '사랑의 불시착',
-    content: `사랑의 불시착 와 내일 한다 드디어!!! 내일 주말이니까 하루종일 침대에 누워서 넷플릭스 봐야지 ㅇㅎㅎ`,
-    type: '자유게시판',
-  },
-  {
-    img: null,
-    title: '동백 꽃 필무렵 엉엉',
-    content: `사랑의 불시착 와 내일 한다 드디어!!! 내일 주말이니까 하루종일 침대에 누워서 넷플릭스 봐야지 ㅇㅎㅎ`,
-    type: '자유게시판',
-  },
-];
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Home extends PureComponent {
   constructor(props) {
@@ -152,13 +30,32 @@ export default class Home extends PureComponent {
       activeSlide: 0,
       slide01: [],
       slide02: [],
+      token: null,
     };
   }
+  // user_assistant
+  _checkUserAssistant = () => {
+    form = new FormData();
+    form.append('pk', AsyncStorage.getItem('user_pk'));
+    // form.append('username', appleAuthRequestResponse.user);
+    // form.append('password1', appleAuthRequestResponse.user);
+    fetch(URL + '/user_assistent/', {
+      method: 'POST',
+      headers: {
+        Authorization: 'JWT ' + this.state.token,
+      },
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+      });
+  };
 
   getImages = async () => {
     const images = await fetch(URL + '/home/banner/', {
       headers: {
-        Authorization: 'JWT ' + TESTTOKEN,
+        Authorization: 'JWT ' + this.state.token,
       },
     }).then((res) => res.json());
     console.log(images);
@@ -170,23 +67,30 @@ export default class Home extends PureComponent {
     this.setState({images: images});
   };
 
-  componentDidMount() {
-    this.getBase();
+  getToken = async () => {
+    let token = await AsyncStorage.getItem('token');
+    this.setState({token});
+  };
+
+  async componentDidMount() {
+    await this.getToken();
+    // console.log(this.state.token);
+    // this._checkUserAssistant();
+    // this.getBase();
     fetch(URL + '/product/', {
       headers: {
-        Authorization: 'JWT ' + TESTTOKEN,
+        Authorization: 'JWT ' + this.state.token,
       },
     })
       .then((res) => res.json())
       .then((resJson) => {
+        console.log(resJson);
         this.setState({
           slide02: resJson,
-          slide01: SLIDE01,
+          // slide01: SLIDE01,
         });
       });
   }
-
-  componentWillUnmount() {}
 
   _intoDetail = () => {
     this.props.navigation.navigate('Detail');
@@ -301,14 +205,14 @@ export default class Home extends PureComponent {
               />
               {/*  */}
               {/* {this.state.slide02.length > 0 ? ( */}
-              <CardList
+              {/* <CardList
                 navigation={this.props.navigation}
                 title={'베스트 셀러'}
                 datas={slide01}
                 page={3}
                 slide={0}
                 slideMarginVertical={8}
-              />
+              /> */}
             </View>
             {/* 수입장난감 */}
             {/* <SlideImageBanner

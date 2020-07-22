@@ -27,11 +27,11 @@ export default class Settings extends PureComponent {
   }
 
   signout = async () => {
-    const data = await AsyncStorage.getItem('key');
-    console.log('data:   ', data);
+    const token = await AsyncStorage.getItem('token');
+    console.log('token:   ', token);
     AsyncStorage.clear();
-    const data2 = await AsyncStorage.getItem('key');
-    console.log('data:   ', data2);
+    const tokenConfirm = await AsyncStorage.getItem('token');
+    console.log('tokenConfirm:   ', tokenConfirm);
     this.props.navigation.navigate('LoginMain', {
       screen: 'Login',
     });

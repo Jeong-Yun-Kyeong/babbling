@@ -2,7 +2,6 @@ import React, {Fragment, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
@@ -25,34 +24,124 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
-
 import * as ScreenMargin from '../values/ScreenMargin';
-
-import {FONTSIZE} from '../Constant';
-
-// 로고
-const LOGO = () => {
-  let height = 52;
-  let width = 268;
-  let marginBottom = 40;
-  let screenWidth = Dimensions.get('screen').width;
-  if (screenWidth >= 834) {
-    height = 78;
-    width = 400;
-    marginBottom = 60;
-  }
+import {FONTSIZE, URL} from '../Constant';
+import AsyncStorage from '@react-native-community/async-storage';
+//
+const Login = ({navigation, route}) => {
+  let screenPadding = ScreenMargin.getMargin(route.name);
   return (
-    <View
-      style={{
-        marginBottom: marginBottom,
-        // alignItems: 'center',
-      }}>
-      <SvgXml xml={SVG('LOGO')} height={height} width={width} />
-    </View>
+    <Fragment>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={'transparent'}
+        translucent={true}
+      />
+      <View style={{flex: 1}}>
+        <Image
+          source={require('../images/loginBackground.png')}
+          resizeMode="cover"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: Dimensions.get('screen').width,
+            height: Dimensions.get('screen').height,
+          }}
+        />
+        <Image
+          source={require('../images/loginMain.png')}
+          resizeMode="cover"
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: Dimensions.get('screen').width,
+            height: Dimensions.get('screen').height / 2,
+          }}
+        />
+        <BlurView
+          style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}
+          blurType="dark"
+          blurAmount={5}
+        />
+        <SafeAreaView />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginHorizontal: screenPadding,
+          }}>
+          {/* {LOGO()} */}
+          {CustomView('LOGO')}
+          {SNS_LOGIN(navigation)}
+          {/* <FormButton
+            nav={() => {
+              navigation.navigate('EmailLogin');
+            }}
+            title={'이메일로 로그인'}
+            style={{width:'100%',marginTop:40}}
+          /> */}
+          {/* {JOIN(navigation)} */}
+          {NO_LOGIN(navigation, route)}
+        </View>
+      </View>
+    </Fragment>
   );
 };
+//
+_userJoin = (id, pw) => {
+  let url = URL + '/rest-auth/registration/';
+  form = new FormData();
+  form.append('username', id);
+  form.append('password1', pw);
+  form.append('password2', pw);
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {
+      console.log(resJson);
+    });
+};
+//
+_userCheck = (authUser, navigation) => {
+  let url = URL + 'rest-auth/login/';
+  loginForm = new FormData();
+  loginForm.append('username', authUser.id);
+  loginForm.append('password', authUser.pw);
+  url = URL + '/rest-auth/login/';
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: loginForm,
+  })
+    .then((res) => res.json())
+    .then((resJson) => {
+      if (resJson.non_field_errors.length > 0) {
+        console.log('존재하는 계정이 아닙니다.');
+        navigation.navigate('Join', {authUser: authUser});
+        // _userJoin(id, pw);
+      } else {
+        console.log('데이터 처리해서 홈화면으로 돌아가게 하는법');
+      }
+    });
+  //
+};
 //google login or join1
-onGoogleButtonPress = async () => {
+onGoogleButtonPress = async (navigation) => {
   GoogleSignin.configure({
     scopes: [], // what API you want to access on behalf of the user, default is email and profile
     webClientId:
@@ -67,8 +156,71 @@ onGoogleButtonPress = async () => {
   try {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
-    // setUserInfo(userInfo);
     console.log(userInfo);
+
+    let authUser = {
+      id: userInfo.user.id,
+      pw: 'g' + userInfo.user.id,
+      name: userInfo.user.familyName + userInfo.user.givenName,
+      email: userInfo.user.email,
+      sns: 'google',
+    };
+    //
+    this._userCheck(authUser, navigation);
+
+    //
+    // let url = URL + '/rest-auth/registration/';
+    // form = new FormData();
+    // form.append('username', userInfo.user.id);
+    // form.append('password1', 'g' + userInfo.user.id);
+    // form.append('password2', 'g' + userInfo.user.id);
+    // //
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: form,
+    // })
+    //   .then((res) => res.json())
+    //   .then((resJson) => {
+    //     console.log(resJson);
+    //     if (resJson.username == 'A user with that username already exists.') {
+    //       console.log('로그인하게 하기');
+    //       //
+    //       loginForm = new FormData();
+    //       loginForm.append('username', userInfo.user.id);
+    //       loginForm.append('password', 'g' + userInfo.user.id);
+    //       url = URL + '/rest-auth/login/';
+    //       fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //           Accept: 'application/json',
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: loginForm,
+    //       })
+    //         .then((res) => res.json())
+    //         .then((resJson) => {
+    //           console.log(resJson);
+    //           console.log(resJson.token);
+    //           // 그냥 입력하게 수정하기,
+    //           // _getUserAssistent(resJson, navigation, 'google', userInfo);
+    //           // _getChildsData()
+    //         });
+    //       //
+    //     } else {
+    //       this.props.navigation.navigate('Join', {
+    //         AuthUser: resJson,
+    //       });
+    //     }
+    //   });
+
+    //
+    //
+    //
+    //
     //userInfo.user // email, name, id
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -112,7 +264,7 @@ onAppleButtonPress = async () => {
 };
 //apple login or join 2
 const signInWithApple = (appleAuthRequestResponse) => {
-  let url = 'http://172.30.1.57/rest-auth/registration/';
+  let url = URL + '/rest-auth/registration/';
   form = new FormData();
   form.append('username', appleAuthRequestResponse.user);
   form.append('password1', appleAuthRequestResponse.user);
@@ -139,7 +291,7 @@ const signInWithApple = (appleAuthRequestResponse) => {
         loginForm = new FormData();
         loginForm.append('username', appleAuthRequestResponse.user);
         loginForm.append('password', appleAuthRequestResponse.user);
-        url = 'http://172.30.1.57/rest-auth/login/';
+        url = URL + '/rest-auth/login/';
         fetch(url, {
           method: 'POST',
           headers: {
@@ -152,7 +304,7 @@ const signInWithApple = (appleAuthRequestResponse) => {
           .then((resJson) => {
             console.log(resJson);
             // pk값으로 개인정보 조회 후 (넘어가거나 등록 후) 아이정보 조회(선택하거나 자동선택하거나 추가하거나)
-            // _getUserAssistent(resJson.token)
+            // _getUserAssistent(resJson.token, navigation, 'apple');
             // _getChildsData()
           });
         //
@@ -164,21 +316,83 @@ const signInWithApple = (appleAuthRequestResponse) => {
     });
 };
 //유저정보 가져오기
-_getUserAssistent = (token) => {
-  const url = 'http://172.30.1.57/user_assistent/';
+_getUserAssistent = (json, navigation, sns, userInfo) => {
+  form = new FormData();
+  form.append('pk', json.user.pk);
+  const url = URL + '/user_assistent/';
   fetch(url, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: 'JWT ' + token,
+      Authorization: 'JWT ' + json.token,
     },
     body: form,
   })
     .then((res) => res.json())
-    .then((resJson) => {});
+    .then((resJson) => {
+      if (resJson[0]) {
+        //아이정보 비교 필요
+      } else {
+        navigation.navigate('Join', {
+          data: json,
+          sns: sns,
+          info: {
+            email: userInfo.user.email,
+            name: userInfo.user.familyName + userInfo.user.givenName,
+          },
+        });
+      }
+      //없으면 작성하게 해야됨 -> 회원가입페이지 돌려서 사용하게 수정하기
+    });
 };
-
+// 화면, view,
+const CustomView = (val) => {
+  const LOGO = () => {
+    let height = 52;
+    let width = 268;
+    let marginBottom = 40;
+    let screenWidth = Dimensions.get('screen').width;
+    if (screenWidth >= 834) {
+      height = 78;
+      width = 400;
+      marginBottom = 60;
+    }
+    return (
+      <View
+        style={{
+          marginBottom: marginBottom,
+          // alignItems: 'center',
+        }}>
+        <SvgXml xml={SVG('LOGO')} height={height} width={width} />
+      </View>
+    );
+  };
+  if (val == 'LOGO') {
+    return LOGO();
+  }
+};
+// 로고
+// const LOGO = () => {
+//   let height = 52;
+//   let width = 268;
+//   let marginBottom = 40;
+//   let screenWidth = Dimensions.get('screen').width;
+//   if (screenWidth >= 834) {
+//     height = 78;
+//     width = 400;
+//     marginBottom = 60;
+//   }
+//   return (
+//     <View
+//       style={{
+//         marginBottom: marginBottom,
+//         // alignItems: 'center',
+//       }}>
+//       <SvgXml xml={SVG('LOGO')} height={height} width={width} />
+//     </View>
+//   );
+// };
 // sns 로그인 버튼들
 const SNS_LOGIN = (navigation) => {
   let radius = 52;
@@ -242,7 +456,7 @@ const SNS_LOGIN = (navigation) => {
           justifyContent: 'center',
         }}
         onPress={() => {
-          onGoogleButtonPress();
+          onGoogleButtonPress(navigation);
         }}>
         <Image
           source={require('../images/icon/google.png')}
@@ -328,79 +542,6 @@ const NO_LOGIN = (navigation, route) => {
         </Text>
       </TouchableOpacity>
     </View>
-  );
-};
-Login = ({navigation, route}) => {
-  console.log(ScreenMargin.getMargin(route.name));
-
-  let screenPadding = ScreenMargin.getMargin(route.name);
-
-  return (
-    <Fragment>
-      {/* statusbar 투명하게 */}
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={'transparent'}
-        translucent={true}
-      />
-      <View
-        style={{
-          flex: 1,
-        }}>
-        <Image
-          source={require('../images/loginBackground.png')}
-          resizeMode="cover"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: Dimensions.get('screen').width,
-            height: Dimensions.get('screen').height,
-          }}
-        />
-        <Image
-          source={require('../images/loginMain.png')}
-          resizeMode="cover"
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: Dimensions.get('screen').width,
-            height: Dimensions.get('screen').height / 2,
-          }}
-        />
-        <BlurView
-          style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}
-          blurType="dark"
-          blurAmount={5}
-        />
-        <SafeAreaView />
-        {/* {alert(Dimensions.get('screen').width)} */}
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginHorizontal: screenPadding,
-          }}>
-          {/* 뷰1 */}
-          {LOGO()}
-          {SNS_LOGIN(navigation)}
-          {/* <FormButton
-            nav={() => {
-              navigation.navigate('EmailLogin');
-            }}
-            title={'이메일로 로그인'}
-            style={{width:'100%',marginTop:40}}
-          /> */}
-          {/* {JOIN(navigation)} */}
-          {NO_LOGIN(navigation, route)}
-        </View>
-      </View>
-    </Fragment>
   );
 };
 
