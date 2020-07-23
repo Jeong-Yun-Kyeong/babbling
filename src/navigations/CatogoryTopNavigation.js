@@ -49,7 +49,8 @@ function CategoryTop(props) {
           }}>
           <SvgXml xml={SVG('BACKIOS')} />
         </TouchableOpacity>
-        <View
+        {/* 카테고리top 주석(search,heart,mypage) */}
+        {/* <View
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
@@ -84,7 +85,7 @@ function CategoryTop(props) {
               <SvgXml xml={SVG('MYPAGE')} />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </View>
       <Tab.Navigator
         lazy={true}

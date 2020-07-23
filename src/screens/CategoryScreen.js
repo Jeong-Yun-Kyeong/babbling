@@ -196,7 +196,8 @@ const Category = ({navigation}) => {
               <Text style={{color: 'gray', fontSize: 12}}>nn개의 상품</Text>
             </View>
             <View style={{}}>
-              <TouchableOpacity
+              {/* 신제품 주석 */}
+              {/* <TouchableOpacity
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -205,7 +206,7 @@ const Category = ({navigation}) => {
                 onPress={() => alert('준비되지 않았습니다.')}>
                 <Text style={{color: 'gray', fontSize: 10}}>신제품순</Text>
                 <SvgXml xml={SVG('DOWNMORE')} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
           {/* body */}

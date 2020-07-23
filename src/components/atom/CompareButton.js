@@ -12,10 +12,11 @@ export default class CompareButton extends PureComponent {
   render() {
     return (
       <>
-        <TouchableOpacity style={styles.button} onPress={this.props.goCompare}>
+        {/* pick비교함 주석 */}
+        {/* <TouchableOpacity style={styles.button} onPress={this.props.goCompare}>
           <SvgXml xml={SVG('COMPARE')} />
           <Text style={styles.text}>비교함</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </>
     );
   }

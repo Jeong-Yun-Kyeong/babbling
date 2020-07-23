@@ -568,7 +568,7 @@ export default class Detail extends PureComponent {
                 </ScrollView>
               </View>
               {/*  */}
-              <View
+              {/* <View
                 style={{
                   backgroundColor: 'white',
                 }}>
@@ -579,9 +579,9 @@ export default class Detail extends PureComponent {
                     marginLeft: 16,
                     marginRight: 16,
                   }}></View>
-              </View>
+              </View> */}
               {/* 댓글 */}
-              <View style={{backgroundColor: 'white', padding: 15}}>
+              {/* <View style={{backgroundColor: 'white', padding: 15}}>
                 <View
                   style={{
                     flexDirection: 'row',
@@ -650,12 +650,12 @@ export default class Detail extends PureComponent {
                             height="17"
                           />
                         </View>
-                      </View>
-                      {/* 하트찜 버튼 주석 */}
-                      {/* <View>
+                      </View> */}
+              {/* 하트찜 버튼 주석 */}
+              {/* <View>
                         <SvgXml xml={SVG('HEART_GRAY')} />
                       </View> */}
-                    </View>
+              {/* </View>
                     <View
                       style={{
                         marginTop: 15,
@@ -666,9 +666,9 @@ export default class Detail extends PureComponent {
                         numberOfLines={3}>
                         리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용
                       </Text>
-                    </View>
-                    {/* 댓글달기 주석 */}
-                    {/* <TouchableOpacity
+                    </View> */}
+              {/* 댓글달기 주석 */}
+              {/* <TouchableOpacity
                       onPress={() => this.props.navigatison.navigate('Reply')}
                       style={{
                         marginTop: 15,
@@ -681,9 +681,9 @@ export default class Detail extends PureComponent {
                         댓글달기 | 답글보기(3)
                       </Text>
                     </TouchableOpacity> */}
-                  </View>
-                </View>
-              </View>
+              {/* </View>
+                </View> */}
+              {/* </View> */}
 
               {/*  */}
               {/* <TouchableOpacity
@@ -834,6 +834,7 @@ export default class Detail extends PureComponent {
             <View>
               <Image
                 source={require('../images/5.jpeg')}
+                style={{marginTop: 50}}
                 resizeMode="contain"
               />
             </View>
@@ -844,13 +845,14 @@ export default class Detail extends PureComponent {
                 paddingBottom: 10,
                 paddingTop: 10,
               }}>
-              <Text style={{color: 'white'}} numberOfLines={4}>
+              {/* 리뷰 주석 */}
+              {/* <Text style={{color: 'white'}} numberOfLines={4}>
                 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰
                 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용
                 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰
                 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용
                 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용{' '}
-              </Text>
+              </Text> */}
             </View>
             <View
               style={{
@@ -891,7 +893,8 @@ export default class Detail extends PureComponent {
                   </Text>
                 </View>
               </View>
-              <Image source={require('../images/icon/Heart_white_line.png')} />
+              {/* 하트 주석 */}
+              {/* <Image source={require('../images/icon/Heart_white_line.png')} /> */}
             </View>
           </View>
         </Modal>

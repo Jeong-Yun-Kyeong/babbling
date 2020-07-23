@@ -13,14 +13,27 @@ import SVG from '../components/SvgComponent';
 import Detail from '../screens/DetailTestScreen';
 import Compare from '../screens/CompareScreen';
 
+//footer screen,navigation 추가
+import ACCESSTERMS from '../screens/AccesstermsScreen';
+import AccesstermsTop from './AccesstermsTopNavigation';
+import CompanyProfile from '../screens/CompanyProfileScreen';
+import FAQ from '../screens/FAQScreen';
+import QnA from '../screens/QnAScreen';
+//header추가
+import {
+  FAQHeader,
+  QnAHeader,
+  ACCESSTERMSHeader,
+  CompanyProfileHeader,
+} from '../components/molecule/HeaderOptions';
 const Stack = createStackNavigator();
 
 const PickHeader = {
   headerShown: false,
-  // headerLeft: () => (
-  //   <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
-  // ),
-  // headerTitle: () => null,
+  headerLeft: () => (
+    <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
+  ),
+  headerTitle: () => null,
   // headerRight: () => (
   //   <View style={{flexDirection: 'row', marginRight: 24}}>
   //     <View style={{flex: 1, padding: 5}}>
@@ -99,21 +112,27 @@ const DetailHeader = (navigation) => ({
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>
   ),
+  headerTitleAlign: 'center',
   headerTitle: () => (
-    <Text style={{fontSize: 17, flexGrow: 1, alignItems: 'center'}}>
+    <Text
+      style={{
+        fontSize: 17,
+        alignItems: 'center',
+      }}>
       상세페이지
     </Text>
   ),
-  headerRight: () => (
-    <View style={{flexDirection: 'row', marginRight: 24}}>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('HELP')} />
-      </View>
-      <View style={{flex: 1, padding: 5}}>
-        <SvgXml xml={SVG('SHARE')} />
-      </View>
-    </View>
-  ),
+  // pick상세페이지 help,share 주석
+  // headerRight: () => (
+  //   <View style={{flexDirection: 'row', marginRight: 24}}>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('HELP')} />
+  //     </View>
+  //     <View style={{flex: 1, padding: 5}}>
+  //       <SvgXml xml={SVG('SHARE')} />
+  //     </View>
+  //   </View>
+  // ),
   headerStyle: {
     height: getStatusBarHeight() + 62,
   },
@@ -162,6 +181,35 @@ const PickStack = ({navigation}) => {
         component={Compare}
         options={({navigation}) => CompareHeader(navigation)}
       />
+      {/* Footer*/}
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
+        options={({navigation}) => FAQHeader(navigation)}
+      />
+      <Stack.Screen
+        name="QnA"
+        component={QnA}
+        options={({navigation}) => QnAHeader(navigation)}
+      />
+      {/* 이용약관 및 개인정보 stack */}
+      <Stack.Screen
+        name="ACCESSTERMSTOP"
+        component={ACCESSTERMS}
+        options={({navigation}) => ACCESSTERMSHeader(navigation)}
+      />
+      <Stack.Screen
+        name="ACCESSTERMS"
+        component={AccesstermsTop}
+        options={({navigation}) => ACCESSTERMSHeader(navigation)}
+      />
+      {/* 회사소개 stack */}
+      <Stack.Screen
+        name="CompanyProfile"
+        component={CompanyProfile}
+        options={({navigation}) => CompanyProfileHeader(navigation)}
+      />
+      {/* Footer end*/}
     </Stack.Navigator>
   );
 };

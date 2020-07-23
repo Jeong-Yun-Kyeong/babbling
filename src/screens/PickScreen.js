@@ -286,8 +286,8 @@ export default class Pick extends PureComponent {
             }}>
             <Text>add</Text>
           </View>
-          {/*  */}
-          <Footer />
+          {/* footer navigation 추가*/}
+          <Footer navigation={this.props.navigation} />
         </ScrollView>
       </Fragment>
     );

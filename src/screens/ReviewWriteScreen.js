@@ -116,22 +116,25 @@ export default class ReviewWrite extends PureComponent {
               }}>
               {/* 평점 */}
               <View style={{paddingLeft: 9, paddingRight: 9}}>
-                <Text style={{fontSize: 15}}>평점을 선택해주세요.</Text>
+                {/* marginBottom 추가 */}
+                <Text style={{fontSize: 15, marginBottom: 15}}>
+                  평점을 선택해주세요.
+                </Text>
                 {/*  */}
                 <View style={{flexDirection: 'row'}}>
-                  <View style={{marginLeft: -7}}>
+                  <View style={{marginLeft: -6}}>
                     <SvgXml xml={SVG('STAR_GRAY')} width="28" height="28" />
                   </View>
-                  <View style={{marginLeft: -7}}>
+                  <View style={{marginLeft: -6}}>
                     <SvgXml xml={SVG('STAR_GRAY')} width="28" height="28" />
                   </View>
-                  <View style={{marginLeft: -7}}>
+                  <View style={{marginLeft: -6}}>
                     <SvgXml xml={SVG('STAR_GRAY')} width="28" height="28" />
                   </View>
-                  <View style={{marginLeft: -7}}>
+                  <View style={{marginLeft: -6}}>
                     <SvgXml xml={SVG('STAR_GRAY')} width="28" height="28" />
                   </View>
-                  <View style={{marginLeft: -7}}>
+                  <View style={{marginLeft: -6}}>
                     <SvgXml xml={SVG('STAR_GRAY')} width="28" height="28" />
                   </View>
                 </View>
@@ -225,7 +228,8 @@ export default class ReviewWrite extends PureComponent {
                   <SvgXml xml={SVG('PLUS_GRAY')} />
                 </TouchableOpacity>
               </View>
-              <View style={{marginTop: 12}}>
+              {/* marginBottom추가 */}
+              <View style={{marginTop: 12, marginBottom: 100}}>
                 <Text style={{color: '#838383', fontSize: 11}}>
                   이미지 파일(GIF, PNG, JPG)을 기준으로 최대 10MB이사, 최대
                   5개까지 등록 가능합니다.
