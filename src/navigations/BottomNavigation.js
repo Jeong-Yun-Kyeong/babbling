@@ -18,8 +18,8 @@ const getTabBarVisibility = (route) => {
   const routeName = route.state
     ? route.state.routes[route.state.index].name
     : '';
-  // console.log(route);
-  // console.log(routeName);
+  console.log(route);
+  console.log(routeName);
   if (
     routeName === 'Detail' ||
     routeName === 'Review' ||

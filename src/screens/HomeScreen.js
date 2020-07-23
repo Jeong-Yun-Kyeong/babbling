@@ -44,9 +44,32 @@ export default class Home extends PureComponent {
     return images;
   };
 
+  getProducts = async () => {
+    const product = await fetch(URL + '/product/', {
+      headers: {
+        Authorization: 'JWT ' + this.state.token,
+      },
+    }).then((res) => res.json());
+    console.log('상품 리스트: ', product);
+    return product;
+  };
+
   getBase = async () => {
     const images = await this.getImages();
-    this.setState({images: images});
+    const products = await this.getProducts();
+    let imageCustom = [];
+    function jsonConcat(o1, o2) {
+      for (var key in o2) {
+        o1[key] = o2[key];
+      }
+      return o1;
+    }
+    images.map((data, index) => {
+      result = jsonConcat(data, products[index]);
+      imageCustom.push(result);
+    });
+    console.log(imageCustom);
+    this.setState({images: images, slide02: products});
   };
 
   getToken = async () => {
@@ -58,19 +81,6 @@ export default class Home extends PureComponent {
     await this.getToken();
     this.getBase();
     // AsyncStorage.clear();
-    fetch(URL + '/product/', {
-      headers: {
-        Authorization: 'JWT ' + this.state.token,
-      },
-    })
-      .then((res) => res.json())
-      .then((resJson) => {
-        console.log('상품 리스트: ', resJson);
-        this.setState({
-          slide02: resJson,
-          // slide01: SLIDE01,
-        });
-      });
   }
 
   _intoDetail = () => {
@@ -121,6 +131,13 @@ export default class Home extends PureComponent {
           overflow: 'hidden',
           marginLeft: 1,
           marginRight: 1,
+        }}
+        onPress={() => {
+          // alert('상품 연결 준비중입니다.');
+          // console.log(item);
+          this.props.navigation.navigate('Detail', {
+            data: item,
+          });
         }}
         key={index}>
         <Image

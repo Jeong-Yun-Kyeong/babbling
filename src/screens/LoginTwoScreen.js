@@ -537,7 +537,8 @@ const NO_LOGIN = (navigation, route) => {
         onPress={() => {
           console.log(TESTTOKEN);
           AsyncStorage.setItem('token', TESTTOKEN);
-          navigation.navigate('Main');
+          // navigation.navigate('Main', {screen: 'HOME'});
+          navigation.navigate('HOME', {screen: 'Main'});
         }}>
         <Text style={{color: '#ffffff99', fontSize: FONTSIZE.SMALL}}>
           로그인 없이 앱 둘러보기
