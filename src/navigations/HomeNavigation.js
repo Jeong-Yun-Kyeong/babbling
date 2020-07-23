@@ -34,18 +34,28 @@ import EventApply from '../screens/EventApplyScreen';
 import EvalutaionReview from '../screens/EvaulationReviewScreen';
 import Alarm from '../screens/AlarmScreen';
 import Settings from '../screens/SettingScreen';
-import FAQ from '../screens/FAQScreen';
-import QnA from '../screens/QnAScreen';
 import TalkDetail from '../screens/TalkDetailScreen';
 import PostDetail from '../screens/PostDetailScreen';
 import Search from '../screens/SearchScreen';
 
 import BabyPlus from '../screens/BabyPlusScreen';
 import BabyAlergy from '../screens/BabyAlergyScreen';
-
+//footer screen,navigation 추가
+import FAQ from '../screens/FAQScreen';
+import QnA from '../screens/QnAScreen';
+import ACCESSTERMS from '../screens/AccesstermsScreen';
+import AccesstermsTop from './AccesstermsTopNavigation';
+import CompanyProfile from '../screens/CompanyProfileScreen';
 import {DARKMINT} from '../Constant';
 
-import {HeaderOptions} from '../components/molecule/HeaderOptions';
+import {
+  HeaderOptions,
+  //header추가
+  FAQHeader,
+  QnAHeader,
+  ACCESSTERMSHeader,
+  CompanyProfileHeader,
+} from '../components/molecule/HeaderOptions';
 
 const Stack = createStackNavigator();
 
@@ -195,6 +205,7 @@ const HomeStack = () => {
         component={Settings}
         options={({navigation}) => SettingsHeader(navigation)}
       />
+      {/* Footer*/}
       <Stack.Screen
         name="FAQ"
         component={FAQ}
@@ -205,6 +216,24 @@ const HomeStack = () => {
         component={QnA}
         options={({navigation}) => QnAHeader(navigation)}
       />
+      {/* 이용약관 및 개인정보 stack */}
+      <Stack.Screen
+        name="ACCESSTERMSTOP"
+        component={ACCESSTERMS}
+        options={({navigation}) => ACCESSTERMSHeader(navigation)}
+      />
+      <Stack.Screen
+        name="ACCESSTERMS"
+        component={AccesstermsTop}
+        options={({navigation}) => ACCESSTERMSHeader(navigation)}
+      />
+      {/* 회사소개 stack */}
+      <Stack.Screen
+        name="CompanyProfile"
+        component={CompanyProfile}
+        options={({navigation}) => CompanyProfileHeader(navigation)}
+      />
+      {/* Footer end*/}
       {/* end mypage */}
       {/* Talk */}
       <Stack.Screen
@@ -261,7 +290,7 @@ const ReviewHeader = (navigation) => ({
       </View>
     </View>
   ),
-  headerTitleAlign: 'center',
+
   // headerStyle: {
   //   height: getStatusBarHeight() + 62,
   // },
@@ -571,55 +600,7 @@ const SettingsHeader = (navigation) => ({
     },
   },
 });
-const FAQHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ), //android 가운데 정렬
-  headerTitleAlign: 'center',
-  headerTitle: () => <Text style={{fontSize: 17}}>FAQ</Text>,
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
-const QnAHeader = (navigation) => ({
-  headerLeft: () => (
-    <TouchableOpacity
-      style={{marginLeft: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <SvgXml xml={SVG('BACKIOS')} />
-    </TouchableOpacity>
-  ), //android 가운데 정렬
-  headerTitleAlign: 'center',
-  headerTitle: () => <Text style={{fontSize: 17}}>문의하기</Text>,
-  headerRight: () => (
-    <TouchableOpacity
-      style={{marginRight: 24}}
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <Text style={{fontSize: 17, color: 'gray'}}>등록</Text>
-    </TouchableOpacity>
-  ),
-  headerStyle: {
-    height: getStatusBarHeight() + 62,
-    // shadowRadius: 0,
-    shadowOffset: {
-      height: 2,
-    },
-  },
-});
+
 const TalkDetailHeader = (navigation) => ({
   // headerLeft: () => (
   //   <TouchableOpacity
@@ -724,7 +705,7 @@ const BabyPlus_myHeader = (navigation) => {
       </TouchableOpacity>
     ), //android 가운데 정렬
     headerTitleAlign: 'center',
-    headerTitleAlign: 'center',
+
     headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
     headerRight: () => (
       <TouchableOpacity

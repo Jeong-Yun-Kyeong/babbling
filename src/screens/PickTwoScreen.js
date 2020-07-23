@@ -65,7 +65,7 @@ const IMAGESLIDE = [
   },
 ];
 
-const Header_Maximum_Height = 100;
+const Header_Maximum_Height = 50;
 const Header_Minimum_Height = 50;
 
 const maxLeft = 85;
@@ -471,7 +471,7 @@ export default class Pick extends PureComponent {
               {/* 임시 */}
               <View style={{height: 30, backgroundColor: 'white'}}></View>
               {/*  */}
-              <Footer />
+              <Footer navigation={this.props.navigation} />
             </View>
             {/*  */}
           </ScrollView>
@@ -501,7 +501,8 @@ export default class Pick extends PureComponent {
                 ]}>
                 PICK
               </Text>
-              <View
+              {/* pick search,mypage 주석 */}
+              {/* <View
                 style={{
                   flexDirection: 'row',
                   position: 'absolute',
@@ -516,10 +517,10 @@ export default class Pick extends PureComponent {
                 <View style={{}}>
                   <SvgXml xml={SVG('MYPAGE')} />
                 </View>
-              </View>
+              </View> */}
             </View>
-            {/*  */}
-            <Animated.View
+            {/* search 주석 */}
+            {/* <Animated.View
               style={{
                 // backgroundColor: 'white',
                 // padding: 10,
@@ -550,7 +551,7 @@ export default class Pick extends PureComponent {
                   <SvgXml xml={SVG('SEARCH')} />
                 </View>
               </View>
-            </Animated.View>
+            </Animated.View> */}
           </Animated.View>
         </View>
       </Fragment>

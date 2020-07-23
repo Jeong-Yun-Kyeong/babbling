@@ -363,8 +363,8 @@ export default class Home extends PureComponent {
             {/*  */}
             {/* </View>
             </View> */}
-            {/* footer */}
-            <Footer />
+            {/* footer navigation 추가*/}
+            <Footer navigation={this.props.navigation} />
             {/*  */}
           </View>
         </ScrollView>
