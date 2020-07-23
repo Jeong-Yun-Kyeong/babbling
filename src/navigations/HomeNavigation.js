@@ -73,7 +73,8 @@ const HomeStack = () => {
             right: [
               // {svg: 'SEARCH', nav: 'HomeSearch'},
               // {svg: 'HEART', nav: 'Jjim'},
-              {svg: 'MYPAGE', nav: 'MyPage'},
+              // {svg: 'MYPAGE', nav: 'MyPage'},
+              {svg: 'MYPAGE', nav: 'Settings'},
             ],
           })
         }
