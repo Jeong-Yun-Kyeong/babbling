@@ -25,20 +25,21 @@ export default class BabyPlus extends PureComponent {
       //true 남자, false,여자
       gender: true,
 
-      enableName: false
+      enableName: false,
     };
   }
-  render() {
 
+  render() {
     let screenMargin = ScreenMargin.getMargin(this.props.route.name);
-    console.log(this.props.route.name)
+    console.log(this.props.route.name);
 
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView />
-        <ScrollView style={{backgroundColor: 'white', flex: 1,backgroundColor:'white'}}>
-          <View style={{paddingHorizontal:screenMargin}}>
+        <ScrollView
+          style={{backgroundColor: 'white', flex: 1, backgroundColor: 'white'}}>
+          <View style={{paddingHorizontal: screenMargin}}>
             {/* 얼굴 */}
             <View style={{marginTop: 20, marginBottom: 20}}>
               <View style={{alignItems: 'center'}}>
@@ -59,7 +60,7 @@ export default class BabyPlus extends PureComponent {
                   }}>
                   <SvgXml xml={SVG('BABBLING_PROFILE')} />
                   {/* <Image source={require('../images/Babbling_profile.png')} /> */}
-                  <View
+                  <TouchableOpacity
                     style={{
                       backgroundColor: 'white',
                       width: 36,
@@ -79,41 +80,52 @@ export default class BabyPlus extends PureComponent {
                       alignItems: 'center',
                     }}>
                     <SvgXml xml={SVG('CAMERA')} />
-                  </View>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
             {/* 이름 */}
             <LabelInput
-                placeholder={'베베'}
-                label={'아이 이름/별명'}
-                button={true}
-                btnTitle={'중복확인'}
-                style={{marginBotom:12,marginRight:62}}
-              />
-              <Text style={{marginLeft:16, marginTop:8, fontSize:10, color: '#00000099'}}>{(this.state.enableName) ? "사용 가능해요!" : ""}</Text>
+              placeholder={'베베'}
+              label={'아이 이름/별명'}
+              button={true}
+              btnTitle={'중복확인'}
+              style={{marginBotom: 12, marginRight: 62}}
+            />
+            <Text
+              style={{
+                marginLeft: 16,
+                marginTop: 8,
+                fontSize: 10,
+                color: '#00000099',
+              }}>
+              {this.state.enableName ? '사용 가능해요!' : ''}
+            </Text>
             {/* 성별 */}
-            <View style={{marginTop: 30,marginHorizontal:16}}>
+            <View style={{marginTop: 30, marginHorizontal: 16}}>
               <Text
                 style={{
                   fontSize: 13,
                   color: 'gray',
                   marginBottom: 14,
-                  
                 }}>
                 아이의 성별을 선택해주세요
               </Text>
               {/*  */}
-              <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
                       gender: !this.state.gender,
                     });
                   }}
-                  style={[styles.gender_button,{
-                    backgroundColor: this.state.gender ? 'white' : '#32cc73',
-                  }]}>
+                  style={[
+                    styles.gender_button,
+                    {
+                      backgroundColor: this.state.gender ? 'white' : '#32cc73',
+                    },
+                  ]}>
                   <Text
                     style={{
                       color: this.state.gender ? '#32cc73' : 'white',
@@ -122,16 +134,19 @@ export default class BabyPlus extends PureComponent {
                     남자
                   </Text>
                 </TouchableOpacity>
-                <View style={{flex:0.1}}></View>
+                <View style={{flex: 0.1}}></View>
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
                       gender: !this.state.gender,
                     });
                   }}
-                  style={[styles.gender_button,{
-                    backgroundColor: this.state.gender ? '#32cc73' : 'white',
-                  }]}>
+                  style={[
+                    styles.gender_button,
+                    {
+                      backgroundColor: this.state.gender ? '#32cc73' : 'white',
+                    },
+                  ]}>
                   <Text
                     style={{
                       color: this.state.gender ? 'white' : '#32cc73',
@@ -166,7 +181,7 @@ export default class BabyPlus extends PureComponent {
                     justifyContent: 'center',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
-                    marginHorizontal:-24
+                    marginHorizontal: -24,
                   }}>
                   <View style={styles.date_view}>
                     <Text style={styles.data_text}>년도</Text>
@@ -179,9 +194,7 @@ export default class BabyPlus extends PureComponent {
                   </View>
                 </View>
               </View>
-
             </View>
-
           </View>
         </ScrollView>
       </Fragment>
@@ -190,7 +203,6 @@ export default class BabyPlus extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-
   gender_button: {
     padding: 13,
     borderRadius: 50,
@@ -199,12 +211,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  date_view:{
+  date_view: {
     flex: 1,
-    justifyContent:'flex-end',
-    flexDirection:'row',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
-  data_text:{
-    color:'#00000059'
-  }
+  data_text: {
+    color: '#00000059',
+  },
 });

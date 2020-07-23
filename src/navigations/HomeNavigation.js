@@ -70,11 +70,11 @@ const HomeStack = () => {
             left: 'Babbling',
             title: null,
             //search,jim.mypage 주석
-            // right: [
-            //   {svg: 'SEARCH', nav: 'HomeSearch'},
-            //   {svg: 'HEART', nav: 'Jjim'},
-            //   {svg: 'MYPAGE', nav: 'MyPage'},
-            // ],
+            right: [
+              {svg: 'SEARCH', nav: 'HomeSearch'},
+              {svg: 'HEART', nav: 'Jjim'},
+              {svg: 'MYPAGE', nav: 'MyPage'},
+            ],
           })
         }
       />

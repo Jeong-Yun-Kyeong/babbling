@@ -10,7 +10,7 @@ import Login from '../screens/LoginTwoScreen';
 
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
-// import Join from '../screens/JoinScreen';
+import Join from '../screens/JoinScreen';
 // import PassWord from '../screens/PWScreen';
 // import PWChange from '../screens/PWChangeScreen';
 import BabyPlus from '../screens/BabyPlusScreen';
@@ -34,11 +34,11 @@ const SignStack = ({navigation}) => {
         component={EmailLogin}
         options={({route}) => EmailLoginHeader(navigation)}
       /> */}
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Join"
         component={Join}
         options={({route}) => JoinHeader(navigation)}
-      /> */}
+      />
       {/* <Stack.Screen
         name="PassWord"
         component={PassWord}
@@ -89,26 +89,28 @@ const SignStack = ({navigation}) => {
 //   },
 // });
 
-// const JoinHeader = (navigation) => ({
-//   animationEnabled: false,
-//   headerLeft: () => (
-//     <TouchableOpacity
-//       style={{marginLeft: 24}}
-//       onPress={() => {
-//         navigation.goBack();
-//       }}>
-//       <SvgXml xml={SVG('BACKIOS')} />
-//     </TouchableOpacity>
-//   ),
-//   headerTitleAlign: 'center',
-//   headerTitle: () => <Text style={{fontSize: 17}}>이메일로 회원가입하기</Text>,
-//   headerStyle: {
-//     shadowOffset: {
-//       height: 0,
-//     },
-//     elevation: 0,
-//   },
-// });
+const JoinHeader = (navigation) => ({
+  // animationEnabled: false,
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.navigate('Login');
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ),
+  headerTitleAlign: 'center',
+  headerTitle: () => (
+    <Text style={{fontSize: 17}}>추가 계정 정보 입력하기</Text>
+  ),
+  headerStyle: {
+    shadowOffset: {
+      height: 0,
+    },
+    elevation: 0,
+  },
+});
 
 // const PWHeader = (navigation) => ({
 //   animationEnabled: false,
@@ -165,7 +167,7 @@ const BabyPlusHeader = (navigation, route) => {
       <TouchableOpacity
         style={{marginLeft: 24}}
         onPress={() => {
-          navigation.goBack();
+          navigation.navigate('Join');
         }}>
         <SvgXml xml={SVG('BACKIOS')} />
       </TouchableOpacity>
@@ -180,7 +182,8 @@ const BabyPlusHeader = (navigation, route) => {
       <TouchableOpacity
         style={{marginRight: 24}}
         onPress={() => {
-          navigation.navigate('BabyAlergy', route.params);
+          alert('준비중입니다.');
+          // navigation.navigate('BabyAlergy', route.params);
         }}>
         <Text style={{fontSize: 15, color: 'gray'}}>다음</Text>
       </TouchableOpacity>
