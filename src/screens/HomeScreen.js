@@ -57,6 +57,7 @@ export default class Home extends PureComponent {
   async componentDidMount() {
     await this.getToken();
     this.getBase();
+    // AsyncStorage.clear();
     fetch(URL + '/product/', {
       headers: {
         Authorization: 'JWT ' + this.state.token,
