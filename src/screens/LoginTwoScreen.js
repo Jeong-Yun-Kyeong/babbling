@@ -25,7 +25,7 @@ import {
   statusCodes,
 } from '@react-native-community/google-signin';
 import * as ScreenMargin from '../values/ScreenMargin';
-import {FONTSIZE, URL} from '../Constant';
+import {FONTSIZE, URL, TESTTOKEN} from '../Constant';
 import AsyncStorage from '@react-native-community/async-storage';
 //
 const Login = ({navigation, route}) => {
@@ -535,6 +535,8 @@ const NO_LOGIN = (navigation, route) => {
       }}>
       <TouchableOpacity
         onPress={() => {
+          console.log(TESTTOKEN);
+          AsyncStorage.setItem('token', TESTTOKEN);
           navigation.navigate('Main');
         }}>
         <Text style={{color: '#ffffff99', fontSize: FONTSIZE.SMALL}}>

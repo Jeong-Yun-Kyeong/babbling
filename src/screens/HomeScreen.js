@@ -33,24 +33,6 @@ export default class Home extends PureComponent {
       token: null,
     };
   }
-  // user_assistant
-  _checkUserAssistant = () => {
-    form = new FormData();
-    form.append('pk', AsyncStorage.getItem('user_pk'));
-    // form.append('username', appleAuthRequestResponse.user);
-    // form.append('password1', appleAuthRequestResponse.user);
-    fetch(URL + '/user_assistent/', {
-      method: 'POST',
-      headers: {
-        Authorization: 'JWT ' + this.state.token,
-      },
-      body: form,
-    })
-      .then((res) => res.json())
-      .then((resJson) => {
-        console.log(resJson);
-      });
-  };
 
   getImages = async () => {
     const images = await fetch(URL + '/home/banner/', {
@@ -58,7 +40,7 @@ export default class Home extends PureComponent {
         Authorization: 'JWT ' + this.state.token,
       },
     }).then((res) => res.json());
-    console.log(images);
+    console.log('홈 배너 이미지: ', images);
     return images;
   };
 
@@ -74,9 +56,7 @@ export default class Home extends PureComponent {
 
   async componentDidMount() {
     await this.getToken();
-    // console.log(this.state.token);
-    // this._checkUserAssistant();
-    // this.getBase();
+    this.getBase();
     fetch(URL + '/product/', {
       headers: {
         Authorization: 'JWT ' + this.state.token,
@@ -84,7 +64,7 @@ export default class Home extends PureComponent {
     })
       .then((res) => res.json())
       .then((resJson) => {
-        console.log(resJson);
+        console.log('상품 리스트: ', resJson);
         this.setState({
           slide02: resJson,
           // slide01: SLIDE01,
