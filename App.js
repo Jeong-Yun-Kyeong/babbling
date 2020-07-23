@@ -18,3 +18,47 @@ const App = () => {
 };
 
 export default App;
+
+// import React, {Component} from 'react';
+// import {View, Text, Image} from 'react-native';
+
+// import {SvgXml} from 'react-native-svg';
+// import SVG from '../babbling/src/components/SvgComponent';
+
+// export default class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       animating: false,
+//       align: 'center',
+//       alignsecond: false,
+//     };
+//     setTimeout(
+//       () =>
+//         this.setState({align: 'flex-start'}, function () {
+//           this.setState({
+//             alignsecond: true,
+//           });
+//         }),
+//       3000,
+//     );
+//   }
+
+//   render() {
+//     return (
+//       <View
+//         style={{
+//           flex: 1,
+//           alignItems: 'center',
+//           flexDirection: 'row',
+//           justifyContent: this.state.align,
+//           marginHorizontal: 40,
+//         }}>
+//         <SvgXml xml={SVG('SPLASH1')} style={{backgroundColor: 'green'}} />
+//         {!this.state.alignsecond ? null : (
+//           <SvgXml xml={SVG('SPLASH2')} style={{backgroundColor: 'green'}} />
+//         )}
+//       </View>
+//     );
+//   }
+// }

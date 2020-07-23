@@ -71,8 +71,8 @@ const HomeStack = () => {
             title: null,
             //search,jim.mypage 주석
             right: [
-              {svg: 'SEARCH', nav: 'HomeSearch'},
-              {svg: 'HEART', nav: 'Jjim'},
+              // {svg: 'SEARCH', nav: 'HomeSearch'},
+              // {svg: 'HEART', nav: 'Jjim'},
               {svg: 'MYPAGE', nav: 'MyPage'},
             ],
           })
@@ -90,8 +90,8 @@ const HomeStack = () => {
               flexGrow: 1,
             },
             right: [
-              {svg: 'HELP', nav: ''},
-              {svg: 'SHARE', nav: ''},
+              // {svg: 'HELP', nav: ''},
+              // {svg: 'SHARE', nav: ''},
             ],
           })
         }

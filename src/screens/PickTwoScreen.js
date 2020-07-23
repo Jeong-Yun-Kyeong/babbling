@@ -65,6 +65,8 @@ const IMAGESLIDE = [
   },
 ];
 
+// const Header_Maximum_Height = 100;
+// 임시높이 원래 100이다
 const Header_Maximum_Height = 50;
 const Header_Minimum_Height = 50;
 
