@@ -11,9 +11,9 @@ export {URL, TESTTOKEN};
 //
 export {약관1, 약관2};
 //
-const URL = 'http://babbling.co.kr';
+// const URL = 'http://babbling.co.kr';
 // WebServices로 변경
-// const URL = 'http://172.30.1.57';
+const URL = 'http://172.30.1.57';
 const TESTTOKEN =
   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxOTEwODQ0MDE0LCJlbWFpbCI6IiIsIm9yaWdfaWF0IjoxNTk1NDg0MDE0fQ.IuzzTOpgka69Pup1DJUADMYIs6XHUJQWtsaglifX3Ug';
 //
