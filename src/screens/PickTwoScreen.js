@@ -77,49 +77,6 @@ const minRight = 0;
 const maxTop = 45;
 const minTop = -5;
 
-const SLIDE02 = [
-  {
-    img: '../images/4.jpeg',
-    title: '베베랩',
-    name: '고보습 베리어 베이비 로션 200ml',
-    hashTag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/5.jpeg',
-    title: 'HIPP',
-    name: 'HIPPIS 바나나페어 망고',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/5.jpeg',
-    title: 'HIPP',
-    name: 'HIPPIS 바나나페어 망고',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-];
-
 export default class Pick extends PureComponent {
   constructor(props) {
     super(props);
@@ -290,6 +247,7 @@ export default class Pick extends PureComponent {
                           console.log(item.name);
                           this.props.navigation.navigate('Category', {
                             screen: item.name,
+                            data: item,
                           });
                         }}
                         key={i}>

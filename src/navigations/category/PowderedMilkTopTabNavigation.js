@@ -82,12 +82,14 @@ const Cate = {
 
 const getNav = (datas) => {
   return datas.map((data, i) => {
+    console.log(data);
     return <Tab.Screen name={data} component={CategoryScreen} key={i} />;
   });
 };
 
 function PowderedMilk({navigation, route}) {
   let Data = Cate[route.name];
+  console.log(route.name);
 
   return (
     <Tab.Navigator
