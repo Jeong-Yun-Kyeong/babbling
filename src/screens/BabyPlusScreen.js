@@ -43,7 +43,7 @@ export default class BabyPlus extends PureComponent {
           style={{backgroundColor: 'white', flex: 1, backgroundColor: 'white'}}>
           <View style={{paddingHorizontal: screenMargin}}>
             {/* 얼굴 */}
-            <View style={{marginTop: 20, marginBottom: 20}}>
+            <View style={{marginTop: 35, marginBottom: 40}}>
               <View style={{alignItems: 'center'}}>
                 <View
                   style={{
@@ -92,7 +92,7 @@ export default class BabyPlus extends PureComponent {
               label={'아이 이름/별명'}
               button={true}
               btnTitle={'중복확인'}
-              style={{marginBotom: 12, marginRight: 62}}
+              style={{marginRight: 62}}
             />
             <Text
               style={{
