@@ -108,7 +108,7 @@ export default class BabyPlus extends PureComponent {
               <Text
                 style={{
                   fontSize: 13,
-                  color: 'gray',
+                  color: 'rgba(0,0,0,0.6)',
                   marginBottom: 14,
                 }}>
                 아이의 성별을 선택해주세요
@@ -165,10 +165,11 @@ export default class BabyPlus extends PureComponent {
                   style={{
                     fontSize: 12,
                     marginBottom: 10,
-                    color: 'gray',
+                    color: 'rgba(0,0,0,0.6)',
+                    marginHorizontal: -15,
                   }}>
                   아이가 태어날 날을 입력해주세요
-                  <Text style={{color: 'lightgray', fontSize: 10}}>
+                  <Text style={{color: 'rgba(0,0,0,0.4)', fontSize: 10}}>
                     혹은 출산 예정일을 입력해주세요
                   </Text>
                 </Text>
@@ -191,12 +192,14 @@ export default class BabyPlus extends PureComponent {
                       maxLength={4}
                       style={styles.data_text}></TextInput>
                     <Text>년</Text>
+                    <View style={styles.data_slise}></View>
                   </View>
                   <View style={styles.date_view}>
                     <TextInput
                       maxLength={2}
                       style={styles.data_text}></TextInput>
                     <Text>월</Text>
+                    <View style={styles.data_slise}></View>
                   </View>
                   <View style={styles.date_view}>
                     <TextInput
@@ -808,8 +811,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   data_text: {
+    textAlign: 'center',
     width: (Dimensions.get('screen').width - 50) / 3 / 3,
     color: 'black',
+  },
+  data_slise: {
+    height: 35,
+    borderWidth: 0.5,
+    borderColor: '#a9a9a9',
   },
   // // style추가
   // RNP_layout: {
