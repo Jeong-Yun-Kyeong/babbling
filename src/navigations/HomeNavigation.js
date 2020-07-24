@@ -707,7 +707,7 @@ const BabyPlus_myHeader = (navigation) => {
     ), //android 가운데 정렬
     headerTitleAlign: 'center',
 
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 등록하기</Text>,
     headerRight: () => (
       <TouchableOpacity
         style={{marginRight: 24}}
@@ -740,7 +740,7 @@ const BabyAlergy_myHeader = (navigation) => {
       </TouchableOpacity>
     ),
     headerTitleAlign: 'center',
-    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 추가하기</Text>,
+    headerTitle: () => <Text style={{fontSize: 17}}>우리 아이 등록하기</Text>,
     headerRight: () => (
       <TouchableOpacity
         style={{marginRight: 24}}
