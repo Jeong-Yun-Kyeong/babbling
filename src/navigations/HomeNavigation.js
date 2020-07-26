@@ -586,7 +586,8 @@ const SettingsHeader = (navigation) => ({
     <TouchableOpacity
       style={{marginLeft: 24}}
       onPress={() => {
-        navigation.goBack();
+        // navigation.goBack();
+        navigation.navigate('Main');
       }}>
       <SvgXml xml={SVG('BACKIOS')} />
     </TouchableOpacity>

@@ -360,29 +360,28 @@ export default class Detail extends PureComponent {
               {/* 제품이미지 */}
               {this._basicInformation(Datas)}
               {/* 성분그래프?? */}
-              <View
+              {/* <View
                 style={{
                   backgroundColor: 'white',
                   marginTop: 4,
                   paddingLeft: 24,
                   paddingRight: 24,
                   paddingTop: 18,
-                  // paddingBottom: 18,
-                }}>
-                <View style={{}}>
+                }}> */}
+              {/* <View style={{}}>
                   <SvgXml xml={SVG('SAFETYMINT')} width="44" height="44" />
-                </View>
-                {/* graph */}
-                <View style={{paddingTop: 15, paddingBottom: 10}}>
+                </View> */}
+              {/* graph */}
+              {/* <View style={{paddingTop: 15, paddingBottom: 10}}>
                   <View
                     style={{
                       backgroundColor: 'rgb(65,195,0)',
                       height: 16,
                       borderRadius: 16,
                     }}></View>
-                </View>
-                {/*  */}
-                <TouchableOpacity
+                </View> */}
+              {/*  */}
+              {/* <TouchableOpacity
                   style={{
                     flexDirection: 'row',
                     marginBottom: 14,
@@ -403,16 +402,16 @@ export default class Detail extends PureComponent {
                     }}>
                     <SvgXml xml={SVG('DOWNMORE')} />
                   </View>
-                </TouchableOpacity>
-                {/* 디테일1 내용 */}
-                <View
+                </TouchableOpacity> */}
+              {/* 디테일1 내용 */}
+              {/* <View
                   style={{
                     display: this.state.ingredeintCountView,
                     paddingBottom: 20,
                   }}>
                   {this.ingredientsCount(Datas.code.charAt(0))}
-                </View>
-              </View>
+                </View> */}
+              {/* </View> */}
               {/* 전성분보러가기 */}
               <TouchableOpacity
                 style={{
@@ -463,13 +462,15 @@ export default class Detail extends PureComponent {
                   Caution!
                 </Text>
                 <Text style={{fontSize: 10, color: 'rgb(70,70,70)'}}>
-                  제품 구매 전 판매업자가 표기한 EWG의 등급, 전성분, 알레르기
-                  유발성분을 한번 더 확인하시길 바랍니다.
+                  {/* 제품 구매 전 판매업자가 표기한 EWG의 등급, 전성분, 알레르기
+                  유발성분을 한번 더 확인하시길 바랍니다. */}
+                  판매업자가 표기한 EWG의 등급, 전성분, 알레르기 유발성분을 한번
+                  더 확인하시길 바랍니다.
                 </Text>
               </View>
 
               {/* 리뷰 */}
-              <View
+              {/* <View
                 style={{backgroundColor: 'white', padding: 15, paddingTop: 35}}>
                 <View style={{flexDirection: 'row', marginBottom: 10}}>
                   <Text style={{color: 'rgba(0,0,0,0.6)', fontSize: 14}}>
@@ -566,7 +567,7 @@ export default class Detail extends PureComponent {
                     <Text>click!</Text>
                   </TouchableOpacity>
                 </ScrollView>
-              </View>
+              </View> */}
               {/*  */}
               {/* <View
                 style={{

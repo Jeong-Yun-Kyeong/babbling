@@ -18,11 +18,11 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* babblingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* babblingTests.m */; };
 		4F208E72D2E0252BD5A3EE5B /* libPods-babbling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */; };
+		5F980A9C24CAFF4600931E1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F980A9B24CAFF4600931E1B /* GoogleService-Info.plist */; };
 		5FD487A724766A7000F4A26B /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5FD487A624766A7000F4A26B /* Fonts */; };
 		6A33ABA231BA2F8CCADDB735 /* libPods-babbling-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB6422C2DAD3570F5CB5AE1 /* libPods-babbling-tvOSTests.a */; };
 		8F462C050C688641C0283E6E /* libPods-babbling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B630136C0C9756C355F0408 /* libPods-babbling.a */; };
 		99AA26DB8EE468A39805387D /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		BE89643024C9661000F67AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE89642F24C9661000F67AB0 /* GoogleService-Info.plist */; };
 		DA15ECF7BDD3556439A48CC2 /* libPods-babbling-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7626D86393396AF7FE454CB /* libPods-babbling-tvOS.a */; };
 		E91EC51E06DE8299D2D1F8DB /* libPods-babblingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38FBFD2DEEEDEB2AEE599D0 /* libPods-babblingTests.a */; };
 /* End PBXBuildFile section */
@@ -63,6 +63,7 @@
 		2D02E47B1E0B4A5D006451C7 /* babbling-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "babbling-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* babbling-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "babbling-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C1329C3A9FDC29BCC77845 /* libPods-babbling.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F980A9B24CAFF4600931E1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5FD487A624766A7000F4A26B /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5FF3DD1B24BDF17D00B45C2D /* babblingRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babblingRelease.entitlements; path = babbling/babblingRelease.entitlements; sourceTree = "<group>"; };
 		5FF3DD1C24BDF58000B45C2D /* babbling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = babbling.entitlements; path = babbling/babbling.entitlements; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		7AD437002DB2C1CFBFDEDF3E /* Pods-babbling-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-babbling-tvOSTests/Pods-babbling-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B38FBFD2DEEEDEB2AEE599D0 /* libPods-babblingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babblingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB91BF87BC75B51A38CB541 /* Pods-babblingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babblingTests.release.xcconfig"; path = "Target Support Files/Pods-babblingTests/Pods-babblingTests.release.xcconfig"; sourceTree = "<group>"; };
-		BE89642F24C9661000F67AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2016993E57EB1CB6B64C4F6 /* Pods-babbling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling.debug.xcconfig"; path = "Target Support Files/Pods-babbling/Pods-babbling.debug.xcconfig"; sourceTree = "<group>"; };
 		E03E04DB1D2907967F7E371A /* Pods-babbling-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-babbling-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-babbling-tvOS/Pods-babbling-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E7626D86393396AF7FE454CB /* libPods-babbling-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-babbling-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +138,7 @@
 		13B07FAE1A68108700A75B9A /* babbling */ = {
 			isa = PBXGroup;
 			children = (
-				BE89642F24C9661000F67AB0 /* GoogleService-Info.plist */,
+				5F980A9B24CAFF4600931E1B /* GoogleService-Info.plist */,
 				5FF3DD1C24BDF58000B45C2D /* babbling.entitlements */,
 				5FF3DD1B24BDF17D00B45C2D /* babblingRelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -368,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FD487A724766A7000F4A26B /* Fonts in Resources */,
-				BE89643024C9661000F67AB0 /* GoogleService-Info.plist in Resources */,
+				5F980A9C24CAFF4600931E1B /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);

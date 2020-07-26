@@ -13,6 +13,7 @@ import {SvgXml} from 'react-native-svg';
 import {URL, TESTTOKEN} from '../Constant';
 
 import SVG from '../components/SvgComponent';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const DATAS01 = [
   {icon: 'CAUTION', name: '디메치콘', kcii: true},
@@ -80,7 +81,7 @@ export default class Ingredients extends PureComponent {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'JWT ' + TESTTOKEN,
+        Authorization: 'JWT ' + this.state.token,
       },
       body: form,
     })
@@ -91,7 +92,13 @@ export default class Ingredients extends PureComponent {
       });
   };
 
-  componentDidMount() {
+  getToken = async () => {
+    const token = await AsyncStorage.getItem('token');
+    this.setState({token});
+  };
+
+  async componentDidMount() {
+    await this.getToken();
     console.log(
       '------------------가져오는 필수 데이터 : ' +
         this.state.kind +
@@ -654,7 +661,7 @@ export default class Ingredients extends PureComponent {
             {/*  */}
           </View>
           {/* shadow2 */}
-          <View
+          {/* <View
             style={{
               marginTop: 16,
               backgroundColor: 'white',
@@ -673,8 +680,7 @@ export default class Ingredients extends PureComponent {
               </Text>
             </View>
             <Text>그래프 들어가야됨</Text>
-            {/*  */}
-          </View>
+          </View> */}
           {/* shadow3 */}
           <View
             style={{

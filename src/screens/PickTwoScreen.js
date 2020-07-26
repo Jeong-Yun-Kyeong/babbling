@@ -19,6 +19,7 @@ import CompareButton from '../components/atom/CompareButton';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import List from '../components/ListComponent';
 import {URL, TESTTOKEN} from '../Constant';
+import AsyncStorage from '@react-native-community/async-storage';
 
 SVG('MILKPRODUCT');
 // <SvgXml xml={milkProduct} width="24" height="24" />
@@ -88,12 +89,18 @@ export default class Pick extends PureComponent {
     this.AnimatedHeaderValue = new Animated.Value(0);
   }
 
-  componentWillMount() {
+  getToken = async () => {
+    const token = await AsyncStorage.getItem('token');
+    this.setState({token});
+  };
+
+  async componentWillMount() {
+    await this.getToken();
     this.setState({images: IMAGESLIDE});
     console.log('시작');
     fetch(URL + '/product/', {
       headers: {
-        Authorization: 'JWT ' + TESTTOKEN,
+        Authorization: 'JWT ' + this.state.token,
       },
     })
       .then((res) => res.json())
@@ -462,7 +469,7 @@ export default class Pick extends PureComponent {
                 PICK
               </Text>
               {/* pick search,mypage 주석 */}
-              {/* <View
+              <View
                 style={{
                   flexDirection: 'row',
                   position: 'absolute',
@@ -471,13 +478,19 @@ export default class Pick extends PureComponent {
                   alignItems: 'center',
                   height: 45,
                 }}>
-                <View style={{marginRight: 10}}>
+                {/* <View style={{marginRight: 10}}>
                   <SvgXml xml={SVG('HEART')} />
                 </View>
                 <View style={{}}>
                   <SvgXml xml={SVG('MYPAGE')} />
-                </View>
-              </View> */}
+                </View> */}
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate('Settings');
+                  }}>
+                  <SvgXml xml={SVG('MYPAGE')} />
+                </TouchableOpacity>
+              </View>
             </View>
             {/* search 주석 */}
             {/* <Animated.View
