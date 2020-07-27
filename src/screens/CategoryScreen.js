@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,7 +13,8 @@ import {
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import CompareButton from '../components/atom/CompareButton';
-
+import AsyncStorage from '@react-native-community/async-storage';
+import {URL} from '../Constant';
 const CATEGORY = [
   '분유',
   '이유식',
@@ -75,102 +76,146 @@ const DATAS = [
     count: '2,121',
   },
 ];
-const List = (datas, navigation) => {
-  return datas.map((data, index) => {
-    return (
-      <View
-        style={{
-          // height: 75,
-          backgroundColor: 'white',
-          borderBottomColor: 'lightgray',
-          borderBottomWidth: 1,
-        }}
-        key={index}>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('Detail', {brand: data.title, name: data.name})
-          }
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingLeft: 16,
-            paddingRight: 16,
-            paddingBottom: 11,
-            paddingTop: 11,
-          }}>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: 60,
-              height: 60,
-              borderRadius: 5,
-              marginRight: 12,
-            }}>
-            <Image
-              source={require('../images/5.jpeg')}
-              resizeMode="contain"
-              style={{maxWidth: 60, maxHeight: 60}}
-            />
-          </View>
-          <View
-            style={{
-              height: 75,
-              // backgroundColor:'pink',
-              justifyContent: 'center',
-              flex: 6,
-            }}>
-            <View>
-              <Text
-                style={{
-                  color: 'rgb(50,50,50)',
-                  fontSize: 13,
-                }}>
-                {data.title}
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  fontWeight: '400',
-                  fontSize: 15,
-                }}>
-                {/* 클래스 프리미엄 엠보싱 저자극 아기물티슈(455g, 70매) */}
-                {data.name}
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  color: '#32cc73',
-                  marginTop: 5,
-                  fontSize: 11,
-                }}>
-                {/* #해쉬태그 #해쉬태그 #해쉬태그 */}
-                {data.hashTag}
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 2,
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-
-              width: 75,
-            }}>
-            <SvgXml xml={SVG('STAR_CHECKED')} />
-            <Text style={{color: '#32cc73', fontSize: 13}}>{data.score}</Text>
-            <Text style={{color: 'gray', fontSize: 10}}>({data.count})</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
-  });
-};
 
 const Category = ({navigation}) => {
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    const getToken = async () => {
+      let token = await AsyncStorage.getItem('token');
+      console.log(token);
+      getProducts(token);
+    };
+    //
+    const getProducts = (token) => {
+      fetch(URL + '/product/', {
+        headers: {
+          Authorization: 'JWT ' + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((resJson) => {
+          console.log(resJson);
+          setDatas(resJson);
+        });
+    };
+
+    getToken();
+  }, []);
+
+  const List = (datas, navigation) => {
+    return datas.map((data, index) => {
+      let url =
+        URL +
+        '/media/product/' +
+        data.code +
+        '/' +
+        data.brand_name +
+        '/' +
+        data.name +
+        '.jpg';
+      console.log(url);
+      return (
+        <View
+          style={{
+            // height: 75,
+            backgroundColor: 'white',
+            borderBottomColor: 'lightgray',
+            borderBottomWidth: 1,
+          }}
+          key={index}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Detail', {
+                data: data,
+              })
+            }
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingLeft: 16,
+              paddingRight: 16,
+              paddingBottom: 11,
+              paddingTop: 11,
+            }}>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: 60,
+                height: 60,
+                borderRadius: 5,
+                marginRight: 12,
+              }}>
+              <Image
+                source={{
+                  uri: url,
+                }}
+                style={{width: 55, height: 55}}
+                resizeMode="contain"
+              />
+            </View>
+            <View
+              style={{
+                height: 75,
+                // backgroundColor:'pink',
+                justifyContent: 'center',
+                flex: 6,
+              }}>
+              <View>
+                <Text
+                  style={{
+                    color: 'rgb(50,50,50)',
+                    fontSize: 13,
+                  }}>
+                  {data.brand_name}
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontSize: 15,
+                  }}>
+                  {/* 클래스 프리미엄 엠보싱 저자극 아기물티슈(455g, 70매) */}
+                  {data.name}
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    color: '#32cc73',
+                    marginTop: 5,
+                    fontSize: 11,
+                  }}>
+                  {/* #해쉬태그 #해쉬태그 #해쉬태그 */}
+                  {data.hash_tag}
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 2,
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+
+                width: 75,
+              }}>
+              <SvgXml xml={SVG('STAR_CHECKED')} />
+              <Text style={{color: '#32cc73', fontSize: 13}}>
+                {data.star == null ? 0 : data.star}
+              </Text>
+              <Text style={{color: 'gray', fontSize: 10}}>
+                ({data.star_count == null ? 0 : data.star_count})
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    });
+  };
+  //
   return (
     <Fragment>
       <CompareButton
@@ -210,7 +255,7 @@ const Category = ({navigation}) => {
             </View>
           </View>
           {/* body */}
-          {List(DATAS, navigation)}
+          {List(datas, navigation)}
         </View>
       </ScrollView>
     </Fragment>

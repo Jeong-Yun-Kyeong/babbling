@@ -1,5 +1,11 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  ImagePropTypes,
+} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -19,6 +25,7 @@ import AccesstermsTop from './AccesstermsTopNavigation';
 import CompanyProfile from '../screens/CompanyProfileScreen';
 import FAQ from '../screens/FAQScreen';
 import QnA from '../screens/QnAScreen';
+import Settings from '../screens/SettingScreen';
 //header추가
 import {
   FAQHeader,
@@ -28,28 +35,28 @@ import {
 } from '../components/molecule/HeaderOptions';
 const Stack = createStackNavigator();
 
-const PickHeader = {
+const PickHeader = (navigation) => ({
   headerShown: false,
   headerLeft: () => (
     <Text style={{fontSize: 32, fontWeight: 'bold', marginLeft: 24}}>PICK</Text>
   ),
   headerTitle: () => null,
-  // headerRight: () => (
-  //   <View style={{flexDirection: 'row', marginRight: 24}}>
-  //     <View style={{flex: 1, padding: 5}}>
-  //       <SvgXml xml={SVG('HEART')} />
-  //     </View>
-  //     <View style={{flex: 1, padding: 5}}>
-  //       <SvgXml xml={SVG('MYPAGE')} />
-  //     </View>
-  //   </View>
-  // ),
+  headerRight: () => (
+    <View style={{flexDirection: 'row', marginRight: 24}}>
+      {/* <View style={{flex: 1, padding: 5}}>
+        <SvgXml xml={SVG('HEART')} />
+      </View>
+      <View style={{flex: 1, padding: 5}}>
+        <SvgXml xml={SVG('MYPAGE')} />
+      </View> */}
+    </View>
+  ),
   // headerStyle: {
   //   height: Platform.OS === 'ios' ? getStatusBarHeight() + 50 : 50,
   //   shadowOffset: {height: 0},
   //   elevation: 0,
   // },
-};
+});
 
 const PickInnerHeader = (navigation) => ({
   headerShown: false,
@@ -156,6 +163,27 @@ const CompareHeader = (navigation) => ({
     },
   },
 });
+//
+const SettingsHeader = (navigation) => ({
+  headerLeft: () => (
+    <TouchableOpacity
+      style={{marginLeft: 24}}
+      onPress={() => {
+        navigation.goBack();
+      }}>
+      <SvgXml xml={SVG('BACKIOS')} />
+    </TouchableOpacity>
+  ), //android 가운데 정렬
+  headerTitleAlign: 'center',
+  headerTitle: () => <Text style={{fontSize: 17}}>설정</Text>,
+  headerStyle: {
+    height: getStatusBarHeight() + 62,
+    // shadowRadius: 0,
+    shadowOffset: {
+      height: 2,
+    },
+  },
+});
 
 const PickStack = ({navigation}) => {
   return (
@@ -165,7 +193,11 @@ const PickStack = ({navigation}) => {
           height: 0,
         },
       }}>
-      <Stack.Screen name="Pick" component={Pick} options={() => PickHeader} />
+      <Stack.Screen
+        name="Pick"
+        component={Pick}
+        options={({navigation}) => PickHeader(navigation)}
+      />
       <Stack.Screen
         name="Category"
         component={CategoryTab}
@@ -210,6 +242,12 @@ const PickStack = ({navigation}) => {
         options={({navigation}) => CompanyProfileHeader(navigation)}
       />
       {/* Footer end*/}
+      {/*  */}
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={({navigation}) => SettingsHeader(navigation)}
+      />
     </Stack.Navigator>
   );
 };

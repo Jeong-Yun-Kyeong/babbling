@@ -50,6 +50,12 @@ function CategoryTop(props) {
           <SvgXml xml={SVG('BACKIOS')} />
         </TouchableOpacity>
         {/* 카테고리top 주석(search,heart,mypage) */}
+        <View style={{flex: 1, alignItems: 'center'}}>
+          <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.87)'}}>
+            카테고리
+          </Text>
+        </View>
+        <View style={{width: 24, height: 24, marginRight: 24}}></View>
         {/* <View
           style={{
             flexDirection: 'row',

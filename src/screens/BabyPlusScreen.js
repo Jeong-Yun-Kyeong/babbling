@@ -25,20 +25,72 @@ export default class BabyPlus extends PureComponent {
       topRight: 5,
       bottomRight: 5,
       //true 남자, false,여자
-      gender: true,
-
+      gender: '-1',
+      baby_name: null,
       enableName: false,
+      baby_year: null,
+      baby_month: null,
+      baby_day: null,
     };
   }
 
   render() {
-    let screenMargin = ScreenMargin.getMargin(this.props.route.name);
-    console.log(this.props.route.name);
+    // let screenMargin = ScreenMargin.getMargin(this.props.route.name);
+    let screenMargin = 40;
+    // console.log(this.props.route.name);
 
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView />
+        <SafeAreaView style={{backgroundColor: 'white'}} />
+        <View
+          style={{
+            backgroundColor: 'white',
+            flexDirection: 'row',
+            height: 58,
+            paddingLeft: 28,
+            paddingRight: 28,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Join');
+            }}>
+            <SvgXml xml={SVG('BACKIOS')} />
+          </TouchableOpacity>
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.6)'}}>
+              우리 아이 등록하기
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('다음');
+              console.log({
+                gender: this.state.gender,
+                baby_name: this.state.baby_name,
+                baby_year: this.state.baby_year,
+                baby_month: this.state.baby_month,
+                baby_day: this.state.baby_day,
+              });
+              console.log(this.props.route.params.authUser);
+              console.log(this.props.route.params.userInfo);
+              this.props.navigation.navigate('BabyAllergy', {
+                authUser: this.props.route.params.authUser,
+                userInfo: this.props.route.params.userInfo,
+                babyPlus: {
+                  gender: this.state.gender,
+                  baby_name: this.state.baby_name,
+                  baby_year: this.state.baby_year,
+                  baby_month: this.state.baby_month,
+                  baby_day: this.state.baby_day,
+                },
+              });
+            }}>
+            <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.35)'}}>다음</Text>
+          </TouchableOpacity>
+        </View>
         <ScrollView
           style={{backgroundColor: 'white', flex: 1, backgroundColor: 'white'}}>
           <View style={{paddingHorizontal: screenMargin}}>
@@ -90,9 +142,10 @@ export default class BabyPlus extends PureComponent {
             <LabelInput
               placeholder={'베베'}
               label={'아이 이름/별명'}
-              button={true}
-              btnTitle={'중복확인'}
-              style={{marginRight: 62}}
+              onChangeText={(text) => {
+                this.setState({baby_name: text});
+              }}
+              // style={{marginRight: 62}}
             />
             <Text
               style={{
@@ -119,18 +172,19 @@ export default class BabyPlus extends PureComponent {
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
-                      gender: !this.state.gender,
+                      gender: '0',
                     });
                   }}
                   style={[
                     styles.gender_button,
                     {
-                      backgroundColor: this.state.gender ? 'white' : '#32cc73',
+                      backgroundColor:
+                        this.state.gender == '0' ? '#32cc73' : 'white',
                     },
                   ]}>
                   <Text
                     style={{
-                      color: this.state.gender ? '#32cc73' : 'white',
+                      color: this.state.gender == '0' ? 'white' : '#32cc73',
                       fontSize: 15,
                     }}>
                     남자
@@ -140,18 +194,19 @@ export default class BabyPlus extends PureComponent {
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
-                      gender: !this.state.gender,
+                      gender: '1',
                     });
                   }}
                   style={[
                     styles.gender_button,
                     {
-                      backgroundColor: this.state.gender ? '#32cc73' : 'white',
+                      backgroundColor:
+                        this.state.gender == '1' ? '#32cc73' : 'white',
                     },
                   ]}>
                   <Text
                     style={{
-                      color: this.state.gender ? 'white' : '#32cc73',
+                      color: this.state.gender == '1' ? 'white' : '#32cc73',
                       fontSize: 15,
                     }}>
                     여자
@@ -190,6 +245,9 @@ export default class BabyPlus extends PureComponent {
                     <TextInput
                       editable
                       maxLength={4}
+                      onChangeText={(text) => {
+                        this.setState({baby_year: text});
+                      }}
                       style={styles.data_text}></TextInput>
                     <Text>년</Text>
                     <View style={styles.data_slise}></View>
@@ -197,6 +255,9 @@ export default class BabyPlus extends PureComponent {
                   <View style={styles.date_view}>
                     <TextInput
                       maxLength={2}
+                      onChangeText={(text) => {
+                        this.setState({baby_month: text});
+                      }}
                       style={styles.data_text}></TextInput>
                     <Text>월</Text>
                     <View style={styles.data_slise}></View>
@@ -204,6 +265,9 @@ export default class BabyPlus extends PureComponent {
                   <View style={styles.date_view}>
                     <TextInput
                       maxLength={2}
+                      onChangeText={(text) => {
+                        this.setState({baby_day: text});
+                      }}
                       style={styles.data_text}></TextInput>
                     <Text>일</Text>
                   </View>

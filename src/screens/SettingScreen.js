@@ -53,14 +53,14 @@ export default class Settings extends PureComponent {
             <View
               style={{padding: 16, paddingBottom: 0, backgroundColor: 'white'}}>
               {/*  */}
-              <View
+              {/* <View
                 style={{
                   borderBottomColor: 'lightgray',
                   borderBottomWidth: 1,
                   padding: 8,
-                }}>
-                {/*  */}
-                <View
+                }}> */}
+              {/*  */}
+              {/* <View
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
@@ -89,9 +89,9 @@ export default class Settings extends PureComponent {
                       />
                     </View>
                   </View>
-                </View>
-                {/*  */}
-                <View
+                </View> */}
+              {/*  */}
+              {/* <View
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
@@ -120,9 +120,9 @@ export default class Settings extends PureComponent {
                       />
                     </View>
                   </View>
-                </View>
-                {/*  */}
-                <View
+                </View> */}
+              {/*  */}
+              {/* <View
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
@@ -151,8 +151,8 @@ export default class Settings extends PureComponent {
                       />
                     </View>
                   </View>
-                </View>
-              </View>
+                </View> */}
+              {/* </View> */}
               {/*  */}
               <View
                 style={{
@@ -264,16 +264,16 @@ export default class Settings extends PureComponent {
                   }}>
                   <Text style={{color: 'gray', fontSize: 13}}>로그아웃</Text>
                 </TouchableOpacity>
-                <View
+                {/* <View
                   style={{
                     width: 1,
                     backgroundColor: 'gray',
                     marginLeft: 10,
                     marginRight: 10,
-                  }}></View>
-                <TouchableOpacity onPress={() => {}}>
+                  }}></View> */}
+                {/* <TouchableOpacity onPress={() => {}}>
                   <Text style={{color: 'gray', fontSize: 13}}>회원탈퇴</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
             {/*  */}
@@ -285,7 +285,7 @@ export default class Settings extends PureComponent {
                 right: 0,
                 alignItems: 'center',
               }}>
-              <Text style={{color: 'gray'}}>V1.0.0</Text>
+              <Text style={{color: 'gray'}}>1.0.0</Text>
             </View>
           </View>
         </ScrollView>

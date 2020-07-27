@@ -4,6 +4,8 @@ import AuthStack from './src/navigations/AuthStackNavigation';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import EventStack from './src/navigations/EventStackNavigation';
+import BabyPlus from './src/screens/BabyPlusScreen';
+import BabyAlergy from './src/screens/BabyAlergyScreen';
 
 const App = () => {
   return (
@@ -11,7 +13,7 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
         <AuthStack />
-        {/* <EventStack /> */}
+        {/* <BabyAlergy /> */}
       </NavigationContainer>
     </>
   );

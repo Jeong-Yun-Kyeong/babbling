@@ -25,7 +25,7 @@ import {
   statusCodes,
 } from '@react-native-community/google-signin';
 import * as ScreenMargin from '../values/ScreenMargin';
-import {FONTSIZE, URL, TESTTOKEN} from '../Constant';
+import {FONTSIZE, URL} from '../Constant';
 import AsyncStorage from '@react-native-community/async-storage';
 //
 const Login = ({navigation, route}) => {
@@ -115,6 +115,7 @@ _userJoin = (id, pw) => {
 };
 //
 _userCheck = (authUser, navigation) => {
+  console.log('===============: 사용자 확인');
   let url = URL + 'rest-auth/login/';
   loginForm = new FormData();
   loginForm.append('username', authUser.id);
@@ -122,20 +123,20 @@ _userCheck = (authUser, navigation) => {
   url = URL + '/rest-auth/login/';
   fetch(url, {
     method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
     body: loginForm,
   })
     .then((res) => res.json())
     .then((resJson) => {
-      if (resJson.non_field_errors.length > 0) {
+      console.log(resJson);
+      if (resJson.non_field_errors != undefined) {
         console.log('존재하는 계정이 아닙니다.');
         navigation.navigate('Join', {authUser: authUser});
         // _userJoin(id, pw);
-      } else {
-        console.log('데이터 처리해서 홈화면으로 돌아가게 하는법');
+        return;
+      }
+      if (resJson.token) {
+        AsyncStorage.setItem('token', resJson.token);
+        navigation.navigate('Main', {screen: 'Main'});
       }
     });
   //
@@ -166,7 +167,7 @@ onGoogleButtonPress = async (navigation) => {
       sns: 'google',
     };
     //
-    this._userCheck(authUser, navigation);
+    _userCheck(authUser, navigation);
 
     //
     // let url = URL + '/rest-auth/registration/';
@@ -519,6 +520,26 @@ const JOIN = (navigation) => {
 };
 // 노로그인
 const NO_LOGIN = (navigation, route) => {
+  //
+  const unAuthLogin = () => {
+    let url = URL + '/rest-auth/login/';
+    form = new FormData();
+    form.append('username', 'user');
+    form.append('password', 'user123123');
+    fetch(url, {
+      method: 'POST',
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+        // 사용자 로그인 시키게 만들기
+        AsyncStorage.setItem('token', resJson.token);
+        // navigation.navigate('Main', {screen: 'Main'});
+        navigation.navigate('Main', {screen: 'Main'});
+      });
+  };
+
   let fontSize = 12;
   let screenWidth = Dimensions.get('screen').width;
   if (screenWidth >= 834) {
@@ -535,10 +556,7 @@ const NO_LOGIN = (navigation, route) => {
       }}>
       <TouchableOpacity
         onPress={() => {
-          console.log(TESTTOKEN);
-          AsyncStorage.setItem('token', TESTTOKEN);
-          // navigation.navigate('Main', {screen: 'HOME'});
-          navigation.navigate('HOME', {screen: 'Main'});
+          unAuthLogin();
         }}>
         <Text style={{color: '#ffffff99', fontSize: FONTSIZE.SMALL}}>
           로그인 없이 앱 둘러보기

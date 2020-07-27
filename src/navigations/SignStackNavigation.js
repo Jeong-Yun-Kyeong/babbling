@@ -53,12 +53,13 @@ const SignStack = ({navigation}) => {
       <Stack.Screen
         name="BabyPlus"
         component={BabyPlus}
-        options={({route}) => BabyPlusHeader(navigation, route)}
+        // options={({route}) => BabyPlusHeader(navigation, route)}
+        options={() => ({headerShown: false})}
       />
       <Stack.Screen
-        name="BabyAlergy"
+        name="BabyAllergy"
         component={BabyAlergy}
-        options={({route}) => BabyAlergyHeader(navigation, route)}
+        options={({route}) => ({headerShown: false})}
       />
     </Stack.Navigator>
   );
