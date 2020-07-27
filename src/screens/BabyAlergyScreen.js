@@ -7,13 +7,14 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  Image,
   Dimensions,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 
-import * as ScreenMargin from '../values/ScreenMargin';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const CATEWIDTH = () => {
   let width;
@@ -53,7 +54,7 @@ const CATEGORY = [
   {name: '해당 없음', svg: 'CANCEL'},
 ];
 
-export default class BabyAlergy extends PureComponent {
+export default class InputChildAllergyInformation extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,8 +72,128 @@ export default class BabyAlergy extends PureComponent {
     });
   }
 
+  _sigIn = () => {
+    console.log(this.props.route.params.authUser);
+    let authUser = this.props.route.params.authUser;
+    let url = URL + '/rest-auth/registration/';
+    let form = new FormData();
+    form.append('username', authUser.id);
+    form.append('password1', authUser.pw);
+    form.append('password2', authUser.pw);
+    fetch(url, {
+      method: 'POST',
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+        console.log(resJson.token, resJson.user.pk);
+        this.setState({token: resJson.token});
+        this._childAllergyData(resJson.token, resJson.user.pk);
+      });
+  };
+
+  _childAllergyData = (token, pk) => {
+    console.log(this.state);
+    let item = this.state;
+    let url = URL + '/allergy_data/create/';
+    let form = new FormData();
+    form.append('abalone', item.ABALONE);
+    form.append('beef', item.BEEF);
+    form.append('buckwheat', item.BUCKWHEAT);
+    form.append('chicken', item.CHICKEN);
+    form.append('clam', item.CLAM);
+    form.append('crab', item.CRAB);
+    form.append('egg', item.EGG);
+    form.append('h2so3', item.H2SO3);
+    form.append('mackerel', item.MACKEREL);
+    form.append('milk', item.MILK);
+    form.append('mussel', item.MUSSEL);
+    form.append('oyster', item.OYSTER);
+    form.append('peach', item.PEACH);
+    form.append('peanut', item.PEANUT);
+    form.append('pinenut', item.PINENUT);
+    form.append('pork', item.PORK);
+    form.append('shrimp', item.SHRIMP);
+    form.append('soybean', item.SOYBEAN);
+    form.append('squid', item.SQUID);
+    form.append('tomato', item.TOMATO);
+    form.append('walnut', item.WALNUT);
+    form.append('wheat', item.WHEAT);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'JWT ' + token,
+      },
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+        console.log(resJson.idx, item.skin, token);
+        this.setState({allergy_key: resJson.idx});
+        this._userAssistent(pk, token);
+      });
+  };
+
+  _userAssistent = (pk, token) => {
+    let userInfo = this.props.route.params.userInfo;
+    let url = URL + '/user_assistent/create/';
+    let form = new FormData();
+    form.append('user_key', pk);
+    form.append('email', userInfo.email);
+    form.append('name', userInfo.name);
+    form.append('address_main', userInfo.address_main);
+    form.append('address_sub', userInfo.address_sub);
+    form.append('sns_type', this.props.route.params.authUser.sns);
+    form.append('agreement', userInfo.agreement);
+    // form.append('reg_date', '');
+    form.append('flag', 1);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'JWT ' + token,
+      },
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+        console.log(resJson.idx);
+        this._childData(token, resJson.idx);
+      });
+  };
+
+  _childData = (token, user_assistent_key) => {
+    console.log(this.props.route.params.babyPlus);
+    let babyPlus = this.props.route.params.babyPlus;
+    let url = URL + '/child_data/create/';
+    let form = new FormData();
+    form.append('user_assistent_key', user_assistent_key);
+    form.append('child_name', babyPlus.baby_name);
+    form.append('born_year', babyPlus.baby_year);
+    form.append('born_month', babyPlus.baby_month);
+    form.append('born_day', babyPlus.baby_day);
+    form.append('gender', babyPlus.gender);
+    form.append('allergy_key', this.state.allergy_key);
+    form.append('skin_trouble', this.state.skin);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'JWT ' + token,
+      },
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson);
+        AsyncStorage.setItem('token', this.state.token);
+        this.props.navigation.navigate('Main', {screen: 'Main'});
+      });
+  };
+
   render() {
-    let screenMargin = ScreenMargin.getMargin(this.props.route.name);
+    let screenMargin = 24;
 
     let CATEGORY_ROW = [];
     // CATEGORY.map((item, i) => {
@@ -92,7 +213,41 @@ export default class BabyAlergy extends PureComponent {
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView />
+        <SafeAreaView style={{backgroundColor: 'white'}} />
+        <View
+          style={{
+            backgroundColor: 'white',
+            flexDirection: 'row',
+            height: 58,
+            paddingLeft: 28,
+            paddingRight: 28,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Join');
+            }}>
+            <SvgXml xml={SVG('BACKIOS')} />
+          </TouchableOpacity>
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.6)'}}>
+              우리 아이 등록하기
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('저장');
+              console.log(this.state);
+              if (this.state.skin == '-1') {
+                alert('피부트러블을 선택해주세요.');
+                return;
+              }
+              this._sigIn();
+            }}>
+            <Text style={{fontSize: 16, color: '#32cc73'}}>저장</Text>
+          </TouchableOpacity>
+        </View>
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
           <View style={{marginHorizontal: screenMargin}}>
             {/* 문구 */}
