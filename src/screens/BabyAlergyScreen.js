@@ -21,7 +21,7 @@ const CATEWIDTH = () => {
   let width;
   let screen;
   screen = Dimensions.get('screen').width;
-  for (i = 90; i <= 1350; i += 90) {
+  for (let i = 90; i <= 1350; i += 90) {
     if (screen >= i && screen < i + 89) {
       width = i;
       return width;
