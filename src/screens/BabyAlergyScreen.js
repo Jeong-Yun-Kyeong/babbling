@@ -11,9 +11,10 @@ import {
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
-import {URL} from '../Constant';
+
 
 import AsyncStorage from '@react-native-community/async-storage';
+
 
 const CATEWIDTH = () => {
   let width;
@@ -59,14 +60,14 @@ export default class InputChildAllergyInformation extends PureComponent {
     this.state = {
       topRight: 5,
       bottomRight: 5,
-      skin: '-1',
+      skin: false,
     };
   }
 
   componentWillMount() {
     CATEGORY.map((item, i) => {
       this.setState({
-        [item.svg]: item.svg == 'CANCEL' ? 1 : 0,
+        [item.svg]: false,
       });
     });
   }
@@ -207,7 +208,7 @@ export default class InputChildAllergyInformation extends PureComponent {
       }
     }
 
-    // console.log(CATEGORY_ROW);
+    console.log(CATEGORY_ROW);
 
     return (
       <Fragment>
@@ -248,7 +249,7 @@ export default class InputChildAllergyInformation extends PureComponent {
           </TouchableOpacity>
         </View>
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
-          <View style={{paddingHorizontal: screenMargin}}>
+          <View style={{marginHorizontal: screenMargin}}>
             {/* 문구 */}
             <View
               style={{
@@ -282,7 +283,7 @@ export default class InputChildAllergyInformation extends PureComponent {
                   }}>
                   <Text
                     numberOfLines={2}
-                    style={{fontSize: 14, color: 'rgba(0,0,0,0.87)'}}>
+                    style={{fontSize: 14, fontWeight: 'bold'}}>
                     우리 아이에게 있는{'\r'}알레르기와 피부트러블을 체크해주세요
                   </Text>
                 </View>
@@ -332,44 +333,11 @@ export default class InputChildAllergyInformation extends PureComponent {
                                 marginBottom: 30,
                               }}
                               onPress={() => {
-                                if (item.svg == 'CANCEL') {
-                                  console.log(
-                                    '나머지 다 0으로 변경해야되는데 ㅠㅠ',
-                                  );
-                                  this.setState({
-                                    ABALONE: 0,
-                                    BEEF: 0,
-                                    BUCKWHEAT: 0,
-                                    CHICKEN: 0,
-                                    CLAM: 0,
-                                    CRAB: 0,
-                                    EGG: 0,
-                                    H2SO3: 0,
-                                    MACKEREL: 0,
-                                    MILK: 0,
-                                    MUSSEL: 0,
-                                    OYSTER: 0,
-                                    PEACH: 0,
-                                    PEANUT: 0,
-                                    PINENUT: 0,
-                                    PORK: 0,
-                                    SHRIMP: 0,
-                                    SOYBEAN: 0,
-                                    SQUID: 0,
-                                    TOMATO: 0,
-                                    WALNUT: 0,
-                                    WHEAT: 0,
-                                  });
-                                } else {
-                                  this.setState({
-                                    CANCEL: 0,
-                                  });
-                                }
                                 this.setState({
-                                  [item.svg]: this.state[item.svg] == 0 ? 1 : 0,
+                                  [item.svg]: !this.state[item.svg],
                                 });
                               }}
-                              key={(row + 1) * i}>
+                              key={row * 4 + i}>
                               <SvgXml
                                 xml={SVG(
                                   this.state[item.svg]
@@ -423,19 +391,18 @@ export default class InputChildAllergyInformation extends PureComponent {
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
-                      skin: '1',
+                      skin: !this.state.skin,
                     });
                   }}
                   style={[
                     styles.option_button,
                     {
-                      backgroundColor:
-                        this.state.skin == '1' ? '#32cc73' : 'white',
+                      backgroundColor: this.state.skin ? 'white' : '#32cc73',
                     },
                   ]}>
                   <Text
                     style={{
-                      color: this.state.skin == '1' ? 'white' : '#32cc73',
+                      color: this.state.skin ? '#32cc73' : 'white',
                       fontSize: 15,
                     }}>
                     있어요
@@ -444,19 +411,18 @@ export default class InputChildAllergyInformation extends PureComponent {
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
-                      skin: '0',
+                      skin: !this.state.skin,
                     });
                   }}
                   style={[
                     styles.option_button,
                     {
-                      backgroundColor:
-                        this.state.skin == '0' ? '#32cc73' : 'white',
+                      backgroundColor: this.state.skin ? '#32cc73' : 'white',
                     },
                   ]}>
                   <Text
                     style={{
-                      color: this.state.skin == '0' ? 'white' : '#32cc73',
+                      color: this.state.skin ? 'white' : '#32cc73',
                       fontSize: 15,
                     }}>
                     없어요
