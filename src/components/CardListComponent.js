@@ -364,8 +364,6 @@ const styles = StyleSheet.create({
     shadowColor: 'rgb(0,0,0)',
     shadowOpacity: 0.06,
     shadowRadius: 10,
-
-    elevation: 5,
   },
   slideCard: {
     backgroundColor: 'white',
@@ -374,7 +372,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 15,
 
-    elevation: 3,
+    elevation: 6,
     overflow: 'hidden',
   },
   slideCardHeader: {

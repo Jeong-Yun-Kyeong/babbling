@@ -36,11 +36,13 @@ function CategoryTop(props) {
       <SafeAreaView style={{backgroundColor: 'white'}} />
       <View
         style={{
-          height: 62,
+          height: 58,
           backgroundColor: 'white',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
+          borderBottomColor: 'rgba(0,0,0,0.11)',
+          borderBottomWidth: 1,
         }}>
         <TouchableOpacity
           style={{marginLeft: 24, marginRight: 10}}
@@ -111,6 +113,7 @@ function CategoryTop(props) {
             shadowOffset: {
               height: 0,
             },
+            elevation: 0,
           },
         }}>
         <Tab.Screen
