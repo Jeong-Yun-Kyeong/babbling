@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ImagePropTypes,
+  Platform,
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import 'react-native-gesture-handler';
@@ -51,11 +52,11 @@ const PickHeader = (navigation) => ({
       </View> */}
     </View>
   ),
-  // headerStyle: {
-  //   height: Platform.OS === 'ios' ? getStatusBarHeight() + 50 : 50,
-  //   shadowOffset: {height: 0},
-  //   elevation: 0,
-  // },
+  headerStyle: {
+    height: Platform.OS === 'ios' ? getStatusBarHeight() + 50 : 50,
+    //   shadowOffset: {height: 0},
+    //   elevation: 0,
+  },
 });
 
 const PickInnerHeader = (navigation) => ({

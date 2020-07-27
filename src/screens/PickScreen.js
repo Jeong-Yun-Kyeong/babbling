@@ -59,7 +59,7 @@ export default class Pick extends PureComponent {
   render() {
     return (
       <Fragment>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
         <SafeAreaView />
         <CompareButton
           goCompare={() => {

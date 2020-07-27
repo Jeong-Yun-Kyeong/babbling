@@ -159,7 +159,7 @@ export default class Footer extends PureComponent {
                 alignItems: 'center',
               }}>
               <View style={{paddingLeft: 20}}>
-                <Text style={{fontSize: 15, fontWeight: '500'}}>
+                <Text style={{fontSize: 15}} fontWeight="500">
                   온라인 고객센터
                 </Text>
               </View>
@@ -306,7 +306,7 @@ export default class Footer extends PureComponent {
                 paddingVertical: 10,
                 display: this.state.infoVisible,
               },
-              this.state.infoVisible == 'flex' ? null : {height: 0},
+              this.state.infoVisible == 'flex' ? 'none' : {height: 0},
             ]}>
             <Text style={{fontSize: 10}}>주식회사 베이비랩</Text>
             <View style={{flexDirection: 'row'}}>

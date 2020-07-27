@@ -84,7 +84,7 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
     ) : null,
   headerStyle: {
     //ios,android 구분하여 높이적용
-    height: getStatusBarHeight() + 56,
+    height: getStatusBarHeight() + 50,
     // Platform.OS === 'ios' ? getStatusBarHeight() + 56 : getStatusBarHeight() + 56,
     shadowRadius: 0,
     shadowOffset: {

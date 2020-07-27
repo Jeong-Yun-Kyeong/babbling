@@ -160,7 +160,7 @@ export default class Home extends PureComponent {
     const screenMargin = ScreenMargin.getMargin(this.props.route.name);
     return (
       <Fragment>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="dark-content" backgroundColor="white" />
         <SafeAreaView />
         <ScrollView
           style={{backgroundColor: 'white'}}
