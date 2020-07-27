@@ -32,70 +32,116 @@ const CATEGORY = [
   '치약',
   '수입관',
 ];
+
+const MIDIUM = {분유: 1010, 이유식: 1020, 간식: 1030, 유제품: 1040};
+const SMALL = {
+  1010: {조제분유: 10, 액상분유: 20, 특수분유: 30},
+  1020: {
+    '수제/배달': 10,
+    반고형: 20,
+    레토르트: 30,
+    분말: 40,
+    액상: 50,
+  },
+  1030: {
+    '쌀과자,떡뻥': 10,
+    곡물과자: 20,
+    '과일칩,과자': 30,
+    '씨리얼,퍼프': 40,
+    '퓨레,푸딩': 50,
+    '사탕,젤리': 60,
+    기타: 70,
+  },
+  1040: {
+    우유: 10,
+    치즈: 20,
+    요구르트: 30,
+  },
+};
 // const DATAS = [1, 2, 3];
 
-const DATAS = [
-  {
-    img: '../images/4.jpeg',
-    title: '베베랩',
-    name: '고보습 베리어 베이비 로션 200ml',
-    hashTag: '#첫로션 #고보습 #산양유',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/5.jpeg',
-    title: 'HIPP',
-    name: 'HIPPIS 바나나페어 망고',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/5.jpeg',
-    title: 'HIPP',
-    name: 'HIPPIS 바나나페어 망고',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-  {
-    img: '../images/1.jpeg',
-    title: '남양',
-    name: '아이꼬야 동결건조 과일 귤',
-    hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
-    score: 4.5,
-    count: '2,121',
-  },
-];
+// const DATAS = [
+//   {
+//     img: '../images/4.jpeg',
+//     title: '베베랩',
+//     name: '고보습 베리어 베이비 로션 200ml',
+//     hashTag: '#첫로션 #고보습 #산양유',
+//     score: 4.5,
+//     count: '2,121',
+//   },
+//   {
+//     img: '../images/5.jpeg',
+//     title: 'HIPP',
+//     name: 'HIPPIS 바나나페어 망고',
+//     hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+//     score: 4.5,
+//     count: '2,121',
+//   },
+//   {
+//     img: '../images/1.jpeg',
+//     title: '남양',
+//     name: '아이꼬야 동결건조 과일 귤',
+//     hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+//     score: 4.5,
+//     count: '2,121',
+//   },
+//   {
+//     img: '../images/5.jpeg',
+//     title: 'HIPP',
+//     name: 'HIPPIS 바나나페어 망고',
+//     hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+//     score: 4.5,
+//     count: '2,121',
+//   },
+//   {
+//     img: '../images/1.jpeg',
+//     title: '남양',
+//     name: '아이꼬야 동결건조 과일 귤',
+//     hashTag: '#해쉬태그 #해쉬태그 #해쉬태그',
+//     score: 4.5,
+//     count: '2,121',
+//   },
+// ];
 
-const Category = ({navigation}) => {
+const Category = ({navigation, route}) => {
   const [datas, setDatas] = useState([]);
 
   useEffect(() => {
+    // console.log(route.params.name);
+    // console.log(MIDIUM[route.params.name]);
+
     const getToken = async () => {
       let token = await AsyncStorage.getItem('token');
       console.log(token);
-      getProducts(token);
+      let code = '';
+      if (route.name == 'ALL') {
+        code = MIDIUM[route.params.name];
+      } else {
+        // console.log(SMALL[MIDIUM[route.params.name]][route.name]);
+        code =
+          MIDIUM[route.params.name] +
+          '' +
+          SMALL[MIDIUM[route.params.name]][route.name];
+      }
+      console.log(code);
+      getProducts(token, code);
     };
     //
-    const getProducts = (token) => {
-      fetch(URL + '/product/', {
+    const getProducts = (token, code) => {
+      console.log('-=========================: ' + token + ', ' + code);
+      let form = new FormData();
+      form.append('code', code);
+      fetch(URL + '/product/category/', {
         headers: {
           Authorization: 'JWT ' + token,
         },
+        method: 'POST',
+        body: form,
       })
         .then((res) => res.json())
         .then((resJson) => {
           console.log(resJson);
+          // resJson 없을때 데이터 없음을 나타내는 화면 필요
           setDatas(resJson);
         });
     };

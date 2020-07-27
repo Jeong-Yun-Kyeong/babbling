@@ -80,10 +80,17 @@ const Cate = {
   수입관: IMPORT,
 };
 
-const getNav = (datas) => {
+const getNav = (datas, route) => {
   return datas.map((data, i) => {
-    console.log(data);
-    return <Tab.Screen name={data} component={CategoryScreen} key={i} />;
+    // console.log(data);
+    return (
+      <Tab.Screen
+        name={data}
+        component={CategoryScreen}
+        key={i}
+        initialParams={{name: route.name}}
+      />
+    );
   });
 };
 
@@ -108,9 +115,10 @@ function PowderedMilk({navigation, route}) {
           shadowOffset: {
             height: 0,
           },
+          elevation: 0,
         },
       }}>
-      {getNav(Data)}
+      {getNav(Data, route)}
     </Tab.Navigator>
   );
 }
