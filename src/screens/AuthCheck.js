@@ -5,10 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const TokenCheck = async (navigation) => {
   let getToken = await AsyncStorage.getItem('token');
   console.log('========================' + getToken);
-  getToken != null
-    ? navigation.navigate('Main')
-    : navigation.navigate('LoginMain');
-  //   setToken(getToken);
+  getToken != null ? navigation.navigate('Main') : navigation.navigate('Sign');
 };
 const AuthCheck = (props) => {
   TokenCheck(props.navigation);

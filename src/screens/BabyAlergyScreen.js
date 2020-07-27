@@ -7,14 +7,12 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  Image,
   Dimensions,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import {URL} from '../Constant';
 
-import * as ScreenMargin from '../values/ScreenMargin';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const CATEWIDTH = () => {
@@ -55,7 +53,7 @@ const CATEGORY = [
   {name: '해당 없음', svg: 'CANCEL'},
 ];
 
-export default class BabyAlergy extends PureComponent {
+export default class InputChildAllergyInformation extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -138,9 +136,6 @@ export default class BabyAlergy extends PureComponent {
   };
 
   _userAssistent = (pk, token) => {
-    //로그인 반환키, 이메일,이름,주소메인,주서 서브, sns종류, 동의확인,등록일,존재여부
-    // console.log(this.props.route.params.authUser);
-    // console.log(this.props.route.params.userInfo);
     let userInfo = this.props.route.params.userInfo;
     let url = URL + '/user_assistent/create/';
     let form = new FormData();
@@ -192,13 +187,11 @@ export default class BabyAlergy extends PureComponent {
       .then((resJson) => {
         console.log(resJson);
         AsyncStorage.setItem('token', this.state.token);
-        //토큰 저장 후 화면 네비게이션 넘기기
         this.props.navigation.navigate('Main', {screen: 'Main'});
       });
   };
 
   render() {
-    // let screenMargin = ScreenMargin.getMargin(this.props.route.name);
     let screenMargin = 24;
 
     let CATEGORY_ROW = [];
@@ -249,12 +242,7 @@ export default class BabyAlergy extends PureComponent {
                 alert('피부트러블을 선택해주세요.');
                 return;
               }
-              // console.log(this.props.route.params.authUser);
-              // console.log(this.props.route.params.userInfo);
-              // console.log(this.props.route.params.babyPlus);
               this._sigIn();
-
-              //
             }}>
             <Text style={{fontSize: 16, color: '#32cc73'}}>저장</Text>
           </TouchableOpacity>

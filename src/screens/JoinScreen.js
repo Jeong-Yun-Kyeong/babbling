@@ -19,7 +19,7 @@ import {약관1, 약관2} from '../Constant';
 import IMP from 'iamport-react-native';
 import {Loading} from '../components/LoadingComponent';
 import {URL} from '../Constant';
-export default class Join extends PureComponent {
+export default class SignUp extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -291,27 +291,6 @@ export default class Join extends PureComponent {
                   this.firstTextInput.focus();
                   return;
                 }
-                //
-                // let pw = data.password;
-                // let num = pw.search(/[0-9]/g);
-                // let eng = pw.search(/[a-z]/gi);
-                // let engBig = pw.search(/[A-Z]/);
-                // let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-                // if (pw.length <= 8 || pw.length > 17) {
-                //   alert('8자리 ~ 16자리 이내로 입력해주세요.');
-                //   return;
-                // } else if (pw.search(/\s/) != -1) {
-                //   alert('비밀번호는 공백 없이 입력해주세요.');
-                //   return;
-                // } else if (num < 0 || eng < 0 || spe < 0 || engBig < 0) {
-                //   alert('영대소문자, 숫자, 특수문자를 혼합하여 입력해주세요.');
-                //   return;
-                // }
-                // //
-                // if (data.re_password != data.password) {
-                //   alert('비밀번호를 다시 확인해주세요.');
-                //   return;
-                // }
 
                 //이름은 추후 휴대폰인증 붙여야될거같음
                 //주소지 입력은 우편번호 검색해서 완료 시 결과값에 특정 값 붙어서 나오는지 확인하고 처리하기
@@ -332,36 +311,6 @@ export default class Join extends PureComponent {
                 }
                 // alert(data);
                 console.log(data);
-                //저장하는거 있어야됨 서버에
-                // form = new FormData();
-                // form.append('user_key', data.datas.user.pk);
-                // form.append('email', data.email);
-                // form.append('name', data.name);
-                // form.append('address_main', data.address);
-                // form.append('address_sub', data.sub_address);
-                // form.append('sns_type', data.sns);
-                // form.append('agreement', data.check_all == true ? 1 : 0);
-                // // form.append('reg_date', );
-                // form.append('flag', 1);
-                // console.log(data.datas);
-
-                // const url = URL + '/user_assistent/create/';
-                // fetch(url, {
-                //   method: 'POST',
-                //   headers: {
-                //     Accept: 'application/json',
-                //     'Content-Type': 'application/json',
-                //     Authorization: 'JWT ' + data.datas.token,
-                //   },
-                //   body: form,
-                // })
-                //   .then((res) => res.json())
-                //   .then((resJson) => {
-                //     console.log(resJson);
-                //     // 아이추가 정뽀 비교 필요
-                //   });
-                // // this.props.navigation.navigate('BabyPlus');
-                //
                 let authUser = this.props.route.params.authUser;
                 let userInfo = {
                   name: this.state.name,
@@ -371,7 +320,7 @@ export default class Join extends PureComponent {
                   agreement: this.state.check_all == true ? 1 : 0,
                 };
                 console.log(authUser, userInfo);
-                this.props.navigation.navigate('BabyPlus', {
+                this.props.navigation.navigate('InputChildInformation', {
                   authUser: authUser,
                   userInfo: userInfo,
                 });

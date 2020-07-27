@@ -7,24 +7,21 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  Image,
   Dimensions,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 import LabelInput from '../components/atom/LabelInput';
 
-import * as ScreenMargin from '../values/ScreenMargin';
 import {TextInput} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
 
-export default class BabyPlus extends PureComponent {
+export default class InputChildInformation extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       topRight: 5,
       bottomRight: 5,
-      //true 남자, false,여자
+      // -1:미선택, 0: 남자, 1: 여자
       gender: '-1',
       baby_name: null,
       enableName: false,
@@ -35,10 +32,6 @@ export default class BabyPlus extends PureComponent {
   }
 
   render() {
-    // let screenMargin = ScreenMargin.getMargin(this.props.route.name);
-    let screenMargin = 40;
-    // console.log(this.props.route.name);
-
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
@@ -76,16 +69,18 @@ export default class BabyPlus extends PureComponent {
               });
               console.log(this.props.route.params.authUser);
               console.log(this.props.route.params.userInfo);
-              this.props.navigation.navigate('BabyAllergy', {
+              // 밑에꺼 예외처리 필요
+              let babyPlus = {
+                gender: this.state.gender,
+                baby_name: this.state.baby_name,
+                baby_year: this.state.baby_year,
+                baby_month: this.state.baby_month,
+                baby_day: this.state.baby_day,
+              };
+              this.props.navigation.navigate('InputChildAllergyInformation', {
                 authUser: this.props.route.params.authUser,
                 userInfo: this.props.route.params.userInfo,
-                babyPlus: {
-                  gender: this.state.gender,
-                  baby_name: this.state.baby_name,
-                  baby_year: this.state.baby_year,
-                  baby_month: this.state.baby_month,
-                  baby_day: this.state.baby_day,
-                },
+                babyPlus: babyPlus,
               });
             }}>
             <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.35)'}}>다음</Text>
@@ -93,7 +88,7 @@ export default class BabyPlus extends PureComponent {
         </View>
         <ScrollView
           style={{backgroundColor: 'white', flex: 1, backgroundColor: 'white'}}>
-          <View style={{paddingHorizontal: screenMargin}}>
+          <View style={{paddingHorizontal: 40}}>
             {/* 얼굴 */}
             <View style={{marginTop: 35, marginBottom: 40}}>
               <View style={{alignItems: 'center'}}>

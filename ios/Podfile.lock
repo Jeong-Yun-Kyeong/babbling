@@ -89,25 +89,6 @@ PODS:
     - GTMSessionFetcher/Core (= 1.4.0)
   - IamportReactNative (1.5.0):
     - React
-  - kakao-login (2.7.0):
-    - KakaoOpenSDK (~> 1.21.0)
-    - React
-  - KakaoOpenSDK (1.21.1):
-    - KakaoOpenSDK/KakaoCommon (= 1.21.1)
-    - KakaoOpenSDK/KakaoLink (= 1.21.1)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.21.1)
-    - KakaoOpenSDK/KakaoNavi (= 1.21.1)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.21.1)
-    - KakaoOpenSDK/KakaoPlusFriend (= 1.21.1)
-  - KakaoOpenSDK/KakaoCommon (1.21.1)
-  - KakaoOpenSDK/KakaoLink (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.21.1)
-  - KakaoOpenSDK/KakaoNavi (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.21.1)
-  - KakaoOpenSDK/KakaoPlusFriend (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -215,7 +196,6 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleSignIn (~> 5.0.2)
   - IamportReactNative (from `../node_modules/iamport-react-native`)
-  - "kakao-login (from `../node_modules/@react-native-seoul/kakao-login`)"
   - React (from `../node_modules/react-native/`)
   - React-Core (from `../node_modules/react-native/React`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
@@ -261,7 +241,6 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
-    - KakaoOpenSDK
     - nanopb
     - PromisesObjC
 
@@ -276,8 +255,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   IamportReactNative:
     :path: "../node_modules/iamport-react-native"
-  kakao-login:
-    :path: "../node_modules/@react-native-seoul/kakao-login"
   React:
     :path: "../node_modules/react-native/"
   React-Core:
@@ -356,8 +333,6 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   IamportReactNative: 8257c900cbf8c74ce614d3977460048710728552
-  kakao-login: 6da3fee5a39f1dd5f88de7534c20ed564ca448fb
-  KakaoOpenSDK: 7a7b728491fc199bf2186fec5bbf2c70ba14f474
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   React: 68e7f8dfc27729eade18423072a143120f2f32ab

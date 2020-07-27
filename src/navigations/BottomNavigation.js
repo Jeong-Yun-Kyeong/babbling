@@ -61,7 +61,7 @@ const getTabBarVisibility = (route) => {
   return true;
 };
 
-const Header = ({navigation, route}) => {
+const MainStack = ({navigation, route}) => {
   let marginBottom = 5;
   if (Dimensions.get('screen').width >= 824) {
     marginBottom = 0;
@@ -73,6 +73,8 @@ const Header = ({navigation, route}) => {
         activeTintColor: '#32cc73',
         inactiveTintColor: '#666666',
         style: {
+          // top: 15,
+          // backgroundColor: 'red',
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
@@ -271,4 +273,4 @@ const Header = ({navigation, route}) => {
   );
 };
 
-export default Header;
+export default MainStack;
