@@ -94,7 +94,7 @@ export default class BabyAlergy extends PureComponent {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView />
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
-          <View style={{marginHorizontal: screenMargin}}>
+          <View style={{paddingHorizontal: screenMargin}}>
             {/* 문구 */}
             <View
               style={{
