@@ -19,7 +19,7 @@ const CATEWIDTH = () => {
   let width;
   let screen;
   screen = Dimensions.get('screen').width;
-  for (i = 90; i <= 1350; i += 90) {
+  for (let i = 90; i <= 1350; i += 90) {
     if (screen >= i && screen < i + 89) {
       width = i;
       return width;
@@ -94,7 +94,7 @@ export default class BabyAlergy extends PureComponent {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView />
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
-          <View style={{paddingHorizontal: screenMargin}}>
+          <View style={{margin: screenMargin}}>
             {/* 문구 */}
             <View
               style={{
