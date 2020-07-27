@@ -225,8 +225,8 @@ export default class BabyAlergy extends PureComponent {
             backgroundColor: 'white',
             flexDirection: 'row',
             height: 58,
-            paddingLeft: 28,
-            paddingRight: 28,
+            paddingHorizontal: 28,
+            // paddingRight: 28,
             alignItems: 'center',
             justifyContent: 'center',
           }}>
