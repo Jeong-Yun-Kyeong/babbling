@@ -108,6 +108,7 @@ function PowderedMilk({navigation, route}) {
           shadowOffset: {
             height: 0,
           },
+          elevation: 0,
         },
       }}>
       {getNav(Data)}

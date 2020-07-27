@@ -25,16 +25,18 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
         <SvgXml xml={SVG(json.left)} />
       </TouchableOpacity>
     ) : (
-      <Text
-        style={{
-          fontSize: 32,
-          //
-          // fontWeight: '900',
-          marginLeft: 24,
-          fontFamily: 'Poppins-Bold',
-        }}>
-        {json.left}
-      </Text>
+      <View style={{justifyContent: 'center'}}>
+        <Text
+          style={{
+            fontSize: 32,
+            //
+            // fontWeight: '900',
+            marginLeft: 24,
+            fontFamily: 'Poppins-Bold',
+          }}>
+          {json.left}
+        </Text>
+      </View>
     ),
   //android 가운데 정렬
   headerTitleAlign: 'center',
@@ -64,7 +66,10 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
         <SvgXml xml={SVG('SEARCH')} width="24" height="24" />
       </TouchableOpacity>
     ) : (
-      <Text style={{fontSize: 17, alignItems: 'center'}}>{json.title}</Text>
+      <Text
+        style={{fontSize: 17, alignItems: 'center', justifyContent: 'center'}}>
+        {json.title}
+      </Text>
     ),
   //search,jim.mypage 주석
   headerRight: () =>
@@ -84,12 +89,13 @@ const HeaderOptions = (navigation, json, trnasparent) => ({
     ) : null,
   headerStyle: {
     //ios,android 구분하여 높이적용
-    height: getStatusBarHeight() + 56,
-    // Platform.OS === 'ios' ? getStatusBarHeight() + 56 : getStatusBarHeight() + 56,
+    // height: getStatusBarHeight() + 56,
+    // height: null,
     shadowRadius: 0,
     shadowOffset: {
       height: 0,
     },
+    elevation: 0,
   },
   headerTransparent: trnasparent,
 });

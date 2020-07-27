@@ -32,8 +32,8 @@ export default class Settings extends PureComponent {
     AsyncStorage.clear();
     const tokenConfirm = await AsyncStorage.getItem('token');
     console.log('tokenConfirm:   ', tokenConfirm);
-    this.props.navigation.navigate('LoginMain', {
-      screen: 'Login',
+    this.props.navigation.navigate('Sign', {
+      screen: 'SignIn',
     });
   };
 

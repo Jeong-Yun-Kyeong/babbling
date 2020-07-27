@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Platform,
 } from 'react-native';
 import CardList from '../components/CardListComponent';
 import CardTalk from '../components/CardTalkComponent';
@@ -160,7 +161,7 @@ export default class Home extends PureComponent {
     const screenMargin = ScreenMargin.getMargin(this.props.route.name);
     return (
       <Fragment>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
         <SafeAreaView />
         <ScrollView
           style={{backgroundColor: 'white'}}
@@ -169,7 +170,8 @@ export default class Home extends PureComponent {
             {/* slide01 */}
             <View
               style={{
-                height: 250,
+                height: Platform.OS === 'ios' ? 250 : 270,
+                paddingTop: Platform.OS === 'ios' ? 16 : 0,
                 // alignItems: 'center',
                 backgroundColor: 'white',
               }}>
