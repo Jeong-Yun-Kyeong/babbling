@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {BlurView} from '@react-native-community/blur';
@@ -291,21 +292,23 @@ const SNS_LOGIN = (navigation) => {
           style={{width: radius + 25, height: radius + 25}}
         />
       </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          width: radius,
-          height: radius,
-          borderRadius: radius,
-          overflow: 'hidden',
-        }}
-        onPress={() => {
-          onAppleButtonPress(navigation);
-        }}>
-        <Image
-          source={require('../images/icon/apple.png')}
-          style={{width: radius, height: radius}}
-        />
-      </TouchableOpacity>
+      {Platform.OS === 'ios' ? (
+        <TouchableOpacity
+          style={{
+            width: radius,
+            height: radius,
+            borderRadius: radius,
+            overflow: 'hidden',
+          }}
+          onPress={() => {
+            onAppleButtonPress(navigation);
+          }}>
+          <Image
+            source={require('../images/icon/apple.png')}
+            style={{width: radius, height: radius}}
+          />
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };
