@@ -10,6 +10,7 @@ import {
   Image,
   Dimensions,
   Switch,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
@@ -38,7 +39,7 @@ export default class ACCESSTERMS extends PureComponent {
             </View>
 
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 1. 식품의 경우, 각 브랜드가 제시한
                 정보를보건복지부, 식품의약품안전처, 질병 관리본부의 자료를
                 바탕으로 영양성분, 알레르기 정보, 식품첨가물의 정보를 나타
@@ -47,7 +48,7 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 2. 화장품의 경우, 각 브랜드가 제시한 정보를 EWG(미국
                 비영리단체), 식품의약품 안전처, 질병관리본부의 자료를 바탕으로
                 전성분, 알레르기 유발성분 정보, 피부타입 정보, 추천을
@@ -56,7 +57,7 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 3. 생활용품의 경우. 각 브랜드가 제시한 정보를 EWG(미국
                 비영리단체),  식품의약품 안전처, 질병관리본부의 자료를 바탕으로
                 첨가물, 알레르기 유발성분 정보를 나타냈으며, 화학과
@@ -65,44 +66,44 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 4. 제품 리뷰 작성 및 조회 서비스를 제공합니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 5. 베블링팁, 고민톡 등 육아에 관한 각종 콘텐츠와 정보를
                 제공합니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 6. 베블링 평가단을 운영해 제품 사용 서비스를 제공합니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 7. 고객센터를 운영해 각종 문의 사항 질문과 답변을 제공합니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 8. 서비스의 운영과 관련한 각종 광고를 제공합니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 9. 마이페이지를 통한 이벤트 당첨, 평가단 당첨, 정보 수정 등을
                 제공합니다.
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링 애플리케이션 이용 정보
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 여러분은 스마트폰을 통해 베블링 애플리케이션을 다운받으실 수
                 있습니다. 베블링은 더 나은 정보와 정확한 정보제공을 위해
                 지속해서 서비스를 업데이트 할 예정입니다. 이 과정에서 서비스
@@ -131,12 +132,10 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
-                베블링 계정 정보
-              </Text>
+              <Text style={[styles.bold1, styles.bold2]}>베블링 계정 정보</Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링 계정은 네이버, 카카오톡, 구글, 페이스북 계정과 이메일
                 주소 및 패스워드 기반의 로그인 계정으로 이용할 수
                 있습니다. 베블링 계정은 여러분이 베블링 계정을 삭제하였던
@@ -159,18 +158,18 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링 서비스 이용 정보
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링은 여러분의 육아를 좀 더 쉽게, 편하게 하기 위해 만들어진
                 서비스임을 알려드립니다.
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 그렇기에 잘못된 정보, 무단 수집 및 배포, 영리적 목적으로
                 이용, 지식재산권 침해 등 잘못된 방법으로 베블링을 이용하는 것을
                 금지합니다. 베블링의 정보는 베블링이 수집한 자료를 바탕으로
@@ -188,12 +187,12 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 개인정보 보호 정보
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링을 이용하는 모든 사용자의 개인정보 보호는 가장 중요한 부분
                 중의 하나입니다. 이에 베블링은 여러분의 개인정보를 동의한
                 부분에서의 목적과 범위 내에서만 이용합니다. 법령에 따라
@@ -203,12 +202,12 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 정보제공에 따른 베블링의 책임
               </Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링은 결제정보의 중개서비스 또는 통신판매 중개시스템의
                 제공자로서 통신판매의 당사자가 아니기 때문에 판매자가 제공한
                 정보의 오류로 인해 발생하는 모든 손해 및 상품의 주문, 배송 및
@@ -229,12 +228,10 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
-                분쟁 해결 정보
-              </Text>
+              <Text style={[styles.bold1, styles.bold2]}>분쟁 해결 정보</Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 베블링은 여러분이 제기하는 정당한 의견이나 불만을 반영하고, 그
                 피해를 보상 처리하기 위하여 피해보상 처리 기구를 설치, 운영할
                 것이며, 사용자로부터 제출되는 불만 사항 및 의견은 먼저 사항을
@@ -248,12 +245,10 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
-                약관 정보
-              </Text>
+              <Text style={[styles.bold1, styles.bold2]}>약관 정보</Text>
             </View>
             <View style={{marginBottom: 20}}>
-              <Text style={{fontSize: 13, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold1, styles.bold2]}>
                 법의 변경, 베블링 서비스의 변경 등 변경사항을 반영하기 위한
                 목적으로 본 약관은 수정될 수 있습니다. 약관이 수정될 경우
                 공지사항을 통해 알려드리겠으며, 본 약관은 여러분과 베블링과의
@@ -269,3 +264,10 @@ export default class ACCESSTERMS extends PureComponent {
     );
   }
 }
+const styles = StyleSheet.create({
+  bold1: Platform.select({
+    ios: {fontWeight: '200'},
+    android: {fontFamily: '200'},
+  }),
+  bold2: {fontSize: 13, lineHeight: 18},
+});

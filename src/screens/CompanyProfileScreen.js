@@ -10,6 +10,7 @@ import {
   Image,
   Dimensions,
   Switch,
+  Platform,
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
@@ -68,22 +69,24 @@ export default class ACCESSTERMS extends PureComponent {
           <View style={{marginTop: 30, marginLeft: 24, marginRight: 24}}>
             <View>
               <Text
-                style={{
-                  color: DARKMINT,
-                  fontSize: 18,
-                  lineHeight: 32,
-                  fontWeight: 'bold',
-                }}>
+                style={[
+                  styles.bold1,
+                  {
+                    color: DARKMINT,
+                    fontSize: 18,
+                    lineHeight: 32,
+                  },
+                ]}>
                 안녕하세요? 사랑하는 내 아이를 위한
               </Text>
             </View>
             <View style={{marginBottom: 25}}>
-              <Text style={{color: DARKMINT, fontSize: 18, fontWeight: 'bold'}}>
+              <Text style={[styles.bold1, , {color: DARKMINT, fontSize: 18}]}>
                 유아용품 추천 솔루션 서비스 ‘베블링’입니다.
               </Text>
             </View>
             <View style={{marginBottom: 25}}>
-              <Text style={{fontSize: 12, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold2, {fontSize: 12, lineHeight: 18}]}>
                 베블링은 약 3만개의 Data를 수집했으며, 식품, 화장품, 생활용품,
                 의약외품까지 아이가 쓰는 모든 것에 대한 성분 정보, 영양
                 정보, 알레르기 정보, 식품첨가물, 첨가물 등의 정보를 알기 쉽게
@@ -91,7 +94,7 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View style={{marginBottom: 25}}>
-              <Text style={{fontSize: 12, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold2, {fontSize: 12, lineHeight: 18}]}>
                 베블링은 육아에 집안일까지... 엄마의 고민을 대신하며, 10개
                 종류의 유아 관련 Data를 바탕으로 엄마의 마음을
                 담았습니다. 또한, 보건복지부, 식약처, 질병관리본부의 공공
@@ -101,7 +104,7 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 12, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold2, {fontSize: 12, lineHeight: 18}]}>
                 베블링은 엄마의 육아가 외롭지 않게 엄마들을 위한 콘텐츠를
                 운영하고 있습니다. 엄마들의 후기, 고민을 나누는 콘텐츠가
                 자유로워질 수 있도록 ‘수다 톡’ 서비스를 제공하고
@@ -111,7 +114,7 @@ export default class ACCESSTERMS extends PureComponent {
               </Text>
             </View>
             <View style={{marginBottom: 25}}>
-              <Text style={{fontSize: 12, lineHeight: 18, fontWeight: 200}}>
+              <Text style={[styles.bold2, {fontSize: 12, lineHeight: 18}]}>
                 베블링은 혼자 하는 육아가 같이하는 육아가 되고, 어려웠던 육아가
                 좀 더 쉬워질 수 있도록 엄마의 고민을 함께하겠습니다. 
               </Text>
@@ -123,3 +126,14 @@ export default class ACCESSTERMS extends PureComponent {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  bold1: Platform.select({
+    ios: {fontWeight: 'bold'},
+    android: {fontFamily: 'Poppins-Bold'},
+  }),
+  bold2: Platform.select({
+    ios: {fontWeight: '200'},
+    android: {fontFamily: '200'},
+  }),
+});

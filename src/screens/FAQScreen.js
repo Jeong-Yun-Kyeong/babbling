@@ -62,7 +62,7 @@ export default class FAQ extends PureComponent {
             </TouchableOpacity>
             <View
               style={{
-                display: this.state.toggle01,
+                //display: this.state.toggle01,
                 padding: 16,
                 backgroundColor: '#f3f3f3',
                 borderRadius: 5,
@@ -124,7 +124,7 @@ export default class FAQ extends PureComponent {
             </TouchableOpacity>
             <View
               style={{
-                display: this.state.toggle02,
+                //display: this.state.toggle02,
                 padding: 16,
                 backgroundColor: '#f3f3f3',
                 borderRadius: 5,
