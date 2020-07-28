@@ -9,12 +9,17 @@ import SignIn from '../screens/LoginTwoScreen';
 import SignUp from '../screens/JoinScreen';
 import InputChildInformation from '../screens/BabyPlusScreen';
 import InputChildAllergyInformation from '../screens/BabyAlergyScreen';
-
+import LoginTwoScreen from '../screens/LoginTwoScreen';
 const Stack = createStackNavigator();
 
 const SignStack = ({navigation}) => {
   return (
     <Stack.Navigator>
+      <Stack.Screen //홈화면
+        name="Login"
+        component={LoginTwoScreen}
+        options={({route}) => ({headerShown: false})}
+      />
       <Stack.Screen // 로그인
         name="SignIn"
         component={SignIn}
