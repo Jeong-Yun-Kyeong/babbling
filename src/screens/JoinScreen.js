@@ -67,7 +67,8 @@ export default class SignUp extends PureComponent {
             style={{
               // backgroundColor: 'skyblue',
               marginTop: 16,
-              marginHorizontal: screenMargin,
+              paddingLeft: 28,
+              paddingRight: 28,
             }}>
             <LabelInput
               placeholder={'Babbling@babylab.com'}

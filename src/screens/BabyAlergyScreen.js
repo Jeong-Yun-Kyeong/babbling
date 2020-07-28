@@ -12,10 +12,11 @@ import {
 import {SvgXml} from 'react-native-svg';
 import SVG from '../components/SvgComponent';
 
-
 import AsyncStorage from '@react-native-community/async-storage';
-
-
+//
+import BabyplusScreen from '../screens/BabyPlusScreen';
+import {RotationGestureHandler} from 'react-native-gesture-handler';
+import {not} from 'react-native-reanimated';
 const CATEWIDTH = () => {
   let width;
   let screen;
@@ -226,7 +227,7 @@ export default class InputChildAllergyInformation extends PureComponent {
           }}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Join');
+              this.props.navigation.navigate(BabyplusScreen);
             }}>
             <SvgXml xml={SVG('BACKIOS')} />
           </TouchableOpacity>
@@ -243,7 +244,13 @@ export default class InputChildAllergyInformation extends PureComponent {
                 alert('피부트러블을 선택해주세요.');
                 return;
               }
-              this._sigIn();
+
+              // this._sigIn();
+              // if (CATEGORY.includes('_SELECT')) {
+              // } else {
+              //   alert('식품알레르기를 선택해주세요.');
+              //   return;
+              // }
             }}>
             <Text style={{fontSize: 16, color: '#32cc73'}}>저장</Text>
           </TouchableOpacity>
@@ -333,6 +340,14 @@ export default class InputChildAllergyInformation extends PureComponent {
                                 marginBottom: 30,
                               }}
                               onPress={() => {
+                                // this.state._childAllergyData();
+                                if (
+                                  // this.form.includes('_SELECT') &&
+                                  item.svg === 'CANCEL'
+                                ) {
+                                  alert('올바르게 선택해주세요');
+                                  return;
+                                }
                                 this.setState({
                                   [item.svg]: !this.state[item.svg],
                                 });

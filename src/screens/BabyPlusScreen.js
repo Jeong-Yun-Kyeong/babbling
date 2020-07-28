@@ -14,7 +14,9 @@ import SVG from '../components/SvgComponent';
 import LabelInput from '../components/atom/LabelInput';
 
 import {TextInput} from 'react-native-gesture-handler';
-
+import {createStackNavigator} from '@react-navigation/stack';
+import Join from '../screens/JoinScreen';
+import {BLACK60, mint} from '../Constant';
 export default class InputChildInformation extends PureComponent {
   constructor(props) {
     super(props);
@@ -48,7 +50,7 @@ export default class InputChildInformation extends PureComponent {
           }}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Join');
+              this.props.navigation.navigate(Join);
             }}>
             <SvgXml xml={SVG('BACKIOS')} />
           </TouchableOpacity>
@@ -59,7 +61,7 @@ export default class InputChildInformation extends PureComponent {
           </View>
           <TouchableOpacity
             onPress={() => {
-              console.log('다음');
+              console.log('다음', BLACK60);
               console.log({
                 gender: this.state.gender,
                 baby_name: this.state.baby_name,
@@ -69,7 +71,6 @@ export default class InputChildInformation extends PureComponent {
               });
               console.log(this.props.route.params.authUser);
               console.log(this.props.route.params.userInfo);
-              // 밑에꺼 예외처리 필요
               let babyPlus = {
                 gender: this.state.gender,
                 baby_name: this.state.baby_name,
@@ -77,13 +78,48 @@ export default class InputChildInformation extends PureComponent {
                 baby_month: this.state.baby_month,
                 baby_day: this.state.baby_day,
               };
-              this.props.navigation.navigate('InputChildAllergyInformation', {
-                authUser: this.props.route.params.authUser,
-                userInfo: this.props.route.params.userInfo,
-                babyPlus: babyPlus,
-              });
+              // 밑에꺼 예외처리 필요
+              {
+                let data = this.state;
+
+                if (data.baby_name == null) {
+                  alert('아이 이름을 입력해주세요.');
+                  return;
+                }
+                //직접입력은 내용이 있나 없나만 처리
+                else if (data.gender == null) {
+                  alert('아이의 성별을 선택해주세요.');
+                  return;
+                } else if (data.baby_year == null) {
+                  alert('태어난 날을 바르게 입력해주세요.');
+                  return;
+                }
+                //약관동의 체크 안되있으면 안넘어감
+                else if (data.baby_month == null) {
+                  alert('태어난 날을 바르게 입력해주세요.');
+                  return;
+                } else if (data.baby_day == null) {
+                  alert('태어난 날을 바르게 입력해주세요.');
+                  return;
+                } else {
+                  this.props.navigation.navigate(
+                    'InputChildAllergyInformation',
+                    {
+                      authUser: this.props.route.params.authUser,
+                      userInfo: this.props.route.params.userInfo,
+                      babyPlus: babyPlus,
+                    },
+                  );
+                }
+              }
             }}>
-            <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.35)'}}>다음</Text>
+            <Text
+              style={{
+                fontSize: 16,
+                color: '#32cc73',
+              }}>
+              다음
+            </Text>
           </TouchableOpacity>
         </View>
         <ScrollView
