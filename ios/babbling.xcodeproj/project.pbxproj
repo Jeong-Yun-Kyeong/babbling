@@ -685,7 +685,7 @@
 				DEVELOPMENT_TEAM = ZJ7ZVZQPJZ;
 				INFOPLIST_FILE = babbling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -708,7 +708,7 @@
 				DEVELOPMENT_TEAM = ZJ7ZVZQPJZ;
 				INFOPLIST_FILE = babbling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
