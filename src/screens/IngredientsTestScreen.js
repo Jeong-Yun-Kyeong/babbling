@@ -79,8 +79,6 @@ export default class Ingredients extends PureComponent {
     fetch(URL + '/product/detail/', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
         Authorization: 'JWT ' + this.state.token,
       },
       body: form,

@@ -4,16 +4,16 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {DARKMINT} from '../Constant';
 
 const AuthCheck = (props) => {
-  useEffect(() => {
-    const TokenCheck = async (navigation) => {
-      let getToken = await AsyncStorage.getItem('token');
-      console.log('========================' + getToken);
-      getToken != null
-        ? navigation.navigate('Main')
-        : navigation.navigate('Sign');
-    };
-    TokenCheck(props.navigation);
-  }, []);
+  // useEffect(() => {
+  //   const TokenCheck = async (navigation) => {
+  //     let getToken = await AsyncStorage.getItem('token');
+  //     console.log('========================' + getToken);
+  //     getToken != null
+  //       ? navigation.navigate('Main')
+  //       : navigation.navigate('Sign');
+  //   };
+  //   TokenCheck(props.navigation);
+  // }, []);
 
   return (
     <View
