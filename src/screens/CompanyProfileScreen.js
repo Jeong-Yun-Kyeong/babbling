@@ -53,7 +53,7 @@ export default class ACCESSTERMS extends PureComponent {
         <SafeAreaView />
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
           <Image
-            source={require('../images/companyprofile.png')}
+            source={require('../images/companyprofile.jpg')}
             resizeMode="cover"
             style={{
               position: 'absolute',
