@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.babbling"
+        applicationId "com.babylab.babbling"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -329,8 +329,9 @@ const NO_LOGIN = (navigation, route) => {
         console.log(resJson);
         // 사용자 로그인 시키게 만들기
         AsyncStorage.setItem('token', resJson.token);
+        // navigation.goBack();
         // navigation.navigate('Main', {screen: 'Main'});
-        navigation.navigate('Main', {screen: 'Main'});
+        // navigation.navigate('Main', {screen: 'Main'});
       });
   };
 
